@@ -1,0 +1,50 @@
+.mainDescription {
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: border-radius 0.5s ease, background-color 0.3s ease;
+}
+
+.mainDescription:hover {
+    border-radius: 15px;
+    background-color: rgba(var(--semi-grey-0), 1);
+}
+
+.serverDescription {
+    padding: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: rgba(var(--semi-grey-0), 1);
+}
+
+.xuiDescription {
+    padding: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+
+
+.semi-descriptions-double-medium .semi-descriptions-item {
+    padding-right: 20px;
+}
+
+
+.fixedButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background-color: rgba(var(--semi-grey-0), 1);
+    padding: 3px;
+    border-radius: 20px;
+}

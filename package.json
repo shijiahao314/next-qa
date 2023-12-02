@@ -9,15 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@douyinfe/semi-icons-lab": "^2.48.0",
+    "@douyinfe/semi-ui": "^2.48.0",
+    "@heroicons/react": "^2.0.18",
     "components": "^0.1.0",
     "next": "14.0.3",
+    "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^18.2.40",
+    "@types/react-dom": "^18.2.17",
     "autoprefixer": "^10.4.16",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
