@@ -1,5 +1,5 @@
-import Modal from "@/app/components/modal";
-import { useRouter } from "next/navigation";
+import Modal from '@/app/components/modal';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -8,7 +8,7 @@ export default function LoginPage() {
     <Modal
       isOpen={false}
       onClose={function (): void {
-        throw new Error("Function not implemented.");
+        throw new Error('Function not implemented.');
       }}
     >
       <span onClick={() => router.back()}>Close modal</span>

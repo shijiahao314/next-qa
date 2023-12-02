@@ -1,9 +1,9 @@
-import Photo from "@/app/components/frame";
-import Modal from "@/app/components/modal";
-import Photos from "@/app/photos";
+import Photo from '@/app/components/frame';
+import Modal from '@/app/components/modal';
+import Photos from '@/app/photos';
 
 export default function PhotoModal({
-  params: { id: photoId },
+  params: { id: photoId }
 }: {
   params: {
     id: string;

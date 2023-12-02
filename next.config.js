@@ -6,10 +6,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'pbs.twimg.com',
         port: '',
-        pathname: '/**',
-      },
-    ],
-  },
-}
+        pathname: '/**'
+      }
+    ]
+  }
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

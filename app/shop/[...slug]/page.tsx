@@ -1,5 +1,5 @@
 export default function Page({
-  params,
+  params
 }: {
   params: {
     slug: string;

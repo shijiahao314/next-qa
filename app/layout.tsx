@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { Suspense } from "react";
-import Loading from "./loading";
-import { useSelectedLayoutSegment } from "next/navigation";
+import React, { Suspense } from 'react';
+import Loading from './loading';
+import { useSelectedLayoutSegment } from 'next/navigation';
 
-import "./globals.css";
+import './globals.css';
 
 export default function RootLayout(props: {
   children: React.ReactNode;
@@ -13,8 +13,8 @@ export default function RootLayout(props: {
   auth: React.ReactNode;
   modal: React.ReactNode;
 }) {
-  const loginSegments = useSelectedLayoutSegment("auth");
-  console.log("loginSegments=");
+  const loginSegments = useSelectedLayoutSegment('auth');
+  console.log('loginSegments=');
   console.log(loginSegments);
 
   return (

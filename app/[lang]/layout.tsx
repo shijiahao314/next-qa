@@ -1,5 +1,5 @@
 export async function generateStaticParams() {
-  return [{ lang: "en-US" }, { lang: "de" }];
+  return [{ lang: 'en-US' }, { lang: 'de' }];
 }
 
 export default function Root({ children, params }) {

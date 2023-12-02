@@ -1,5 +1,5 @@
 const mongodbConfig = {
-  host: "localhost",
-  port: "27017",
+  host: 'localhost',
+  port: '27017'
 };
-export {mongodbConfig}; 
+export { mongodbConfig };

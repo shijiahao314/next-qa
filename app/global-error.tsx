@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
 // app/global-error捕获所有layout和template的error，但不捕获page的error
 export default function GlobalError({
   error,
-  reset,
+  reset
 }: {
   error: Error & { digest?: string };
   reset: () => void;
