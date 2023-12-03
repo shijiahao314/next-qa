@@ -1,21 +1,100 @@
 'use client';
 import { useSSEContext } from '@/app/utils/sseContext';
+import ConfirmButton from '@/components/confirmButton';
 import { IconGithubLogo, IconTickCircle, IconUploadError } from '@douyinfe/semi-icons';
-import { Tag, Typography } from '@douyinfe/semi-ui';
+import { Col, Form, Layout, Row, Tag, Typography } from '@douyinfe/semi-ui';
+import Section from '@douyinfe/semi-ui/lib/es/form/section';
+import Footer from '@douyinfe/semi-ui/lib/es/navigation/Footer';
 import React from 'react';
 
 export default function MainContent() {
   const { Title } = Typography;
   const { SSEConnect } = useSSEContext();
 
+  const { Header, Footer, Content } = Layout;
+
+  const { TextArea } = Form;
+
+  const style = { width: '90%' };
+
+  const commonStyle = {
+    height: 64,
+    lineHeight: '64px',
+    background: 'var(--semi-color-fill-0)'
+  };
+
   return (
-    <>
-      <Title
-        heading={2}
+    <Layout className="components-layout-demo">
+      <Content style={{ height: 300, lineHeight: '300px' }}>
+        <Title
+          heading={2}
+          style={{
+            marginTop: '30px',
+            marginLeft: '30px',
+            marginBottom: '20px'
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'flex-start',
+              alignItems: 'baseline'
+            }}
+          >
+            👋 你好, 欢迎来到 HomeDash
+            {SSEConnect ? (
+              <Tag
+                type={'light'}
+                color="green"
+                prefixIcon={<IconTickCircle />}
+                size="large"
+                shape="circle"
+                style={{
+                  marginLeft: '5px',
+                  pointerEvents: 'none'
+                }}
+              >
+                SSE 已连接
+              </Tag>
+            ) : (
+              <Tag
+                type={'light'}
+                color="red"
+                prefixIcon={<IconUploadError />}
+                size="large"
+                shape="circle"
+                style={{
+                  marginLeft: '5px',
+                  pointerEvents: 'none'
+                }}
+              >
+                SSE 未连接
+              </Tag>
+            )}
+            <Tag
+              color="grey"
+              prefixIcon={<IconGithubLogo />}
+              size="large"
+              shape="circle"
+              onClick={() => {
+                window.open('https://github.com/hamster1963/HomeDash');
+              }}
+              style={{
+                marginLeft: '5px',
+                cursor: 'pointer'
+              }}
+            >
+              GitHub
+            </Tag>
+          </div>
+        </Title>
+      </Content>
+      <Footer
         style={{
-          marginTop: '30px',
-          marginLeft: '30px',
-          marginBottom: '20px'
+          position: 'fixed',
+          bottom: 20,
+          height: 100
         }}
       >
         <div
@@ -26,128 +105,66 @@ export default function MainContent() {
             alignItems: 'baseline'
           }}
         >
-          👋 你好, 欢迎来到 HomeDash
-          {SSEConnect ? (
-            <Tag
-              type={'light'}
-              color="green"
-              prefixIcon={<IconTickCircle />}
-              size="large"
-              shape="circle"
-              style={{
-                marginLeft: '5px',
-                pointerEvents: 'none'
-              }}
-            >
-              SSE 已连接
-            </Tag>
-          ) : (
-            <Tag
-              type={'light'}
-              color="red"
-              prefixIcon={<IconUploadError />}
-              size="large"
-              shape="circle"
-              style={{
-                marginLeft: '5px',
-                pointerEvents: 'none'
-              }}
-            >
-              SSE 未连接
-            </Tag>
-          )}
-          <Tag
-            color="grey"
-            prefixIcon={<IconGithubLogo />}
-            size="large"
-            shape="circle"
-            onClick={() => {
-              window.open('https://github.com/hamster1963/HomeDash');
+          <Form
+            initValues={{
+              name: 'semi',
+              business: ['ulikeCam'],
+              role: 'ued',
+              switch: true,
+              files: [
+                {
+                  uid: '1',
+                  name: 'vigo.png',
+                  status: 'success',
+                  size: '130KB',
+                  preview: true,
+                  url: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/vigo.png'
+                },
+                {
+                  uid: '2',
+                  name: 'resso.jpeg',
+                  status: 'validateFail',
+                  size: '222KB',
+                  percent: 50,
+                  preview: true,
+                  fileInstance: new File([new ArrayBuffer(2048)], 'resso.jpeg', {
+                    type: 'image/jpeg'
+                  }),
+                  url: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/Resso.png'
+                },
+                {
+                  uid: '3',
+                  name: 'dy.jpeg',
+                  status: 'uploading',
+                  size: '222KB',
+                  percent: 50,
+                  preview: true,
+                  fileInstance: new File([new ArrayBuffer(2048)], 'dy.jpeg', {
+                    type: 'image/jpeg'
+                  }),
+                  url: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/dy.png'
+                }
+              ]
             }}
-            style={{
-              marginLeft: '5px',
-              cursor: 'pointer'
-            }}
+            style={{ padding: 10, width: '100%' }}
+            onValueChange={(v) => console.log(v)}
           >
-            GitHub
-          </Tag>
+            <Section text="资源详情">
+              <Row>
+                <Col span={12}>
+                  <TextArea
+                    style={{ ...style, height: 120 }}
+                    field="description"
+                    label="申请理由（TextArea）"
+                    placeholder="请填写申请资源理由"
+                  ></TextArea>
+                </Col>
+              </Row>
+            </Section>
+          </Form>
+          <ConfirmButton></ConfirmButton>
         </div>
-      </Title>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginLeft: '20px'
-        }}
-      >
-        <div
-          style={{
-            paddingTop: '10px',
-            border: '1px solid rgba(var(--semi-grey-1), 1)',
-            borderRadius: '15px',
-            minWidth: '200px',
-            marginRight: '20px',
-            marginBottom: '10px',
-            flex: 1
-          }}
-        >
-          <Title
-            heading={3}
-            style={{
-              marginLeft: '20px'
-            }}
-          >
-            家庭网络
-          </Title>
-          {/* <NetworkSummary /> */}
-        </div>
-
-        <div
-          style={{
-            paddingTop: '10px',
-            border: '1px solid rgba(var(--semi-grey-1), 1)',
-            borderRadius: '15px',
-            flex: 1,
-            marginRight: '20px',
-            marginBottom: '10px',
-            minWidth: '200px'
-          }}
-        >
-          <Title
-            heading={3}
-            style={{
-              marginLeft: '20px'
-            }}
-          >
-            科学上网
-          </Title>
-          {/* <ProxySummary /> */}
-        </div>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginLeft: '10px',
-          marginRight: '10px'
-        }}
-      >
-        {/* <InfoCardList /> */}
-      </div>
-      <Title
-        heading={3}
-        style={{
-          marginLeft: '30px',
-          marginBottom: '10px'
-        }}
-      >
-        系统状态
-      </Title>
-      {/* <Server /> */}
-    </>
+      </Footer>
+    </Layout>
   );
 }

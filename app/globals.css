@@ -1,5 +1,5 @@
-@import '@/css/semi.css';
-@import '@/css/style.css';
+@import '../css/semi.css';
+@import '../css/style.css';
 
 @tailwind base;
 @tailwind components;

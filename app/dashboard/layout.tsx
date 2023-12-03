@@ -6,6 +6,7 @@ import { Layout } from '@douyinfe/semi-ui';
 import ThemeSwitcher from '@/components/theme/ThemeSwitcher';
 import { useSSEContext } from '../utils/sseContext';
 import LeftSide from '../../components/frame/leftSide';
+import { leftSideWidth, leftSideWidthExpan } from '../config';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { Sider, Content } = Layout;
@@ -21,11 +22,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!mounted) {
     return null;
   }
+  const navWidth = isNavCollapsed ? leftSideWidth : leftSideWidthExpan;
+
   return (
     <Layout>
       <Sider
         style={{
-          marginRight: isNavCollapsed ? '60px' : '180px'
+          marginRight: navWidth
         }}
       >
         <LeftSide></LeftSide>

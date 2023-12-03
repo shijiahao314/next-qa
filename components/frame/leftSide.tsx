@@ -1,10 +1,11 @@
-import { IconHome, IconSemiLogo, IconServer, IconUserGroup } from '@douyinfe/semi-icons';
+import { IconHome, IconSemiLogo, IconServer, IconSetting } from '@douyinfe/semi-icons';
 import { Nav } from '@douyinfe/semi-ui';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useMemo } from 'react';
 
 import { useSSEContext } from '../../app/utils/sseContext';
+import { leftSideWidth, leftSideWidthExpan } from '@/app/config';
 
 const routerMap: Record<string, string> = {
   Home: '/dashboard/main',
@@ -30,7 +31,7 @@ export default function LeftSide() {
     [setNavCollapsed]
   );
 
-  const navWidth = isNavCollapsed ? 60 : 180;
+  const navWidth = isNavCollapsed ? leftSideWidth : leftSideWidthExpan;
 
   useEffect(() => {
     const handleResize = () => {
@@ -72,7 +73,7 @@ export default function LeftSide() {
         items={[
           { itemKey: 'Home', text: '概览', icon: <IconHome /> },
           { itemKey: 'Service', text: '服务监控', icon: <IconServer /> },
-          { itemKey: 'Network', text: '用户列表', icon: <IconUserGroup /> }
+          { itemKey: 'Network', text: '设置', icon: <IconSetting /> }
         ]}
         defaultSelectedKeys={selectedKeys}
       >
