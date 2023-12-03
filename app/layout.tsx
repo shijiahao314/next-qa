@@ -1,20 +1,20 @@
-'use client';
-
 import React from 'react';
 
 // css
 import './globals.css';
 // theme
-import Provider from '@/components/theme/ThemeProvider';
-import { SSEConnectProvider } from './utils/sseContext';
+import SideNav from '@/components/frame/sideNav';
 
-export default function RootLayout(props: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Provider>
-          <SSEConnectProvider>{props.children}</SSEConnectProvider>
-        </Provider>
+        <div className="flex h-screen w-screen flex-row">
+          <div className="w-[200px]">
+            <SideNav></SideNav>
+          </div>
+          <div>{children}</div>
+        </div>
       </body>
     </html>
   );

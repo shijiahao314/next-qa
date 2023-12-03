@@ -15,18 +15,15 @@ const nextConfig = {
       {
         source: '/',
         destination: '/dashboard',
-        permanent: true,
+        permanent: true
       },
       {
         source: '/dashboard',
         destination: '/dashboard/main',
-        permanent: true,
-      },
-    ]
-  },
-
+        permanent: true
+      }
+    ];
+  }
 };
-
-
 
 module.exports = nextConfig;

@@ -8,7 +8,7 @@ import { useSSEContext } from '../../app/utils/sseContext';
 import { leftSideWidth, leftSideWidthExpan } from '@/app/config';
 
 const routerMap: Record<string, string> = {
-  Home: '/dashboard/main',
+  Chat: '/dashboard/main',
   Network: '/dashboard/settings',
   Service: '/dashboard/service'
 };
@@ -71,7 +71,7 @@ export default function LeftSide() {
         }}
         footer={{ collapseButton: true }}
         items={[
-          { itemKey: 'Home', text: '概览', icon: <IconHome /> },
+          { itemKey: 'Chat', text: '对话', icon: <IconHome /> },
           { itemKey: 'Service', text: '服务监控', icon: <IconServer /> },
           { itemKey: 'Network', text: '设置', icon: <IconSetting /> }
         ]}
