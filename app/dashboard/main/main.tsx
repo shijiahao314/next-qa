@@ -40,7 +40,7 @@ export default function MainContent() {
           placeholder="Shift+Enter发送，Enter换行"
           rows={4}
         ></textarea>
-        <button className="absolute bottom-[32px] right-[40px] flex h-[50px] w-[80px] place-content-center items-center rounded-[10px] bg-my-button0 text-[16px] font-medium text-my-darktext0 dark:bg-my-darkButton0 ">
+        <button className="absolute bottom-[32px] right-[40px] flex h-[50px] w-[80px] place-content-center items-center rounded-[10px] bg-my-button0 text-[18px] font-semibold text-my-darktext0 dark:bg-my-darkButton0 ">
           发&nbsp;送
         </button>
       </div>

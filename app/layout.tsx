@@ -1,5 +1,4 @@
 // css
-import Script from 'next/script';
 import './globals.css';
 // theme
 import SideNav from '@/components/frame/sideNav';
