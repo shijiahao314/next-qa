@@ -1,165 +1,27 @@
-@import '../css/semi.css';
-@import '../css/style.css';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-} */
+/* 为 WebKit 浏览器（Chrome 和 Safari）设置滚动条样式 */
+/* 这些样式可能无法在所有浏览器上生效 */
+/* 你可以根据需要进一步定制样式 */
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-} */
-
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
-    rgb(var(--background-start-rgb));
-} */
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-main,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  vertical-align: baseline;
+/* 轨道（滚动条背景） */
+::-webkit-scrollbar {
+    width: 8px;
+    /* 滚动条宽度 */
 }
 
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-menu,
-nav,
-section {
-  display: block;
+/* 滑块 */
+::-webkit-scrollbar-thumb {
+    background-color: #a0aec0;
+    /* 滑块颜色 */
+    border-radius: 6px;
+    /* 滑块圆角 */
 }
 
-/* HTML5 hidden-attribute fix for newer browsers */
-*[hidden] {
-  display: none;
-}
-
-body {
-  line-height: 1;
-  color: var(--semi-color-text-0);
-  background-color: var(--semi-color-bg-0);
-}
-
-menu,
-ol,
-ul {
-  list-style: none;
-}
-
-blockquote,
-q {
-  quotes: none;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+/* 滑块悬停态 */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #718096;
+    /* 悬停态颜色 */
 }
