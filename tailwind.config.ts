@@ -60,7 +60,11 @@ const config: Config = {
 
           // button
           button0: 'rgba(0, 149, 238, 1)',
-          darkButton0: 'rgba(64, 180, 243, 1)'
+          darkButton0: 'rgba(64, 180, 243, 1)',
+
+          // primary
+          primary: 'rgba(0, 119, 250, 1)',
+          darkPrimary: 'rgba(84, 169, 255, 1)'
         }
       },
       fontFamily: {
