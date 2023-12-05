@@ -1,15 +1,9 @@
 /** @type {import('next').NextConfig} */
+
+const withMDX = require('@next/mdx')();
+
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'pbs.twimg.com',
-        port: '',
-        pathname: '/**'
-      }
-    ]
-  },
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   async redirects() {
     return [
       {
@@ -26,4 +20,4 @@ const nextConfig = {
   }
 };
 
-module.exports = nextConfig;
+module.exports = withMDX(nextConfig);

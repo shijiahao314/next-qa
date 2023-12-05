@@ -2,7 +2,6 @@ import ChatCard from '@/components/frame/chatCard';
 import React from 'react';
 
 export default function MainContent() {
-  const chatMessage = '';
   return (
     <div className="flex h-screen flex-col bg-my-bg dark:bg-my-darkbg0">
       <div className="relative mb-[4px] flex flex-row items-center justify-between space-x-8 rounded-[2px] border-b-[3px] border-my-border px-[20px] py-[14px] dark:border-my-darkborder">

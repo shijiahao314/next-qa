@@ -31,7 +31,7 @@ const config: Config = {
           // light
           light: 'rgb(255,255,255)',
           // bg
-          bg: 'rgba(var(--semi-white), 1)',
+          bg: 'rgba(255,255,255, 1)',
           bgHover: 'rgba(230, 232, 234, 1)',
           // text
           text0: 'rgba(28,31,35, 1)',
@@ -49,7 +49,7 @@ const config: Config = {
           darkbg2: 'rgba(53, 54, 60, 1)',
           darkbg3: 'rgba(67, 68, 74, 1)',
           darkbg4: 'rgba(79, 81, 89, 1)',
-          darkbgHover: 'rgba(var(--semi-grey-6), 1)',
+          darkbgHover: 'rgba(167,171,176, 1)',
           // text
           darktext0: 'rgba(249,249,249, 1)',
           darktext1: 'rgba(249,249,249, .8)',
@@ -58,12 +58,7 @@ const config: Config = {
           // border
           darkborder: 'rgba(255,255,255, .08)',
 
-          // font
-          header1: '',
-          header2: '28px',
-          header3: '24px',
-
-          //
+          // button
           button0: 'rgba(0, 149, 238, 1)',
           darkButton0: 'rgba(64, 180, 243, 1)'
         }
