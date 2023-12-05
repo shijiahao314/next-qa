@@ -63,10 +63,9 @@ const config: Config = {
           header2: '28px',
           header3: '24px',
 
-          // 
+          //
           button0: 'rgba(0, 149, 238, 1)',
           darkButton0: 'rgba(64, 180, 243, 1)'
-
         }
       },
       fontFamily: {

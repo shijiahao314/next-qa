@@ -8,20 +8,20 @@
 
 /* 轨道（滚动条背景） */
 ::-webkit-scrollbar {
-    width: 8px;
-    /* 滚动条宽度 */
+  width: 8px;
+  /* 滚动条宽度 */
 }
 
 /* 滑块 */
 ::-webkit-scrollbar-thumb {
-    background-color: #a0aec0;
-    /* 滑块颜色 */
-    border-radius: 6px;
-    /* 滑块圆角 */
+  background-color: #a0aec0;
+  /* 滑块颜色 */
+  border-radius: 6px;
+  /* 滑块圆角 */
 }
 
 /* 滑块悬停态 */
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #718096;
-    /* 悬停态颜色 */
+  background-color: #718096;
+  /* 悬停态颜色 */
 }
