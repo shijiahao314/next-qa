@@ -32,7 +32,7 @@ export default function SwitchModeButton() {
       >
         <svg
           id="theme-toggle-dark-icon"
-          className="block h-5 w-5 dark:hidden"
+          className="block h-6 w-6 dark:hidden"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ export default function SwitchModeButton() {
         </svg>
         <svg
           id="theme-toggle-light-icon"
-          className="hidden h-5 w-5 dark:block"
+          className="hidden h-6 w-6 dark:block"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"

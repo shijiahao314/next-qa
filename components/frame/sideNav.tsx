@@ -3,6 +3,7 @@
 import SwitchModeButton from '../theme/switchMode';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import SettingButton from './settingsButton';
 
 export default function SideNav() {
   const pathname = usePathname();
@@ -48,23 +49,7 @@ export default function SideNav() {
             <span className="ms-3">MarkDownX</span>
           </Link>
         </li>
-        <li>
-          <a href="#" className={aStyle}>
-            <svg
-              className={svgStyle}
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
-            </svg>
-            <span className="ms-3 flex-1 whitespace-nowrap">Inbox</span>
-            <span className="ms-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-blue-100 p-3 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">
-              3
-            </span>
-          </a>
-        </li>
+
         <li>
           <a href="#" className={aStyle}>
             <svg
@@ -130,8 +115,9 @@ export default function SideNav() {
           </a>
         </li>
       </ul>
-      <div className="flex items-center pb-[10px]">
+      <div className="flex items-center space-x-[10px] pb-[10px]">
         <SwitchModeButton></SwitchModeButton>
+        <SettingButton></SettingButton>
       </div>
     </div>
   );
