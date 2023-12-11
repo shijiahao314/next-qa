@@ -3,4 +3,6 @@ const LeftSideNavMinWidth = 100;
 const leftSideWidth = 60;
 const leftSideWidthExpan = 180;
 
-export { LeftSideNavMinWidth, leftSideWidth, leftSideWidthExpan };
+const api = 'http://10.112.188.168:8080/api';
+
+export { LeftSideNavMinWidth, leftSideWidth, leftSideWidthExpan, api };
