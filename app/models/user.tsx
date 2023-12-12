@@ -1,16 +1,21 @@
-interface UserData {
+interface UserInfo {
   userid: string;
   username: string;
   role: string;
 }
 
-interface FetchUsersRes {
+interface GetUserRes {
   code: number;
   msg: string;
   data: {
     page: number;
     size: number;
     total: number;
-    users: UserData[];
+    users: UserInfo[];
   };
+}
+
+interface PostUserRes {
+  code: number;
+  msg: string;
 }

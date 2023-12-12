@@ -1,18 +1,47 @@
 'use server';
 
-import { api } from '@/app/config';
+import { BACKEND_URL } from '@/app/config';
 
-export async function fetchUsers(): Promise<UserData[]> {
-  const response = await fetch(`${api}/admin/user`, { next: { revalidate: 60 } });
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+export async function GetUser(page = 1, size = 10): Promise<UserInfo[]> {
+  try {
+    const params = new URLSearchParams({
+      page: page.toString(),
+      size: size.toString()
+    });
 
-  if (!response.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
+    const res = await fetch(`${BACKEND_URL}/admin/user?${params}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      next: { revalidate: 60 }
+    });
+
+    const data: GetUserRes = await res.json();
+
+    return data.data.users;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw new Error('Failed to fetch user data');
   }
+}
 
-  const data: FetchUsersRes = await response.json(); // 在 await 中获取 JSON 数据
+export async function PostUser(userInfo: UserInfo): Promise<boolean> {
+  try {
+    const res = await fetch(`${BACKEND_URL}/admin/user`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userInfo)
+    });
 
-  return data.data.users; // 返回获取到的数据
+    if (res.ok) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw new Error('Failed to fetch user data');
+  }
 }
