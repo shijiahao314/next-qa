@@ -80,7 +80,16 @@ const config: Config = {
           // secondary
           secondary: 'rgba(0, 149, 238, 1)', // light-blue-5
           secondaryHover: 'rgba(0, 123, 202, 1)', // light-blue-6
-          secondaryActive: 'rgba(0, 99, 167, 1)' // light-blue-7
+          secondaryActive: 'rgba(0, 99, 167, 1)', // light-blue-7
+
+          // tertiary
+          tertiary: 'rgba(107, 112, 115, 1)', // grey-5
+          tertiaryHover: 'rgba(85, 91, 97, 1)', // grey-6
+          tertiaryActive: 'rgba(65, 70, 76, 1)', // grey-7
+
+          darkTertiary: 'rgba(136, 141, 146, 1)', // grey-5 (dark)
+          darkTertiaryHover: 'rgba(167, 171, 176, 1)', // grey-6 (dark)
+          darkTertiaryActive: 'rgba(198, 202, 205, 1)' // grey-7 (dark)
         }
       },
       fontFamily: {
