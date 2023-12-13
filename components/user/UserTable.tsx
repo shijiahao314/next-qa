@@ -2,8 +2,19 @@
 
 import { DeleteUser, GetUser } from '@/app/api/users';
 import { useEffect, useState } from 'react';
+import NewUser from './NewUser';
 
 export default async function UserTable() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const [users, setUsers] = useState<UserInfo[]>([]);
 
   const handleDeleteClick = async (userid: string) => {
@@ -11,6 +22,14 @@ export default async function UserTable() {
     GetUser(1, 10).then((data) => {
       setUsers(data);
     });
+  };
+
+  console.log('====================================');
+  console.log('render table');
+  console.log('====================================');
+
+  const handleDelte = (userid: string) => {
+    console.log('delete userid=' + userid);
   };
 
   useEffect(() => {
@@ -21,9 +40,19 @@ export default async function UserTable() {
 
   const cellStyle =
     'table-cell items-center justify-center align-middle border-r-[1px] font-medium';
+
   return (
-    <div className="h-full w-full">
-      <table className="w-full border-2 text-center">
+    <div className="relative h-full w-full flex-col">
+      {isModalOpen && <NewUser isOpen={isModalOpen} onClose={closeModal}></NewUser>}
+      <div className="flex w-full flex-row">
+        <button
+          className="h-[35px] w-[70px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+          onClick={openModal}
+        >
+          新增
+        </button>
+      </div>
+      <table className="mt-4 w-full border-2 text-center">
         <thead>
           <tr className="h-10 border-collapse border-b-2 border-solid">
             <th className={cellStyle + 'font-semibold'}>用户ID</th>
@@ -40,8 +69,14 @@ export default async function UserTable() {
                 <td className={cellStyle}>{user.userid.toString()}</td>
                 <td className={cellStyle}>{user.username}</td>
                 <td className={cellStyle}>{user.role}</td>
-                <td className={cellStyle}>
-                  <button className="" onClick={() => handleDeleteClick(user.userid)}>
+                <td className={`${cellStyle} space-x-2`}>
+                  <button className="h-[30px] w-[50px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover">
+                    详情
+                  </button>
+                  <button
+                    className="h-[30px] w-[50px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                    onClick={() => handleDeleteClick(user.userid)}
+                  >
                     删除
                   </button>
                 </td>

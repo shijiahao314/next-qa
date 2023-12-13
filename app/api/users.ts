@@ -2,11 +2,11 @@
 
 import { BACKEND_URL } from '@/app/config';
 
-const API_URL = `${BACKEND_URL}/admin/user`
+const API_URL = `${BACKEND_URL}/admin/user`;
 
-export async function GetUser(page :number, size : number): Promise<UserInfo[]> {
+export async function GetUser(page: number, size: number): Promise<UserInfo[]> {
   const queryParams = `?page=${page}&size=${size}`;
-  const url = `${API_URL}${queryParams}`
+  const url = `${API_URL}${queryParams}`;
   const res = await fetch(url, {
     method: 'GET',
     headers: {
@@ -24,13 +24,13 @@ export async function GetUser(page :number, size : number): Promise<UserInfo[]> 
   return data.data.users;
 }
 
-export async function AddUser(userInfo: UserInfo): Promise<boolean> {
+export async function AddUser(user: User): Promise<boolean> {
   const res = await fetch(API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(userInfo)
+    body: JSON.stringify(user)
   });
 
   if (!res.ok) {
@@ -41,9 +41,9 @@ export async function AddUser(userInfo: UserInfo): Promise<boolean> {
 }
 
 export async function DeleteUser(userid: string): Promise<boolean> {
-  const url = `${API_URL}/${userid}`
+  const url = `${API_URL}/${userid}`;
   const res = await fetch(url, {
-    method: 'DELETE',
+    method: 'DELETE'
   });
 
   if (!res.ok) {

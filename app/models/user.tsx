@@ -4,6 +4,12 @@ interface UserInfo {
   role: string;
 }
 
+interface User {
+  username: string;
+  password: string;
+  role: string;
+}
+
 interface GetUserRes {
   code: number;
   msg: string;
