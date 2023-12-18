@@ -24,10 +24,6 @@ export default async function UserTable() {
     });
   };
 
-  console.log('====================================');
-  console.log('render table');
-  console.log('====================================');
-
   const handleDelte = (userid: string) => {
     console.log('delete userid=' + userid);
   };
@@ -70,7 +66,10 @@ export default async function UserTable() {
                 <td className={cellStyle}>{user.username}</td>
                 <td className={cellStyle}>{user.role}</td>
                 <td className={`${cellStyle} space-x-2`}>
-                  <button className="h-[30px] w-[50px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover">
+                  <button
+                    className="h-[30px] w-[50px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                    // onClick={() => }
+                  >
                     详情
                   </button>
                   <button
