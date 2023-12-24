@@ -50,14 +50,8 @@ export default function SideNav() {
           </a>
         </li>
         <li>
-          <a href="#" className={aStyle}>
-            <svg
-              className={svgStyle}
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 18 16"
-            >
+          <a className={`${pathname === '/mdeditor' ? aStyle_active : aStyle}`} href={'/mdeditor'}>
+            <svg className={svgStyle} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 18">
               <path
                 stroke="currentColor"
                 strokeLinecap="round"
@@ -66,7 +60,7 @@ export default function SideNav() {
                 d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
               />
             </svg>
-            <span className="ms-3 flex-1 whitespace-nowrap">Sign In</span>
+            <span className="ms-3">Markdown</span>
           </a>
         </li>
         <li>
