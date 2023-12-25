@@ -4,7 +4,12 @@ import SwitchModeButton from '../theme/switchMode';
 import { usePathname } from 'next/navigation';
 import SettingButton from './settingsButton';
 import UserStatus from './UserStatus';
-import path from 'path';
+import { create } from 'zustand';
+import { devtools, persist, combine } from 'zustand/middleware';
+
+// import dynamic from 'next/dynamic';
+
+// const UserStatus = dynamic(() => import('./UserStatus'), { ssr: false });
 
 export default function SideNav() {
   const pathname = usePathname();
