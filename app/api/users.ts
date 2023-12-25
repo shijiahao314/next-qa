@@ -52,3 +52,7 @@ export async function DeleteUser(userid: string): Promise<boolean> {
 
   return true;
 }
+
+export async function GetCurrentUser(): Promise<string> {
+  return '1';
+}

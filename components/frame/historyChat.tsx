@@ -1,6 +1,27 @@
+'use client';
+
+import { GetChatInfos } from '@/app/api/chats';
+import { GetCurrentUser } from '@/app/api/users';
+import { useEffect, useState } from 'react';
+import ChatCard from './chatCard';
+
 export default function HistoryChat() {
-  const chatCardStyle =
-    'w-full cursor-pointer resize-none space-y-[10px] rounded-[10px] border-[3px] border-my-border bg-my-bg px-[14px] py-[10px] font-sans  dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3';
+  const [selectedId, setSelectedId] = useState<string>('');
+  const [chatInfos, setChatInfos] = useState<ChatInfo[]>([]);
+  useEffect(() => {
+    GetChatInfos('1').then((data) => {
+      setChatInfos(data);
+      console.log('====================================');
+      console.log(data);
+      console.log('====================================');
+    });
+  }, []);
+
+  const baseStyle =
+    'w-full cursor-pointer resize-none space-y-[10px] rounded-[10px] border-[3px]  bg-my-bg px-[14px] py-[10px] font-sans  dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3';
+  const selectedStyle = 'border-my-primary dark:border-my-darkPrimary';
+  const unSelectedStyle = 'border-my-border dark:border-my-darkborder';
+
   return (
     <div className="flex h-full w-[250px] flex-col items-center space-y-[10px] overflow-y-auto bg-my-bg p-[20px] px-3 py-4 text-my-text0 dark:bg-my-darkbg1 dark:text-my-darktext0">
       <svg
@@ -18,22 +39,27 @@ export default function HistoryChat() {
           // style="fill: "
         ></path>
       </svg>
-      <div className={`${chatCardStyle} border-my-primary dark:border-my-darkPrimary`}>
-        <div className=" font-sans text-[16px] font-bold">新的聊天</div>
-        <div className="flex flex-row justify-between text-[12px] text-my-text1 dark:text-my-darktext1">
-          <div>50 条对话</div>
-          <div>2023/12/5 20:30:05</div>
-        </div>
-      </div>
-      <div className="w-full">
-        <div className={chatCardStyle}>
-          <div className=" font-sans text-[16px] font-bold">新的聊天</div>
-          <div className="flex flex-row justify-between text-[12px] text-my-text1 dark:text-my-darktext1">
-            <div>50 条对话</div>
-            <div>2023/12/5 20:30:05</div>
+
+      {chatInfos != null &&
+        chatInfos.length != 0 &&
+        chatInfos.map((chatInfo: ChatInfo) => (
+          <div
+            className={`${baseStyle} + ${
+              selectedId === chatInfo.id ? selectedStyle : unSelectedStyle
+            }`}
+            key={chatInfo.id}
+            role="button"
+            onClick={() => {
+              setSelectedId(chatInfo.id);
+            }}
+          >
+            <div className=" font-sans text-[16px] font-bold">{chatInfo.title}</div>
+            <div className="flex flex-row justify-between text-[12px] text-my-text1 dark:text-my-darktext1">
+              <div>{chatInfo.num} 条对话</div>
+              <div>{String(chatInfo.utime)}</div>
+            </div>
           </div>
-        </div>
-      </div>
+        ))}
     </div>
   );
 }
