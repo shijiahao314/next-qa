@@ -50,7 +50,7 @@ export default function NewUser({ isOpen, onClose }: ModalProps) {
     <div
       className={`absolute z-10 flex h-full w-full items-center justify-center bg-my-bg/50 dark:bg-my-darkbg0/50 ${modalClasses}`}
     >
-      <div className=" w-1/2 rounded-md border-2 bg-my-bg  dark:bg-my-darkbg2">
+      <div className=" w-1/2 rounded-md border-2 bg-my-bg dark:bg-my-darkbg2">
         <div className="flex h-full w-full flex-col">
           <div className="w-full border-b px-6 py-2 text-lg font-semibold">新增用户</div>
           <div className="grid h-full w-full grid-cols-2 space-y-2 px-6 py-4 text-my-text0 dark:text-my-darktext0">
