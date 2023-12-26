@@ -1,7 +1,7 @@
 'use client';
 
-import { GetChatInfos } from '@/app/api/chats';
-import { GetCurrentUser } from '@/app/api/users';
+import { GetChatInfos } from '@/app/api/chat';
+import { GetCurrentUser } from '@/app/api/user';
 import { useEffect, useState } from 'react';
 import ChatCard from './chatCard';
 

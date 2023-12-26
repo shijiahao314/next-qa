@@ -1,13 +1,12 @@
 'use server';
 
 import { log } from 'console';
-import { BACKEND_URL } from '../config';
 
-const ChatInfoURL = `${BACKEND_URL}/chat/chatInfo`;
+const API_URL = "/api/chat";
 
 export async function GetChatInfos(userid: string): Promise<ChatInfo[]> {
   const queryParams = `?userid=${userid}`;
-  const url = `${ChatInfoURL}${queryParams}`;
+  const url = `${API_URL}/chatInfo/${queryParams}`;
   const res = await fetch(url, {
     method: 'GET',
     headers: {

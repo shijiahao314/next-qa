@@ -4,7 +4,7 @@ import useStore from '@/lib/store';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useState } from 'react';
 
-import { Login, LoginRequest } from '@/app/api/auth';
+import { Login, LoginRequest, Logout, LogoutRequest } from '@/app/api/auth';
 
 export default function UserStatus() {
   const [username, setUsername] = useState<string>();
@@ -29,7 +29,7 @@ export default function UserStatus() {
     password: ''
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     const loginRequest: LoginRequest = {
       username: formData.username,
       password: formData.password
@@ -45,6 +45,17 @@ export default function UserStatus() {
       _setLogin(true);
       setIsOpen(false);
     }
+  };
+
+  const handleLogout = async () => {
+    const logoutRequest: LogoutRequest = {};
+    const success = await Logout(logoutRequest);
+    // if (success) {
+    //   setIsLogin(false);
+    //   _setLogin(false);
+    // }
+    setIsLogin(false);
+    _setLogin(false);
   };
 
   const handleChange = (e) => {
@@ -63,9 +74,7 @@ export default function UserStatus() {
         onClick={
           isLogin
             ? () => {
-                setIsLogin(false);
-                _setLogin(false);
-                incCnt(1);
+                handleLogout();
               }
             : () => {
                 setIsOpen(true);
@@ -140,7 +149,7 @@ export default function UserStatus() {
                       // className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       className="flex w-16 items-center justify-center rounded-lg bg-my-primary text-base font-medium text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
                       onClick={() => {
-                        handleSubmit(formData);
+                        handleSubmit();
                       }}
                     >
                       登录

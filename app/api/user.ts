@@ -1,8 +1,6 @@
 'use server';
 
-import { BACKEND_URL } from '@/app/config';
-
-const API_URL = `${BACKEND_URL}/admin/user`;
+const API_URL = "/api/admin/user";
 
 export async function GetUser(page: number, size: number): Promise<UserInfo[]> {
   const queryParams = `?page=${page}&size=${size}`;
