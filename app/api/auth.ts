@@ -31,16 +31,8 @@ export async function Login(loginRequest: LoginRequest): Promise<boolean> {
 
     const loginResponse: LoginResponse = await res.json();
 
-    const cookie = res.headers.get('Set-Cookie');
-    console.log('====================================');
-    console.log(cookie);
-    console.log('====================================');
-
     return true;
   } catch (error) {
-    console.log('====================================');
-    console.log(error);
-    console.log('====================================');
     return false;
   }
 }

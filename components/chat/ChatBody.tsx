@@ -14,7 +14,7 @@ export default async function ChatBody() {
   }, []);
 
   return (
-    <div className="relative flex flex-shrink flex-grow flex-col justify-end overflow-auto overflow-x-hidden p-[20px]">
+    <div className="relative block flex-shrink flex-grow flex-col justify-end overflow-auto overflow-x-hidden p-[20px]">
       {chatCards != null &&
         chatCards.length > 0 &&
         chatCards.map((chatCard: ChatCard) =>
@@ -23,7 +23,7 @@ export default async function ChatBody() {
               <ChatCard>{chatCard.content}</ChatCard>
             </div>
           ) : (
-            <div>
+            <div className="flex">
               <ChatCard>{chatCard.content}</ChatCard>
             </div>
           )

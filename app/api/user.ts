@@ -7,7 +7,16 @@ export interface GetUserRequest {
   size: number;
 }
 
-export interface GetUserResponse
+export interface GetUserResponse {
+  code: number;
+  msg: string;
+  data: {
+    page: number;
+    size: number;
+    total: number;
+    users: UserInfo[];
+  };
+}
 
 export async function GetUser(page: number, size: number): Promise<UserInfo[]> {
   const queryParams = `?page=${page}&size=${size}`;

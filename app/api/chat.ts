@@ -1,6 +1,6 @@
 'use server';
 
-import { BACKEND_URL } from "../config";
+import { BACKEND_URL } from '../config';
 
 const API_URL = `${BACKEND_URL}/api/chat`;
 
@@ -50,7 +50,7 @@ export async function GetChatCards(chatid: string): Promise<ChatCard[]> {
     throw new Error('Failed to fetch chat cards');
   }
 
-  const data : GetChatCardsResponse = await res.json();
+  const data: GetChatCardsResponse = await res.json();
 
-  return data.data.chat_cards
+  return data.data.chat_cards;
 }
