@@ -1,6 +1,13 @@
 'use server';
 
-const API_URL = "/api/admin/user";
+const API_URL = '/api/admin/user';
+
+export interface GetUserRequest {
+  page: number;
+  size: number;
+}
+
+export interface GetUserResponse
 
 export async function GetUser(page: number, size: number): Promise<UserInfo[]> {
   const queryParams = `?page=${page}&size=${size}`;

@@ -15,13 +15,17 @@ interface GetChatInfosRes {
   };
 }
 
-interface Role {
-  name: string;
+interface GetChatCardsResponse {
+  code: number;
+  msg: string;
+  data: {
+    chat_cards: ChatCard[];
+  };
 }
 
 interface ChatCard {
   id: string;
   chatInfoId: string;
   content: string;
-  role: Role;
+  role: string;
 }

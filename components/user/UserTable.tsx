@@ -1,6 +1,6 @@
 'use client';
 
-import { DeleteUser, GetUser } from '@/app/api/users';
+import { DeleteUser, GetUser } from '@/app/api/user';
 import { useEffect, useState } from 'react';
 import NewUser from './NewUser';
 
