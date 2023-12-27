@@ -1,28 +1,16 @@
 'use client';
 
-import useStore from '@/lib/store';
+import { useLocalStore, useStore } from '@/lib/store';
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import { Login, LoginRequest, Logout, LogoutRequest } from '@/app/api/auth';
 
 export default function UserStatus() {
-  const [username, setUsername] = useState<string>();
-  const [isLogin, setIsLogin] = useState<boolean>();
-  const _username = useStore((state) => state.username);
-  const _loginStatus = useStore((state) => state.isLogin);
-  const _setUsername = useStore((state) => state.setUsername);
-  const _setLogin = useStore((state) => state.setLogin);
-  const cnt = useStore((state) => state.cnt);
-  const incCnt = useStore((state) => state.incCnt);
+  const store = useStore(useLocalStore, (state) => state);
 
   // login dialog
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    setUsername(_username);
-    setIsLogin(_loginStatus);
-  }, []);
 
   const [formData, setFormData] = useState({
     username: '',
@@ -40,9 +28,8 @@ export default function UserStatus() {
     console.log('response:', success);
     console.log('====================================');
     if (success) {
-      setUsername(loginRequest.username);
-      setIsLogin(true);
-      _setLogin(true);
+      store?.setUsername(loginRequest.username);
+      store?.setLogin(true);
       setIsOpen(false);
     }
   };
@@ -50,12 +37,9 @@ export default function UserStatus() {
   const handleLogout = async () => {
     const logoutRequest: LogoutRequest = {};
     const success = await Logout(logoutRequest);
-    // if (success) {
-    //   setIsLogin(false);
-    //   _setLogin(false);
-    // }
-    setIsLogin(false);
-    _setLogin(false);
+    if (success) {
+      store?.setLogin(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -72,7 +56,7 @@ export default function UserStatus() {
         className="flex h-12 w-full items-center justify-center rounded-lg bg-my-primary text-lg font-medium text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
         role="button"
         onClick={
-          isLogin
+          store?.getLogin()
             ? () => {
                 handleLogout();
               }
@@ -81,7 +65,7 @@ export default function UserStatus() {
               }
         }
       >
-        {isLogin ? <>已登录{username}</> : <>未登录{cnt}</>}
+        {store?.getLogin() ? <>已登录{store?.getUsername()}</> : <>未登录</>}
       </div>
       <Transition
         appear

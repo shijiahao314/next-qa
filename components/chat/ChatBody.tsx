@@ -4,6 +4,8 @@ import { GetChatCards } from '@/app/api/chat';
 import ChatCard from '../frame/chatCard';
 import { useEffect, useState } from 'react';
 
+import React from 'react';
+
 export default async function ChatBody() {
   const [chatCards, setChatCards] = useState<ChatCard[]>([]);
 

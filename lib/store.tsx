@@ -1,27 +1,55 @@
-import { create } from 'zustand';
-import { devtools, persist, combine } from 'zustand/middleware';
+'use client';
 
-const useStore = create(
-  devtools(
-    persist(
-      combine(
-        {
-          username: '',
-          isLogin: true,
-          cnt: 1
-        },
-        (set, get) => ({
-          setUsername: (username: string) => set({ username: username }),
-          getUsername: () => get().username,
-          setLogin: (status: boolean) => set({ isLogin: status }),
-          incCnt: (by: number) => set((state) => ({ cnt: state.cnt + by }))
-        })
-      ),
+import { useEffect, useState } from 'react';
+import { create } from 'zustand';
+import { persist, combine, createJSONStorage } from 'zustand/middleware';
+
+export const useLocalStore = create(
+  persist(
+    combine(
       {
-        name: 'login_status'
-      }
-    )
+        chatTitle: '',
+        username: '',
+        isLogin: true
+      },
+      (set, get) => ({
+        getChatTitle: () => get().chatTitle,
+        setChatTitle: (chatTitle: string) => set({ chatTitle: chatTitle }),
+        getUsername: () => get().username,
+        setUsername: (username: string) => set({ username: username }),
+        getLogin: () => get().isLogin,
+        setLogin: (state: boolean) => set({ isLogin: state })
+      })
+    ),
+    {
+      name: 'state-storage',
+      storage: createJSONStorage(() => localStorage)
+    }
   )
 );
 
-export default useStore;
+export const useBearStore = create(
+  combine(
+    {
+      sideNavOpen: false
+    },
+    (set, get) => ({
+      getSideNavOpen: () => get().sideNavOpen,
+      setSideNavOpen: (state: boolean) => set({ sideNavOpen: state })
+    })
+  )
+);
+
+export const useStore = <T, F>(
+  store: (callback: (state: T) => unknown) => unknown,
+  callback: (state: T) => F
+) => {
+  const result = store(callback) as F;
+  const [data, setData] = useState<F>();
+
+  useEffect(() => {
+    setData(result);
+  }, [result]);
+
+  return data;
+};

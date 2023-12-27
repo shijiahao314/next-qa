@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDom from 'react-dom';
 import Markdown from 'react-markdown';
 
 import remarkGfm from 'remark-gfm';
@@ -7,7 +6,6 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkBreaks from 'remark-breaks';
 import rehypeKatex from 'rehype-katex';
-import RemarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeColorChips from 'rehype-color-chips';
 
@@ -35,9 +33,8 @@ A table:
   const math_text = '```python\r\nimport numpy\na = numpy.array([[1, 2], [3, 4]])\r\n```';
 
   return (
-    <div className="border-my-border dark:border-my-darkborder">
-      <div className="mt-[10px] resize-none rounded-[10px] border-[2px] border-my-border bg-my-bg p-[10px] font-sans text-base outline-none dark:border-my-darkborder dark:bg-my-darkbg1">
-        <div className="prose prose-base prose-slate dark:prose-invert ">
+    <div className="mt-[10px] max-w-[90%] rounded-[10px] border-[2px] border-my-border bg-my-bg p-[10px] font-sans text-base outline-none dark:border-my-darkborder dark:bg-my-darkbg1 md:max-w-[80%]">
+      {/* <div className="prose prose-base prose-slate dark:prose-invert ">
           <Markdown
             remarkPlugins={[
               [
@@ -55,43 +52,29 @@ A table:
           >
             {text}
           </Markdown>
-          {/* <Markdown
-            remarkPlugins={[
-              [
-                remarkGfm,
-                {
-                  singleTItle: false
-                }
-              ]
-            ]}
-            rehypePlugins={[rehypeKatex, rehypeHighlight]}
-          >
-            {markdown}
-          </Markdown> */}
         </div>
-        <div>-------------------------------</div>
-        {/* //TODO: use my own css */}
-        <div className="markdown-body">
-          <Markdown
-            remarkPlugins={[remarkMath, remarkBreaks, remarkGfm]}
-            rehypePlugins={[
-              rehypeKatex,
-              [
-                rehypeHighlight,
-                {
-                  detect: false,
-                  ignoreMissing: true
-                }
-              ]
-              // [rehypeColorChips, { customClassName: 'color-chip' }]
-            ]}
-            components={{
-              p: (pProps) => <p {...pProps} dir="auto" />
-            }}
-          >
-            {text}
-          </Markdown>
-        </div>
+        <div>-------------------------------</div> */}
+      {/* //TODO: use my own css */}
+      <div className="markdown-body prose prose-green text-xs dark:prose-invert md:text-sm">
+        <Markdown
+          remarkPlugins={[remarkMath, remarkBreaks, remarkGfm]}
+          rehypePlugins={[
+            rehypeKatex,
+            [
+              rehypeHighlight,
+              {
+                detect: false,
+                ignoreMissing: true
+              }
+            ]
+            // [rehypeColorChips, { customClassName: 'color-chip' }]
+          ]}
+          components={{
+            p: (pProps) => <p {...pProps} dir="auto" />
+          }}
+        >
+          {text}
+        </Markdown>
       </div>
     </div>
   );

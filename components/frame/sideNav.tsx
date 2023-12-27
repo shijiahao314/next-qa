@@ -4,14 +4,11 @@ import SwitchModeButton from '../theme/switchMode';
 import { usePathname } from 'next/navigation';
 import SettingButton from './settingsButton';
 import UserStatus from './UserStatus';
-import { create } from 'zustand';
-import { devtools, persist, combine } from 'zustand/middleware';
-
-// import dynamic from 'next/dynamic';
-
-// const UserStatus = dynamic(() => import('./UserStatus'), { ssr: false });
+import { useStore, useBearStore } from '@/lib/store';
 
 export default function SideNav() {
+  const store = useStore(useBearStore, (state) => state);
+
   const pathname = usePathname();
   const aStyle_active =
     'bg-my-bgHover dark:bg-my-darkbgHover flex items-center rounded-lg p-2 cursor-default pointer-events-none text-base-0 dark:text-base-8';
@@ -22,7 +19,7 @@ export default function SideNav() {
   const svgStyle =
     'fill-current aria-hidden group-hover:text-base-0 dark:group-hover:text-base-8 h-5 w-5 text-gray-500 transition dark:text-gray-400';
   return (
-    <div className="flex h-full w-52 flex-col items-center justify-between overflow-y-auto bg-my-bg px-3 py-4 dark:bg-my-darkbg1">
+    <div className="flex h-full w-full flex-col items-center justify-between overflow-y-auto bg-my-bg px-3 py-4 dark:bg-my-darkbg1 md:w-52">
       <ul className="w-full space-y-2 px-4 pt-[100px] font-medium" role="menu">
         <li>
           <a className={`${pathname === '/qa' ? aStyle_active : aStyle}`} href={'/qa'}>

@@ -1,6 +1,6 @@
 'use client';
 
-import { AddUser } from '@/app/api/users';
+import { AddUser } from '@/app/api/user';
 import { userInfo } from 'os';
 import { use, useState } from 'react';
 
