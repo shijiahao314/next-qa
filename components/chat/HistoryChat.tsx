@@ -13,7 +13,17 @@ export default function HistoryChat() {
   const [chatInfos, setChatInfos] = useState<ChatInfo[]>([]);
   useEffect(() => {
     GetChatInfos('1').then((data) => {
+      console.log('====================================');
+      console.log(data);
+      console.log('====================================');
       setChatInfos(data);
+      if (data != null) {
+        if (data.length != 0) {
+          setSelectedId(data[0].id);
+          setChatTitle(data[0].title);
+          setChatInfo(data[0]);
+        }
+      }
     });
   }, []);
 
