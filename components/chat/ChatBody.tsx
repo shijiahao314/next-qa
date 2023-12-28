@@ -16,20 +16,22 @@ export default async function ChatBody() {
   }, []);
 
   return (
-    <div className="relative block flex-shrink flex-grow flex-col justify-end overflow-auto overflow-x-hidden p-[20px]">
-      {chatCards != null &&
-        chatCards.length > 0 &&
-        chatCards.map((chatCard: ChatCard) =>
-          chatCard.role === 'user' ? (
-            <div className="flex flex-row-reverse">
-              <ChatCard>{chatCard.content}</ChatCard>
-            </div>
-          ) : (
-            <div className="flex">
-              <ChatCard>{chatCard.content}</ChatCard>
-            </div>
-          )
-        )}
+    <div className="flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden">
+      <div className="px-5">
+        {chatCards != null &&
+          chatCards.length > 0 &&
+          chatCards.map((chatCard: ChatCard) =>
+            chatCard.role === 'user' ? (
+              <div className="flex flex-row-reverse">
+                <ChatCard>{chatCard.content}</ChatCard>
+              </div>
+            ) : (
+              <div className="flex">
+                <ChatCard>{chatCard.content}</ChatCard>
+              </div>
+            )
+          )}
+      </div>
     </div>
   );
 }

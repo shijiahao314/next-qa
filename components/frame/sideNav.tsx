@@ -4,11 +4,8 @@ import SwitchModeButton from '../theme/switchMode';
 import { usePathname } from 'next/navigation';
 import SettingButton from './settingsButton';
 import UserStatus from './UserStatus';
-import { useStore, useBearStore } from '@/lib/store';
 
 export default function SideNav() {
-  const store = useStore(useBearStore, (state) => state);
-
   const pathname = usePathname();
   const aStyle_active =
     'bg-my-bgHover dark:bg-my-darkbgHover flex items-center rounded-lg p-2 cursor-default pointer-events-none text-base-0 dark:text-base-8';

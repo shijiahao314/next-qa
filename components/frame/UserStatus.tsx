@@ -1,13 +1,15 @@
 'use client';
 
-import { useLocalStore, useStore } from '@/lib/store';
+import { useLocalStore } from '@/lib/store';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
 import { Login, LoginRequest, Logout, LogoutRequest } from '@/app/api/auth';
 
 export default function UserStatus() {
-  const store = useStore(useLocalStore, (state) => state);
+  // const store = useStore(useLocalStore, (state) => state);
+  const pStore = useLocalStore(useShallow((state) => state));
 
   // login dialog
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -28,8 +30,8 @@ export default function UserStatus() {
     console.log('response:', success);
     console.log('====================================');
     if (success) {
-      store?.setUsername(loginRequest.username);
-      store?.setLogin(true);
+      pStore.setUsername(loginRequest.username);
+      pStore.setLogin(true);
       setIsOpen(false);
     }
   };
@@ -38,7 +40,7 @@ export default function UserStatus() {
     const logoutRequest: LogoutRequest = {};
     const success = await Logout(logoutRequest);
     if (success) {
-      store?.setLogin(false);
+      pStore?.setLogin(false);
     }
   };
 
@@ -56,7 +58,7 @@ export default function UserStatus() {
         className="flex h-12 w-full items-center justify-center rounded-lg bg-my-primary text-lg font-medium text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
         role="button"
         onClick={
-          store?.getLogin()
+          pStore?.getLogin()
             ? () => {
                 handleLogout();
               }
@@ -65,7 +67,7 @@ export default function UserStatus() {
               }
         }
       >
-        {store?.getLogin() ? <>已登录{store?.getUsername()}</> : <>未登录</>}
+        {pStore?.getLogin() ? <>已登录{pStore?.getUsername()}</> : <>未登录</>}
       </div>
       <Transition
         appear

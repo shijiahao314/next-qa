@@ -2,10 +2,11 @@
 
 import { GetChatInfos } from '@/app/api/chat';
 import { useEffect, useState } from 'react';
-import { useStore, useLocalStore } from '@/lib/store';
+import { useLocalStore } from '@/lib/store';
+import { useShallow } from 'zustand/react/shallow';
 
 export default function HistoryChat() {
-  const pStore = useStore(useLocalStore, (state) => state);
+  const pStore = useLocalStore(useShallow((state) => state));
 
   const [selectedId, setSelectedId] = useState<string>('');
   const [chatInfos, setChatInfos] = useState<ChatInfo[]>([]);

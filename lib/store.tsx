@@ -31,11 +31,11 @@ export const useLocalStore = create(
 export const useBearStore = create(
   combine(
     {
-      sideNavOpen: false
+      navOpen: true
     },
     (set, get) => ({
-      getSideNavOpen: () => get().sideNavOpen,
-      setSideNavOpen: (state: boolean) => set({ sideNavOpen: state })
+      getNavOpen: () => get().navOpen,
+      setNavOpen: (state: boolean) => set({ navOpen: state })
     })
   )
 );
