@@ -2,31 +2,37 @@
 
 import ChatBody from '@/components/chat/ChatBody';
 import { useLocalStore, useBearStore } from '@/lib/store';
+import React from 'react';
 import { useShallow } from 'zustand/react/shallow';
 
 export default function ChatPage() {
-  const pStore = useLocalStore(useShallow((state) => state));
-  const store = useBearStore(useShallow((state) => state));
-  // const store = useStore(useBearStore, (state) => state);
-
-  console.log('====================================');
-  console.log('render chat page');
-  console.log('====================================');
-
+  // const getNavOpen = useBearStore(useShallow((state) => state.getNavOpen));
+  const setNavOpen = useBearStore(useShallow((state) => state.setNavOpen));
+  const setHistoryOpen = useBearStore(useShallow((state) => state.setHistoryOpen));
+  const chatInfo: ChatInfo = useBearStore(useShallow((state) => state.chatInfo));
   return (
-    <div className="flex w-full flex-col">
-      <div className="relative z-10 flex flex-row justify-between border-b-[1px] border-my-border px-5 py-4 shadow dark:border-my-darkborder md:justify-start">
+    <div className="flex w-full flex-col border-my-border dark:border-my-darkborder md:border-r-2">
+      <div className="relative flex flex-row justify-between border-b-[1px] border-my-border px-5 py-4 shadow dark:border-my-darkborder md:justify-start">
         <button
           className="h-12 w-12 place-content-center items-center rounded-lg border-[1px] border-my-border text-base font-semibold dark:border-my-darkborder  dark:bg-my-darkbg1 md:hidden"
           onClick={() => {
-            store.setNavOpen(true);
+            setNavOpen(true);
           }}
-        ></button>
+        >
+          M
+        </button>
         <div>
-          <div className="text-center text-xl md:text-start">{pStore?.getChatTitle()}</div>
-          <div className="text-center text-sm md:text-start">共 1 条对话</div>
+          <div className="text-center text-xl md:text-start">{chatInfo.title}</div>
+          <div className="text-center text-sm md:text-start">共 {chatInfo.num} 条对话</div>
         </div>
-        <button className="h-12 w-12 place-content-center items-center rounded-lg border-[1px] border-my-border text-base font-semibold  dark:border-my-darkborder dark:bg-my-darkbg1 md:hidden"></button>
+        <button
+          className="h-12 w-12 place-content-center items-center rounded-lg border-[1px] border-my-border text-base font-semibold dark:border-my-darkborder  dark:bg-my-darkbg1 md:hidden"
+          onClick={() => {
+            setHistoryOpen(true);
+          }}
+        >
+          历
+        </button>
       </div>
       <ChatBody></ChatBody>
       <div className="relative block border-t-2 border-my-border px-5 py-4 dark:border-my-darkborder">
@@ -42,3 +48,5 @@ export default function ChatPage() {
     </div>
   );
 }
+
+// export const MemoChatPage = React.memo(ChatPage);

@@ -8,13 +8,10 @@ export const useLocalStore = create(
   persist(
     combine(
       {
-        chatTitle: '',
         username: '',
         isLogin: true
       },
       (set, get) => ({
-        getChatTitle: () => get().chatTitle,
-        setChatTitle: (chatTitle: string) => set({ chatTitle: chatTitle }),
         getUsername: () => get().username,
         setUsername: (username: string) => set({ username: username }),
         getLogin: () => get().isLogin,
@@ -31,11 +28,28 @@ export const useLocalStore = create(
 export const useBearStore = create(
   combine(
     {
-      navOpen: true
+      navOpen: false,
+      historyOpen: false,
+      selectedChatID: '',
+      chatInfo: {
+        id: '0',
+        userid: 'userid',
+        title: 'title',
+        num: '0',
+        ctime: 'utime',
+        utime: 'ctime'
+      }
     },
     (set, get) => ({
       getNavOpen: () => get().navOpen,
-      setNavOpen: (state: boolean) => set({ navOpen: state })
+      setNavOpen: (state: boolean) => set({ navOpen: state }),
+      getHistoryOpen: () => get().historyOpen,
+      setHistoryOpen: (state: boolean) => set({ historyOpen: state }),
+      getSelectedChatID: () => get().selectedChatID,
+      setSelectedChatID: (id: string) => set({ selectedChatID: id }),
+      setChatTitle: (title: string) => set({ chatInfo: { ...get().chatInfo, title: title } }),
+      getChatInfo: () => get().chatInfo,
+      setChatInfo: (chatInfo: ChatInfo) => set({ chatInfo: chatInfo })
     })
   )
 );
@@ -53,3 +67,6 @@ export const useStore = <T, F>(
 
   return data;
 };
+
+// 直接操作变量，和使用函数操作变量似乎不同
+// 直接操作变量，会导致组件重新渲染，而使用函数操作变量不会？
