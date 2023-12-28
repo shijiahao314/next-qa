@@ -55,7 +55,7 @@ export default function UserStatus() {
     <>
       <div
         suppressHydrationWarning
-        className="flex h-12 w-full items-center justify-center rounded-lg bg-my-primary text-lg font-medium text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+        className="flex h-20 w-20 items-center justify-center rounded-full bg-my-primary text-base font-medium text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
         role="button"
         onClick={
           pStore?.getLogin()
@@ -80,7 +80,7 @@ export default function UserStatus() {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Dialog as="div" className="relative z-10" onClose={() => setIsOpen(false)}>
+        <Dialog as="div" className="relative z-40" onClose={() => setIsOpen(false)}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"

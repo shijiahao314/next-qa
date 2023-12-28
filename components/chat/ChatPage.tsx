@@ -1,13 +1,11 @@
 'use client';
 
 import ChatBody from '@/components/chat/ChatBody';
-import { useLocalStore, useBearStore } from '@/lib/store';
-import { clear } from 'console';
-import React, { useEffect, useState } from 'react';
+import { useBearStore } from '@/lib/store';
+import React, { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 
 export default function ChatPage() {
-  // const getNavOpen = useBearStore(useShallow((state) => state.getNavOpen));
   const setNavOpen = useBearStore(useShallow((state) => state.setNavOpen));
   const setHistoryOpen = useBearStore(useShallow((state) => state.setHistoryOpen));
   const chatInfo: ChatInfo = useBearStore(useShallow((state) => state.chatInfo));
@@ -70,11 +68,4 @@ export default function ChatPage() {
   );
 }
 
-function setFormError(arg0: string) {
-  throw new Error('Function not implemented.');
-}
-
-function setSubmitting(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
 // export const MemoChatPage = React.memo(ChatPage);
