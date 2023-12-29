@@ -25,33 +25,29 @@ export const useLocalStore = create(
   )
 );
 
+interface ChatMetaInfo {
+  title: string;
+  num: string;
+}
+
 export const useBearStore = create(
   combine(
     {
       navOpen: false,
       historyOpen: false,
       selectedChatID: '',
-      chatInfo: {
-        id: '0',
-        userid: 'userid',
-        title: 'title',
-        num: '0',
-        ctime: 'utime',
-        utime: 'ctime'
+      chatMetaInfo: {
+        title: '新的聊天',
+        num: '0'
       },
       tmpChatContent: ''
     },
     (set, get) => ({
-      getNavOpen: () => get().navOpen,
       setNavOpen: (state: boolean) => set({ navOpen: state }),
-      getHistoryOpen: () => get().historyOpen,
       setHistoryOpen: (state: boolean) => set({ historyOpen: state }),
       getSelectedChatID: () => get().selectedChatID,
       setSelectedChatID: (id: string) => set({ selectedChatID: id }),
-      setChatTitle: (title: string) => set({ chatInfo: { ...get().chatInfo, title: title } }),
-      getChatInfo: () => get().chatInfo,
-      setChatInfo: (chatInfo: ChatInfo) => set({ chatInfo: chatInfo }),
-      getTmpChatContent: () => get().tmpChatContent,
+      setChatMetaInfo: (chatMetaInfo: ChatMetaInfo) => set({ chatMetaInfo: chatMetaInfo }),
       setTmpChatContent: (content: string) => set({ tmpChatContent: content })
     })
   )

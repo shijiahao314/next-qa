@@ -9,17 +9,16 @@ import { useBearStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
 
 export default async function ChatBody() {
+  const selectedChatID = useBearStore(useShallow((state) => state.selectedChatID));
   const [chatCards, setChatCards] = useState<ChatCard[]>([]);
 
-  const chatInfo: ChatInfo = useBearStore(useShallow((state) => state.chatInfo));
-
-  const tmpChatContent = useBearStore(useShallow((state) => state.tmpChatContent));
-
   useEffect(() => {
-    GetChatCards(chatInfo.id).then((data) => {
+    GetChatCards(selectedChatID).then((data) => {
       setChatCards(data);
     });
-  }, [chatInfo.id]);
+  }, [selectedChatID]);
+
+  console.log('chat body render, chatCards=', chatCards);
 
   return (
     <div className="flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden">

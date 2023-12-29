@@ -1,34 +1,28 @@
 'use client';
 
 import { GetChatInfos } from '@/app/api/chat';
-import { useEffect, useState } from 'react';
-import { useBearStore, useLocalStore } from '@/lib/store';
+import React, { useEffect, useState } from 'react';
+import { useBearStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
 
 export default function HistoryChat() {
+  const historyOpen = useBearStore(useShallow((state) => state.historyOpen));
+  const setHistoryOpen = useBearStore(useShallow((state) => state.setHistoryOpen));
   const selectedChatID = useBearStore(useShallow((state) => state.selectedChatID));
-
-  const getSelectedChatID = useBearStore(useShallow((state) => state.getSelectedChatID));
   const setSelectedChatID = useBearStore(useShallow((state) => state.setSelectedChatID));
-  const setChatTitle = useBearStore(useShallow((state) => state.setChatTitle));
-  const setChatInfo = useBearStore(useShallow((state) => state.setChatInfo));
+  const setChatMetaInfo = useBearStore(useShallow((state) => state.setChatMetaInfo));
 
   const [chatInfos, setChatInfos] = useState<ChatInfo[]>([]);
+
   useEffect(() => {
     GetChatInfos('1').then((data) => {
-      setChatInfos(data);
       if (data != null) {
         if (data.length != 0) {
-          setSelectedChatID(data[0].id);
-          setChatTitle(data[0].title);
-          setChatInfo(data[0]);
+          setChatInfos(data);
         }
       }
     });
   }, []);
-
-  const historyOpen = useBearStore(useShallow((state) => state.historyOpen));
-  const setHistoryOpen = useBearStore(useShallow((state) => state.setHistoryOpen));
 
   const baseStyle =
     'w-full border-2 shadow-md cursor-pointer resize-none space-y-3 rounded-lg bg-my-bg hover:bg-my-bgHover px-[14px] py-[10px] font-sans dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ';
@@ -59,12 +53,11 @@ export default function HistoryChat() {
                     key={chatInfo.id}
                     role="button"
                     onClick={() => {
-                      console.log('====================================');
-                      console.log(chatInfo);
-                      console.log('====================================');
                       setSelectedChatID(chatInfo.id);
-                      setChatTitle(chatInfo.title);
-                      setChatInfo(chatInfo);
+                      setChatMetaInfo({
+                        title: chatInfo.title,
+                        num: chatInfo.num
+                      });
                     }}
                   >
                     <div className="text-sm font-semibold">{chatInfo.title}</div>

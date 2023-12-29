@@ -48,7 +48,7 @@ export async function GetChatCards(chatid: string): Promise<ChatCard[]> {
   });
 
   if (!res.ok) {
-    throw new Error('Failed to fetch chat cards');
+    return [];
   }
 
   const data: GetChatCardsResponse = await res.json();

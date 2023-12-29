@@ -6,7 +6,7 @@ export default async function ChatCard({ content, role }: { content: string; rol
   return (
     <div
       className={
-        'mt-4 max-w-[80%] rounded-lg border-[1px] border-my-border  p-3 dark:border-my-darkborder  md:max-w-[80%] md:border-2 ' +
+        'mt-4 rounded-lg border-[1px] border-my-border p-3 dark:border-my-darkborder md:max-w-[80%] md:border-2 ' +
         `${
           role === 'user' ? 'bg-green-400/60 dark:bg-green-700/80' : 'bg-my-bg dark:bg-my-darkbg1'
         }`
