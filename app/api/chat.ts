@@ -1,5 +1,6 @@
 'use server';
 
+import { log } from 'console';
 import { BACKEND_URL } from '../config';
 
 const API_URL = `${BACKEND_URL}/api/chat`;
@@ -53,4 +54,25 @@ export async function GetChatCards(chatid: string): Promise<ChatCard[]> {
   const data: GetChatCardsResponse = await res.json();
 
   return data.data.chat_cards;
+}
+
+export async function AddChatCard(chatCardDTO: ChatCardDTO): Promise<boolean> {
+  const url = `${API_URL}/chatCard`;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(chatCardDTO)
+  });
+
+  log(JSON.stringify(chatCardDTO));
+
+  if (!res.ok) {
+    return false;
+  }
+
+  const data: AddChatCardResponse = await res.json();
+
+  return true;
 }

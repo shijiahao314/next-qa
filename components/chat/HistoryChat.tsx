@@ -6,17 +6,20 @@ import { useBearStore, useLocalStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
 
 export default function HistoryChat() {
+  const selectedChatID = useBearStore(useShallow((state) => state.selectedChatID));
+
+  const getSelectedChatID = useBearStore(useShallow((state) => state.getSelectedChatID));
+  const setSelectedChatID = useBearStore(useShallow((state) => state.setSelectedChatID));
   const setChatTitle = useBearStore(useShallow((state) => state.setChatTitle));
   const setChatInfo = useBearStore(useShallow((state) => state.setChatInfo));
 
-  const [selectedId, setSelectedId] = useState<string>('');
   const [chatInfos, setChatInfos] = useState<ChatInfo[]>([]);
   useEffect(() => {
     GetChatInfos('1').then((data) => {
       setChatInfos(data);
       if (data != null) {
         if (data.length != 0) {
-          setSelectedId(data[0].id);
+          setSelectedChatID(data[0].id);
           setChatTitle(data[0].title);
           setChatInfo(data[0]);
         }
@@ -51,14 +54,20 @@ export default function HistoryChat() {
                 chatInfos.map((chatInfo: ChatInfo) => (
                   <div
                     className={`${baseStyle} + ${
-                      selectedId === chatInfo.id ? selectedStyle : null
+                      selectedChatID === chatInfo.id ? selectedStyle : null
                     }`}
                     key={chatInfo.id}
                     role="button"
                     onClick={() => {
-                      setSelectedId(chatInfo.id);
+                      console.log('====================================');
+                      console.log(chatInfo);
+                      console.log('====================================');
+                      setSelectedChatID(chatInfo.id);
                       setChatTitle(chatInfo.title);
                       setChatInfo(chatInfo);
+                      console.log('====================================');
+                      console.log(chatInfo.id);
+                      console.log('====================================');
                     }}
                   >
                     <div className="text-sm font-semibold">{chatInfo.title}</div>

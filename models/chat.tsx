@@ -15,6 +15,11 @@ interface GetChatInfosRes {
   };
 }
 
+interface AddChatCardResponse {
+  code: number;
+  msg: string;
+}
+
 interface GetChatCardsResponse {
   code: number;
   msg: string;
@@ -25,7 +30,13 @@ interface GetChatCardsResponse {
 
 interface ChatCard {
   id: string;
-  chatInfoId: string;
+  chat_info_id: string;
+  content: string;
+  role: string;
+}
+
+interface ChatCardDTO {
+  chat_info_id: string;
   content: string;
   role: string;
 }
