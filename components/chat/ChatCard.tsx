@@ -12,7 +12,7 @@ export default async function ChatCard({ content, role }: { content: string; rol
         }`
       }
     >
-      <div className={'text-xs dark:prose-invert md:text-sm'}>
+      <div className={'markdown-body space-y-3'}>
         <MarkdownCard content={content}></MarkdownCard>
       </div>
     </div>

@@ -31,15 +31,15 @@ export default function HistoryChat() {
   const setHistoryOpen = useBearStore(useShallow((state) => state.setHistoryOpen));
 
   const baseStyle =
-    'w-full shadow-md cursor-pointer resize-none space-y-3 rounded-lg bg-my-bg hover:bg-my-bgHover px-[14px] py-[10px] font-sans  dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3';
-  const selectedStyle = 'border-2 border-my-primary dark:border-my-darkPrimary';
-  // const unSelectedStyle = 'border-my-border dark:border-my-darkborder';
+    'w-full border-2 shadow-md cursor-pointer resize-none space-y-3 rounded-lg bg-my-bg hover:bg-my-bgHover px-[14px] py-[10px] font-sans dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ';
+  const selectedStyle = 'border-my-primary dark:border-my-darkPrimary';
+  const unSelectedStyle = 'border-my-bg hover:border-my-bgHover dark:border-my-darkbg2';
   // right-full
   return (
     <>
       <div
         className={
-          'absolute right-0 z-30 flex h-full transform border-my-border bg-my-bg transition-transform duration-300 dark:bg-my-darkbg1 md:relative md:block md:translate-x-0 ' +
+          'absolute right-0 z-30 flex h-full transform border-my-border bg-my-bg transition-transform duration-300 dark:border-r-my-darkborder dark:bg-my-darkbg1 md:relative md:z-0 md:translate-x-0 ' +
           `${historyOpen ? 'translate-x-0' : 'translate-x-full'}`
         }
       >
@@ -54,7 +54,7 @@ export default function HistoryChat() {
                 chatInfos.map((chatInfo: ChatInfo) => (
                   <div
                     className={`${baseStyle} + ${
-                      selectedChatID === chatInfo.id ? selectedStyle : null
+                      selectedChatID === chatInfo.id ? selectedStyle : unSelectedStyle
                     }`}
                     key={chatInfo.id}
                     role="button"
@@ -65,9 +65,6 @@ export default function HistoryChat() {
                       setSelectedChatID(chatInfo.id);
                       setChatTitle(chatInfo.title);
                       setChatInfo(chatInfo);
-                      console.log('====================================');
-                      console.log(chatInfo.id);
-                      console.log('====================================');
                     }}
                   >
                     <div className="text-sm font-semibold">{chatInfo.title}</div>

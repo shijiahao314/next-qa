@@ -38,7 +38,8 @@ export const useBearStore = create(
         num: '0',
         ctime: 'utime',
         utime: 'ctime'
-      }
+      },
+      tmpChatContent: ''
     },
     (set, get) => ({
       getNavOpen: () => get().navOpen,
@@ -49,7 +50,9 @@ export const useBearStore = create(
       setSelectedChatID: (id: string) => set({ selectedChatID: id }),
       setChatTitle: (title: string) => set({ chatInfo: { ...get().chatInfo, title: title } }),
       getChatInfo: () => get().chatInfo,
-      setChatInfo: (chatInfo: ChatInfo) => set({ chatInfo: chatInfo })
+      setChatInfo: (chatInfo: ChatInfo) => set({ chatInfo: chatInfo }),
+      getTmpChatContent: () => get().tmpChatContent,
+      setTmpChatContent: (content: string) => set({ tmpChatContent: content })
     })
   )
 );

@@ -12,11 +12,14 @@ export default function ChatPage() {
   const chatInfo: ChatInfo = useBearStore(useShallow((state) => state.chatInfo));
   const getSelectedChatID = useBearStore(useShallow((state) => state.getSelectedChatID));
 
+  const setTmpChatContent = useBearStore(useShallow((state) => state.setTmpChatContent));
+
   // textarea
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
     console.log('====================================');
     console.log(e.currentTarget.value);
     console.log('====================================');
+    setTmpChatContent(e.currentTarget.value);
   };
   const handleSubmit = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {

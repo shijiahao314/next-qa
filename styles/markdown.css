@@ -1,0 +1,175 @@
+.markdown-body {
+  /* background-color: aqua; */
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* p {
+  line-height: 21px;
+} */
+
+pre {
+  padding: 12px;
+  border-radius: 8px;
+  /* opacity: 50%; */
+  /* line-height: 18px; */
+  color: #cbd2ea;
+  background-color: rgb(26, 27, 38);
+}
+
+code {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 6px;
+  font-size: 12px;
+  background-color: rgba(134, 133, 133, 0.603);
+}
+
+pre code {
+  padding: 0;
+  background-color: transparent;
+    font-size: 12px;
+  /* line-height: 14px; */
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+    color: #FF9E64;
+    /* color: rgb(26, 27, 38); */
+    background: 0 0;
+    /* text-shadow: 0 1px #fff; */
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    /* font-size: 1em; */
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    /* line-height: 1.5; */
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+code[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+pre[class*='language-']::-moz-selection {
+    text-shadow: none;
+    /* background: #b3d4fc; */
+    color: rgb(26, 27, 38);
+}
+
+code[class*='language-'] ::selection,
+code[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+pre[class*='language-']::selection {
+    text-shadow: none;
+    background: #b3d4fc;
+    /* color: rgb(26, 27, 38); */
+}
+
+@media print {
+
+    code[class*='language-'],
+    pre[class*='language-'] {
+        text-shadow: none;
+    }
+}
+
+pre[class*='language-'] {
+    /* padding: 1em; */
+    margin: 0.5em 0;
+    overflow: auto;
+}
+
+:not(pre)>code[class*='language-'],
+pre[class*='language-'] {
+    /* background: #f5f2f0; */
+    background-color: rgb(26, 27, 38);
+}
+
+:not(pre)>code[class*='language-'] {
+    padding: 0.1em;
+    border-radius: 0.3em;
+    white-space: normal;
+}
+
+.token.cdata,
+.token.comment,
+.token.doctype,
+.token.prolog {
+    color: #708090;
+}
+
+.token.punctuation {
+    color: #999;
+}
+
+.token.namespace {
+    opacity: 0.7;
+}
+
+.token.boolean,
+.token.constant,
+.token.deleted,
+.token.number,
+.token.property,
+.token.symbol,
+.token.tag {
+    color: #ca9d5a;
+}
+
+.token.attr-name,
+.token.builtin,
+.token.char,
+.token.inserted,
+.token.selector,
+.token.string {
+    color: #73DACA;
+}
+
+.language-css .token.string,
+.style .token.string,
+.token.entity,
+.token.operator,
+.token.url {
+    color: #62d440;
+    /* background: hsla(0, 0%, 100%, 0.5); */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+    color: #BB9Af7;
+}
+
+.token.class-name,
+.token.function {
+    color: #7DCFFF;
+}
+
+.token.important,
+.token.regex,
+.token.variable {
+    color: #e90;
+}
+
+.token.bold,
+.token.important {
+    font-weight: 700;
+}
+
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
