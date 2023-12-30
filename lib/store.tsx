@@ -9,7 +9,7 @@ export const useLocalStore = create(
     combine(
       {
         username: '',
-        isLogin: true
+        isLogin: false
       },
       (set, get) => ({
         getUsername: () => get().username,

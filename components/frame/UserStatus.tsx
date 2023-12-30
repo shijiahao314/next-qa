@@ -2,7 +2,7 @@
 
 import { useLocalStore } from '@/lib/store';
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 
 import { Login, LoginRequest, Logout, LogoutRequest } from '@/app/api/auth';
@@ -53,21 +53,26 @@ export default function UserStatus() {
 
   return (
     <>
-      <div
-        suppressHydrationWarning
-        className="flex h-20 w-20 items-center justify-center rounded-full bg-my-primary text-base font-medium text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
-        role="button"
-        onClick={
-          pStore?.getLogin()
-            ? () => {
-                handleLogout();
-              }
-            : () => {
-                setIsOpen(true);
-              }
-        }
-      >
-        {pStore?.getLogin() ? <>已登录{pStore?.getUsername()}</> : <>未登录</>}
+      <div className="flex w-full flex-col items-center">
+        <div
+          // suppressHydrationWarning
+          className="flex h-20 w-20 items-center justify-center rounded-full bg-my-primary text-base font-medium text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+          role="button"
+          onClick={
+            pStore?.getLogin()
+              ? () => {
+                  handleLogout();
+                }
+              : () => {
+                  setIsOpen(true);
+                }
+          }
+        ></div>
+        <div className="mt-2 w-full px-5">
+          <div className="flex h-8 items-center justify-center border-b-[3px] border-my-border dark:border-my-darkborder">
+            <div>{pStore?.getLogin() ? <>{pStore?.getUsername()}</> : <>未登录</>}</div>
+          </div>
+        </div>
       </div>
       <Transition
         appear
