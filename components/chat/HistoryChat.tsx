@@ -53,6 +53,7 @@ export default function HistoryChat() {
                     key={chatInfo.id}
                     role="button"
                     onClick={() => {
+                      setHistoryOpen(false);
                       setSelectedChatID(chatInfo.id);
                       setChatMetaInfo({
                         title: chatInfo.title,
