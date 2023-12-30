@@ -23,11 +23,11 @@ export default async function ChatBody() {
       {chatCards != null && chatCards.length > 0 ? (
         chatCards.map((chatCard: ChatCard) =>
           chatCard.role === 'user' ? (
-            <div className="flex flex-row-reverse">
+            <div className="flex flex-row-reverse" key={chatCard.id}>
               <ChatCard role="user" content={chatCard.content}></ChatCard>
             </div>
           ) : (
-            <div className="flex">
+            <div className="flex" key={chatCard.id}>
               <ChatCard role="assistant" content={chatCard.content}></ChatCard>
             </div>
           )

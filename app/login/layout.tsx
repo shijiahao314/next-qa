@@ -1,9 +1,23 @@
 'use client';
 
+import Image from 'next/image';
+
+import svg from '@/public/svgs/next-logo.svg';
+
 export default function LoginLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-full w-full flex-row text-my-text0 duration-200 dark:text-my-darktext0">
-      <div className="hidden h-full flex-shrink flex-grow sm:w-3/5 md:block"></div>
+      <div className="hidden h-full flex-shrink flex-grow sm:w-3/5 md:block">
+        <div className="h-20 w-20">
+          {/* <Image
+            className="bg-gray-500"
+            width={100}
+            height={100}
+            src={svg}
+            alt="nextjs logo"
+          ></Image> */}
+        </div>
+      </div>
       <div className="m-4 flex flex-shrink flex-grow flex-col items-center justify-center">
         <div className="rounded-lg border-2 border-my-border bg-my-bg px-6 pb-5 pt-5 shadow-md dark:border-my-darkborder dark:bg-my-darkbg1 md:max-w-md">
           <div className="flex h-20 items-center justify-center">

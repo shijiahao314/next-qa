@@ -1,8 +1,7 @@
 'use client';
 
 import { AddUser } from '@/app/api/user';
-import { userInfo } from 'os';
-import { use, useState } from 'react';
+import { useState } from 'react';
 
 interface ModalProps {
   isOpen: boolean;
@@ -20,7 +19,7 @@ export default function NewUser({ isOpen, onClose }: ModalProps) {
     role: 'user'
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       // 向服务器发送 POST 请求，将 formData 发送到服务器
@@ -39,7 +38,7 @@ export default function NewUser({ isOpen, onClose }: ModalProps) {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
