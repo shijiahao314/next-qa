@@ -41,7 +41,7 @@ export default function SideNav() {
         <div className="flex h-max flex-col items-center space-y-4 pb-1 pt-4">
           <UserStatus></UserStatus>
         </div>
-        <div className="flex flex-shrink flex-grow flex-col items-center justify-between overflow-auto border-b-[1px] border-my-border dark:border-my-darkborder">
+        <div className="flex flex-shrink flex-grow flex-col items-center justify-between overflow-y-auto overflow-x-hidden border-b-[1px] border-my-border dark:border-my-darkborder">
           <ul className="space-y-2 py-2 font-medium " role="menu">
             <li>
               <a className={`${pathname === '/qa' ? aStyle_active : aStyle}`} href={'/qa'}>
