@@ -10,12 +10,15 @@ import { Login, LoginRequest, SignUp, SignUpRequest } from '../api/auth';
 import { useRef, useState } from 'react';
 import { Id, ToastContainer, toast } from 'react-toastify';
 import Notification from '@/components/frame/Notification';
+import { useShallow } from 'zustand/react/shallow';
+import { useLocalStore } from '@/lib/store';
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export default function LoginLayout({ children }: { children: React.ReactNode }) {
+  const pStore = useLocalStore(useShallow((state) => state));
   const router = useRouter();
 
   // input date
@@ -30,37 +33,30 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
     });
   };
 
-  // button disable
-  const [clickable, setClickable] = useState<boolean>(true);
-
   // login
   const handleLogin = async () => {
     const toastId: Id = toast.info('发送中', { autoClose: false });
-    setClickable(false);
-    await sleep(1000);
     const loginRequest: LoginRequest = {
       username: formData.username,
       password: formData.password
     };
-    const success = await Login(loginRequest);
-    console.log('====================================');
-    console.log('request: ', loginRequest);
-    console.log('response:', success);
-    console.log('====================================');
+    const [success, loginResponse] = await Login(loginRequest);
     if (success) {
       toast.update(toastId, {
-        render: '登录成功，跳转中',
+        render: '登录成功，跳转中...',
         type: toast.TYPE.SUCCESS,
         autoClose: 2000
       });
+      pStore.setLogin(true);
+      pStore.setUsername(loginRequest.username);
       await sleep(2000);
+      await router.push('/chat');
     } else {
       toast.update(toastId, {
-        render: '登录失败',
+        render: '登录失败: ' + loginResponse.msg,
         type: toast.TYPE.ERROR,
         autoClose: 3000
       });
-      // toast.error('登录失败');
     }
   };
   // sign up

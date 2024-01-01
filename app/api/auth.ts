@@ -2,17 +2,19 @@
 
 const API_URL = '/api/auth';
 
+export interface BaseResponse {
+  code: number;
+  msg: string;
+}
+
 export interface SignUpRequest {
   username: string;
   password: string;
 }
 
-export interface SignUpResponse {
-  code: number;
-  msg: string;
-}
+export interface SignUpResponse extends BaseResponse {}
 
-export async function SignUp(signUpRequest: SignUpRequest): Promise<[boolean, string]> {
+export async function SignUp(signUpRequest: SignUpRequest): Promise<[boolean, SignUpResponse]> {
   const url = `${API_URL}/signup`;
   try {
     const res = await fetch(url, {
@@ -26,11 +28,17 @@ export async function SignUp(signUpRequest: SignUpRequest): Promise<[boolean, st
     });
     const signUpResponse: SignUpResponse = await res.json();
     if (!res.ok) {
-      return [false, signUpResponse.msg];
+      return [false, signUpResponse];
     }
-    return [true, signUpResponse.msg];
+    return [true, signUpResponse];
   } catch (error) {
-    return [false, 'Error'];
+    return [
+      false,
+      {
+        code: -1,
+        msg: String(error)
+      }
+    ];
   }
 }
 
@@ -39,12 +47,9 @@ export interface LoginRequest {
   password: string;
 }
 
-export interface LoginResponse {
-  code: number;
-  msg: string;
-}
+export interface LoginResponse extends BaseResponse {}
 
-export async function Login(loginRequest: LoginRequest): Promise<boolean> {
+export async function Login(loginRequest: LoginRequest): Promise<[boolean, LoginResponse]> {
   const url = `${API_URL}/login`;
   try {
     const res = await fetch(url, {
@@ -56,16 +61,19 @@ export async function Login(loginRequest: LoginRequest): Promise<boolean> {
       credentials: 'include',
       cache: 'no-store'
     });
-
-    if (!res.ok) {
-      return false;
-    }
-
     const loginResponse: LoginResponse = await res.json();
-
-    return true;
+    if (!res.ok) {
+      return [false, loginResponse];
+    }
+    return [true, loginResponse];
   } catch (error) {
-    return false;
+    return [
+      false,
+      {
+        code: -1,
+        msg: String(error)
+      }
+    ];
   }
 }
 

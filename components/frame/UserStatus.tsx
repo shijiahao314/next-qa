@@ -1,58 +1,15 @@
 'use client';
 
 import { useLocalStore } from '@/lib/store';
-import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useEffect, useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
-
-import { Login, LoginRequest, Logout, LogoutRequest } from '@/app/api/auth';
 import { useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default function UserStatus() {
-  // const store = useStore(useLocalStore, (state) => state);
-  const pStore = useLocalStore(useShallow((state) => state));
+  const isLogin = useLocalStore(useShallow((state) => state.isLogin));
+  const username: string = useLocalStore(useShallow((state) => state.username));
 
   const router = useRouter();
-
-  // login dialog
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const [formData, setFormData] = useState({
-    username: '',
-    password: ''
-  });
-
-  const handleSubmit = async () => {
-    const loginRequest: LoginRequest = {
-      username: formData.username,
-      password: formData.password
-    };
-    const success = await Login(loginRequest);
-    console.log('====================================');
-    console.log('request: ', loginRequest);
-    console.log('response:', success);
-    console.log('====================================');
-    if (success) {
-      pStore.setUsername(loginRequest.username);
-      pStore.setLogin(true);
-      setIsOpen(false);
-    }
-  };
-
-  const handleLogout = async () => {
-    const logoutRequest: LogoutRequest = {};
-    const success = await Logout(logoutRequest);
-    if (success) {
-      pStore?.setLogin(false);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
 
   return (
     <>
@@ -61,18 +18,22 @@ export default function UserStatus() {
           className="h-24 w-24 rounded-full border-2 border-my-primary/80 p-[1px] dark:border-my-darkPrimary"
           src="https://placehold.co/96x96.png"
         ></img>
-        {/* <div
-          // suppressHydrationWarning
-          className="flex h-20 w-20 items-center justify-center rounded-full bg-gray-500/50 text-lg font-medium "
-        >
-          ?
-        </div> */}
         <div
           className="flex h-10 w-full items-center justify-center rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
           role="button"
-          onClick={() => router.push('/login')}
+          onClick={
+            isLogin
+              ? () => {
+                  console.log('====================================');
+                  console.log('clicked');
+                  console.log('====================================');
+                  router.push('/userInfo');
+                }
+              : () => router.push('/login')
+          }
         >
-          <div>{pStore?.getLogin() ? <>{pStore?.getUsername()}</> : <>登录</>}</div>
+          {/* 加了 Suspense 但是显示会闪烁 */}
+          <Suspense fallback={'加载中'}>{isLogin ? username : '登录'}</Suspense>
         </div>
       </div>
       {/* <Transition
