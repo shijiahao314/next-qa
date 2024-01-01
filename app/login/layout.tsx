@@ -1,5 +1,7 @@
 'use client';
 
+import { debounce } from 'lodash';
+
 import Image from 'next/image';
 
 import svg from '@/public/svgs/next-logo.svg';
@@ -28,15 +30,13 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
     });
   };
 
-  let toastId: Id = '';
+  // button disable
+  const [clickable, setClickable] = useState<boolean>(true);
 
-  const notify = () => (toastId = toast('Hello', { autoClose: false }));
-
-  const update = () => toast.update(toastId, { type: toast.TYPE.INFO, autoClose: 5000 });
   // login
   const handleLogin = async () => {
-    let toastId: Id = '';
-    toastId = toast.info('发送中', { autoClose: false });
+    const toastId: Id = toast.info('发送中', { autoClose: false });
+    setClickable(false);
     await sleep(1000);
     const loginRequest: LoginRequest = {
       username: formData.username,
@@ -79,6 +79,7 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
   return (
     <>
       <Notification></Notification>
+      <div className="hidden h-full w-full opacity-0"></div>
       <div className="flex h-full w-full flex-row text-my-text0 duration-200 dark:text-my-darktext0">
         {/* <div className="hidden h-full flex-shrink flex-grow sm:w-3/5 md:block">
         <div className="h-20 w-20">
@@ -139,6 +140,7 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
                   name="username"
                   value={formData.username}
                   onChange={handleChange}
+
                   // required
                 ></input>
                 <input
@@ -151,8 +153,11 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
                 ></input>
                 <div className="flex flex-row space-x-2 ">
                   <button
-                    className="h-10 flex-shrink flex-grow rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
-                    onClick={handleLogin}
+                    className="h-10 flex-shrink flex-grow  rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                    onClick={debounce(handleLogin, 300, {
+                      leading: true,
+                      trailing: false
+                    })}
                   >
                     登录
                   </button>
@@ -171,7 +176,7 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
               </div>
               <div className="flex flex-row items-center justify-center">
                 <div
-                  className="rounded-lg border-[1px] border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
+                  className="cursor-not-allowed rounded-lg border-[1px] border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
                   role="button"
                   onClick={() => {
                     console.log('====================================');

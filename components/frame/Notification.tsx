@@ -7,17 +7,18 @@ export default function Notification() {
   const transStyle = cssTransition({
     enter: 'slide-enter',
     exit: 'slide-exit'
-    // collapse: true
   });
 
   return (
-    <div className="relative">
+    <div className="relative transition-transform">
       <ToastContainer
+        className="toast-container"
+        bodyClassName="toast-wrapper"
         style={{
           position: 'absolute'
+          //   transform: 'translateY(0)'
         }}
         position="top-center"
-        // transition={Slide}
         transition={transStyle}
         autoClose={2000}
         hideProgressBar={false}

@@ -1,0 +1,7 @@
+.button {
+  background-color: var(--bg-my-bg);
+}
+
+.button.hover {
+  background-color: var(--bg-my-bgHover);
+}

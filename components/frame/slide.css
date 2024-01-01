@@ -1,10 +1,31 @@
+.toast-container {
+  height: auto;
+  transition: height 2s ease-in-out;
+  overflow: hidden;
+
+  /* width: fit-content; */
+  /* animation: toast-appear 1s ease-out both; */
+}
+
+.toast-wrapper {
+  transition: height 2s ease-in-out;
+}
+
+@keyframes toast-appear {
+  from {
+    transform: translateY(-100%) scale(0);
+  }
+  to {
+    transform: translateY(0) scale(1);
+  }
+}
+
 .slide-enter {
   animation: slide-in-fwd 0.3s ease-out both;
 }
 
 @keyframes slide-in-fwd {
   0% {
-    /* transform: rotate(-540deg) scale(0); */
     transform: translateY(-100%) scale(0);
     opacity: 0;
   }
@@ -27,6 +48,6 @@
 
   100% {
     transform: scale(0);
-    opacity: 0;
+    opacity: 0.5;
   }
 }
