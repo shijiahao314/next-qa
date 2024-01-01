@@ -1,0 +1,32 @@
+.slide-enter {
+  animation: slide-in-fwd 0.3s ease-out both;
+}
+
+@keyframes slide-in-fwd {
+  0% {
+    /* transform: rotate(-540deg) scale(0); */
+    transform: translateY(-100%) scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.slide-exit {
+  animation: slide-out-bck 0.3s ease-in both;
+}
+
+@keyframes slide-out-bck {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}

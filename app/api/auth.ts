@@ -2,6 +2,38 @@
 
 const API_URL = '/api/auth';
 
+export interface SignUpRequest {
+  username: string;
+  password: string;
+}
+
+export interface SignUpResponse {
+  code: number;
+  msg: string;
+}
+
+export async function SignUp(signUpRequest: SignUpRequest): Promise<[boolean, string]> {
+  const url = `${API_URL}/signup`;
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(signUpRequest),
+      credentials: 'include',
+      cache: 'no-store'
+    });
+    const signUpResponse: SignUpResponse = await res.json();
+    if (!res.ok) {
+      return [false, signUpResponse.msg];
+    }
+    return [true, signUpResponse.msg];
+  } catch (error) {
+    return [false, 'Error'];
+  }
+}
+
 export interface LoginRequest {
   username: string;
   password: string;

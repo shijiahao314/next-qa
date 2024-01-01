@@ -6,10 +6,13 @@ import { Fragment, useEffect, useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 
 import { Login, LoginRequest, Logout, LogoutRequest } from '@/app/api/auth';
+import { useRouter } from 'next/navigation';
 
 export default function UserStatus() {
   // const store = useStore(useLocalStore, (state) => state);
   const pStore = useLocalStore(useShallow((state) => state));
+
+  const router = useRouter();
 
   // login dialog
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -53,28 +56,26 @@ export default function UserStatus() {
 
   return (
     <>
-      <div className="flex w-full flex-col items-center">
-        <div
+      <div className="mt-5 flex w-full flex-col items-center space-y-4 border-b-2 border-my-border px-2 pb-2 dark:border-my-darkborder">
+        <img
+          className="h-24 w-24 rounded-full border-2 border-my-primary/80 p-[1px] dark:border-my-darkPrimary"
+          src="https://placehold.co/96x96.png"
+        ></img>
+        {/* <div
           // suppressHydrationWarning
-          className="flex h-20 w-20 items-center justify-center rounded-full bg-my-primary text-base font-medium text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+          className="flex h-20 w-20 items-center justify-center rounded-full bg-gray-500/50 text-lg font-medium "
+        >
+          ?
+        </div> */}
+        <div
+          className="flex h-10 w-full items-center justify-center rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
           role="button"
-          onClick={
-            pStore?.getLogin()
-              ? () => {
-                  handleLogout();
-                }
-              : () => {
-                  setIsOpen(true);
-                }
-          }
-        ></div>
-        <div className="mt-2 w-full px-5">
-          <div className="flex h-8 items-center justify-center border-b-[3px] border-my-border dark:border-my-darkborder">
-            <div>{pStore?.getLogin() ? <>{pStore?.getUsername()}</> : <>未登录</>}</div>
-          </div>
+          onClick={() => router.push('/login')}
+        >
+          <div>{pStore?.getLogin() ? <>{pStore?.getUsername()}</> : <>登录</>}</div>
         </div>
       </div>
-      <Transition
+      {/* <Transition
         appear
         show={isOpen}
         as={Fragment}
@@ -157,7 +158,7 @@ export default function UserStatus() {
             </div>
           </Transition.Child>
         </Dialog>
-      </Transition>
+      </Transition> */}
     </>
   );
 }
