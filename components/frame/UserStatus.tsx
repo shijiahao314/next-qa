@@ -3,7 +3,6 @@
 import { useLocalStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
 import { useRouter } from 'next/navigation';
-import { Suspense } from 'react';
 
 export default function UserStatus() {
   const isLogin = useLocalStore(useShallow((state) => state.isLogin));
@@ -33,7 +32,9 @@ export default function UserStatus() {
           }
         >
           {/* 加了 Suspense 但是显示会闪烁 */}
-          <Suspense fallback={'加载中'}>{isLogin ? username : '登录'}</Suspense>
+          {/* <Suspense fallback={'加载中'}>
+            <p>{isLogin ? username : '登录'}</p>
+          </Suspense> */}
         </div>
       </div>
       {/* <Transition
