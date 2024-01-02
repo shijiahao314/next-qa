@@ -147,7 +147,7 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
                   onChange={handleChange}
                   // required
                 ></input>
-                <div className="flex flex-row space-x-2 ">
+                <div className="flex flex-row space-x-2">
                   <button
                     className="h-10 flex-shrink flex-grow  rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
                     onClick={debounce(handleLogin, 300, {

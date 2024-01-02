@@ -1,6 +1,9 @@
 export default function Loading() {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center bg-my-bg text-my-text0 dark:bg-my-darkbg0 dark:text-my-darktext0">
+    <div
+      className="flex h-full w-full flex-col items-center justify-center bg-my-bg text-my-text0 dark:bg-my-darkbg0
+        dark:text-my-darktext0"
+    >
       <svg
         aria-hidden="true"
         className="h-[48px] w-[48px] animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
@@ -17,7 +20,7 @@ export default function Loading() {
           fill="currentFill"
         />
       </svg>
-      <h1 className="text-[24px] font-medium">&nbsp;&nbsp;Loading...</h1>
+      <h1 className="text-[24px] font-medium">&nbsp;&nbsp;加载中...</h1>
     </div>
   );
 }

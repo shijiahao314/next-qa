@@ -47,9 +47,10 @@ export default function NewUser({ isOpen, onClose }: ModalProps) {
 
   return (
     <div
-      className={`absolute z-10 flex h-full w-full items-center justify-center bg-my-bg/50 dark:bg-my-darkbg0/50 ${modalClasses}`}
+      className={`absolute z-10 flex h-full w-full items-center justify-center bg-my-bg/50 dark:bg-my-darkbg0/50
+        ${modalClasses}`}
     >
-      <div className=" w-1/2 rounded-md border-2 bg-my-bg dark:bg-my-darkbg2">
+      <div className="w-1/2 rounded-md border-2 bg-my-bg dark:bg-my-darkbg2">
         <div className="flex h-full w-full flex-col">
           <div className="w-full border-b px-6 py-2 text-lg font-semibold">新增用户</div>
           <div className="grid h-full w-full grid-cols-2 space-y-2 px-6 py-4 text-my-text0 dark:text-my-darktext0">
@@ -81,13 +82,15 @@ export default function NewUser({ isOpen, onClose }: ModalProps) {
           </div>
           <div className="flex w-full flex-row justify-end space-x-2 border-t px-6 py-4">
             <button
-              className="h-[35px] w-[70px] rounded-md bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+              className="h-[35px] w-[70px] rounded-md bg-my-primary text-white hover:bg-my-primaryHover
+                dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
               onClick={handleSubmit}
             >
               确认
             </button>
             <button
-              className="h-[35px] w-[70px] rounded-md bg-my-tertiary text-white hover:bg-my-tertiaryHover dark:bg-my-darkTertiary dark:hover:bg-my-darkTertiaryHover"
+              className="h-[35px] w-[70px] rounded-md bg-my-tertiary text-white hover:bg-my-tertiaryHover
+                dark:bg-my-darkTertiary dark:hover:bg-my-darkTertiaryHover"
               onClick={onClose}
             >
               取消

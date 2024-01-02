@@ -42,7 +42,8 @@ export default async function UserTable() {
       {isModalOpen && <NewUser isOpen={isModalOpen} onClose={closeModal}></NewUser>}
       <div className="flex w-full flex-row">
         <button
-          className="h-[35px] w-[70px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+          className="h-[35px] w-[70px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover
+            dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
           onClick={openModal}
         >
           新增
@@ -61,19 +62,21 @@ export default async function UserTable() {
           {users != null &&
             users.length != 0 &&
             users.map((user: UserInfo) => (
-              <tr className="h-10 border-collapse border-[1px] border-solid " key={user.userid}>
+              <tr className="h-10 border-collapse border-[1px] border-solid" key={user.userid}>
                 <td className={cellStyle}>{user.userid.toString()}</td>
                 <td className={cellStyle}>{user.username}</td>
                 <td className={cellStyle}>{user.role}</td>
                 <td className={`${cellStyle} space-x-2`}>
                   <button
-                    className="h-[30px] w-[50px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                    className="h-[30px] w-[50px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover
+                      dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
                     // onClick={() => }
                   >
                     详情
                   </button>
                   <button
-                    className="h-[30px] w-[50px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                    className="h-[30px] w-[50px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover
+                      dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
                     onClick={() => handleDeleteClick(user.userid)}
                   >
                     删除

@@ -24,11 +24,6 @@ export default function HistoryChat() {
     });
   }, []);
 
-  const baseStyle =
-    'w-full border-2 shadow-md cursor-pointer resize-none space-y-3 rounded-lg bg-my-bg hover:bg-my-bgHover px-[14px] py-[10px] font-sans dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ';
-  const selectedStyle = 'border-my-primary dark:border-my-darkPrimary';
-  const unSelectedStyle = 'border-my-bg hover:border-my-bgHover dark:border-my-darkbg2';
-  // right-full
   return (
     <>
       <div
@@ -41,15 +36,20 @@ export default function HistoryChat() {
           <div className="relative flex h-20 w-full flex-shrink-0 flex-grow-0 items-center justify-center border-b-[1px] bg-my-bg text-lg shadow dark:border-my-darkborder dark:bg-my-darkbg1">
             对话历史
           </div>
-          <div className="flex flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden ">
+          <div className="flex flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden">
             <div className="space-y-3 px-4 py-5">
               {chatInfos != null &&
                 chatInfos.length != 0 &&
                 chatInfos.map((chatInfo: ChatInfo) => (
                   <div
-                    className={`${baseStyle} + ${
-                      selectedChatID === chatInfo.id ? selectedStyle : unSelectedStyle
-                    }`}
+                    className={
+                      'w-full cursor-pointer resize-none space-y-3 rounded-lg border-2 bg-my-bg px-3 py-3 font-sans shadow-md hover:bg-my-bgHover dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ' +
+                      `${
+                        selectedChatID === chatInfo.id
+                          ? 'border-my-primary dark:border-my-darkPrimary'
+                          : 'border-my-bg hover:border-my-bgHover dark:border-my-darkbg2'
+                      }`
+                    }
                     key={chatInfo.id}
                     role="button"
                     onClick={() => {

@@ -20,7 +20,6 @@ export default function SideNav() {
     'fill-current aria-hidden text-base-0 dark:text-base-8 h-5 w-5 transition';
   const svgStyle =
     'fill-current aria-hidden group-hover:text-base-0 dark:group-hover:text-base-8 h-5 w-5 text-gray-500 transition dark:text-gray-400';
-  // shadow-[0px_0px_10px_0px_rgba(0,0,0,0.2)]
   return (
     <>
       <div
@@ -30,7 +29,12 @@ export default function SideNav() {
         }
       >
         <div className="relative flex h-20 flex-shrink-0 flex-grow-0 items-center justify-center">
-          <svg width="97" height="36" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className="h-9 w-24"
+            viewBox="0 0 97 36"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               fillRule="evenodd"
               clipRule="evenodd"

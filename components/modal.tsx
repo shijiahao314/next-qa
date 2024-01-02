@@ -1,6 +1,6 @@
 export default function Modal() {
   return (
-    <div className=" flex h-4/5 w-2/3 flex-col items-center justify-center rounded-md border-2">
+    <div className="flex h-4/5 w-2/3 flex-col items-center justify-center rounded-md border-2">
       <div className="w-full border-b px-6 py-2 text-lg font-semibold">新增用户</div>
       <div className="h-full w-full px-6 py-4"></div>
       <div className="flex w-full flex-row justify-end space-x-2 border-t px-6 py-4">
