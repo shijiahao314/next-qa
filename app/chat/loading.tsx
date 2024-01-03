@@ -1,4 +1,4 @@
-import ChatCard from '@/components/chat/ChatCard';
+import ChatContent from '@/components/chat/ChatCard';
 
 export default function ChatBodyLoading() {
   return (

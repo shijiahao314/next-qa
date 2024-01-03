@@ -1,12 +1,10 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import { useBearStore, useLocalStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
 import { GetChatInfos } from '@/api/chat';
 import { ChatInfo, GetChatInfosResponse } from '@/api/model/chat';
-import Notification from '../frame/Notification';
-import { toast } from 'react-toastify';
+import Notification from '@/components/frame/Notification';
 
 export default async function HistoryChat() {
   const historyOpen = useBearStore(useShallow((state) => state.historyOpen));
@@ -38,7 +36,6 @@ export default async function HistoryChat() {
           }
         }
       } else if (resp.code == '106') {
-        toast.error('未登录');
       }
     });
   }, []);

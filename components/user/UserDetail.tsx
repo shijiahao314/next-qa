@@ -1,3 +1,5 @@
+import { UserInfo } from '@/api/model/user';
+
 interface ModalProps {
   userInfo: UserInfo;
   onClose: () => void;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import MarkdownCard from '../markdown';
 
-export default function ChatCard({ content, role }: { content: string; role: string }) {
+export default function ChatContent({ content, role }: { content: string; role: string }) {
   return (
     <div
       className={

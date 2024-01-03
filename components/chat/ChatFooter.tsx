@@ -1,6 +1,7 @@
 'use client';
 
-import { AddChatCard } from '@/app/api/chat';
+import { AddChatCard } from '@/api/chat';
+import { ChatCardDTO } from '@/api/model/chat';
 import { useBearStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
 

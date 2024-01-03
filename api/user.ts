@@ -1,22 +1,8 @@
 'use server';
 
+import { GetUserResponse, User, UserInfo } from './model/user';
+
 const API_URL = '/api/admin/user';
-
-export interface GetUserRequest {
-  page: number;
-  size: number;
-}
-
-export interface GetUserResponse {
-  code: number;
-  msg: string;
-  data: {
-    page: number;
-    size: number;
-    total: number;
-    users: UserInfo[];
-  };
-}
 
 export async function GetUser(page: number, size: number): Promise<UserInfo[]> {
   const queryParams = `?page=${page}&size=${size}`;
@@ -33,7 +19,7 @@ export async function GetUser(page: number, size: number): Promise<UserInfo[]> {
     throw new Error('Failed to fetch user data');
   }
 
-  const data: GetUserRes = await res.json();
+  const data: GetUserResponse = await res.json();
 
   return data.data.users;
 }

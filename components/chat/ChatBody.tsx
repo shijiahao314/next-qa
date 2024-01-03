@@ -1,10 +1,11 @@
 'use client';
 
-import { GetChatCards } from '@/app/api/chat';
-import ChatCard from './ChatCard';
+import { GetChatCards } from '@/api/chat';
+import ChatContent from './ChatCard';
 import React, { useMemo } from 'react';
 import { useBearStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
+import { ChatCard, ChatCardDTO } from '@/api/model/chat';
 
 export default async function ChatBody() {
   const selectedChatID = useBearStore(useShallow((state) => state.selectedChatID));
@@ -24,11 +25,11 @@ export default async function ChatBody() {
         chatCards.map((chatCard: ChatCard) =>
           chatCard.role === 'user' ? (
             <div className="flex flex-row-reverse" key={chatCard.id}>
-              <ChatCard role="user" content={chatCard.content}></ChatCard>
+              <ChatContent role="user" content={chatCard.content}></ChatContent>
             </div>
           ) : (
             <div className="flex" key={chatCard.id}>
-              <ChatCard role="assistant" content={chatCard.content}></ChatCard>
+              <ChatContent role="assistant" content={chatCard.content}></ChatContent>
             </div>
           )
         )

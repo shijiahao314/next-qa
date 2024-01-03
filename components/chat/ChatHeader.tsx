@@ -20,8 +20,10 @@ export default function ChatHeader() {
         M
       </button>
       <div>
-        <div className="text-center text-xl md:text-start">{chatMetaInfo.title}</div>
-        <div className="text-center text-sm md:text-start">共 {chatMetaInfo.num} 条对话</div>
+        <div className="text-center text-xl md:text-start">{chatMetaInfo.title}&nbsp;</div>
+        <div className="text-center text-sm md:text-start">
+          共&nbsp;{chatMetaInfo.num}&nbsp;条对话
+        </div>
       </div>
       <button
         className="h-12 w-12 place-content-center items-center rounded-lg border-[1px] border-my-border text-base font-semibold dark:border-my-darkborder  dark:bg-my-darkbg1 md:hidden"

@@ -1,8 +1,9 @@
 'use client';
 
-import { DeleteUser, GetUser } from '@/app/api/user';
+import { DeleteUser, GetUser } from '@/api/user';
 import { useEffect, useState } from 'react';
 import NewUser from './NewUser';
+import { UserInfo } from '@/api/model/user';
 
 export default async function UserTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);

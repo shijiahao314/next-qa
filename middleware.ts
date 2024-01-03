@@ -4,22 +4,21 @@ import type { NextRequest } from 'next/server';
 // import { isAuthenticated } from "@lib/auth";
 
 // See "Matching Paths" below to learn more
-// export const config = {
-//   matcher: [
-//     '/*',
-//     '/about/:path*',
-//     '/dashboard/:path*',
-//     /*
-//      * Match all request paths except for the ones starting with:
-//      * - api (API routes)
-//      * - _next/static (static files)
-//      * - _next/image (image optimization files)
-//      * - favicon.ico (favicon file)
-//      */
-//     '/((?!api|_next/static|_next/image|favicon.ico).*)',
-//     '/api/:function*'
-//   ]
-// };
+export const config = {
+  matcher: [
+    '/chat',
+    // '/login',
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/api/:function*'
+  ]
+};
 
 // This function can be marked `async` if using `await` inside
 // export default function middleware(request: NextRequest) {
@@ -34,12 +33,13 @@ import type { NextRequest } from 'next/server';
 // }
 
 export function middleware(request: NextRequest) {
-  // Assume a "Cookie:nextjs=fast" header to be present on the incoming request
-  // Getting cookies from the request using the `RequestCookies` API
+  console.log('====================================');
+  console.log('middleware: ', request.url);
+
   let cookie = request.cookies.get('nextjs');
-  console.log(cookie); // => { name: 'nextjs', value: 'fast', Path: '/' }
+  console.log(cookie);
   const allCookies = request.cookies.getAll();
-  console.log(allCookies); // => [{ name: 'nextjs', value: 'fast' }]
+  console.log(allCookies);
 
   request.cookies.has('nextjs'); // => true
   request.cookies.delete('nextjs');
@@ -56,6 +56,6 @@ export function middleware(request: NextRequest) {
   cookie = response.cookies.get('vercel');
   console.log(cookie); // => { name: 'vercel', value: 'fast', Path: '/' }
   // The outgoing response will have a `Set-Cookie:vercel=fast;path=/test` header.
-
+  console.log('====================================');
   return response;
 }

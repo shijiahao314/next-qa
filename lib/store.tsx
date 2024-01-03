@@ -9,13 +9,16 @@ export const useLocalStore = create(
     combine(
       {
         username: '',
-        isLogin: false
+        isLogin: false,
+        currentChatID: ''
       },
       (set, get) => ({
         getUsername: () => get().username,
         setUsername: (username: string) => set({ username: username }),
         getLogin: () => get().isLogin,
-        setLogin: (state: boolean) => set({ isLogin: state })
+        setLogin: (state: boolean) => set({ isLogin: state }),
+        getCurrentChatID: () => get().currentChatID,
+        setCurrentChatID: (id: string) => set({ currentChatID: id })
       })
     ),
     {

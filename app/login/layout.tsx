@@ -6,12 +6,13 @@ import Image from 'next/image';
 
 import svg from '@/public/svgs/next-logo.svg';
 import { useRouter } from 'next/navigation';
-import { Login, LoginRequest, SignUp, SignUpRequest } from '../api/auth';
+import { Login, SignUp } from '@/api/auth';
 import { useRef, useState } from 'react';
 import { Id, ToastContainer, toast } from 'react-toastify';
 import Notification from '@/components/frame/Notification';
 import { useShallow } from 'zustand/react/shallow';
 import { useLocalStore } from '@/lib/store';
+import { LoginRequest, SignUpRequest } from '@/api/model/auth';
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
