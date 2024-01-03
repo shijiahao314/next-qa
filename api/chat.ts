@@ -75,11 +75,9 @@ export async function GetChatCards(chatid: string): Promise<ChatCard[]> {
     cache: 'no-store'
   });
 
+  const data: GetChatCardsResponse = await res.json();
   if (!res.ok) {
     return [];
   }
-
-  const data: GetChatCardsResponse = await res.json();
-
   return data.data.chat_cards;
 }

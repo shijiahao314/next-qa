@@ -51,7 +51,7 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
       pStore.setLogin(true);
       pStore.setUsername(loginRequest.username);
       await sleep(2000);
-      await router.push('/chat');
+      router.push('/chat');
     } else {
       toast.update(toastId, {
         render: '登录失败: ' + loginResponse.msg,

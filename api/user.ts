@@ -1,4 +1,4 @@
-'use server';
+'use client';
 
 import { GetUserResponse, User, UserInfo } from './model/user';
 

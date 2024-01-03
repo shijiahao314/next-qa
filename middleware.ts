@@ -1,13 +1,14 @@
 import { log } from 'console';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { IsLoginResponse } from './api/model/auth';
+import { IsLogin } from './api/auth';
 // import { isAuthenticated } from "@lib/auth";
 
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
-    '/chat',
-    // '/login',
+    '/chat'
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)
@@ -15,8 +16,8 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
-    '/api/:function*'
+    // '/((?!api|_next/static|_next/image|favicon.ico|theme.js|login).*)',
+    // '/api/:function*'
   ]
 };
 
@@ -32,30 +33,20 @@ export const config = {
 //   }
 // }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   console.log('====================================');
   console.log('middleware: ', request.url);
-
-  let cookie = request.cookies.get('nextjs');
-  console.log(cookie);
   const allCookies = request.cookies.getAll();
   console.log(allCookies);
 
-  request.cookies.has('nextjs'); // => true
-  request.cookies.delete('nextjs');
-  request.cookies.has('nextjs'); // => false
+  // const [success, resp]: [boolean, IsLoginResponse] = await IsLogin({});
+  // if (!success) {
+  //   console.log('not login');
+  //   return NextResponse.redirect(new URL('/login', request.url));
+  // }
+  console.log('====================================');
 
   // Setting cookies on the response using the `ResponseCookies` API
   const response = NextResponse.next();
-  response.cookies.set('vercel', 'fast');
-  response.cookies.set({
-    name: 'vercel',
-    value: 'fast',
-    path: '/'
-  });
-  cookie = response.cookies.get('vercel');
-  console.log(cookie); // => { name: 'vercel', value: 'fast', Path: '/' }
-  // The outgoing response will have a `Set-Cookie:vercel=fast;path=/test` header.
-  console.log('====================================');
   return response;
 }

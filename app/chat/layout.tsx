@@ -8,6 +8,9 @@ import { useEffect } from 'react';
 
 export default function ChatPageLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    console.log('====================================');
+    console.log('check login');
+    console.log('====================================');
     IsLogin({}).then(([success, resp]: [boolean, IsLoginResponse]) => {
       if (!success) {
         console.log('====================================');

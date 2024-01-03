@@ -1,4 +1,4 @@
-'use server';
+'use client';
 
 import { BACKEND_URL } from '@/app/config';
 import {
@@ -12,7 +12,9 @@ import {
   SignUpResponse
 } from './model/auth';
 
-const API_URL = `${BACKEND_URL}/api/auth`;
+// if 'use server', API_URL = `${BACKEND_URL}/api/auth`
+// const API_URL = `${BACKEND_URL}/api/auth`;
+const API_URL = '/api/auth';
 
 // SignUp
 export async function SignUp(signUpRequest: SignUpRequest): Promise<[boolean, SignUpResponse]> {
