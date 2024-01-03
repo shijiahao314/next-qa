@@ -1,5 +1,6 @@
 'use server';
 
+import { BACKEND_URL } from '@/app/config';
 import {
   IsLoginRequest,
   IsLoginResponse,
@@ -11,7 +12,7 @@ import {
   SignUpResponse
 } from './model/auth';
 
-const API_URL = '/api/auth';
+const API_URL = `${BACKEND_URL}/api/auth`;
 
 // SignUp
 export async function SignUp(signUpRequest: SignUpRequest): Promise<[boolean, SignUpResponse]> {
@@ -80,7 +81,6 @@ export async function IsLogin(
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(isLoginResponse),
     credentials: 'include',
     cache: 'no-store'
   });

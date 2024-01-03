@@ -7,9 +7,9 @@ import Image from 'next/image';
 import svg from '@/public/svgs/next-logo.svg';
 import { useRouter } from 'next/navigation';
 import { Login, SignUp } from '@/api/auth';
-import { useRef, useState } from 'react';
-import { Id, ToastContainer, toast } from 'react-toastify';
-import Notification from '@/components/frame/Notification';
+import { useState } from 'react';
+import { Id, toast } from 'react-toastify';
+import MyToastContainer from '@/components/frame/MyToastContainer';
 import { useShallow } from 'zustand/react/shallow';
 import { useLocalStore } from '@/lib/store';
 import { LoginRequest, SignUpRequest } from '@/api/model/auth';
@@ -75,7 +75,7 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
 
   return (
     <>
-      <Notification></Notification>
+      <MyToastContainer></MyToastContainer>
       <div className="hidden h-full w-full opacity-0"></div>
       <div className="flex h-full w-full flex-row text-my-text0 duration-200 dark:text-my-darktext0">
         {/* <div className="hidden h-full flex-shrink flex-grow sm:w-3/5 md:block">

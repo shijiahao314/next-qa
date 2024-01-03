@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import ChatHeader from '@/components/chat/ChatHeader';
 import ChatFooter from '@/components/chat/ChatFooter';
 import ChatBody from '@/components/chat/ChatBody';
-import HistoryChat from '@/components/chat/HistoryChat.1';
+import HistoryChat from '@/components/chat/HistoryChat';
 import ChatBodyLoading from './loading';
 
 export default function Page() {

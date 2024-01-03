@@ -1,9 +1,9 @@
-import { Slide, ToastContainer, cssTransition, toast } from 'react-toastify';
+import { ToastContainer, cssTransition } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import './slide.css';
 
-export default function Notification() {
+export default function MyToastContainer() {
   const transStyle = cssTransition({
     enter: 'slide-enter',
     exit: 'slide-exit'

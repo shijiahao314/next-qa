@@ -5,8 +5,7 @@ import { useBearStore, useLocalStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
 import { GetChatInfos } from '@/api/chat';
 import { ChatInfo, GetChatInfosResponse } from '@/api/model/chat';
-import Notification from '../frame/Notification';
-import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default async function HistoryChat() {
   const historyOpen = useBearStore(useShallow((state) => state.historyOpen));
@@ -21,9 +20,6 @@ export default async function HistoryChat() {
 
   useEffect(() => {
     GetChatInfos().then(([success, resp]: [boolean, GetChatInfosResponse]) => {
-      console.log('====================================');
-      console.log(resp);
-      console.log('====================================');
       if (success) {
         const data = resp.data.chat_infos;
         if (data != null) {
@@ -37,15 +33,12 @@ export default async function HistoryChat() {
             }
           }
         }
-      } else if (resp.code == '106') {
-        toast.error('未登录');
       }
     });
   }, []);
 
   return (
     <>
-      <Notification></Notification>
       <div
         className={
           'absolute right-0 z-30 flex h-full transform border-my-border bg-my-bg transition-transform duration-300 dark:border-r-my-darkborder dark:bg-my-darkbg1 md:relative md:z-0 md:translate-x-0 ' +
