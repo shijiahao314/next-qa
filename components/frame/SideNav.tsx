@@ -119,7 +119,7 @@ export default function SideNav() {
               <li key={item.pathname}>
                 <a
                   className={
-                    'flex items-center p-2 ' +
+                    'flex items-center px-3 py-2 ' +
                     `${
                       pathname === item.pathname
                         ? 'pointer-events-none cursor-default rounded-lg bg-my-bgHover text-base-0 dark:bg-my-darkbgHover dark:text-base-8'

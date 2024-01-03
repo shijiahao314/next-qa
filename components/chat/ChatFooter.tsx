@@ -11,10 +11,12 @@ export default function ChatFooter() {
     console.log('====================================');
     console.log(e.currentTarget.value);
     console.log('====================================');
+    e.currentTarget.style.height = '5rem';
+    e.currentTarget.style.height = e.currentTarget.scrollHeight + 'px';
     // setTmpChatContent(e.currentTarget.value);
   };
   const handleSubmit = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === 'Enter' && e.ctrlKey) {
       e.preventDefault();
       const textarea = e.currentTarget as HTMLTextAreaElement;
       // 发送
@@ -31,8 +33,8 @@ export default function ChatFooter() {
   return (
     <div className="relative block border-t-2 border-my-border px-5 py-4 dark:border-my-darkborder">
       <textarea
-        className="h-full w-full flex-grow resize-none break-words rounded-lg border-my-border bg-my-bg pb-2 pl-4 pr-32 pt-2 text-sm leading-normal shadow outline outline-2 outline-my-border dark:bg-my-darkbg0 dark:outline-my-darkborder"
-        placeholder="Enter发送，Shift+Enter换行，不支持使用Tab空格"
+        className="h-20 max-h-48 w-full flex-grow resize-none overflow-y-visible break-words rounded-lg border-my-border bg-my-bg pb-2 pl-4 pr-32 pt-2 leading-normal shadow outline outline-2 outline-my-border dark:bg-my-darkbg0 dark:outline-my-darkborder"
+        placeholder="Ctrl+Enter发送，Enter换行，不支持使用Tab空格"
         onChange={handleChange}
         onKeyDown={handleSubmit}
         rows={3}
