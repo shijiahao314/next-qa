@@ -39,7 +39,11 @@ export interface ChatCardDTO {
   role: string;
 }
 // AddChatCard
-export interface AddChatCardRequset extends BaseRequest {}
+export interface AddChatCardRequset extends BaseRequest {
+  chat_info_id: string;
+  content: string;
+  role: string;
+}
 export interface AddChatCardResponse extends BaseResponse {}
 // DeleteChatCard
 export interface DeleteChatCardRequest extends BaseRequest {}
@@ -48,7 +52,9 @@ export interface DeleteChatCardResponse extends BaseResponse {}
 export interface UpdateChatCardRequest extends BaseRequest {}
 export interface UpdateChatCardResponse extends BaseResponse {}
 // GetChatCard
-export interface GetChatCardRequest extends BaseRequest {}
+export interface GetChatCardRequest extends BaseRequest {
+  chat_info_id: string;
+}
 export interface GetChatCardsResponse extends BaseResponse {
   data: {
     chat_cards: ChatCard[];

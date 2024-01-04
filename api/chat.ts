@@ -1,31 +1,41 @@
-'use server';
+'use client';
 
-import { log } from 'console';
-import { BACKEND_URL } from '../app/config';
+// import { BACKEND_URL } from '../app/config';
 
 import {
+  AddChatCardRequset as DeleteChatCardRequset,
   AddChatCardResponse,
   ChatCard,
   ChatCardDTO,
+  GetChatCardRequest,
   GetChatCardsResponse,
-  GetChatInfosResponse
+  GetChatInfosResponse,
+  DeleteChatCardResponse,
+  UpdateChatCardRequest,
+  UpdateChatCardResponse,
+  GetChatInfosRequest
 } from './model/chat';
 
-const API_URL = `${BACKEND_URL}/api/chat`;
+const API_URL = `/api/chat`;
+
+// const API_URL = `${BACKEND_URL}/api/chat`;
 
 // ChatInfo
 // GetChatInfos
-export async function GetChatInfos(): Promise<[boolean, GetChatInfosResponse]> {
-  const url = `${API_URL}/chatInfo`;
-  const res = await fetch(url, {
+export async function GetChatInfos(
+  getChatInfosRequest: GetChatInfosRequest
+): Promise<[boolean, GetChatInfosResponse]> {
+  const url = `${API_URL}/chatInfos`;
+  const resp = await fetch(url, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     },
+    credentials: 'include', // 跨域时携带认证信息
     cache: 'no-store'
   });
-  const data: GetChatInfosResponse = await res.json();
-  if (!res.ok) {
+  const data: GetChatInfosResponse = await resp.json();
+  if (!resp.ok) {
     return [false, data];
   }
   // convert datetime format
@@ -43,41 +53,79 @@ export async function GetChatInfos(): Promise<[boolean, GetChatInfosResponse]> {
 
 // ChatCard
 // AddChatCard
-export async function AddChatCard(chatCardDTO: ChatCardDTO): Promise<boolean> {
+export async function AddChatCard(
+  addChatCardRequset: DeleteChatCardRequset
+): Promise<[boolean, AddChatCardResponse]> {
   const url = `${API_URL}/chatCard`;
-  const res = await fetch(url, {
+  const resp = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(chatCardDTO)
+    body: JSON.stringify(addChatCardRequset)
   });
-
-  log(JSON.stringify(chatCardDTO));
-
-  if (!res.ok) {
-    return false;
+  const data: AddChatCardResponse = await resp.json();
+  if (!resp.ok) {
+    return [false, data];
   }
-
-  const data: AddChatCardResponse = await res.json();
-
-  return true;
+  return [true, data];
 }
+
+// DeleteChatCard
+export async function DeleteChatCard(
+  chatCardId: string,
+  deleteChatCardRequset: DeleteChatCardRequset
+): Promise<[boolean, DeleteChatCardResponse]> {
+  const url = `${API_URL}/chatCard/${chatCardId}`;
+  const resp = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(deleteChatCardRequset)
+  });
+  const data: AddChatCardResponse = await resp.json();
+  if (!resp.ok) {
+    return [false, data];
+  }
+  return [true, data];
+}
+
+// UpdateChatCard
+export async function UpdateChatCard(
+  updateChatCardRequest: UpdateChatCardRequest
+): Promise<[boolean, UpdateChatCardResponse]> {
+  const url = `${API_URL}/chatCard`;
+  const resp = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updateChatCardRequest)
+  });
+  const data: AddChatCardResponse = await resp.json();
+  if (!resp.ok) {
+    return [false, data];
+  }
+  return [true, data];
+}
+
 // GetChatCards
-export async function GetChatCards(chatid: string): Promise<ChatCard[]> {
-  const pathParams = `/${chatid}`;
+export async function GetChatCards(
+  getChatCardRequest: GetChatCardRequest
+): Promise<[boolean, GetChatCardsResponse]> {
+  const pathParams = `/${getChatCardRequest.chat_info_id}`;
   const url = `${API_URL}/chatCards${pathParams}`;
-  const res = await fetch(url, {
+  const resp = await fetch(url, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     },
     cache: 'no-store'
   });
-
-  const data: GetChatCardsResponse = await res.json();
-  if (!res.ok) {
-    return [];
+  const data: GetChatCardsResponse = await resp.json();
+  if (!resp.ok) {
+    return [false, data];
   }
-  return data.data.chat_cards;
+  return [true, data];
 }

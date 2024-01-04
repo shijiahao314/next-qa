@@ -2,21 +2,30 @@
 
 import { GetChatCards } from '@/api/chat';
 import ChatContent from './ChatCard';
-import React, { useMemo } from 'react';
 import { useBearStore } from '@/lib/store';
-import { useShallow } from 'zustand/react/shallow';
-import { ChatCard, ChatCardDTO } from '@/api/model/chat';
+import { ChatCard } from '@/api/model/chat';
+import { useEffect, useMemo, useState } from 'react';
 
 export default async function ChatBody() {
-  const selectedChatID = useBearStore(useShallow((state) => state.selectedChatID));
+  const selectedChatID = useBearStore((state) => state.selectedChatID);
+
+  // const [chatCards, setChatCards] = useState<ChatCard[]>([]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const [success, resp] = await GetChatCards({ chat_info_id: selectedChatID });
+  //     if (success) {
+  //       setChatCards(resp.data.chat_cards);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [selectedChatID]);
 
   const chatCards = await useMemo(async () => {
-    // 避免首次渲染请求服务端操作
-    if (selectedChatID === '') {
-      return [];
+    if (selectedChatID != '') {
+      const [success, resp] = await GetChatCards({ chat_info_id: selectedChatID });
+      return resp.data.chat_cards;
     }
-    const data = await GetChatCards(selectedChatID);
-    return data;
+    return [];
   }, [selectedChatID]);
 
   return (

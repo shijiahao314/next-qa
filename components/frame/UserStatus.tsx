@@ -3,6 +3,7 @@
 import { useLocalStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
 import { useRouter } from 'next/navigation';
+import { Logout } from '@/api/auth';
 
 export default function UserStatus() {
   const isLogin = useLocalStore(useShallow((state) => state.isLogin));
@@ -16,6 +17,7 @@ export default function UserStatus() {
         <img
           className="h-24 w-24 rounded-full border-2 border-my-primary/80 p-[1px] dark:border-my-darkPrimary"
           src="https://placehold.co/96x96.png"
+          alt="user avatar"
         ></img>
         <div
           className="flex h-10 w-full items-center justify-center rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
@@ -23,10 +25,8 @@ export default function UserStatus() {
           onClick={
             isLogin
               ? () => {
-                  console.log('====================================');
-                  console.log('clicked');
-                  console.log('====================================');
-                  router.push('/userInfo');
+                  // router.push('/userInfo');
+                  Logout({});
                 }
               : () => router.push('/login')
           }

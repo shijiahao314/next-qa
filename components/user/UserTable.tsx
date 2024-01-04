@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import NewUser from './NewUser';
 import { UserInfo } from '@/api/model/user';
 
-export default async function UserTable() {
+export default function UserTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {

@@ -1,40 +1,32 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useBearStore, useLocalStore } from '@/lib/store';
-import { useShallow } from 'zustand/react/shallow';
+import { useBearStore } from '@/lib/store';
 import { GetChatInfos } from '@/api/chat';
 import { ChatInfo, GetChatInfosResponse } from '@/api/model/chat';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default async function HistoryChat() {
-  const historyOpen = useBearStore(useShallow((state) => state.historyOpen));
-  const setHistoryOpen = useBearStore(useShallow((state) => state.setHistoryOpen));
-  const selectedChatID = useBearStore(useShallow((state) => state.selectedChatID));
-  const setSelectedChatID = useBearStore(useShallow((state) => state.setSelectedChatID));
-  const setChatMetaInfo = useBearStore(useShallow((state) => state.setChatMetaInfo));
-  const currentChatID = useLocalStore(useShallow((state) => state.currentChatID));
-  const setCurrentChatID = useLocalStore(useShallow((state) => state.setCurrentChatID));
-
+export default function HistoryChat() {
+  const historyOpen = useBearStore((state) => state.historyOpen);
+  const setHistoryOpen = useBearStore((state) => state.setHistoryOpen);
+  const selectedChatID = useBearStore((state) => state.selectedChatID);
+  const setSelectedChatID = useBearStore((state) => state.setSelectedChatID);
+  const setChatMetaInfo = useBearStore((state) => state.setChatMetaInfo);
+  // chatInfos
   const [chatInfos, setChatInfos] = useState<ChatInfo[]>([]);
-
   useEffect(() => {
-    GetChatInfos().then(([success, resp]: [boolean, GetChatInfosResponse]) => {
+    const fetchData = async () => {
+      const [success, resp]: [boolean, GetChatInfosResponse] = await GetChatInfos({});
+      const data = resp.data.chat_infos;
       if (success) {
-        const data = resp.data.chat_infos;
-        if (data != null) {
-          if (data.length != 0) {
-            setChatInfos(data);
-            for (let index = 0; index < data.length; index++) {
-              if (data[index].id == currentChatID) {
-                setSelectedChatID(data[index].id);
-                setChatMetaInfo(data[index]);
-              }
-            }
-          }
+        setChatInfos(data);
+        if (data.length > 0) {
+          setSelectedChatID(data[0].id);
+          setChatMetaInfo(data[0]);
         }
       }
-    });
+    };
+    fetchData();
   }, []);
 
   return (
@@ -56,23 +48,23 @@ export default async function HistoryChat() {
                 chatInfos.map((chatInfo: ChatInfo) => (
                   <div
                     className={
-                      'w-full cursor-pointer resize-none space-y-3 rounded-lg border-2 bg-my-bg px-3 py-3 font-sans shadow-md hover:bg-my-bgHover dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ' +
+                      'w-full  resize-none space-y-3 rounded-lg border-2 bg-my-bg px-3 py-3 font-sans shadow-md hover:bg-my-bgHover dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ' +
                       `${
                         selectedChatID === chatInfo.id
-                          ? 'border-my-primary dark:border-my-darkPrimary'
-                          : 'border-my-bg hover:border-my-bgHover dark:border-my-darkbg2'
+                          ? 'cursor-default border-my-primary dark:border-my-darkPrimary'
+                          : 'cursor-pointer border-my-bg hover:border-my-bgHover dark:border-my-darkbg2'
                       }`
                     }
                     key={chatInfo.id}
-                    role="button"
                     onClick={() => {
-                      setHistoryOpen(false);
-                      setSelectedChatID(chatInfo.id);
-                      setCurrentChatID(chatInfo.id);
-                      setChatMetaInfo({
-                        title: chatInfo.title,
-                        num: chatInfo.num
-                      });
+                      if (selectedChatID != chatInfo.id) {
+                        setHistoryOpen(false);
+                        setSelectedChatID(chatInfo.id);
+                        setChatMetaInfo({
+                          title: chatInfo.title,
+                          num: chatInfo.num
+                        });
+                      }
                     }}
                   >
                     <div className="text-sm font-semibold">{chatInfo.title}</div>
