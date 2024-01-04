@@ -9,9 +9,6 @@ export default function ChatFooter() {
   const getSelectedChatID = useBearStore(useShallow((state) => state.getSelectedChatID));
 
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    console.log('====================================');
-    console.log(e.currentTarget.value);
-    console.log('====================================');
     e.currentTarget.style.height = '5rem';
     e.currentTarget.style.height = e.currentTarget.scrollHeight + 'px';
     // setTmpChatContent(e.currentTarget.value);
@@ -47,7 +44,6 @@ export default function ChatFooter() {
           console.log('====================================');
           console.log('clicked');
           console.log('====================================');
-          // handleSubmit();
         }}
       >
         发&nbsp;送

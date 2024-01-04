@@ -18,13 +18,16 @@ pre {
 }
 
 code {
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
   padding-top: 3px;
   padding-bottom: 3px;
   border-radius: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
   font-size: 12px;
-  background-color: rgba(134, 133, 133, 0.603);
+  /* background-color: rgba(134, 133, 133, 0.603); */
+  background-color: #c9d1d966;
 }
 
 pre code {

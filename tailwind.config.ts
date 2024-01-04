@@ -89,7 +89,11 @@ const config: Config = {
 
           darkTertiary: 'rgba(136, 141, 146, 1)', // grey-5 (dark)
           darkTertiaryHover: 'rgba(167, 171, 176, 1)', // grey-6 (dark)
-          darkTertiaryActive: 'rgba(198, 202, 205, 1)' // grey-7 (dark)
+          darkTertiaryActive: 'rgba(198, 202, 205, 1)', // grey-7 (dark)
+
+          // chat
+          chatBg: '#e7f8ff',
+          darkChatBg: '#1b262a'
         }
       },
       fontFamily: {

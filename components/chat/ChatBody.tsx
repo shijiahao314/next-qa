@@ -6,27 +6,28 @@ import { useBearStore } from '@/lib/store';
 import { ChatCard } from '@/api/model/chat';
 import { useEffect, useMemo, useState } from 'react';
 
-export default async function ChatBody() {
+// 如果需要loading，则改为async
+export default function ChatBody() {
   const selectedChatID = useBearStore((state) => state.selectedChatID);
 
-  // const [chatCards, setChatCards] = useState<ChatCard[]>([]);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const [success, resp] = await GetChatCards({ chat_info_id: selectedChatID });
-  //     if (success) {
-  //       setChatCards(resp.data.chat_cards);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [selectedChatID]);
-
-  const chatCards = await useMemo(async () => {
-    if (selectedChatID != '') {
+  const [chatCards, setChatCards] = useState<ChatCard[]>([]);
+  useEffect(() => {
+    const fetchData = async () => {
       const [success, resp] = await GetChatCards({ chat_info_id: selectedChatID });
-      return resp.data.chat_cards;
-    }
-    return [];
+      if (success) {
+        setChatCards(resp.data.chat_cards);
+      }
+    };
+    fetchData();
   }, [selectedChatID]);
+
+  // const chatCards = await useMemo(async () => {
+  //   if (selectedChatID != '') {
+  //     const [success, resp] = await GetChatCards({ chat_info_id: selectedChatID });
+  //     return resp.data.chat_cards;
+  //   }
+  //   return [];
+  // }, []);
 
   return (
     <div className="flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden px-5 py-4">
@@ -37,7 +38,7 @@ export default async function ChatBody() {
               <ChatContent role="user" content={chatCard.content}></ChatContent>
             </div>
           ) : (
-            <div className="flex" key={chatCard.id}>
+            <div className="flex flex-row" key={chatCard.id}>
               <ChatContent role="assistant" content={chatCard.content}></ChatContent>
             </div>
           )
