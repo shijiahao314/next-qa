@@ -68,7 +68,7 @@ export default function ChatContent({ content, role }: { content: string; role: 
       </div>
       <div
         className={
-          'mt-2 w-fit rounded-lg border-[1px] border-my-border p-3 text-sm leading-6 dark:border-my-darkborder md:border-2 ' +
+          'mt-2 w-fit rounded-lg border-[1px] border-my-border px-3 py-2 text-sm leading-6 dark:border-my-darkborder md:border-2 ' +
           `${
             role === 'user' ? 'bg-my-chatBg dark:bg-my-darkChatBg ' : 'bg-my-bg dark:bg-my-darkbg1'
           }`

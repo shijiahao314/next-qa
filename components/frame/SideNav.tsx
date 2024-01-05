@@ -79,15 +79,15 @@ export default function SideNav() {
       )
     },
     { pathname: '1', title: '1', svg: defaultSvg },
-    { pathname: '1', title: '2', svg: defaultSvg },
-    { pathname: '1', title: '3', svg: defaultSvg },
-    { pathname: '1', title: '4', svg: defaultSvg },
-    { pathname: '1', title: '5', svg: defaultSvg },
-    { pathname: '1', title: '6', svg: defaultSvg },
-    { pathname: '1', title: '7', svg: defaultSvg },
-    { pathname: '1', title: '8', svg: defaultSvg },
-    { pathname: '1', title: '9', svg: defaultSvg },
-    { pathname: '1', title: '0', svg: defaultSvg }
+    { pathname: '2', title: '2', svg: defaultSvg },
+    { pathname: '3', title: '3', svg: defaultSvg },
+    { pathname: '4', title: '4', svg: defaultSvg },
+    { pathname: '5', title: '5', svg: defaultSvg },
+    { pathname: '6', title: '6', svg: defaultSvg },
+    { pathname: '7', title: '7', svg: defaultSvg },
+    { pathname: '8', title: '8', svg: defaultSvg },
+    { pathname: '9', title: '9', svg: defaultSvg },
+    { pathname: '0', title: '0', svg: defaultSvg }
   ];
 
   return (

@@ -16,7 +16,6 @@ export default function MyToastContainer() {
         bodyClassName="toast-wrapper"
         style={{
           position: 'absolute'
-          //   transform: 'translateY(0)'
         }}
         position="top-center"
         transition={transStyle}

@@ -3,15 +3,13 @@
 import { debounce } from 'lodash';
 
 import Image from 'next/image';
-
 import svg from '@/public/svgs/next-logo.svg';
 import { useRouter } from 'next/navigation';
 import { Login, SignUp } from '@/api/auth';
 import { useState } from 'react';
 import { Id, toast } from 'react-toastify';
 import MyToastContainer from '@/components/frame/MyToastContainer';
-import { useShallow } from 'zustand/react/shallow';
-import { useLocalStore } from '@/lib/store';
+import { useBearStore, useLocalStore } from '@/lib/store';
 import { LoginRequest, SignUpRequest } from '@/api/model/auth';
 
 function sleep(ms: number) {
@@ -19,7 +17,7 @@ function sleep(ms: number) {
 }
 
 export default function LoginLayout({ children }: { children: React.ReactNode }) {
-  const pStore = useLocalStore(useShallow((state) => state));
+  const setIsLogin = useBearStore((state) => state.setIgLogin);
   const router = useRouter();
 
   // input date
@@ -48,9 +46,8 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
         type: toast.TYPE.SUCCESS,
         autoClose: 2000
       });
-      pStore.setLogin(true);
-      pStore.setUsername(loginRequest.username);
       await sleep(2000);
+      setIsLogin(true);
       router.push('/chat');
     } else {
       toast.update(toastId, {
@@ -67,10 +64,6 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
       password: formData.password
     };
     const [success, msg] = await SignUp(signUpRequest);
-    console.log('====================================');
-    console.log('request: ', signUpRequest);
-    console.log('response: ', [success, msg]);
-    console.log('====================================');
   };
 
   return (
@@ -137,13 +130,13 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
                   name="username"
                   value={formData.username}
                   onChange={handleChange}
-
                   // required
                 ></input>
                 <input
                   className="h-12 w-full rounded-lg border-2 border-my-border bg-my-bg px-2 dark:border-my-darkborder dark:bg-my-darkbg2"
                   placeholder="密码..."
                   name="password"
+                  type="password"
                   value={formData.password}
                   onChange={handleChange}
                   // required

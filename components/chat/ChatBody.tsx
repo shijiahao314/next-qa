@@ -18,7 +18,9 @@ export default function ChatBody() {
         setChatCards(resp.data.chat_cards);
       }
     };
-    fetchData();
+    if (selectedChatID != '') {
+      fetchData();
+    }
   }, [selectedChatID]);
 
   // const chatCards = await useMemo(async () => {

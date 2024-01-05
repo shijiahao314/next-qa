@@ -8,15 +8,11 @@ export const useLocalStore = create(
   persist(
     combine(
       {
-        username: '',
-        isLogin: false
-        // currentChatID: ''
+        username: ''
       },
       (set, get) => ({
         getUsername: () => get().username,
-        setUsername: (username: string) => set({ username: username }),
-        getLogin: () => get().isLogin,
-        setLogin: (state: boolean) => set({ isLogin: state })
+        setUsername: (username: string) => set({ username: username })
         // getCurrentChatID: () => get().currentChatID,
         // setCurrentChatID: (id: string) => set({ currentChatID: id })
       })
@@ -36,6 +32,7 @@ interface ChatMetaInfo {
 export const useBearStore = create(
   combine(
     {
+      isLogin: false,
       navOpen: false,
       historyOpen: false,
       selectedChatID: '',
@@ -46,6 +43,8 @@ export const useBearStore = create(
       tmpChatContent: ''
     },
     (set, get) => ({
+      getIsLogin: () => get().isLogin,
+      setIgLogin: (state: boolean) => set({ isLogin: state }),
       setNavOpen: (state: boolean) => set({ navOpen: state }),
       setHistoryOpen: (state: boolean) => set({ historyOpen: state }),
       getSelectedChatID: () => get().selectedChatID,

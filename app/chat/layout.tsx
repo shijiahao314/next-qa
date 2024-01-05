@@ -1,21 +1,19 @@
 'use client';
 
 import { IsLogin } from '@/api/auth';
-import { toast } from 'react-toastify';
 import { IsLoginResponse } from '@/api/model/auth';
 import MyToastContainer from '@/components/frame/MyToastContainer';
+import { useBearStore } from '@/lib/store';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 export default function ChatPageLayout({ children }: { children: React.ReactNode }) {
+  const setIsLogin = useBearStore((state) => state.setIgLogin);
+
   useEffect(() => {
-    console.log('====================================');
-    console.log('check login');
-    console.log('====================================');
     IsLogin({}).then(([success, resp]: [boolean, IsLoginResponse]) => {
       if (!success) {
-        console.log('====================================');
-        console.log('not login');
-        console.log('====================================');
+        setIsLogin(false);
         toast.error('未登录', {
           position: 'top-center',
           autoClose: 3000,
@@ -23,6 +21,8 @@ export default function ChatPageLayout({ children }: { children: React.ReactNode
           closeOnClick: true,
           theme: 'colored'
         });
+      } else {
+        setIsLogin(true);
       }
     });
   });

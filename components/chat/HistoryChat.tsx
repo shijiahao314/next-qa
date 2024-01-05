@@ -17,8 +17,8 @@ export default function HistoryChat() {
   useEffect(() => {
     const fetchData = async () => {
       const [success, resp]: [boolean, GetChatInfosResponse] = await GetChatInfos({});
-      const data = resp.data.chat_infos;
       if (success) {
+        const data = resp.data.chat_infos;
         setChatInfos(data);
         if (data.length > 0) {
           setSelectedChatID(data[0].id);
