@@ -13,8 +13,6 @@ export const useLocalStore = create(
       (set, get) => ({
         getUsername: () => get().username,
         setUsername: (username: string) => set({ username: username })
-        // getCurrentChatID: () => get().currentChatID,
-        // setCurrentChatID: (id: string) => set({ currentChatID: id })
       })
     ),
     {
@@ -40,7 +38,8 @@ export const useBearStore = create(
         title: '新的聊天',
         num: '0'
       },
-      tmpChatContent: ''
+      tmpChatContent: '',
+      chatBodyRefresh: false
     },
     (set, get) => ({
       getIsLogin: () => get().isLogin,
@@ -50,7 +49,9 @@ export const useBearStore = create(
       getSelectedChatID: () => get().selectedChatID,
       setSelectedChatID: (id: string) => set({ selectedChatID: id }),
       setChatMetaInfo: (chatMetaInfo: ChatMetaInfo) => set({ chatMetaInfo: chatMetaInfo }),
-      setTmpChatContent: (content: string) => set({ tmpChatContent: content })
+      setTmpChatContent: (content: string) => set({ tmpChatContent: content }),
+      getChatBodyRefresh: () => get().chatBodyRefresh,
+      setChatBodyRefresh: (state: boolean) => set({ chatBodyRefresh: state })
     })
   )
 );

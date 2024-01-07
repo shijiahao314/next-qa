@@ -1,16 +1,16 @@
 'use client';
 
 // import { BACKEND_URL } from '../app/config';
-
 import {
-  AddChatCardRequset as DeleteChatCardRequset,
+  AddChatCardRequset,
   AddChatCardResponse,
+  DeleteChatCardRequest,
+  DeleteChatCardResponse,
   ChatCard,
   ChatCardDTO,
   GetChatCardRequest,
   GetChatCardsResponse,
   GetChatInfosResponse,
-  DeleteChatCardResponse,
   UpdateChatCardRequest,
   UpdateChatCardResponse,
   GetChatInfosRequest
@@ -54,7 +54,7 @@ export async function GetChatInfos(
 // ChatCard
 // AddChatCard
 export async function AddChatCard(
-  addChatCardRequset: DeleteChatCardRequset
+  addChatCardRequset: DeleteChatCardRequest
 ): Promise<[boolean, AddChatCardResponse]> {
   const url = `${API_URL}/chatCard`;
   const resp = await fetch(url, {
@@ -74,7 +74,7 @@ export async function AddChatCard(
 // DeleteChatCard
 export async function DeleteChatCard(
   chatCardId: string,
-  deleteChatCardRequset: DeleteChatCardRequset
+  deleteChatCardRequset: DeleteChatCardRequest
 ): Promise<[boolean, DeleteChatCardResponse]> {
   const url = `${API_URL}/chatCard/${chatCardId}`;
   const resp = await fetch(url, {

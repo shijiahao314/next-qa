@@ -1,8 +1,22 @@
 import React from 'react';
 
 import MarkdownCard from '../markdown';
+import { ChatCard, DeleteChatCardResponse } from '@/api/model/chat';
+import { DeleteChatCard } from '@/api/chat';
+import { useBearStore } from '@/lib/store';
 
-export default function ChatContent({ content, role }: { content: string; role: string }) {
+export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
+  const role = chatCard.role;
+  const content = chatCard.content;
+  const getChatBodyRefresh = useBearStore((state) => state.getChatBodyRefresh);
+  const setChatBodyRefresh = useBearStore((state) => state.setChatBodyRefresh);
+  const handleDeleteChatCard = () => {
+    DeleteChatCard(chatCard.id, {}).then(([success, resp]: [boolean, DeleteChatCardResponse]) => {
+      if (success) {
+        setChatBodyRefresh(!getChatBodyRefresh());
+      }
+    });
+  };
   return (
     <div
       className={
@@ -16,15 +30,9 @@ export default function ChatContent({ content, role }: { content: string; role: 
             `${role === 'user' ? 'order-first mr-2' : 'order-last ml-2'}`
           }
         >
-          <div className="group flex h-8 cursor-pointer flex-row items-center justify-center overflow-hidden rounded-xl border-[1px] border-my-border bg-my-bg px-3 py-1 text-sm duration-300 hover:w-full hover:bg-my-bgHover/50 dark:border-my-darkborder dark:bg-my-darkbg0 dark:hover:bg-my-darkbg1">
+          <div className="group flex h-8 cursor-pointer flex-row items-center justify-center overflow-hidden rounded-xl border-[0.1rem] border-my-border bg-my-bg px-3 py-1 text-sm hover:w-full hover:bg-my-bgHover/50 dark:border-my-darkborder dark:bg-my-darkbg0 dark:hover:bg-my-darkbg1">
             <div className="flex ">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                width="16"
-                height="16"
-                fill="none"
-              >
+              <svg width="16" height="16" fill="none">
                 <g mask="url(#reload_svg__b)">
                   <path
                     transform="translate(14 2.667)"
@@ -63,12 +71,56 @@ export default function ChatContent({ content, role }: { content: string; role: 
               &nbsp;重试
             </div>
           </div>
+          <div className="group flex h-8 cursor-pointer flex-row items-center justify-center overflow-hidden rounded-xl border-[0.1rem] border-my-border bg-my-bg px-3 py-1 text-sm hover:w-full hover:bg-my-bgHover/50 dark:border-my-darkborder dark:bg-my-darkbg0 dark:hover:bg-my-darkbg1">
+            <div className="flex">
+              <svg width="16" height="16" viewBox="128 128 768 768">
+                <path
+                  d="M768 384c-19.2 0-32 12.8-32 32l0 377.6c0 25.6-19.2 38.4-38.4 38.4L326.4 832c-25.6 0-38.4-19.2-38.4-38.4L288 416C288 396.8 275.2 384 256 384S224 396.8 224 416l0 377.6c0 57.6 44.8 102.4 102.4 102.4l364.8 0c57.6 0 102.4-44.8 102.4-102.4L793.6 416C800 396.8 787.2 384 768 384z"
+                  fill="rgb(155, 155, 155)"
+                />
+                <path
+                  d="M460.8 736l0-320C460.8 396.8 448 384 435.2 384S396.8 396.8 396.8 416l0 320c0 19.2 12.8 32 32 32S460.8 755.2 460.8 736z"
+                  fill="rgb(155, 155, 155)"
+                />
+                <path
+                  d="M627.2 736l0-320C627.2 396.8 608 384 588.8 384S563.2 396.8 563.2 416l0 320C563.2 755.2 576 768 588.8 768S627.2 755.2 627.2 736z"
+                  fill="rgb(155, 155, 155)"
+                />
+                <path
+                  d="M832 256l-160 0L672 211.2C672 166.4 633.6 128 588.8 128L435.2 128C390.4 128 352 166.4 352 211.2L352 256 192 256C172.8 256 160 268.8 160 288S172.8 320 192 320l640 0c19.2 0 32-12.8 32-32S851.2 256 832 256zM416 211.2C416 198.4 422.4 192 435.2 192l153.6 0c12.8 0 19.2 6.4 19.2 19.2L608 256l-192 0L416 211.2z"
+                  fill="rgb(155, 155, 155)"
+                />
+              </svg>
+            </div>
+            <div
+              onClick={handleDeleteChatCard}
+              className="hidden overflow-hidden whitespace-nowrap text-sm text-my-text0 group-hover:block dark:text-my-darktext0"
+            >
+              &nbsp;删除
+            </div>
+          </div>
         </div>
-        <div className="h-9 w-9 rounded-lg border-[1px] border-my-border dark:border-my-darkborder"></div>
+        <div className="h-9 w-9 rounded-lg border-2 border-my-border dark:border-my-darkborder">
+          {role === 'user' ? (
+            <svg className="p-1 text-my-text1 dark:text-my-darktext2" viewBox="0 0 1024 1024">
+              <path
+                fill="currentColor"
+                d="M858.5 763.6c-18.9-44.8-46.1-85-80.6-119.5-34.5-34.5-74.7-61.6-119.5-80.6-0.4-0.2-0.8-0.3-1.2-0.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-0.4 0.2-0.8 0.3-1.2 0.5-44.8 18.9-85 46-119.5 80.6-34.5 34.5-61.6 74.7-80.6 119.5C146.9 807.5 137 854 136 901.8c-0.1 4.5 3.5 8.2 8 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c0.1 4.4 3.6 7.8 8 7.8h60c4.5 0 8.1-3.7 8-8.2-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"
+              />
+            </svg>
+          ) : (
+            <svg className="p-2 text-my-text1 dark:text-my-darktext2" viewBox="0 0 41 41">
+              <path
+                fill="currentColor"
+                d="M37.5324 16.8707C37.9808 15.5241 38.1363 14.0974 37.9886 12.6859C37.8409 11.2744 37.3934 9.91076 36.676 8.68622C35.6126 6.83404 33.9882 5.3676 32.0373 4.4985C30.0864 3.62941 27.9098 3.40259 25.8215 3.85078C24.8796 2.7893 23.7219 1.94125 22.4257 1.36341C21.1295 0.785575 19.7249 0.491269 18.3058 0.500197C16.1708 0.495044 14.0893 1.16803 12.3614 2.42214C10.6335 3.67624 9.34853 5.44666 8.6917 7.47815C7.30085 7.76286 5.98686 8.3414 4.8377 9.17505C3.68854 10.0087 2.73073 11.0782 2.02839 12.312C0.956464 14.1591 0.498905 16.2988 0.721698 18.4228C0.944492 20.5467 1.83612 22.5449 3.268 24.1293C2.81966 25.4759 2.66413 26.9026 2.81182 28.3141C2.95951 29.7256 3.40701 31.0892 4.12437 32.3138C5.18791 34.1659 6.8123 35.6322 8.76321 36.5013C10.7141 37.3704 12.8907 37.5973 14.9789 37.1492C15.9208 38.2107 17.0786 39.0587 18.3747 39.6366C19.6709 40.2144 21.0755 40.5087 22.4946 40.4998C24.6307 40.5054 26.7133 39.8321 28.4418 38.5772C30.1704 37.3223 31.4556 35.5506 32.1119 33.5179C33.5027 33.2332 34.8167 32.6547 35.9659 31.821C37.115 30.9874 38.0728 29.9178 38.7752 28.684C39.8458 26.8371 40.3023 24.6979 40.0789 22.5748C39.8556 20.4517 38.9639 18.4544 37.5324 16.8707ZM22.4978 37.8849C20.7443 37.8874 19.0459 37.2733 17.6994 36.1501C17.7601 36.117 17.8666 36.0586 17.936 36.0161L25.9004 31.4156C26.1003 31.3019 26.2663 31.137 26.3813 30.9378C26.4964 30.7386 26.5563 30.5124 26.5549 30.2825V19.0542L29.9213 20.998C29.9389 21.0068 29.9541 21.0198 29.9656 21.0359C29.977 21.052 29.9842 21.0707 29.9867 21.0902V30.3889C29.9842 32.375 29.1946 34.2791 27.7909 35.6841C26.3872 37.0892 24.4838 37.8806 22.4978 37.8849ZM6.39227 31.0064C5.51397 29.4888 5.19742 27.7107 5.49804 25.9832C5.55718 26.0187 5.66048 26.0818 5.73461 26.1244L13.699 30.7248C13.8975 30.8408 14.1233 30.902 14.3532 30.902C14.583 30.902 14.8088 30.8408 15.0073 30.7248L24.731 25.1103V28.9979C24.7321 29.0177 24.7283 29.0376 24.7199 29.0556C24.7115 29.0736 24.6988 29.0893 24.6829 29.1012L16.6317 33.7497C14.9096 34.7416 12.8643 35.0097 10.9447 34.4954C9.02506 33.9811 7.38785 32.7263 6.39227 31.0064ZM4.29707 13.6194C5.17156 12.0998 6.55279 10.9364 8.19885 10.3327C8.19885 10.4013 8.19491 10.5228 8.19491 10.6071V19.808C8.19351 20.0378 8.25334 20.2638 8.36823 20.4629C8.48312 20.6619 8.64893 20.8267 8.84863 20.9404L18.5723 26.5542L15.206 28.4979C15.1894 28.5089 15.1703 28.5155 15.1505 28.5173C15.1307 28.5191 15.1107 28.516 15.0924 28.5082L7.04046 23.8557C5.32135 22.8601 4.06716 21.2235 3.55289 19.3046C3.03862 17.3858 3.30624 15.3413 4.29707 13.6194ZM31.955 20.0556L22.2312 14.4411L25.5976 12.4981C25.6142 12.4872 25.6333 12.4805 25.6531 12.4787C25.6729 12.4769 25.6928 12.4801 25.7111 12.4879L33.7631 17.1364C34.9967 17.849 36.0017 18.8982 36.6606 20.1613C37.3194 21.4244 37.6047 22.849 37.4832 24.2684C37.3617 25.6878 36.8382 27.0432 35.9743 28.1759C35.1103 29.3086 33.9415 30.1717 32.6047 30.6641C32.6047 30.5947 32.6047 30.4733 32.6047 30.3889V21.188C32.6066 20.9586 32.5474 20.7328 32.4332 20.5338C32.319 20.3348 32.154 20.1698 31.955 20.0556ZM35.3055 15.0128C35.2464 14.9765 35.1431 14.9142 35.069 14.8717L27.1045 10.2712C26.906 10.1554 26.6803 10.0943 26.4504 10.0943C26.2206 10.0943 25.9948 10.1554 25.7963 10.2712L16.0726 15.8858V11.9982C16.0715 11.9783 16.0753 11.9585 16.0837 11.9405C16.0921 11.9225 16.1048 11.9068 16.1207 11.8949L24.1719 7.25025C25.4053 6.53903 26.8158 6.19376 28.2383 6.25482C29.6608 6.31589 31.0364 6.78077 32.2044 7.59508C33.3723 8.40939 34.2842 9.53945 34.8334 10.8531C35.3826 12.1667 35.5464 13.6095 35.3055 15.0128ZM14.2424 21.9419L10.8752 19.9981C10.8576 19.9893 10.8423 19.9763 10.8309 19.9602C10.8195 19.9441 10.8122 19.9254 10.8098 19.9058V10.6071C10.8107 9.18295 11.2173 7.78848 11.9819 6.58696C12.7466 5.38544 13.8377 4.42659 15.1275 3.82264C16.4173 3.21869 17.8524 2.99464 19.2649 3.1767C20.6775 3.35876 22.0089 3.93941 23.1034 4.85067C23.0427 4.88379 22.937 4.94215 22.8668 4.98473L14.9024 9.58517C14.7025 9.69878 14.5366 9.86356 14.4215 10.0626C14.3065 10.2616 14.2466 10.4877 14.2479 10.7175L14.2424 21.9419ZM16.071 17.9991L20.4018 15.4978L24.7325 17.9975V22.9985L20.4018 25.4983L16.071 22.9985V17.9991Z"
+              ></path>
+            </svg>
+          )}
+        </div>
       </div>
       <div
         className={
-          'mt-2 w-fit rounded-lg border-[1px] border-my-border px-3 py-2 text-sm leading-6 dark:border-my-darkborder md:border-2 ' +
+          'mt-2 w-fit rounded-lg border-[0.1rem] border-my-border px-3 py-2 text-sm leading-6 dark:border-my-darkborder ' +
           `${
             role === 'user' ? 'bg-my-chatBg dark:bg-my-darkChatBg ' : 'bg-my-bg dark:bg-my-darkbg1'
           }`

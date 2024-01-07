@@ -4,24 +4,34 @@ import { GetChatCards } from '@/api/chat';
 import ChatContent from './ChatCard';
 import { useBearStore } from '@/lib/store';
 import { ChatCard } from '@/api/model/chat';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 // 如果需要loading，则改为async
 export default function ChatBody() {
   const selectedChatID = useBearStore((state) => state.selectedChatID);
+  const chatBodyRefresh = useBearStore((state) => state.chatBodyRefresh);
+
+  const chatBodyRef = useRef<HTMLDivElement>(null);
 
   const [chatCards, setChatCards] = useState<ChatCard[]>([]);
   useEffect(() => {
     const fetchData = async () => {
       const [success, resp] = await GetChatCards({ chat_info_id: selectedChatID });
       if (success) {
+        // TODO: need to set chatinfo etc...
         setChatCards(resp.data.chat_cards);
       }
     };
     if (selectedChatID != '') {
       fetchData();
     }
-  }, [selectedChatID]);
+  }, [selectedChatID, chatBodyRefresh]);
+
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [chatCards]);
 
   // const chatCards = await useMemo(async () => {
   //   if (selectedChatID != '') {
@@ -32,16 +42,19 @@ export default function ChatBody() {
   // }, []);
 
   return (
-    <div className="flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden px-5 py-4">
+    <div
+      ref={chatBodyRef}
+      className="flex flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden px-5 py-4"
+    >
       {chatCards != null && chatCards.length > 0 ? (
         chatCards.map((chatCard: ChatCard) =>
           chatCard.role === 'user' ? (
             <div className="flex flex-row-reverse" key={chatCard.id}>
-              <ChatContent role="user" content={chatCard.content}></ChatContent>
+              <ChatContent chatCard={chatCard}></ChatContent>
             </div>
           ) : (
             <div className="flex flex-row" key={chatCard.id}>
-              <ChatContent role="assistant" content={chatCard.content}></ChatContent>
+              <ChatContent chatCard={chatCard}></ChatContent>
             </div>
           )
         )
@@ -52,12 +65,6 @@ export default function ChatBody() {
           </div>
         </div>
       )}
-
-      {/* {tmpChatContent != '' && (
-          <div className="flex flex-row-reverse">
-            <ChatCard role="user" content={tmpChatContent}></ChatCard>
-          </div>
-        )} */}
     </div>
   );
 }
