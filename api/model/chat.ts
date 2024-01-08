@@ -36,15 +36,15 @@ export interface ChatCard {
 export interface ChatCardDTO {
   chat_info_id: string;
   content: string;
-  role: string;
 }
 // AddChatCard
 export interface AddChatCardRequset extends BaseRequest {
   chat_info_id: string;
   content: string;
-  role: string;
 }
-export interface AddChatCardResponse extends BaseResponse {}
+export interface AddChatCardResponse extends BaseResponse {
+  chat_card: ChatCard;
+}
 // DeleteChatCard
 export interface DeleteChatCardRequest extends BaseRequest {}
 export interface DeleteChatCardResponse extends BaseResponse {}
@@ -63,10 +63,19 @@ export interface GetChatCardsResponse extends BaseResponse {
 
 // WebSocket
 export interface WSChatSendMessage {
-  type: number; // 1 for GetMsgs
-  chat_info_id: string;
-  content: string;
+  // 1: AddChatCard
+  // 2: DeleteChatCard
+  // 3: UpdateChatCard
+  // 4: GetChatCards
+  type: number;
+  chat_id: string; // Add, Delete, Update
+  content: string; // Add, Update
+  chat_info_id: string; // Get
 }
 export interface WSChatReceiveMessage {
-  data: ChatCard;
+  // 0: success
+  // !0: failed
+  code: number;
+  msg: string;
+  data: ChatCard; // Get
 }

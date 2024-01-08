@@ -9,16 +9,27 @@ import ChatBodyLoading from './loading';
 import MyToastContainer from '@/components/frame/MyToastContainer';
 import { IsLogin } from '@/api/auth';
 import { IsLoginResponse } from '@/api/model/auth';
-import { useBearStore } from '@/lib/store';
+import { useBearStore, useChatStore } from '@/lib/store';
 import { toast } from 'react-toastify';
-import { ChatCard, WSChatReceiveMessage, WSChatSendMessage } from '@/api/model/chat';
+import {
+  AddChatCardResponse,
+  ChatCard,
+  ChatCardDTO,
+  DeleteChatCardResponse,
+  GetChatCardsResponse,
+  WSChatReceiveMessage,
+  WSChatSendMessage
+} from '@/api/model/chat';
+import { AddChatCard, DeleteChatCard, GetChatCards, UpdateChatCard } from '@/api/chat';
 
 export default function Page() {
   const setIsLogin = useBearStore((state) => state.setIgLogin);
-  const selectedChatID = useBearStore((state) => state.selectedChatID);
-  const getSelectedChatID = useBearStore((state) => state.getSelectedChatID);
-  const [chatCards, setChatCards] = useState<ChatCard[]>([]);
 
+  const selectedChatInfoID: string = useChatStore((state) => state.selectedChatInfoID);
+  const chatCards: ChatCard[] = useChatStore((state) => state.chatCards);
+  const setChatCards = useChatStore((state) => state.setChatCards);
+
+  // check login
   useEffect(() => {
     IsLogin({}).then(([success, resp]: [boolean, IsLoginResponse]) => {
       if (!success) {
@@ -36,50 +47,85 @@ export default function Page() {
     });
   });
 
-  const [ws, setWS] = useState<WebSocket>(new WebSocket('ws://10.112.188.168:8080/api/chat/ws'));
+  // load chat cards
   useEffect(() => {
-    const newWs = new WebSocket('ws://10.112.188.168:8080/api/chat/ws');
-    newWs.onerror = (err) => console.error(err);
-    newWs.onopen = () => {
-      setChatCards([]);
-      const initSend: WSChatSendMessage = {
-        type: 1,
-        chat_info_id: getSelectedChatID(),
-        content: ''
-      };
-      console.log('====================================');
-      console.log('initSend:', initSend);
-      console.log('====================================');
-      ws.send(JSON.stringify(initSend));
-    };
-    newWs.onmessage = (msg: MessageEvent) => {
-      const chatCard: ChatCard = JSON.parse(msg.data);
-      setChatCards((chatCards) => [...chatCards, chatCard]);
-      // chatCards.push(chatCard);
-      console.log('====================================');
-      console.log('chatCards:', chatCards);
-      console.log('====================================');
-    };
-    newWs.onclose = () => {
-      console.log('====================================');
-      console.log('websocket close');
-      console.log('====================================');
-    };
-    setWS(newWs);
-  }, [selectedChatID]);
-
-  interface Message {
-    content: string;
-  }
-
-  const handleSend = (msg: Message) => {
-    if (ws.readyState === 1) {
-      console.log('====================================');
-      console.log('send msg:', msg);
-      console.log('====================================');
-      ws.send(JSON.stringify(msg));
+    if (selectedChatInfoID != '') {
+      GetChatCards({
+        chat_info_id: selectedChatInfoID
+      }).then(([success, resp]: [boolean, GetChatCardsResponse]) => {
+        if (success) {
+          setChatCards(resp.data.chat_cards);
+        }
+      });
     }
-  };
+  }, [selectedChatInfoID]);
+  // const onDeleteChatCard = (chatCardId: string) => {
+  //   DeleteChatCard(chatCardId, {}).then(([success, resp]: [boolean, DeleteChatCardResponse]) => {
+  //     if (success) {
+  //       setChatCards(chatCards.filter((chatCard) => chatCard.id != chatCardId));
+  //     }
+  //   });
+  // };
+  // const handleUpdateChatCard = (chatCard: ChatCard) => {
+  //   UpdateChatCard(chatCard).then(([success, resp]: [boolean, DeleteChatCardResponse]) => {
+  //     if (success) {
+  //       setChatCards(chatCards.map((item) => (item.id == chatCard.id ? chatCard : item)));
+  //     }
+  //   });
+  // };
+  // const handleSendChatCard = (chatCard: ChatCardDTO) => {
+  //   AddChatCard(chatCard).then(([success, resp]: [boolean, AddChatCardResponse]) => {
+  //     if (success) {
+  //       setChatCards([...chatCards, resp.chatCard]);
+  //     }
+  //   });
+  // };
+
+  // const [ws, setWS] = useState<WebSocket>(new WebSocket('ws://10.112.188.168:8080/api/chat/ws'));
+  // useEffect(() => {
+  //   const newWs = new WebSocket('ws://10.112.188.168:8080/api/chat/ws');
+  //   newWs.onerror = (err) => console.error(err);
+  //   newWs.onopen = () => {
+  //     // reset chatCards
+  //     setChatCards([]);
+  //     // init send
+  //     const initSend: WSChatSendMessage = {
+  //       type: 4,
+  //       chat_id: '',
+  //       content: '',
+  //       chat_info_id: getSelectedChatID()
+  //     };
+  //     console.log('====================================');
+  //     console.log('initSend:', initSend);
+  //     console.log('====================================');
+  //     ws.send(JSON.stringify(initSend));
+  //     toast.success('连接成功');
+  //   };
+  //   newWs.onmessage = (msg: MessageEvent) => {
+  //     const reply: WSChatReceiveMessage = JSON.parse(msg.data);
+  //     console.log('====================================');
+  //     console.log('receive reply:', reply);
+  //     console.log('====================================');
+  //     const chatCard: ChatCard = reply.data;
+  //     setChatCards((chatCards) => [...chatCards, chatCard]);
+  //   };
+  //   newWs.onclose = () => {
+  //     console.log('====================================');
+  //     console.log('websocket close');
+  //     console.log('====================================');
+  //     toast.info('连接关闭');
+  //   };
+  //   setWS(newWs);
+  // }, [selectedChatID]);
+
+  // const handleSend = (msg: Message) => {
+  //   if (ws.readyState === 1) {
+  //     console.log('====================================');
+  //     console.log('send msg:', msg);
+  //     console.log('====================================');
+  //     ws.send(JSON.stringify(msg));
+  //   }
+  // };
 
   return (
     <>
@@ -87,9 +133,9 @@ export default function Page() {
         <MyToastContainer></MyToastContainer>
         <ChatHeader></ChatHeader>
         <Suspense fallback={<ChatBodyLoading></ChatBodyLoading>}>
-          <ChatBody chatCards={chatCards}></ChatBody>
+          <ChatBody></ChatBody>
         </Suspense>
-        <ChatFooter handleSend={handleSend}></ChatFooter>
+        <ChatFooter></ChatFooter>
       </div>
       <HistoryChat></HistoryChat>
     </>

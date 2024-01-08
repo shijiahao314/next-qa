@@ -3,17 +3,16 @@ import React from 'react';
 import MarkdownCard from '../markdown';
 import { ChatCard, DeleteChatCardResponse } from '@/api/model/chat';
 import { DeleteChatCard } from '@/api/chat';
-import { useBearStore } from '@/lib/store';
+import { useChatStore } from '@/lib/store';
 
 export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
   const role = chatCard.role;
   const content = chatCard.content;
-  const getChatBodyRefresh = useBearStore((state) => state.getChatBodyRefresh);
-  const setChatBodyRefresh = useBearStore((state) => state.setChatBodyRefresh);
+  const deleteChatCard = useChatStore((state) => state.deleteChatCard);
   const handleDeleteChatCard = () => {
     DeleteChatCard(chatCard.id, {}).then(([success, resp]: [boolean, DeleteChatCardResponse]) => {
       if (success) {
-        setChatBodyRefresh(!getChatBodyRefresh());
+        deleteChatCard(chatCard.id);
       }
     });
   };

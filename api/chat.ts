@@ -46,7 +46,7 @@ export async function GetChatInfos(
 // ChatCard
 // AddChatCard
 export async function AddChatCard(
-  addChatCardRequset: DeleteChatCardRequest
+  addChatCardRequset: AddChatCardRequset
 ): Promise<[boolean, AddChatCardResponse]> {
   const url = `${API_URL}/chatCard`;
   const resp = await fetch(url, {

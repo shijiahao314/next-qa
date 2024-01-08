@@ -1,43 +1,33 @@
 'use client';
 
 import { AddChatCard } from '@/api/chat';
-import { ChatCardDTO, WSChatSendMessage } from '@/api/model/chat';
-import { useBearStore } from '@/lib/store';
+import { AddChatCardResponse, ChatCard, ChatCardDTO, WSChatSendMessage } from '@/api/model/chat';
+import { useBearStore, useChatStore } from '@/lib/store';
 import { useRef } from 'react';
 
-export default function ChatFooter({
-  handleSend
-}: {
-  handleSend: (msg: WSChatSendMessage) => void;
-}) {
-  const getSelectedChatID = useBearStore((state) => state.getSelectedChatID);
-  const getChatBodyRefresh = useBearStore((state) => state.getChatBodyRefresh);
-  const setChatBodyRefresh = useBearStore((state) => state.setChatBodyRefresh);
+export default function ChatFooter() {
+  const getSelectedChatInfoID = useChatStore((state) => state.getSelectedChatInfoID);
+  const addChatCard = useChatStore((state) => state.addChatCard);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleAddChatCard = async () => {
+  const handleAddChatCard = () => {
     if (textareaRef.current) {
       const text: string = textareaRef.current.value;
       if (text === '') {
         return;
       }
-      // handleSend
-      const jsonData: WSChatSendMessage = {
-        type: 1,
-        chat_info_id: getSelectedChatID(),
-        content: text
-      };
-      handleSend(jsonData);
       // 发送
       const chatCard: ChatCardDTO = {
-        chat_info_id: getSelectedChatID(),
-        content: text,
-        role: 'user'
+        chat_info_id: getSelectedChatInfoID(),
+        content: text
       };
+      AddChatCard(chatCard).then(([success, resp]: [boolean, AddChatCardResponse]) => {
+        if (success) {
+          addChatCard(resp.chat_card);
+        }
+      });
       textareaRef.current.value = '';
-      AddChatCard(chatCard);
-      setChatBodyRefresh(!getChatBodyRefresh());
     }
   };
 

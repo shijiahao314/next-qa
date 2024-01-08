@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useBearStore } from '@/lib/store';
+import { useBearStore, useChatStore } from '@/lib/store';
 import { GetChatInfos } from '@/api/chat';
 import { ChatInfo, GetChatInfosResponse } from '@/api/model/chat';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,24 +9,22 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function HistoryChat() {
   const historyOpen = useBearStore((state) => state.historyOpen);
   const setHistoryOpen = useBearStore((state) => state.setHistoryOpen);
-  const selectedChatID = useBearStore((state) => state.selectedChatID);
-  const setSelectedChatID = useBearStore((state) => state.setSelectedChatID);
-  const setChatMetaInfo = useBearStore((state) => state.setChatMetaInfo);
-  // chatInfos
-  const [chatInfos, setChatInfos] = useState<ChatInfo[]>([]);
+
+  const chatInfos = useChatStore((state) => state.chatInfos);
+  const setChatInfos = useChatStore((state) => state.setChatInfos);
+  const selectedChatInfoID: string = useChatStore((state) => state.selectedChatInfoID);
+  const setSelectedChatInfoID = useChatStore((state) => state.setSelectedChatInfoID);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const [success, resp]: [boolean, GetChatInfosResponse] = await GetChatInfos({});
+    GetChatInfos({}).then(([success, resp]: [boolean, GetChatInfosResponse]) => {
       if (success) {
         const data = resp.data.chat_infos;
-        setChatInfos(data);
         if (data.length > 0) {
-          setSelectedChatID(data[0].id);
-          setChatMetaInfo(data[0]);
+          setChatInfos(data);
+          setSelectedChatInfoID(data[0].id);
         }
       }
-    };
-    fetchData();
+    });
   }, []);
 
   return (
@@ -50,20 +48,16 @@ export default function HistoryChat() {
                     className={
                       'w-full  resize-none space-y-3 rounded-lg border-2 bg-my-bg px-3 py-3 font-sans shadow-md hover:bg-my-bgHover dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ' +
                       `${
-                        selectedChatID === chatInfo.id
+                        selectedChatInfoID === chatInfo.id
                           ? 'cursor-default border-my-primary dark:border-my-darkPrimary'
                           : 'cursor-pointer border-my-bg hover:border-my-bgHover dark:border-my-darkbg2'
                       }`
                     }
                     key={chatInfo.id}
                     onClick={() => {
-                      if (selectedChatID != chatInfo.id) {
+                      if (selectedChatInfoID != chatInfo.id) {
                         setHistoryOpen(false);
-                        setSelectedChatID(chatInfo.id);
-                        setChatMetaInfo({
-                          title: chatInfo.title,
-                          num: chatInfo.num
-                        });
+                        setSelectedChatInfoID(chatInfo.id);
                       }
                     }}
                   >
