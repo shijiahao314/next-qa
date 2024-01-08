@@ -17,6 +17,7 @@ export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
       }
     });
   };
+
   return (
     <div
       className={

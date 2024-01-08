@@ -1,6 +1,6 @@
 'use client';
 
-// import { BACKEND_URL } from '../app/config';
+import { BACKEND_URL } from '../app/config';
 import {
   AddChatCardRequset,
   AddChatCardResponse,
@@ -16,9 +16,8 @@ import {
   GetChatInfosRequest
 } from './model/chat';
 
-const API_URL = `/api/chat`;
-
 // const API_URL = `${BACKEND_URL}/api/chat`;
+const API_URL = `/api/chat`;
 
 // ChatInfo
 // GetChatInfos
@@ -26,14 +25,7 @@ export async function GetChatInfos(
   getChatInfosRequest: GetChatInfosRequest
 ): Promise<[boolean, GetChatInfosResponse]> {
   const url = `${API_URL}/chatInfos`;
-  const resp = await fetch(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    credentials: 'include', // 跨域时携带认证信息
-    cache: 'no-store'
-  });
+  const resp = await fetch(url);
   const data: GetChatInfosResponse = await resp.json();
   if (!resp.ok) {
     return [false, data];

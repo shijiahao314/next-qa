@@ -1,13 +1,15 @@
 'use client';
 
 import { AddChatCard } from '@/api/chat';
-import { ChatCardDTO } from '@/api/model/chat';
+import { ChatCardDTO, WSChatSendMessage } from '@/api/model/chat';
 import { useBearStore } from '@/lib/store';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
-import { GetOpenAIResponse } from '@/api/openai';
-
-export default function ChatFooter() {
+export default function ChatFooter({
+  handleSend
+}: {
+  handleSend: (msg: WSChatSendMessage) => void;
+}) {
   const getSelectedChatID = useBearStore((state) => state.getSelectedChatID);
   const getChatBodyRefresh = useBearStore((state) => state.getChatBodyRefresh);
   const setChatBodyRefresh = useBearStore((state) => state.setChatBodyRefresh);
@@ -20,6 +22,13 @@ export default function ChatFooter() {
       if (text === '') {
         return;
       }
+      // handleSend
+      const jsonData: WSChatSendMessage = {
+        type: 1,
+        chat_info_id: getSelectedChatID(),
+        content: text
+      };
+      handleSend(jsonData);
       // 发送
       const chatCard: ChatCardDTO = {
         chat_info_id: getSelectedChatID(),
@@ -29,41 +38,6 @@ export default function ChatFooter() {
       textareaRef.current.value = '';
       AddChatCard(chatCard);
       setChatBodyRefresh(!getChatBodyRefresh());
-      // send to openai
-      setResponse('');
-      setLoading(true);
-
-      const response = await fetch('/api/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          text
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-
-      // This data is a ReadableStream
-      const data = response.body;
-      if (!data) {
-        return;
-      }
-
-      const reader = data.getReader();
-      const decoder = new TextDecoder();
-      let done = false;
-
-      while (!done) {
-        const { value, done: doneReading } = await reader.read();
-        done = doneReading;
-        const chunkValue = decoder.decode(value);
-        setResponse((prev) => prev + chunkValue);
-      }
-      setLoading(false);
     }
   };
 
@@ -77,11 +51,6 @@ export default function ChatFooter() {
       handleAddChatCard();
     }
   };
-
-  // chat response
-  const [loading, setLoading] = useState(false);
-  const [input, setInput] = useState('');
-  const [response, setResponse] = useState<String>('');
 
   return (
     <div className="relative block border-t-2 border-my-border px-5 py-4 dark:border-my-darkborder">
@@ -100,11 +69,6 @@ export default function ChatFooter() {
       >
         发&nbsp;送
       </button>
-      {true && (
-        <div className="h-20 max-h-48 w-full flex-grow resize-none overflow-y-visible break-words rounded-lg border-my-border bg-my-bg pb-2 pl-4 pr-32 pt-2 leading-normal shadow outline outline-2 outline-my-border dark:bg-my-darkbg0 dark:outline-my-darkborder">
-          {response}
-        </div>
-      )}
     </div>
   );
 }

@@ -10,12 +10,12 @@ import { ChatCompletion, ChatCompletionChunk } from 'openai/resources/index.mjs'
 
 // GetChatInfo from openai
 export async function GetOpenAIResponse(
-    chatCompletionRequestMessage: ChatCompletionRequestMessage,
-    writeStream: NodeJS.WritableStream
+  chatCompletionRequestMessage: ChatCompletionRequestMessage,
+  writeStream: NodeJS.WritableStream
 ) {
   const token = process.env.OPENAI_API_KEY;
   const openai = new OpenAI({
-    apiKey: token,
+    apiKey: token
   });
 
   const model = 'gpt-3.5-turbo';
@@ -25,12 +25,12 @@ export async function GetOpenAIResponse(
     messages: [{ role: 'user', content: content }],
     stream: true
   });
-    stream.toReadableStream().pipeTo(writeStream)
-    // return new Response(stream);
-    // return stream
+  stream.toReadableStream().pipeTo(writeStream);
+  // return new Response(stream);
+  // return stream
   for await (const chunk of stream) {
     // log(chunk);
-      process.stdout.write(chunk.choices[0]?.delta?.content || '');
-      // 通过 SSE (Server Sent Events) 将数据单向发送给客户端
+    process.stdout.write(chunk.choices[0]?.delta?.content || '');
+    // 通过 SSE (Server Sent Events) 将数据单向发送给客户端
   }
 }

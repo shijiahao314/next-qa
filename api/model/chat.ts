@@ -60,3 +60,13 @@ export interface GetChatCardsResponse extends BaseResponse {
     chat_cards: ChatCard[];
   };
 }
+
+// WebSocket
+export interface WSChatSendMessage {
+  type: number; // 1 for GetMsgs
+  chat_info_id: string;
+  content: string;
+}
+export interface WSChatReceiveMessage {
+  data: ChatCard;
+}

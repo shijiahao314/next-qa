@@ -1,30 +1,33 @@
 'use client';
 
-import { GetChatCards } from '@/api/chat';
 import ChatContent from './ChatCard';
 import { useBearStore } from '@/lib/store';
 import { ChatCard } from '@/api/model/chat';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 // 如果需要loading，则改为async
-export default function ChatBody() {
+export default function ChatBody({ chatCards }: { chatCards: ChatCard[] }) {
   const selectedChatID = useBearStore((state) => state.selectedChatID);
   const chatBodyRefresh = useBearStore((state) => state.chatBodyRefresh);
 
   const chatBodyRef = useRef<HTMLDivElement>(null);
 
-  const [chatCards, setChatCards] = useState<ChatCard[]>([]);
+  // const [chatCards, setChatCards] = useState<ChatCard[]>([]);
+  console.log('====================================');
+  console.log('chat body render, chatCards:', chatCards);
+  console.log('====================================');
+
   useEffect(() => {
-    const fetchData = async () => {
-      const [success, resp] = await GetChatCards({ chat_info_id: selectedChatID });
-      if (success) {
-        // TODO: need to set chatinfo etc...
-        setChatCards(resp.data.chat_cards);
-      }
-    };
-    if (selectedChatID != '') {
-      fetchData();
-    }
+    // const fetchData = async () => {
+    //   const [success, resp] = await GetChatCards({ chat_info_id: selectedChatID });
+    //   if (success) {
+    //     // TODO: need to set chatinfo etc...
+    //     setChatCards(resp.data.chat_cards);
+    //   }
+    // };
+    // if (selectedChatID != '') {
+    //   fetchData();
+    // }
   }, [selectedChatID, chatBodyRefresh]);
 
   useEffect(() => {
