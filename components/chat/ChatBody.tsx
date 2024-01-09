@@ -6,10 +6,13 @@ import { ChatCard } from '@/api/model/chat';
 import { useEffect, useRef } from 'react';
 import TmpChatCard from './TmpChatCard';
 import { time } from 'console';
+import { useCompletion } from 'ai/react';
 
 // 如果需要loading，则改为async
 export default function ChatBody() {
   const chatCards: ChatCard[] = useChatStore((state) => state.chatCards);
+
+  const tmpCompletionContent: string = useChatStore((state) => state.tmpCompletionContent);
   const tmpChatContent: string = useChatStore((state) => state.tmpChatContent);
 
   const chatBodyRef = useRef<HTMLDivElement>(null);
@@ -18,7 +21,7 @@ export default function ChatBody() {
     if (chatBodyRef.current) {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
     }
-  }, [chatCards]);
+  }, [chatCards, tmpChatContent]);
 
   return (
     <div
@@ -40,11 +43,11 @@ export default function ChatBody() {
           </div>
         </div>
       )}
+      {tmpCompletionContent != '' && (
+        <TmpChatCard role="system" content={tmpCompletionContent} utime={new Date()}></TmpChatCard>
+      )}
       {tmpChatContent != '' && (
-        <>
-          <TmpChatCard role="user" content={tmpChatContent} utime={new Date()}></TmpChatCard>
-          <TmpChatCard role="system" content={tmpChatContent} utime={new Date()}></TmpChatCard>
-        </>
+        <TmpChatCard role="user" content={tmpChatContent} utime={new Date()}></TmpChatCard>
       )}
     </div>
   );

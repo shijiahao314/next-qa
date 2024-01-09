@@ -28,18 +28,13 @@ export const useBearStore = create(
     {
       isLogin: false,
       navOpen: false,
-      historyOpen: false,
-      tmpChatContent: '',
-      chatBodyRefresh: false
+      historyOpen: false
     },
     (set, get) => ({
       getIsLogin: () => get().isLogin,
       setIgLogin: (state: boolean) => set({ isLogin: state }),
       setNavOpen: (state: boolean) => set({ navOpen: state }),
-      setHistoryOpen: (state: boolean) => set({ historyOpen: state }),
-      setTmpChatContent: (content: string) => set({ tmpChatContent: content }),
-      getChatBodyRefresh: () => get().chatBodyRefresh,
-      setChatBodyRefresh: (state: boolean) => set({ chatBodyRefresh: state })
+      setHistoryOpen: (state: boolean) => set({ historyOpen: state })
     })
   )
 );
@@ -75,6 +70,9 @@ interface ChatState {
   deleteChatCard: (chatCardId: string) => void;
   tmpChatContent: string;
   setTmpChatContent: (content: string) => void;
+  tmpCompletionContent: string;
+  addTmpCompletionContent: (content: string) => void;
+  setTmpCompletionContent: (content: string) => void;
   // handleDeleteChatCard: (chatCardId: string) => void;
   // handleUpdateChatCard: (chatCard: ChatCard) => void;
 }
@@ -118,5 +116,9 @@ export const useChatStore = create<ChatState>((set, get) => ({
     });
   },
   tmpChatContent: '',
-  setTmpChatContent: (content: string) => set({ tmpChatContent: content })
+  setTmpChatContent: (content: string) => set({ tmpChatContent: content }),
+  tmpCompletionContent: '',
+  addTmpCompletionContent: (content: string) =>
+    set({ tmpCompletionContent: get().tmpCompletionContent + content }),
+  setTmpCompletionContent: (content: string) => set({ tmpCompletionContent: content })
 }));
