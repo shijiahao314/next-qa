@@ -6,9 +6,19 @@ export interface ChatInfo {
   userid: string;
   title: string;
   num: number;
-  ctime: string;
-  utime: string;
+  ctime: Date;
+  utime: Date;
 }
+
+const timeFormatter = new Intl.DateTimeFormat('zh-CN', {
+  dateStyle: 'short',
+  timeStyle: 'medium'
+});
+
+export function FormattedTime(time: Date) {
+  return timeFormatter.format(new Date(time));
+}
+
 // AddChatInfo
 export interface AddChatInfoRequest extends BaseRequest {}
 export interface AddChatInfoResponse extends BaseResponse {}
@@ -32,6 +42,8 @@ export interface ChatCard {
   chat_info_id: string;
   content: string;
   role: string;
+  ctime: Date;
+  utime: Date;
 }
 export interface ChatCardDTO {
   chat_info_id: string;

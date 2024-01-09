@@ -5,18 +5,15 @@ import { ChatCard, DeleteChatCardResponse, FormattedTime } from '@/api/model/cha
 import { DeleteChatCard } from '@/api/chat';
 import { useChatStore } from '@/lib/store';
 
-export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
-  const role = chatCard.role;
-  const content = chatCard.content;
-  const deleteChatCard = useChatStore((state) => state.deleteChatCard);
-  const handleDeleteChatCard = () => {
-    DeleteChatCard(chatCard.id, {}).then(([success, resp]: [boolean, DeleteChatCardResponse]) => {
-      if (success) {
-        deleteChatCard(chatCard.id);
-      }
-    });
-  };
-
+export default function ChatContent({
+  role,
+  content,
+  utime
+}: {
+  role: string;
+  content: string;
+  utime: Date;
+}) {
   return (
     <div className={'flex ' + `${role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
       <div
@@ -30,77 +27,7 @@ export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
               'flex items-center justify-center space-x-1 ' +
               `${role === 'user' ? 'order-first mr-2' : 'order-last ml-2'}`
             }
-          >
-            <div className="group flex h-7 cursor-pointer flex-row items-center justify-center overflow-hidden rounded-xl border-[0.1rem] border-my-border bg-my-bg px-3 py-1 text-sm hover:w-full hover:bg-my-bgHover/50 dark:border-my-darkborder dark:bg-my-darkbg0 dark:hover:bg-my-darkbg1">
-              <div className="flex ">
-                <svg width="16" height="16" fill="none">
-                  <g mask="url(#reload_svg__b)">
-                    <path
-                      transform="translate(14 2.667)"
-                      d="M0 0v5.33"
-                      style={{
-                        stroke: 'rgb(155, 155, 155)',
-                        strokeWidth: '1.33333',
-                        strokeOpacity: '1',
-                        strokeDasharray: '0, 0'
-                      }}
-                    ></path>
-                    <path
-                      transform="translate(2 8)"
-                      d="M0 0v5.33"
-                      style={{
-                        stroke: 'rgb(155, 155, 155)',
-                        strokeWidth: '1.33333',
-                        strokeOpacity: '1',
-                        strokeDasharray: '0, 0'
-                      }}
-                    ></path>
-                    <path
-                      transform="translate(2 2)"
-                      d="M12.003 6a6.005 6.005 0 0 0-10.32-4.17M0 6a6.005 6.005 0 0 0 10.17 4.32"
-                      style={{
-                        stroke: 'rgb(155, 155, 155)',
-                        strokeWidth: '1.33333',
-                        strokeOpacity: '1',
-                        strokeDasharray: '0, 0'
-                      }}
-                    ></path>
-                  </g>
-                </svg>
-              </div>
-              <div className="hidden overflow-hidden whitespace-nowrap text-sm text-my-text0 group-hover:block dark:text-my-darktext0">
-                &nbsp;重试
-              </div>
-            </div>
-            <div className="group flex h-7 cursor-pointer flex-row items-center justify-center overflow-hidden rounded-xl border-[0.1rem] border-my-border bg-my-bg px-3 py-1 text-sm hover:w-full hover:bg-my-bgHover/50 dark:border-my-darkborder dark:bg-my-darkbg0 dark:hover:bg-my-darkbg1">
-              <div className="flex">
-                <svg width="16" height="16" viewBox="128 128 768 768">
-                  <path
-                    d="M768 384c-19.2 0-32 12.8-32 32l0 377.6c0 25.6-19.2 38.4-38.4 38.4L326.4 832c-25.6 0-38.4-19.2-38.4-38.4L288 416C288 396.8 275.2 384 256 384S224 396.8 224 416l0 377.6c0 57.6 44.8 102.4 102.4 102.4l364.8 0c57.6 0 102.4-44.8 102.4-102.4L793.6 416C800 396.8 787.2 384 768 384z"
-                    fill="rgb(155, 155, 155)"
-                  />
-                  <path
-                    d="M460.8 736l0-320C460.8 396.8 448 384 435.2 384S396.8 396.8 396.8 416l0 320c0 19.2 12.8 32 32 32S460.8 755.2 460.8 736z"
-                    fill="rgb(155, 155, 155)"
-                  />
-                  <path
-                    d="M627.2 736l0-320C627.2 396.8 608 384 588.8 384S563.2 396.8 563.2 416l0 320C563.2 755.2 576 768 588.8 768S627.2 755.2 627.2 736z"
-                    fill="rgb(155, 155, 155)"
-                  />
-                  <path
-                    d="M832 256l-160 0L672 211.2C672 166.4 633.6 128 588.8 128L435.2 128C390.4 128 352 166.4 352 211.2L352 256 192 256C172.8 256 160 268.8 160 288S172.8 320 192 320l640 0c19.2 0 32-12.8 32-32S851.2 256 832 256zM416 211.2C416 198.4 422.4 192 435.2 192l153.6 0c12.8 0 19.2 6.4 19.2 19.2L608 256l-192 0L416 211.2z"
-                    fill="rgb(155, 155, 155)"
-                  />
-                </svg>
-              </div>
-              <div
-                onClick={handleDeleteChatCard}
-                className="hidden overflow-hidden whitespace-nowrap text-sm text-my-text0 group-hover:block dark:text-my-darktext0"
-              >
-                &nbsp;删除
-              </div>
-            </div>
-          </div>
+          ></div>
           <div className="h-9 w-9 rounded-lg border-2 border-my-border dark:border-my-darkborder">
             {role === 'user' ? (
               <svg className="p-1 text-my-text1 dark:text-my-darktext2" viewBox="0 0 1024 1024">
@@ -119,9 +46,10 @@ export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
             )}
           </div>
         </div>
+        <div className="flex py-1 text-xs text-my-text2 dark:text-my-darktext2">正在输入...</div>
         <div
           className={
-            'mt-2 max-w-full rounded-lg border-[0.1rem] border-my-border px-3 py-2 text-sm leading-6 dark:border-my-darkborder ' +
+            'max-w-full rounded-lg border-[0.1rem] border-my-border px-3 py-2 dark:border-my-darkborder ' +
             `${
               role === 'user'
                 ? 'bg-my-chatBg dark:bg-my-darkChatBg '
@@ -132,7 +60,7 @@ export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
           <MarkdownCard content={content}></MarkdownCard>
         </div>
         <div className="mx-2 text-end text-xs text-my-text3/30 dark:text-my-darktext3/30">
-          {FormattedTime(chatCard.utime)}
+          {FormattedTime(utime)}
         </div>
       </div>
     </div>

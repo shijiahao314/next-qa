@@ -14,6 +14,7 @@ import '@/styles/markdown.css';
 export default function MarkdownCard({ content }: { content: string }) {
   return (
     <Markdown
+      className="space-y-2"
       remarkPlugins={[remarkMath, remarkBreaks, remarkGfm]}
       rehypePlugins={[
         // rehypePrettyCode,
@@ -21,9 +22,6 @@ export default function MarkdownCard({ content }: { content: string }) {
         // rehypeHighlight
         rehypePrism
       ]}
-      components={{
-        p: (pProps) => <p {...pProps} dir="auto" />
-      }}
     >
       {content}
     </Markdown>

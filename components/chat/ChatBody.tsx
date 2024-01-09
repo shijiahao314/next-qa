@@ -4,10 +4,13 @@ import ChatContent from './ChatCard';
 import { useChatStore } from '@/lib/store';
 import { ChatCard } from '@/api/model/chat';
 import { useEffect, useRef } from 'react';
+import TmpChatCard from './TmpChatCard';
+import { time } from 'console';
 
 // 如果需要loading，则改为async
 export default function ChatBody() {
   const chatCards: ChatCard[] = useChatStore((state) => state.chatCards);
+  const tmpChatContent: string = useChatStore((state) => state.tmpChatContent);
 
   const chatBodyRef = useRef<HTMLDivElement>(null);
 
@@ -25,13 +28,9 @@ export default function ChatBody() {
       {chatCards != null && chatCards.length > 0 ? (
         chatCards.map((chatCard: ChatCard) =>
           chatCard.role === 'user' ? (
-            <div className="flex flex-row-reverse" key={chatCard.id}>
-              <ChatContent chatCard={chatCard}></ChatContent>
-            </div>
+            <ChatContent key={chatCard.id} chatCard={chatCard}></ChatContent>
           ) : (
-            <div className="flex flex-row" key={chatCard.id}>
-              <ChatContent chatCard={chatCard}></ChatContent>
-            </div>
+            <ChatContent key={chatCard.id} chatCard={chatCard}></ChatContent>
           )
         )
       ) : (
@@ -40,6 +39,12 @@ export default function ChatBody() {
             <div>暂无对话</div>
           </div>
         </div>
+      )}
+      {tmpChatContent != '' && (
+        <>
+          <TmpChatCard role="user" content={tmpChatContent} utime={new Date()}></TmpChatCard>
+          <TmpChatCard role="system" content={tmpChatContent} utime={new Date()}></TmpChatCard>
+        </>
       )}
     </div>
   );

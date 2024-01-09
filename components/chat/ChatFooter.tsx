@@ -8,6 +8,7 @@ import { useRef } from 'react';
 export default function ChatFooter() {
   const getSelectedChatInfoID = useChatStore((state) => state.getSelectedChatInfoID);
   const addChatCard = useChatStore((state) => state.addChatCard);
+  const setTmpChatContent = useChatStore((state) => state.setTmpChatContent);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -28,12 +29,14 @@ export default function ChatFooter() {
         }
       });
       textareaRef.current.value = '';
+      setTmpChatContent('');
     }
   };
 
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
     e.currentTarget.style.height = '5rem';
     e.currentTarget.style.height = e.currentTarget.scrollHeight + 'px';
+    setTmpChatContent(e.currentTarget.value);
   };
   const handleSubmit = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {

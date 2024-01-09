@@ -19,6 +19,12 @@ import {
 // const API_URL = `${BACKEND_URL}/api/chat`;
 const API_URL = `/api/chat`;
 
+const timeOptions: Intl.DateTimeFormatOptions = {
+  dateStyle: 'short',
+  timeStyle: 'medium'
+};
+const timeFormatter = new Intl.DateTimeFormat('zh-CN', timeOptions);
+
 // ChatInfo
 // GetChatInfos
 export async function GetChatInfos(
@@ -31,15 +37,10 @@ export async function GetChatInfos(
     return [false, data];
   }
   // convert datetime format
-  const options: Intl.DateTimeFormatOptions = {
-    dateStyle: 'short',
-    timeStyle: 'medium'
-  };
-  for (let index = 0; index < data.data.chat_infos.length; index++) {
-    const originalDate = new Date(data.data.chat_infos[index].utime);
-    const formattedDate = new Intl.DateTimeFormat('zh-CN', options).format(originalDate);
-    data.data.chat_infos[index].utime = formattedDate;
-  }
+  // data.data.chat_infos.forEach(chatInfo => {
+  //   chatInfo.ctime = timeFormatter.format(new Date(chatInfo.ctime));
+  //   chatInfo.utime = timeFormatter.format(new Date(chatInfo.utime));
+  // });
   return [true, data];
 }
 

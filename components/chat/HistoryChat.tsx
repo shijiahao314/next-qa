@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useBearStore, useChatStore } from '@/lib/store';
 import { GetChatInfos } from '@/api/chat';
-import { ChatInfo, GetChatInfosResponse } from '@/api/model/chat';
+import { ChatInfo, FormattedTime, GetChatInfosResponse } from '@/api/model/chat';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function HistoryChat() {
@@ -81,7 +81,7 @@ export default function HistoryChat() {
                     </div>
                     <div className="flex flex-row justify-between text-xs text-my-text1 dark:text-my-darktext1">
                       <div>{chatInfo.num} 条对话</div>
-                      <div>{String(chatInfo.utime)}</div>
+                      <div>{FormattedTime(chatInfo.ctime)}</div>
                     </div>
                   </div>
                 ))}

@@ -73,6 +73,8 @@ interface ChatState {
   setChatCards: (chatCards: ChatCard[]) => void;
   addChatCard: (chatCard: ChatCard) => void;
   deleteChatCard: (chatCardId: string) => void;
+  tmpChatContent: string;
+  setTmpChatContent: (content: string) => void;
   // handleDeleteChatCard: (chatCardId: string) => void;
   // handleUpdateChatCard: (chatCard: ChatCard) => void;
 }
@@ -114,5 +116,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
         chatInfo.num--;
       }
     });
-  }
+  },
+  tmpChatContent: '',
+  setTmpChatContent: (content: string) => set({ tmpChatContent: content })
 }));

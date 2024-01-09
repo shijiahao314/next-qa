@@ -1,39 +1,45 @@
 .markdown-body {
-  /* background-color: aqua; */
+  display: block;
 }
 
 p {
-  line-height: 1.4rem;
+  font-size: 0.8rem;
+  line-height: 1.3rem;
+  word-break: break-all;
+  white-space: normal;
 }
 
 pre {
-  padding: 0.75rem;
-  line-height: 1.2;
-  border-radius: 8px;
-  /* opacity: 50%; */
-  /* line-height: 18px; */
-  color: #cbd2ea;
-  background-color: rgb(26, 27, 38);
+  overflow: auto;
+  border-radius: 0.5rem;
 }
 
 code {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
   padding-top: 0.15rem;
   padding-bottom: 0.15rem;
-  border-radius: 6px;
-  margin-left: 2px;
-  margin-right: 2px;
-  font-size: 12px;
-  /* background-color: rgba(134, 133, 133, 0.603); */
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
   background-color: #c9d1d966;
+  white-space: nowrap;
 }
 
 pre code {
-  padding: 0;
-  background-color: transparent;
-  font-size: 12px;
-  /* line-height: 14px; */
+  display: block;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  margin-left: 0rem;
+  margin-right: 0rem;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  overflow-x: auto;
+  background-color: rgb(26, 27, 38);
+  white-space: nowrap;
 }
 
 code[class*='language-'],
