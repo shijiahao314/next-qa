@@ -5,7 +5,7 @@ export interface ChatInfo {
   id: string;
   userid: string;
   title: string;
-  num: string;
+  num: number;
   ctime: string;
   utime: string;
 }

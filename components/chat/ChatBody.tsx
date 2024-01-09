@@ -17,10 +17,6 @@ export default function ChatBody() {
     }
   }, [chatCards]);
 
-  console.log('====================================');
-  console.log('chat body render, chatCards:', chatCards);
-  console.log('====================================');
-
   return (
     <div
       ref={chatBodyRef}

@@ -1,7 +1,6 @@
 'use client';
 
-import { DeleteChatCard, GetChatInfos } from '@/api/chat';
-import { ChatCard, ChatCardDTO, ChatInfo, DeleteChatCardResponse } from '@/api/model/chat';
+import { ChatCard, ChatInfo } from '@/api/model/chat';
 import { useEffect, useState } from 'react';
 import { create } from 'zustand';
 import { persist, combine, createJSONStorage } from 'zustand/middleware';
@@ -24,22 +23,12 @@ export const useLocalStore = create(
   )
 );
 
-interface ChatMetaInfo {
-  title: string;
-  num: string;
-}
-
 export const useBearStore = create(
   combine(
     {
       isLogin: false,
       navOpen: false,
       historyOpen: false,
-      selectedChatID: '',
-      chatMetaInfo: {
-        title: '新的聊天',
-        num: '0'
-      },
       tmpChatContent: '',
       chatBodyRefresh: false
     },
@@ -48,9 +37,6 @@ export const useBearStore = create(
       setIgLogin: (state: boolean) => set({ isLogin: state }),
       setNavOpen: (state: boolean) => set({ navOpen: state }),
       setHistoryOpen: (state: boolean) => set({ historyOpen: state }),
-      getSelectedChatID: () => get().selectedChatID,
-      setSelectedChatID: (id: string) => set({ selectedChatID: id }),
-      setChatMetaInfo: (chatMetaInfo: ChatMetaInfo) => set({ chatMetaInfo: chatMetaInfo }),
       setTmpChatContent: (content: string) => set({ tmpChatContent: content }),
       getChatBodyRefresh: () => get().chatBodyRefresh,
       setChatBodyRefresh: (state: boolean) => set({ chatBodyRefresh: state })
@@ -105,25 +91,28 @@ export const useChatStore = create<ChatState>((set, get) => ({
     set((state) => ({
       chatCards: [...chatCards]
     })),
-  addChatCard: (chatCard: ChatCard) =>
+  addChatCard: (chatCard: ChatCard) => {
     set((state) => ({
-      ...state,
       chatCards: [...state.chatCards, chatCard]
-    })),
-  deleteChatCard: (chatCardId: string) =>
+    }));
+    let _chatInfos: ChatInfo[] = get().chatInfos;
+    _chatInfos.forEach((chatInfo) => {
+      if (chatInfo.id === chatCard.chat_info_id) {
+        chatInfo.num++;
+      }
+    });
+  },
+  deleteChatCard: (chatCardId: string) => {
     set((state) => ({
       ...state,
       chatCards: state.chatCards.filter((chatCard) => chatCard.id != chatCardId)
-    }))
-  // chatCardsAdd: (chatCard: ChatCard) => {
-  //   get().chatCards = [...get().chatCards, chatCard];
-  // }
-  // handleDeleteChatCard: (chatCardId: string) => {
-  //   DeleteChatCard(chatCardId, {}).then(([success, resp]: [boolean, DeleteChatCardResponse]) => {
-  //     if (success) {
-  //       get().chatCards.filter((chatCard) => chatCard.id != chatCardId);
-  //     }
-  //   });
-  // },
-  // handleUpdateChatCard: (chatCard: ChatCard) => {}
+    }));
+    let _chatInfos: ChatInfo[] = get().chatInfos;
+    const _selectedChatInfoID = get().selectedChatInfoID;
+    _chatInfos.forEach((chatInfo) => {
+      if (chatInfo.id === _selectedChatInfoID) {
+        chatInfo.num--;
+      }
+    });
+  }
 }));
