@@ -46,12 +46,12 @@ export default function ChatFooter() {
           addChatCard(resp.chat_card);
           // openai
           const openai = new OpenAI({
-            apiKey: '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',
+            apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
             dangerouslyAllowBrowser: true
           });
 
           const stream = await openai.chat.completions.create({
-            model: 'gpt-4',
+            model: 'gpt-3.5-turbo',
             messages: [{ role: 'user', content: text }],
             stream: true
           });

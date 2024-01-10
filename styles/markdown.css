@@ -27,6 +27,10 @@ code {
   white-space: nowrap;
 }
 
+ol li {
+  font-size: 0.8rem;
+}
+
 pre code {
   display: block;
   padding-left: 1rem;
