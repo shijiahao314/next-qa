@@ -2,7 +2,7 @@
 
 import ChatContent from './ChatCard';
 import { useChatStore } from '@/lib/store';
-import { ChatCard } from '@/api/model/chat';
+import { ChatCard, ChatRole } from '@/api/model/chat';
 import { useEffect, useRef } from 'react';
 import TmpChatCard from './TmpChatCard';
 import { time } from 'console';
@@ -21,7 +21,7 @@ export default function ChatBody() {
     if (chatBodyRef.current) {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
     }
-  }, [chatCards, tmpChatContent]);
+  }, [chatCards, tmpCompletionContent, tmpChatContent]);
 
   return (
     <div
@@ -44,10 +44,14 @@ export default function ChatBody() {
         </div>
       )}
       {tmpCompletionContent != '' && (
-        <TmpChatCard role="system" content={tmpCompletionContent} utime={new Date()}></TmpChatCard>
+        <TmpChatCard
+          role={ChatRole.ASSISTANT}
+          content={tmpCompletionContent}
+          utime={new Date()}
+        ></TmpChatCard>
       )}
       {tmpChatContent != '' && (
-        <TmpChatCard role="user" content={tmpChatContent} utime={new Date()}></TmpChatCard>
+        <TmpChatCard role={ChatRole.USER} content={tmpChatContent} utime={new Date()}></TmpChatCard>
       )}
     </div>
   );

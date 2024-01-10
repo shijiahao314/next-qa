@@ -71,8 +71,9 @@ interface ChatState {
   tmpChatContent: string;
   setTmpChatContent: (content: string) => void;
   tmpCompletionContent: string;
-  addTmpCompletionContent: (content: string) => void;
+  getTmpCompletionContent: () => string;
   setTmpCompletionContent: (content: string) => void;
+  addTmpCompletionContent: (content: string) => void;
   // handleDeleteChatCard: (chatCardId: string) => void;
   // handleUpdateChatCard: (chatCard: ChatCard) => void;
 }
@@ -118,7 +119,9 @@ export const useChatStore = create<ChatState>((set, get) => ({
   tmpChatContent: '',
   setTmpChatContent: (content: string) => set({ tmpChatContent: content }),
   tmpCompletionContent: '',
-  addTmpCompletionContent: (content: string) =>
-    set({ tmpCompletionContent: get().tmpCompletionContent + content }),
-  setTmpCompletionContent: (content: string) => set({ tmpCompletionContent: content })
+  getTmpCompletionContent: () => get().tmpCompletionContent,
+  setTmpCompletionContent: (content: string) => set({ tmpCompletionContent: content }),
+  addTmpCompletionContent: (content: string) => {
+    set({ tmpCompletionContent: get().tmpCompletionContent + content });
+  }
 }));

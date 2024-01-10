@@ -49,8 +49,8 @@ export default function HistoryChat() {
                       'group w-full cursor-grab resize-none space-y-3 rounded-lg border-2 bg-my-bg px-3 py-3 font-sans shadow-md hover:bg-my-bgHover dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ' +
                       `${
                         selectedChatInfoID === chatInfo.id
-                          ? 'cursor-default border-my-primary dark:border-my-darkPrimary'
-                          : 'cursor-pointer border-my-bg hover:border-my-bgHover dark:border-my-darkbg2'
+                          ? 'border-my-primary dark:border-my-darkPrimary'
+                          : 'border-my-bg hover:border-my-bgHover dark:border-my-darkbg2'
                       }`
                     }
                     key={chatInfo.id}

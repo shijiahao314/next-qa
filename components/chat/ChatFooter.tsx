@@ -1,7 +1,13 @@
 'use client';
 
 import { AddChatCard } from '@/api/chat';
-import { AddChatCardResponse, ChatCard, ChatCardDTO, WSChatSendMessage } from '@/api/model/chat';
+import {
+  AddChatCardResponse,
+  ChatCard,
+  ChatCardDTO,
+  ChatRole,
+  WSChatSendMessage
+} from '@/api/model/chat';
 import { GetOpenAIStream } from '@/api/openai';
 import { useBearStore, useChatStore } from '@/lib/store';
 import { Message, OpenAIStream, StreamingTextResponse } from 'ai';
@@ -11,9 +17,12 @@ import openai, { OpenAI } from 'openai';
 
 export default function ChatFooter() {
   const getSelectedChatInfoID = useChatStore((state) => state.getSelectedChatInfoID);
+
   const addChatCard = useChatStore((state) => state.addChatCard);
   const setTmpChatContent = useChatStore((state) => state.setTmpChatContent);
 
+  const setTmpCompletionContent = useChatStore((state) => state.setTmpCompletionContent);
+  const getTmpCompletionContent = useChatStore((state) => state.getTmpCompletionContent);
   const addTmpCompletionContent = useChatStore((state) => state.addTmpCompletionContent);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -29,31 +38,56 @@ export default function ChatFooter() {
       // 发送
       const chatCard: ChatCardDTO = {
         chat_info_id: getSelectedChatInfoID(),
-        content: text
+        content: text,
+        role: ChatRole.USER
       };
-      AddChatCard(chatCard).then(([success, resp]: [boolean, AddChatCardResponse]) => {
+      AddChatCard(chatCard).then(async ([success, resp]: [boolean, AddChatCardResponse]) => {
         if (success) {
           addChatCard(resp.chat_card);
           // openai
-          const messages = [{ role: 'user', content: text }];
-          fetch('/api/chat', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              messages: messages
-            })
-          }).then(async (res) => {
-            // const stream = OpenAIStream(res);
-            // const reader = stream.getReader();
-            res.text().then((text) => {
-              console.log('====================================');
-              console.log('text=', text);
-              console.log('====================================');
-              addTmpCompletionContent(text);
-            });
+          const openai = new OpenAI({
+            apiKey: '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',
+            dangerouslyAllowBrowser: true
           });
+
+          const stream = await openai.chat.completions.create({
+            model: 'gpt-4',
+            messages: [{ role: 'user', content: text }],
+            stream: true
+          });
+          for await (const chunk of stream) {
+            addTmpCompletionContent(chunk.choices[0]?.delta?.content || '');
+          }
+          //
+          AddChatCard({
+            chat_info_id: getSelectedChatInfoID(),
+            content: getTmpCompletionContent(),
+            role: ChatRole.ASSISTANT
+          }).then(async ([success, resp]: [boolean, AddChatCardResponse]) => {
+            if (success) {
+              addChatCard(resp.chat_card);
+              setTmpCompletionContent('');
+            }
+          });
+          // const messages = [{ role: 'user', content: text }];
+          // fetch('/api/chat', {
+          //   method: 'POST',
+          //   headers: {
+          //     'Content-Type': 'application/json'
+          //   },
+          //   body: JSON.stringify({
+          //     messages: messages
+          //   })
+          // }).then(async (res) => {
+          //   // const stream = OpenAIStream(res);
+          //   // const reader = stream.getReader();
+          //   res.text().then((text) => {
+          //     console.log('====================================');
+          //     console.log('text=', text);
+          //     console.log('====================================');
+          //     addTmpCompletionContent(text);
+          //   });
+          // });
         }
       });
       textareaRef.current.value = '';

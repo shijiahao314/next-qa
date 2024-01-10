@@ -45,15 +45,17 @@ export interface ChatCard {
   ctime: Date;
   utime: Date;
 }
+export enum ChatRole {
+  USER = 'user',
+  ASSISTANT = 'assistant'
+}
 export interface ChatCardDTO {
   chat_info_id: string;
   content: string;
+  role: ChatRole;
 }
 // AddChatCard
-export interface AddChatCardRequset extends BaseRequest {
-  chat_info_id: string;
-  content: string;
-}
+export interface AddChatCardRequset extends BaseRequest, ChatCardDTO {}
 export interface AddChatCardResponse extends BaseResponse {
   chat_card: ChatCard;
 }

@@ -12,7 +12,6 @@ import { IsLoginResponse } from '@/api/model/auth';
 import { useBearStore, useChatStore } from '@/lib/store';
 import { toast } from 'react-toastify';
 import {
-  AddChatCardResponse,
   ChatCard,
   ChatCardDTO,
   DeleteChatCardResponse,
@@ -20,7 +19,7 @@ import {
   WSChatReceiveMessage,
   WSChatSendMessage
 } from '@/api/model/chat';
-import { AddChatCard, DeleteChatCard, GetChatCards, UpdateChatCard } from '@/api/chat';
+import { GetChatCards } from '@/api/chat';
 
 export default function Page() {
   const setIsLogin = useBearStore((state) => state.setIgLogin);
