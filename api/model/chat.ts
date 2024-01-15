@@ -20,8 +20,14 @@ export function FormattedTime(time: Date) {
 }
 
 // AddChatInfo
-export interface AddChatInfoRequest extends BaseRequest {}
-export interface AddChatInfoResponse extends BaseResponse {}
+export interface AddChatInfoRequest extends BaseRequest {
+  title: string;
+}
+export interface AddChatInfoResponse extends BaseResponse {
+  data: {
+    chat_info: ChatInfo;
+  };
+}
 // DeleteChatInfo
 export interface DeleteChatInfoRequest extends BaseRequest {}
 export interface DeleteChatInfoResponse extends BaseResponse {}

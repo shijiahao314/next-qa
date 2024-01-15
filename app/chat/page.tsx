@@ -25,11 +25,13 @@ export default function Page() {
   const setIsLogin = useBearStore((state) => state.setIgLogin);
 
   const selectedChatInfoID: string = useChatStore((state) => state.selectedChatInfoID);
-  const chatCards: ChatCard[] = useChatStore((state) => state.chatCards);
   const setChatCards = useChatStore((state) => state.setChatCards);
 
   // check login
   useEffect(() => {
+    console.log('====================================');
+    console.log('check isLogin');
+    console.log('====================================');
     IsLogin({}).then(([success, resp]: [boolean, IsLoginResponse]) => {
       if (!success) {
         setIsLogin(false);
@@ -44,7 +46,7 @@ export default function Page() {
         setIsLogin(true);
       }
     });
-  });
+  }, []);
 
   // load chat cards
   useEffect(() => {
@@ -58,73 +60,6 @@ export default function Page() {
       });
     }
   }, [selectedChatInfoID]);
-  // const onDeleteChatCard = (chatCardId: string) => {
-  //   DeleteChatCard(chatCardId, {}).then(([success, resp]: [boolean, DeleteChatCardResponse]) => {
-  //     if (success) {
-  //       setChatCards(chatCards.filter((chatCard) => chatCard.id != chatCardId));
-  //     }
-  //   });
-  // };
-  // const handleUpdateChatCard = (chatCard: ChatCard) => {
-  //   UpdateChatCard(chatCard).then(([success, resp]: [boolean, DeleteChatCardResponse]) => {
-  //     if (success) {
-  //       setChatCards(chatCards.map((item) => (item.id == chatCard.id ? chatCard : item)));
-  //     }
-  //   });
-  // };
-  // const handleSendChatCard = (chatCard: ChatCardDTO) => {
-  //   AddChatCard(chatCard).then(([success, resp]: [boolean, AddChatCardResponse]) => {
-  //     if (success) {
-  //       setChatCards([...chatCards, resp.chatCard]);
-  //     }
-  //   });
-  // };
-
-  // const [ws, setWS] = useState<WebSocket>(new WebSocket('ws://10.112.188.168:8080/api/chat/ws'));
-  // useEffect(() => {
-  //   const newWs = new WebSocket('ws://10.112.188.168:8080/api/chat/ws');
-  //   newWs.onerror = (err) => console.error(err);
-  //   newWs.onopen = () => {
-  //     // reset chatCards
-  //     setChatCards([]);
-  //     // init send
-  //     const initSend: WSChatSendMessage = {
-  //       type: 4,
-  //       chat_id: '',
-  //       content: '',
-  //       chat_info_id: getSelectedChatID()
-  //     };
-  //     console.log('====================================');
-  //     console.log('initSend:', initSend);
-  //     console.log('====================================');
-  //     ws.send(JSON.stringify(initSend));
-  //     toast.success('连接成功');
-  //   };
-  //   newWs.onmessage = (msg: MessageEvent) => {
-  //     const reply: WSChatReceiveMessage = JSON.parse(msg.data);
-  //     console.log('====================================');
-  //     console.log('receive reply:', reply);
-  //     console.log('====================================');
-  //     const chatCard: ChatCard = reply.data;
-  //     setChatCards((chatCards) => [...chatCards, chatCard]);
-  //   };
-  //   newWs.onclose = () => {
-  //     console.log('====================================');
-  //     console.log('websocket close');
-  //     console.log('====================================');
-  //     toast.info('连接关闭');
-  //   };
-  //   setWS(newWs);
-  // }, [selectedChatID]);
-
-  // const handleSend = (msg: Message) => {
-  //   if (ws.readyState === 1) {
-  //     console.log('====================================');
-  //     console.log('send msg:', msg);
-  //     console.log('====================================');
-  //     ws.send(JSON.stringify(msg));
-  //   }
-  // };
 
   return (
     <>

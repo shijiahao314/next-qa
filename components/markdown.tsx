@@ -13,6 +13,7 @@ import '@/styles/markdown.css';
 
 export default function MarkdownCard({ content }: { content: string }) {
   return (
+    // <style>
     <Markdown
       className="space-y-2"
       remarkPlugins={[remarkMath, remarkBreaks, remarkGfm]}

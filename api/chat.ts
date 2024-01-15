@@ -13,7 +13,10 @@ import {
   GetChatInfosResponse,
   UpdateChatCardRequest,
   UpdateChatCardResponse,
-  GetChatInfosRequest
+  GetChatInfosRequest,
+  DeleteChatInfoRequest,
+  AddChatInfoRequest,
+  AddChatInfoResponse
 } from './model/chat';
 
 // const API_URL = `${BACKEND_URL}/api/chat`;
@@ -26,6 +29,41 @@ const timeOptions: Intl.DateTimeFormatOptions = {
 const timeFormatter = new Intl.DateTimeFormat('zh-CN', timeOptions);
 
 // ChatInfo
+// AddChatInfo
+export async function AddChatInfo(
+  addChatInfoRequest: AddChatInfoRequest
+): Promise<[boolean, AddChatInfoResponse]> {
+  const url = `${API_URL}/chatInfo`;
+  const resp = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(addChatInfoRequest)
+  });
+  const data: AddChatInfoResponse = await resp.json();
+  if (!resp.ok) {
+    return [false, data];
+  }
+  return [true, data];
+}
+
+// DeleteChatInfo
+export async function DeleteChatInfo(
+  chatInfoId: string,
+  deleteChatInfoRequest: DeleteChatInfoRequest
+): Promise<[boolean, DeleteChatCardResponse]> {
+  const url = `${API_URL}/chatInfo/${chatInfoId}`;
+  const resp = await fetch(url, {
+    method: 'DELETE'
+  });
+  const data: DeleteChatCardResponse = await resp.json();
+  if (!resp.ok) {
+    return [false, data];
+  }
+  return [true, data];
+}
+
 // GetChatInfos
 export async function GetChatInfos(
   getChatInfosRequest: GetChatInfosRequest

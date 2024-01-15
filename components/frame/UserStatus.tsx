@@ -11,7 +11,7 @@ export default function UserStatus() {
   const router = useRouter();
   return (
     <>
-      <div className="mt-5 flex w-full flex-col items-center space-y-4 border-b-2 border-my-border px-2 pb-2 dark:border-my-darkborder">
+      <div className="flex w-full flex-col items-center space-y-4 border-b-2 border-my-border px-2 pb-2 dark:border-my-darkborder">
         <img
           className="h-24 w-24 rounded-full border-2 border-my-primary/80 p-[1px] dark:border-my-darkPrimary"
           src="https://placehold.co/96x96.png"
