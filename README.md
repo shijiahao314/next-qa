@@ -1,10 +1,12 @@
 # Next-QA：提供基于知识库问答与开放对话的系统
 
+后端地址：[go-qa](https://github.com/shijiahao314/go-qa)
+
 ## 技术栈
 
-前端：Next.js, Tailwind
-后端：Golang, Gin, Gorm, Casbin
-数据库：MySQL, Redis
+- 前端：Next.js, Tailwind
+- 后端：Golang, Gin, Gorm, Casbin
+- 数据库：MySQL, Redis
 
 ## 系统特点
 
@@ -19,7 +21,6 @@
 |  |  |  |
 | --- | --- | --- |
 | ![light mode](/images/image-2-1.png) | ![dark mode](/images/image-2-2.png) | ![mobile behavior](/images/image-2-3.png) |
-
 
 ## 系统服务
 
