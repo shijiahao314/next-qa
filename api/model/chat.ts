@@ -32,7 +32,9 @@ export interface AddChatInfoResponse extends BaseResponse {
 export interface DeleteChatInfoRequest extends BaseRequest {}
 export interface DeleteChatInfoResponse extends BaseResponse {}
 // UpdateChatInfo
-export interface UpdateChatInfoRequest extends BaseRequest {}
+export interface UpdateChatInfoRequest extends BaseRequest {
+  title: string;
+}
 export interface UpdateChatInfoResponse extends BaseResponse {}
 // GetChatInfos
 export interface GetChatInfosRequest extends BaseRequest {}

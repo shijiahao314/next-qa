@@ -16,7 +16,8 @@ import {
   GetChatInfosRequest,
   DeleteChatInfoRequest,
   AddChatInfoRequest,
-  AddChatInfoResponse
+  AddChatInfoResponse,
+  UpdateChatInfoRequest
 } from './model/chat';
 
 // const API_URL = `${BACKEND_URL}/api/chat`;
@@ -58,6 +59,26 @@ export async function DeleteChatInfo(
     method: 'DELETE'
   });
   const data: DeleteChatCardResponse = await resp.json();
+  if (!resp.ok) {
+    return [false, data];
+  }
+  return [true, data];
+}
+
+// UpdateChatInfo
+export async function UpdateChatInfo(
+  chatInfoId: string,
+  updateChatInfoRequest: UpdateChatInfoRequest
+): Promise<[boolean, UpdateChatCardResponse]> {
+  const url = `${API_URL}/chatInfo/${chatInfoId}`;
+  const resp = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updateChatInfoRequest)
+  });
+  const data: UpdateChatCardResponse = await resp.json();
   if (!resp.ok) {
     return [false, data];
   }
