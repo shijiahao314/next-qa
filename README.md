@@ -9,10 +9,17 @@
 ## 系统特点
 
 - 亮/暗模式切换
-![light mode](/images/image-0.png){: style="max-width: 45%" } ![dark mode](/images/image-1.png){: style="max-width: 45%" }
+
+|  |  |
+| --- | --- |
+| ![light mode](/images/image-0.png) | ![dark mode](/images/image-1.png) |
 
 - 桌面端、移动端适配
-![light mode](/images/image-2-1.png){: style="max-width: 30%" } ![dark mode](/images/image-2-2.png){: style="max-width: 30%" } ![mobile behavior](/images/image-2-3.png){: style="max-width: 30%" }
+
+|  |  |  |
+| --- | --- | --- |
+| ![light mode](/images/image-2-1.png) | ![dark mode](/images/image-2-2.png) | ![mobile behavior](/images/image-2-3.png) |
+
 
 ## 系统服务
 
