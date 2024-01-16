@@ -34,3 +34,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+# Next-QA：提供基于知识库问答与开放问答的对话系统
+
+## 开放对话服务：接入OpenAI API Key，
+![Alt text](/images/image-1.png)
+
+## 移动端表现
+![Alt text](/images/image-2.png)
