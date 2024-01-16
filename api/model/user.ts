@@ -22,7 +22,7 @@ export interface GetUserResponse extends BaseResponse {
     page: number;
     size: number;
     total: number;
-    users: UserInfo[];
+    userInfos: UserInfo[];
   };
 }
 

@@ -1,11 +1,11 @@
 'use client';
 
-import { GetUserResponse, User, UserInfo } from './model/user';
+import { GetUserRequest, GetUserResponse, User } from './model/user';
 
 const API_URL = '/api/admin/user';
 
-export async function GetUser(page: number, size: number): Promise<UserInfo[]> {
-  const queryParams = `?page=${page}&size=${size}`;
+export async function GetUser(getUserRequest: GetUserRequest): Promise<[boolean, GetUserResponse]> {
+  const queryParams = `?page=${getUserRequest.page}&size=${getUserRequest.size}`;
   const url = `${API_URL}${queryParams}`;
   const res = await fetch(url, {
     method: 'GET',
@@ -14,14 +14,11 @@ export async function GetUser(page: number, size: number): Promise<UserInfo[]> {
     },
     next: { revalidate: 60 }
   });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch user data');
-  }
-
   const data: GetUserResponse = await res.json();
-
-  return data.data.users;
+  if (!res.ok) {
+    return [false, data];
+  }
+  return [true, data];
 }
 
 export async function AddUser(user: User): Promise<boolean> {

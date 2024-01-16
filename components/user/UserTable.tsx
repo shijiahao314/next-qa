@@ -3,7 +3,7 @@
 import { DeleteUser, GetUser } from '@/api/user';
 import { useEffect, useState } from 'react';
 import NewUser from './NewUser';
-import { UserInfo } from '@/api/model/user';
+import { GetUserRequest, GetUserResponse, UserInfo } from '@/api/model/user';
 
 export default function UserTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,20 +18,23 @@ export default function UserTable() {
 
   const [users, setUsers] = useState<UserInfo[]>([]);
 
-  const handleDeleteClick = async (userid: string) => {
-    await DeleteUser(userid);
-    GetUser(1, 10).then((data) => {
-      setUsers(data);
-    });
-  };
-
   const handleDelte = (userid: string) => {
     console.log('delete userid=' + userid);
   };
 
   useEffect(() => {
-    GetUser(1, 10).then((data) => {
-      setUsers(data);
+    GetUser({
+      page: 1,
+      size: 10
+    }).then(([success, resp]: [boolean, GetUserResponse]) => {
+      if (success) {
+        setUsers(resp.data.userInfos);
+      } else {
+        console.log('====================================');
+        console.log('GetUser failed');
+        console.log(resp);
+        console.log('====================================');
+      }
     });
   }, []);
 
@@ -69,16 +72,16 @@ export default function UserTable() {
                 <td className={cellStyle}>{user.role}</td>
                 <td className={`${cellStyle} space-x-2`}>
                   <button
-                    className="h-[30px] w-[50px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover
+                    className="h-8 w-12 rounded-md bg-my-primary text-sm text-my-darktext0 hover:bg-my-primaryHover
                       dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
                     // onClick={() => }
                   >
                     详情
                   </button>
                   <button
-                    className="h-[30px] w-[50px] rounded-md bg-my-primary text-base text-my-darktext0 hover:bg-my-primaryHover
+                    className="h-8 w-12 rounded-md bg-my-primary text-sm text-my-darktext0 hover:bg-my-primaryHover
                       dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
-                    onClick={() => handleDeleteClick(user.userid)}
+                    onClick={() => handleDelte(user.userid)}
                   >
                     删除
                   </button>

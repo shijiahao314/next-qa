@@ -1,33 +1,28 @@
 'use client';
 
-import { BACKEND_URL } from '../app/config';
 import {
+  // ChatInfo
+  AddChatInfoRequest,
+  AddChatInfoResponse,
+  DeleteChatInfoRequest,
+  DeleteChatInfoResponse,
+  UpdateChatInfoRequest,
+  UpdateChatInfoResponse,
+  GetChatInfosRequest,
+  GetChatInfosResponse,
+  // ChatCard
   AddChatCardRequset,
   AddChatCardResponse,
   DeleteChatCardRequest,
   DeleteChatCardResponse,
-  ChatCard,
-  ChatCardDTO,
-  GetChatCardRequest,
-  GetChatCardsResponse,
-  GetChatInfosResponse,
   UpdateChatCardRequest,
   UpdateChatCardResponse,
-  GetChatInfosRequest,
-  DeleteChatInfoRequest,
-  AddChatInfoRequest,
-  AddChatInfoResponse,
-  UpdateChatInfoRequest
+  GetChatCardRequest,
+  GetChatCardsResponse
 } from './model/chat';
 
 // const API_URL = `${BACKEND_URL}/api/chat`;
 const API_URL = `/api/chat`;
-
-const timeOptions: Intl.DateTimeFormatOptions = {
-  dateStyle: 'short',
-  timeStyle: 'medium'
-};
-const timeFormatter = new Intl.DateTimeFormat('zh-CN', timeOptions);
 
 // ChatInfo
 // AddChatInfo
@@ -53,12 +48,12 @@ export async function AddChatInfo(
 export async function DeleteChatInfo(
   chatInfoId: string,
   deleteChatInfoRequest: DeleteChatInfoRequest
-): Promise<[boolean, DeleteChatCardResponse]> {
+): Promise<[boolean, DeleteChatInfoResponse]> {
   const url = `${API_URL}/chatInfo/${chatInfoId}`;
   const resp = await fetch(url, {
     method: 'DELETE'
   });
-  const data: DeleteChatCardResponse = await resp.json();
+  const data: DeleteChatInfoResponse = await resp.json();
   if (!resp.ok) {
     return [false, data];
   }
@@ -69,7 +64,7 @@ export async function DeleteChatInfo(
 export async function UpdateChatInfo(
   chatInfoId: string,
   updateChatInfoRequest: UpdateChatInfoRequest
-): Promise<[boolean, UpdateChatCardResponse]> {
+): Promise<[boolean, UpdateChatInfoResponse]> {
   const url = `${API_URL}/chatInfo/${chatInfoId}`;
   const resp = await fetch(url, {
     method: 'PUT',
@@ -78,7 +73,7 @@ export async function UpdateChatInfo(
     },
     body: JSON.stringify(updateChatInfoRequest)
   });
-  const data: UpdateChatCardResponse = await resp.json();
+  const data: UpdateChatInfoResponse = await resp.json();
   if (!resp.ok) {
     return [false, data];
   }
@@ -155,7 +150,7 @@ export async function UpdateChatCard(
     },
     body: JSON.stringify(updateChatCardRequest)
   });
-  const data: AddChatCardResponse = await resp.json();
+  const data: UpdateChatCardResponse = await resp.json();
   if (!resp.ok) {
     return [false, data];
   }
