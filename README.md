@@ -1,6 +1,6 @@
 # Next-QA：提供基于知识库问答与开放对话的系统
 
-后端地址：[go-qa](https://github.com/shijiahao314/go-qa)
+>后端Github仓库：[Go-QA](https://github.com/shijiahao314/go-qa)
 
 ## 技术栈
 
