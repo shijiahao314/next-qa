@@ -1,4 +1,4 @@
-import { BaseRequest, BaseResponse } from './base';
+import { BaseResponse } from './base';
 
 // ChatInfo
 export interface ChatInfo {
@@ -20,7 +20,7 @@ export function FormattedTime(time: Date) {
 }
 
 // AddChatInfo
-export interface AddChatInfoRequest extends BaseRequest {
+export interface AddChatInfoRequest {
   title: string;
 }
 export interface AddChatInfoResponse extends BaseResponse {
@@ -29,15 +29,15 @@ export interface AddChatInfoResponse extends BaseResponse {
   };
 }
 // DeleteChatInfo
-export interface DeleteChatInfoRequest extends BaseRequest {}
+export interface DeleteChatInfoRequest {}
 export interface DeleteChatInfoResponse extends BaseResponse {}
 // UpdateChatInfo
-export interface UpdateChatInfoRequest extends BaseRequest {
+export interface UpdateChatInfoRequest {
   title: string;
 }
 export interface UpdateChatInfoResponse extends BaseResponse {}
 // GetChatInfos
-export interface GetChatInfosRequest extends BaseRequest {}
+export interface GetChatInfosRequest {}
 export interface GetChatInfosResponse extends BaseResponse {
   data: {
     chat_infos: ChatInfo[];
@@ -63,18 +63,18 @@ export interface ChatCardDTO {
   role: ChatRole;
 }
 // AddChatCard
-export interface AddChatCardRequset extends BaseRequest, ChatCardDTO {}
+export interface AddChatCardRequset extends ChatCardDTO {}
 export interface AddChatCardResponse extends BaseResponse {
   chat_card: ChatCard;
 }
 // DeleteChatCard
-export interface DeleteChatCardRequest extends BaseRequest {}
+export interface DeleteChatCardRequest {}
 export interface DeleteChatCardResponse extends BaseResponse {}
 // UpdateChatCard
-export interface UpdateChatCardRequest extends BaseRequest {}
+export interface UpdateChatCardRequest {}
 export interface UpdateChatCardResponse extends BaseResponse {}
 // GetChatCard
-export interface GetChatCardRequest extends BaseRequest {
+export interface GetChatCardRequest {
   chat_info_id: string;
 }
 export interface GetChatCardsResponse extends BaseResponse {

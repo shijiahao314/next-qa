@@ -1,25 +1,25 @@
-import { BaseRequest, BaseResponse } from './base';
+import { BaseResponse } from './base';
 
 // SignUp
-export interface SignUpRequest extends BaseRequest {}
+export interface SignUpRequest {}
 export interface SignUpResponse extends BaseResponse {
   username: string;
   password: string;
 }
 
 // Login
-export interface LoginRequest extends BaseRequest {
+export interface LoginRequest {
   username: string;
   password: string;
 }
 export interface LoginResponse extends BaseResponse {}
 
 // Logout
-export interface LogoutRequest extends BaseRequest {}
+export interface LogoutRequest {}
 export interface LogoutResponse extends BaseResponse {}
 
 // IsLogin
-export interface IsLoginRequest extends BaseRequest {}
+export interface IsLoginRequest {}
 export interface IsLoginResponse extends BaseResponse {
   isLogin: boolean;
 }

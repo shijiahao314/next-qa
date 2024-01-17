@@ -28,7 +28,7 @@ export default function UserTable() {
       size: 10
     }).then(([success, resp]: [boolean, GetUserResponse]) => {
       if (success) {
-        setUsers(resp.data.userInfos);
+        setUsers(resp.data.user_infos);
       } else {
         console.log('====================================');
         console.log('GetUser failed');

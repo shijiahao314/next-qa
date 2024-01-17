@@ -19,10 +19,10 @@ export interface GetUserRequest {
 }
 export interface GetUserResponse extends BaseResponse {
   data: {
-    page: number;
-    size: number;
     total: number;
-    userInfos: UserInfo[];
+    size: number;
+    page: number;
+    user_infos: UserInfo[];
   };
 }
 

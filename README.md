@@ -1,6 +1,6 @@
 # Next-QA：提供基于知识库问答与开放对话的系统
 
->后端Github仓库：[Go-QA](https://github.com/shijiahao314/go-qa)
+> 后端Github仓库：[Go-QA](https://github.com/shijiahao314/go-qa)
 
 ## 技术栈
 
@@ -12,14 +12,14 @@
 
 - 亮/暗模式切换
 
-|  |  |
-| --- | --- |
+|                                    |                                   |
+| ---------------------------------- | --------------------------------- |
 | ![light mode](/images/image-0.png) | ![dark mode](/images/image-1.png) |
 
 - 桌面端、移动端适配
 
-|  |  |  |
-| --- | --- | --- |
+|                                      |                                     |                                           |
+| ------------------------------------ | ----------------------------------- | ----------------------------------------- |
 | ![light mode](/images/image-2-1.png) | ![dark mode](/images/image-2-2.png) | ![mobile behavior](/images/image-2-3.png) |
 
 ## 系统服务
