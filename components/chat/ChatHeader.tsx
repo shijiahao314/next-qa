@@ -5,7 +5,7 @@ import { useBearStore, useChatStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
 
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, Suspense, useEffect, useState } from 'react';
 import { UpdateChatInfo } from '@/api/chat';
 
 export default function ChatHeader() {
@@ -85,6 +85,8 @@ export default function ChatHeader() {
               openModal();
             }}
           >
+            {/* <Suspense fallback="loading...">
+            </Suspense> */}
             {chatInfos.find((chatInfo) => chatInfo.id == selectedChatInfoID)?.title}
           </div>
           <div className="text-center text-sm md:text-start">
