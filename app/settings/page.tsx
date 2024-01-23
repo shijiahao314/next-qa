@@ -11,8 +11,8 @@ export default function Page() {
         descp: '使用自定义 OpenAI API Key 访问 ChatGPT',
         value: (
           <input
-            placeholder="OpenAI API Key"
             className="h-10 rounded-lg border-[1px] border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            placeholder="OpenAI API Key"
             type="password"
           ></input>
         )
@@ -52,101 +52,7 @@ export default function Page() {
           <input
             type="checkbox"
             value=""
-            className="m-2 h-4 w-4 appearance-none rounded-md bg-transparent ring-2 ring-offset-2 ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-darkbg0 dark:checked:bg-my-darkPrimary"
-          ></input>
-        )
-      }
-    ],
-    [
-      // groupx
-      {
-        title: 'Test Mode',
-        descp: '开发者测试模式',
-        value: (
-          <input
-            type="checkbox"
-            value=""
-            className="m-2 h-4 w-4 appearance-none rounded-md bg-transparent ring-2 ring-offset-2 ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-darkbg0 dark:checked:bg-my-darkPrimary"
-          ></input>
-        )
-      },
-      {
-        title: 'Test Mode',
-        descp: '开发者测试模式',
-        value: (
-          <input
-            type="checkbox"
-            value=""
-            className="m-2 h-4 w-4 appearance-none rounded-md bg-transparent ring-2 ring-offset-2 ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-darkbg0 dark:checked:bg-my-darkPrimary"
-          ></input>
-        )
-      },
-      {
-        title: 'Test Mode',
-        descp: '开发者测试模式',
-        value: (
-          <input
-            type="checkbox"
-            value=""
-            className="m-2 h-4 w-4 appearance-none rounded-md bg-transparent ring-2 ring-offset-2 ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-darkbg0 dark:checked:bg-my-darkPrimary"
-          ></input>
-        )
-      },
-      {
-        title: 'Test Mode',
-        descp: '开发者测试模式',
-        value: (
-          <input
-            type="checkbox"
-            value=""
-            className="m-2 h-4 w-4 appearance-none rounded-md bg-transparent ring-2 ring-offset-2 ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-darkbg0 dark:checked:bg-my-darkPrimary"
-          ></input>
-        )
-      }
-    ],
-    [
-      // groupx
-      {
-        title: 'Test Mode',
-        descp: '开发者测试模式',
-        value: (
-          <input
-            type="checkbox"
-            value=""
-            className="m-2 h-4 w-4 appearance-none rounded-md bg-transparent ring-2 ring-offset-2 ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-darkbg0 dark:checked:bg-my-darkPrimary"
-          ></input>
-        )
-      },
-      {
-        title: 'Test Mode',
-        descp: '开发者测试模式',
-        value: (
-          <input
-            type="checkbox"
-            value=""
-            className="m-2 h-4 w-4 appearance-none rounded-md bg-transparent ring-2 ring-offset-2 ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-darkbg0 dark:checked:bg-my-darkPrimary"
-          ></input>
-        )
-      },
-      {
-        title: 'Test Mode',
-        descp: '开发者测试模式',
-        value: (
-          <input
-            type="checkbox"
-            value=""
-            className="m-2 h-4 w-4 appearance-none rounded-md bg-transparent ring-2 ring-offset-2 ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-darkbg0 dark:checked:bg-my-darkPrimary"
-          ></input>
-        )
-      },
-      {
-        title: 'Test Mode',
-        descp: '开发者测试模式',
-        value: (
-          <input
-            type="checkbox"
-            value=""
-            className="m-2 h-4 w-4 appearance-none rounded-md bg-transparent ring-2 ring-offset-2 ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-darkbg0 dark:checked:bg-my-darkPrimary"
+            className="m-2 h-4 w-4 cursor-pointer appearance-none rounded-md bg-transparent ring-2 ring-offset-2 ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-darkbg0 dark:checked:bg-my-darkPrimary"
           ></input>
         )
       }
