@@ -68,6 +68,9 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
 
   return (
     <>
+      <head>
+        <title>NextQA - 登录</title>
+      </head>
       <MyToastContainer></MyToastContainer>
       <div className="hidden h-full w-full opacity-0"></div>
       <div className="flex h-full w-full flex-row text-my-text0 duration-200 dark:text-my-darktext0">
