@@ -27,3 +27,14 @@
 - 用户登录：同步用户个人信息、配置信息（不包含API Key）、对话历史等
 - 知识库问答：提供基于知识库的问答服务，对知识库文档搜索并回答问题
 - 开放对话：接入OpenAI服务，使用OpenAI API Key使用开放对话服务
+
+# 安装依赖
+
+```bash
+# 禁止使用 npm install 或 npm i 安装，该操作会修改 package-lock.json 导致安装依赖的版本不同
+npm ci # clean install
+
+npm run build && npm run start
+# 或
+npm run dev
+```
