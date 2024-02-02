@@ -1,5 +1,7 @@
 'use client';
 
+import { GetSettingsRequest, GetSettingsResponse } from '@/api/model/settings';
+import { GetSettings } from '@/api/settings';
 import { useBearStore } from '@/lib/store';
 
 export default function Page() {
@@ -61,6 +63,22 @@ export default function Page() {
 
   const setNavOpen = useBearStore((state) => state.setNavOpen);
 
+  const syncSettings = () => {
+    console.log('====================================');
+    console.log('sync settings');
+    console.log('====================================');
+    const getSettingsRequest: GetSettingsRequest = {};
+    GetSettings(getSettingsRequest).then(([success, resp]: [boolean, GetSettingsResponse]) => {
+      if (success) {
+        console.log(resp);
+      } else {
+        console.log('====================================');
+        console.log('failed to get settings', resp);
+        console.log('====================================');
+      }
+    });
+  };
+
   return (
     <div className="flex h-full w-full flex-col">
       <div className="relative flex flex-row justify-between border-b-[1px] border-my-border px-5 py-4 shadow dark:border-my-darkborder">
@@ -85,11 +103,7 @@ export default function Page() {
         </div>
         <button
           className="h-12 w-12 place-content-center items-center rounded-lg border-[1px] border-my-border p-2 text-base font-semibold hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbgHover/25"
-          onClick={() => {
-            console.log('====================================');
-            console.log('同步');
-            console.log('====================================');
-          }}
+          onClick={syncSettings}
         >
           <svg viewBox="0 0 1024 1024">
             <path
