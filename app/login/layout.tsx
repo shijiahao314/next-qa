@@ -58,7 +58,7 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
     }
   };
   // sign up
-  const handleSignUp = async () => {
+  const handleSignUp = () => {
     const signUpRequest: SignUpRequest = {
       username: formData.username,
       password: formData.password
