@@ -2,12 +2,9 @@
 
 import { useBearStore } from '@/lib/store';
 import { useRouter } from 'next/navigation';
-import { Logout } from '@/api/auth';
-import { LogoutResponse } from '@/api/model/auth';
 
 export default function UserStatus() {
   const isLogin = useBearStore((state) => state.isLogin);
-  const setIsLogin = useBearStore((state) => state.setIgLogin);
   const router = useRouter();
   return (
     <>
@@ -23,16 +20,7 @@ export default function UserStatus() {
           onClick={
             isLogin
               ? () => {
-                  // router.push('/userInfo');
-                  Logout({}).then(([success, resp]: [boolean, LogoutResponse]) => {
-                    if (success) {
-                      console.log('====================================');
-                      console.log('success logout');
-                      console.log('====================================');
-                      setIsLogin(false);
-                      router.push('/login');
-                    }
-                  });
+                  router.push('/userInfo');
                 }
               : () => router.push('/login')
           }

@@ -93,7 +93,14 @@ const config: Config = {
 
           // chat
           chatBg: '#e7f8ff',
-          darkChatBg: '#1b262a'
+          darkChatBg: '#1b262a',
+
+          // danger
+          danger: 'rgba(249, 57, 32, 1)', // red-5
+          dangerHover: 'rgba(213, 37, 21, 1)', //red-6
+
+          darkDanger: 'rgba(215, 51, 36, 1)', // red-3 (dark)
+          darkDangerHover: 'rgba(251, 73, 50, 1)' // red-4 (dark)
         }
       },
       fontFamily: {

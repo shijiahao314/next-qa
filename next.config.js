@@ -3,6 +3,7 @@
 const withMDX = require('@next/mdx')();
 
 const nextConfig = {
+  reactStrictMode: false,
   // 解决跨域问题
   async rewrites() {
     return [
