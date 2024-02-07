@@ -1,7 +1,7 @@
 'use client';
 
 import SwitchModeButton from '../theme/switchMode';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import SettingButton from './settingsButton';
 import UserStatus from './UserStatus';
 import { useBearStore } from '@/lib/store';
@@ -12,6 +12,7 @@ export default function SideNav() {
   const setNavOpen = useBearStore(useShallow((state) => state.setNavOpen));
 
   const pathname = usePathname();
+  const router = useRouter();
   const defaultSvg = (
     <svg
       className={
@@ -108,7 +109,15 @@ export default function SideNav() {
           `${navOpen ? 'translate-x-0' : '-translate-x-full'}`
         }
       >
-        <div className="relative my-4 flex h-20 flex-shrink-0 flex-grow-0 items-center justify-center">
+        <div
+          onClick={() => {
+            console.log('====================================');
+            console.log('logo click');
+            console.log('====================================');
+            router.push('/welcome');
+          }}
+          className="relative my-4 flex h-20 flex-shrink-0 flex-grow-0 cursor-pointer items-center justify-center"
+        >
           <svg className="h-9" viewBox="0 0 1024 1024">
             <path
               d="M850.34568 1023.999787a54.186509 54.186509 0 0 1-36.266561-15.573288L669.226208 874.666889a46.079866 46.079866 0 0 0-27.306587-10.879968h-149.332898a36.906559 36.906559 0 0 1-36.906559-29.653247 35.626563 35.626563 0 0 1 34.773232-42.666542h194.132767l138.879595 129.279622V789.333804h127.999627V380.161665h-115.839662a37.119892 37.119892 0 0 1-37.119892-29.653247 35.626563 35.626563 0 0 1 34.986565-42.666543h123.519639a65.27981 65.27981 0 0 1 63.999814 65.493143v422.185435a65.066477 65.066477 0 0 1-63.999814 65.493142H895.99888v111.573008a49.706522 49.706522 0 0 1-27.51992 47.786528 42.666542 42.666542 0 0 1-17.279949 3.626656z"

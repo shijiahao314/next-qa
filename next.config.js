@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 
+const { config } = require('process');
+
 const withMDX = require('@next/mdx')();
 
 const nextConfig = {

@@ -52,7 +52,7 @@ export default function UserInfoPage() {
           </div>
           <div className="mb-5 flex items-center justify-end divide-y-2 divide-solid rounded-lg">
             <button
-              className="bg-my-danger hover:bg-my-dangerHover dark:bg-my-darkDanger dark:hover:bg-my-darkDangerHover rounded-lg border-2 border-my-border px-4 py-2 font-semibold text-white dark:border-my-darkborder"
+              className="rounded-lg border-2 border-my-border bg-my-danger px-4 py-2 font-semibold text-white hover:bg-my-dangerHover dark:border-my-darkborder dark:bg-my-darkDanger dark:hover:bg-my-darkDangerHover"
               onClick={() => {
                 Logout({}).then(([success, resp]: [boolean, LogoutResponse]) => {
                   if (success) {
