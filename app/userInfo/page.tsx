@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 
 export default function UserInfoPage() {
   const username = useUserStore((state) => state.username);
+  const email = useUserStore((state) => state.email);
 
   const setNavOpen = useBearStore((state) => state.setNavOpen);
   const setIsLogin = useBearStore((state) => state.setIgLogin);
@@ -46,6 +47,29 @@ export default function UserInfoPage() {
               <div>
                 <div className="text-base text-my-text0 dark:text-my-darktext0">
                   用户名: {username}
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row items-center justify-between border-my-border px-5 py-3 dark:border-my-darkborder">
+              <div>
+                <div className="text-base text-my-text0 dark:text-my-darktext0">
+                  电子邮箱: {email}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mb-5 divide-y-2 divide-solid rounded-lg border-2 border-my-border dark:border-my-darkborder">
+            <div className="flex flex-row items-center justify-between border-my-border px-5 py-3 dark:border-my-darkborder">
+              <div>
+                <div className="text-base text-my-text0 dark:text-my-darktext0">
+                  XXX: {username}
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row items-center justify-between border-my-border px-5 py-3 dark:border-my-darkborder">
+              <div>
+                <div className="text-base text-my-text0 dark:text-my-darktext0">
+                  XXX: {username}
                 </div>
               </div>
             </div>
