@@ -44,11 +44,13 @@ export default function UserInfoPage() {
         <div className="relative flex flex-shrink flex-grow flex-col overflow-auto overflow-x-hidden p-5">
           <div className="mb-5 divide-y-2 divide-solid rounded-lg border-2 border-my-border dark:border-my-darkborder">
             <div className="flex flex-row items-center justify-between border-my-border px-5 py-3 dark:border-my-darkborder">
-              <div>
-                <div className="text-base text-my-text0 dark:text-my-darktext0">
-                  用户名: {username}
-                </div>
+              <div className="flex flex-row">
+                <div className="text-base text-my-text0 dark:text-my-darktext0">用户名:</div>
+                <div className="text-base text-my-text0 dark:text-my-darktext0">asd{username}</div>
               </div>
+              <button className="h-full w-16 rounded-lg border-2 border-my-border bg-my-button0 text-white hover:bg-my-primaryHover dark:border-my-darkborder dark:bg-my-darkButton0 dark:hover:bg-my-darkPrimaryHover">
+                修改
+              </button>
             </div>
             <div className="flex flex-row items-center justify-between border-my-border px-5 py-3 dark:border-my-darkborder">
               <div>
