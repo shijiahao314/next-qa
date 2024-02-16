@@ -9,12 +9,41 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 export default function UserInfoPage() {
-  const username = useUserStore((state) => state.username);
-  const email = useUserStore((state) => state.email);
+  // const username = useUserStore((state) => state.username);
+  const username = 'shijiahao314';
+  // const email = useUserStore((state) => state.email);
+  const email = 'shijiahao314@foxmail.com';
 
   const setNavOpen = useBearStore((state) => state.setNavOpen);
   const setIsLogin = useBearStore((state) => state.setIgLogin);
   const router = useRouter();
+
+  const table = [
+    {
+      title: '用户名',
+      value: (
+        <div className="flex flex-row items-center justify-between py-2">
+          <div>{username}</div>
+          <button className="h-10 rounded-lg bg-my-primary px-2 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover">
+            修改密码
+          </button>
+        </div>
+      )
+    },
+    {
+      title: '电子邮箱',
+      value: (
+        <div className="flex flex-row items-center justify-between py-2">
+          <a
+            href={'mailto:' + email}
+            className="flex h-10 items-center text-justify italic text-my-primary underline underline-offset-2 hover:text-my-primaryHover dark:text-my-darkPrimary dark:hover:text-my-darkPrimaryHover"
+          >
+            {email}
+          </a>
+        </div>
+      )
+    }
+  ];
 
   return (
     <>
@@ -79,22 +108,16 @@ export default function UserInfoPage() {
             </div>
             <div className="mb-5 table-auto rounded-lg border-2 border-my-border dark:border-my-darkborder">
               <table className="w-full table-auto">
-                <tbody className="divide-y-2 divide-my-border p-2 dark:divide-my-darkborder">
-                  <tr className="h-10">
-                    <td className="px-2">用户名:</td>
-                    <td className="px-2">
-                      <div className="flex flex-row items-center justify-between">
-                        <div>sjh{username}</div>
-                        <button className="rounded-lg bg-my-primary px-2 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover">
-                          修改密码
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr className="h-10">
-                    <td className="px-2">电子邮箱:</td>
-                    <td className="px-2">shijiahao314@foxmail.com{email}</td>
-                  </tr>
+                <tbody className="divide-y-2 divide-my-border dark:divide-my-darkborder">
+                  {table.map((item) => (
+                    <tr
+                      key={item.title}
+                      className="divide-x-2 divide-dashed divide-my-border px-2 dark:divide-my-darkborder"
+                    >
+                      <td className="px-2 text-center">{item.title}</td>
+                      <td className="px-4">{item.value}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
