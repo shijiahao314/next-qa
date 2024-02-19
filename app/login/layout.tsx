@@ -9,6 +9,7 @@ import { Id, toast } from 'react-toastify';
 import MyToastContainer from '@/components/frame/MyToastContainer';
 import { useBearStore } from '@/lib/store';
 import { LoginRequest, LoginResponse, SignUpRequest, SignUpResponse } from '@/api/model/auth';
+import { getProviders, signIn, signOut, useSession } from 'next-auth/react';
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -29,10 +30,6 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
       [e.target.name]: e.target.value
     });
   };
-
-  console.log('====================================');
-  console.log(process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID);
-  console.log('====================================');
 
   // login
   const handleLogin = async () => {
@@ -197,13 +194,16 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
               </div>
               <div className="flex flex-row items-center justify-center">
                 <a
-                  href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_CALLBACK_URL}`}
+                  // href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_CALLBACK_URL}`}
+                  // href="/api/auth/login"
                   className="rounded-lg border-[1px] border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
                   role="button"
                   onClick={() => {
                     console.log('====================================');
                     console.log('clicked');
                     console.log('====================================');
+                    signIn();
+                    // getProviders().then((providers: any) => console.log('Providers', providers));
                   }}
                 >
                   <svg width="20" height="20" viewBox="0 0 98 96">

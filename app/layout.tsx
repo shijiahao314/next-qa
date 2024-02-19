@@ -1,6 +1,8 @@
 import './globals.css';
 import SideNav from '@/components/frame/SideNav';
 
+import { SessionProvider } from 'next-auth/react';
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="text-sm md:text-base">
