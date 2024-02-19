@@ -30,6 +30,10 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
     });
   };
 
+  console.log('====================================');
+  console.log(process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID);
+  console.log('====================================');
+
   // login
   const handleLogin = async () => {
     const toastId: Id = toast.info('发送中', { autoClose: 1000 });
@@ -192,8 +196,9 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
                 <div className="h-[2px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
               </div>
               <div className="flex flex-row items-center justify-center">
-                <div
-                  className="cursor-not-allowed rounded-lg border-[1px] border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
+                <a
+                  href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_CALLBACK_URL}`}
+                  className="rounded-lg border-[1px] border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
                   role="button"
                   onClick={() => {
                     console.log('====================================');
@@ -201,12 +206,7 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
                     console.log('====================================');
                   }}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 98 96"
-                  >
+                  <svg width="20" height="20" viewBox="0 0 98 96">
                     <path
                       fillRule="evenodd"
                       clipRule="evenodd"
@@ -215,7 +215,7 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
                       fill="currentColor"
                     />
                   </svg>
-                </div>
+                </a>
               </div>
             </div>
           </div>
