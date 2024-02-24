@@ -25,10 +25,8 @@ export default function MyToastContainer() {
         closeOnClick
         rtl={false}
         pauseOnFocusLoss={false}
-        //   draggable
         pauseOnHover
         theme="colored"
-        //   limit={3}
       ></ToastContainer>
     </div>
   );

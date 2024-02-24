@@ -4,8 +4,8 @@ import { debounce } from 'lodash';
 
 import { useRouter } from 'next/navigation';
 import { Login, SignUp } from '@/api/auth';
-import { useState } from 'react';
-import { Id, toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
+import { Id, ToastContainer, toast } from 'react-toastify';
 import MyToastContainer from '@/components/frame/MyToastContainer';
 import { useBearStore } from '@/lib/store';
 import { LoginRequest, LoginResponse, SignUpRequest, SignUpResponse } from '@/api/model/auth';
@@ -33,52 +33,67 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
 
   // login
   const handleLogin = async () => {
-    const toastId: Id = toast.info('发送中', { autoClose: 1000 });
+    const toastId: Id = toast.info('发送中', {
+      toastId: 'tid',
+      autoClose: false
+    });
     const loginRequest: LoginRequest = {
       username: formData.username,
       password: formData.password
     };
-    Login(loginRequest).then(async ([success, resp]: [boolean, LoginResponse]) => {
+    Login(loginRequest).then(([success, resp]: [boolean, LoginResponse]) => {
       if (success) {
         toast.update(toastId, {
           render: '登录成功，跳转中...',
           type: toast.TYPE.SUCCESS,
-          autoClose: 2000
+          autoClose: 1000,
+          onClose: () => {
+            setIsLogin(true);
+            router.push('/chat');
+          }
         });
-        await sleep(2000);
-        setIsLogin(true);
-        router.push('/chat');
+        // await sleep(2000);
       } else {
         toast.update(toastId, {
           render: '登录失败: ' + resp.msg,
           type: toast.TYPE.ERROR,
-          autoClose: 3000
+          autoClose: 2000
         });
       }
     });
   };
   // sign up
   const handleSignUp = () => {
-    const toastId: Id = toast.info('发送中', { autoClose: false });
+    const toastId: Id = toast.info('发送中', {
+      toastId: 'tid',
+      autoClose: false
+    });
     const signUpRequest: SignUpRequest = {
       username: formData.username,
       password: formData.password
     };
-    SignUp(signUpRequest).then(async ([success, resp]: [boolean, SignUpResponse]) => {
+    console.log('====================================');
+    console.log(toastId);
+    console.log('====================================');
+    SignUp(signUpRequest).then(([success, resp]: [boolean, SignUpResponse]) => {
+      console.log('====================================');
+      console.log(success);
+      console.log('====================================');
       if (success) {
         toast.update(toastId, {
           render: '注册成功，已登录，跳转中...',
           type: toast.TYPE.SUCCESS,
-          autoClose: 2000
+          autoClose: 1000,
+          onClose: () => {
+            setIsLogin(true);
+            router.push('/chat');
+          }
         });
-        await sleep(2000);
-        setIsLogin(true);
-        router.push('/chat');
       } else {
         toast.update(toastId, {
           render: '注册失败: ' + resp.msg,
           type: toast.TYPE.ERROR,
-          autoClose: 3000
+          autoClose: 2000
         });
       }
     });
