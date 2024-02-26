@@ -209,29 +209,9 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
               </div>
               <div className="flex flex-row items-center justify-center">
                 <a
-                  // href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL}`}
+                  href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL}`}
                   className="rounded-lg border-[1px] border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
                   role="button"
-                  onClick={() => {
-                    console.log('====================================');
-                    console.log('before');
-                    const url = '/api/auth/oauth/github/login';
-                    fetch(url, {
-                      method: 'GET',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      credentials: 'include',
-                      cache: 'no-store'
-                    }).then((res) => {
-                      const data = res.json();
-                      console.log('====================================');
-                      console.log(data);
-                      console.log('====================================');
-                    });
-                    console.log('after');
-                    console.log('====================================');
-                  }}
                 >
                   <svg width="20" height="20" viewBox="0 0 98 96">
                     <path
