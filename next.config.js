@@ -8,13 +8,9 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/auth/login',
-        destination: `http://123.56.65.40:8080/api/auth/login`
+        source: '/api/auth/:path*',
+        destination: `http://123.56.65.40:8080/api/auth/:path*`
       },
-      {
-        source: '/api/auth/logout',
-        destination: `http://123.56.65.40:8080/api/auth/logout`
-      }
     ];
   },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
