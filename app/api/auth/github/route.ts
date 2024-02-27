@@ -4,12 +4,6 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const code: string = searchParams.get('code') as string;
-  console.log('====================================');
-  console.log(req.url);
-  console.log('====================================');
-  console.log('====================================');
-  console.log('code=', code);
-  console.log('====================================');
   const githubLoginRequest: GithubLoginRequest = {};
   const url = `http://123.56.65.40:8080/api/auth/oauth/github?code=${code}`;
   const res = await fetch(url, {
