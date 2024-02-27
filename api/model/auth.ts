@@ -23,3 +23,7 @@ export interface IsLoginRequest {}
 export interface IsLoginResponse extends BaseResponse {
   isLogin: boolean;
 }
+
+// GithubLogin
+export interface GithubLoginRequest {}
+export interface GithubLoginResponse extends BaseResponse {}

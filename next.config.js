@@ -10,7 +10,7 @@ const nextConfig = {
       {
         source: '/api/auth/:path*',
         destination: `http://123.56.65.40:8080/api/auth/:path*`
-      },
+      }
     ];
   },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],

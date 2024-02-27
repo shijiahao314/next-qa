@@ -1,6 +1,8 @@
 'use client';
 
 import {
+  GithubLoginRequest,
+  GithubLoginResponse,
   IsLoginRequest,
   IsLoginResponse,
   LoginRequest,
@@ -11,8 +13,9 @@ import {
   SignUpResponse
 } from './model/auth';
 
-// if 'use server', API_URL = `${BACKEND_URL}/api/auth`
-// const API_URL = `${BACKEND_URL}/api/auth`;
+// if 'use server', API_URL = `${BACKEND_URL}/api/auth`.
+// if 'use client', API_URL = '/api/auth',
+// then `next.config.js` will rewrites.
 const API_URL = '/api/auth';
 
 // SignUp
@@ -73,19 +76,32 @@ export async function Logout(logoutRequest: LogoutRequest): Promise<[boolean, Lo
 }
 
 // IsLogin
-export async function IsLogin(
-  isLoginResponse: IsLoginRequest
-): Promise<[boolean, IsLoginResponse]> {
+export async function IsLogin(isLoginRequest: IsLoginRequest): Promise<[boolean, IsLoginResponse]> {
   const url = `${API_URL}/islogin`;
   const req = await fetch(url, {
     method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
     credentials: 'include',
     cache: 'no-store'
   });
   const resp: IsLoginResponse = await req.json();
+  if (!req.ok) {
+    return [false, resp];
+  }
+  return [true, resp];
+}
+
+// GithubLogin
+export async function GithubLogin(
+  githubLoginRequest: GithubLoginRequest,
+  code: string
+): Promise<[boolean, GithubLoginResponse]> {
+  const url = `${API_URL}/oauth/github?code=${code}`;
+  const req = await fetch(url, {
+    method: 'GET',
+    credentials: 'include',
+    cache: 'no-store'
+  });
+  const resp: GithubLoginResponse = await req.json();
   if (!req.ok) {
     return [false, resp];
   }
