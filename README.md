@@ -1,22 +1,30 @@
-# Next-QA：提供基于知识库问答与开放对话的系统
+# NextQA：提供基于知识库问答与开放对话的系统
 
 > 后端Github仓库：[Go-QA](https://github.com/shijiahao314/go-qa)
 
 ## 技术栈
 
-- 前端：Next.js, Tailwind
-- 后端：Golang, Gin, Gorm, Casbin
-- 数据库：MySQL, Redis
+- 前端：Next.js、React、Tailwind
+- 后端：Golang、gin、gorn、casbin
+- 数据库及缓存：MySQL、Redis
+- DevOps: Docker、Git
 
 ## 系统特点
 
 - 亮/暗模式切换
+- 适配移动端设备
+- 对话历史以及用户配置同步
+
+## TODO
+
+- [x] 接入 Github 单点登录
+- [ ] 提供基于 RAG 和 LLM 的知识库问答
+
+## 系统展示
 
 |                                    |                                   |
 | ---------------------------------- | --------------------------------- |
 | ![light mode](/images/image-0.png) | ![dark mode](/images/image-1.png) |
-
-- 桌面端、移动端适配
 
 |                                      |                                     |                                           |
 | ------------------------------------ | ----------------------------------- | ----------------------------------------- |
@@ -24,11 +32,14 @@
 
 ## 系统服务
 
-- 用户登录：同步用户个人信息、配置信息（不包含API Key）、对话历史等
+- 用户登录：同步用户个人信息、配置信息、对话历史等
 - 知识库问答：提供基于知识库的问答服务，对知识库文档搜索并回答问题
-- 开放对话：接入OpenAI服务，使用OpenAI API Key使用开放对话服务
+- 开放对话：接入 OpenAI 服务，使用 OpenAI API Key 使用开放对话服务
+- 单点登录：接入 Github 单点登录系统
 
-# 安装依赖
+## 安装
+
+### 使用 npm 构建前端
 
 ```bash
 # 禁止使用 npm install 或 npm i 安装，该操作会修改 package-lock.json 导致安装依赖的版本不同
