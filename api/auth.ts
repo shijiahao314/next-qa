@@ -3,7 +3,6 @@
 import {
   GithubLoginRequest,
   GithubLoginResponse,
-  IsLoginRequest,
   IsLoginResponse,
   LoginRequest,
   LoginResponse,
@@ -76,7 +75,7 @@ export async function Logout(logoutRequest: LogoutRequest): Promise<[boolean, Lo
 }
 
 // IsLogin
-export async function IsLogin(isLoginRequest: IsLoginRequest): Promise<[boolean, IsLoginResponse]> {
+export async function IsLogin(): Promise<[boolean, IsLoginResponse]> {
   const url = `${API_URL}/islogin`;
   const req = await fetch(url, {
     method: 'GET',

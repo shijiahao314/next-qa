@@ -4,15 +4,15 @@ const withMDX = require('@next/mdx')();
 
 const nextConfig = {
   reactStrictMode: false,
-  // 解决跨域问题
-  async rewrites() {
-    return [
-      {
-        source: '/api/auth/:path*',
-        destination: `http://123.56.65.40:8080/api/auth/:path*`
-      }
-    ];
-  },
+  // // 解决跨域问题
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: process.env.NEXT_PUBLIC_BACKEND_API_URL + '/:path*',
+  //       destination: `http://127.0.0.1:8080/api/:path*`
+  //     }
+  //   ];
+  // },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   async redirects() {
     return [
