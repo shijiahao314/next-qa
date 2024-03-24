@@ -1,8 +1,8 @@
 import React from 'react';
 
 import MarkdownCard from '../markdown';
-import { ChatCard, DeleteChatCardResponse, FormattedTime } from '@/api/model/chat';
-import { DeleteChatCard } from '@/api/chat';
+import { ChatCard, DeleteChatCardResponse, FormattedTime } from '@/action/model/chat';
+import { DeleteChatCard } from '@/action/chat';
 import { useChatStore } from '@/lib/store';
 
 export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
@@ -10,7 +10,7 @@ export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
   const content = chatCard.content;
   const deleteChatCard = useChatStore((state) => state.deleteChatCard);
   const handleDeleteChatCard = () => {
-    DeleteChatCard(chatCard.id, {}).then(([success, resp]: [boolean, DeleteChatCardResponse]) => {
+    DeleteChatCard(chatCard.id).then(([success, resp]: [boolean, DeleteChatCardResponse]) => {
       if (success) {
         deleteChatCard(chatCard.id);
       }

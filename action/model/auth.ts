@@ -18,12 +18,7 @@ export interface LoginResponse extends BaseResponse {}
 export interface LogoutRequest {}
 export interface LogoutResponse extends BaseResponse {}
 
-// IsLogin
-export interface IsLoginRequest {}
+// IsLogin GET
 export interface IsLoginResponse extends BaseResponse {
   isLogin: boolean;
 }
-
-// GithubLogin
-export interface GithubLoginRequest {}
-export interface GithubLoginResponse extends BaseResponse {}

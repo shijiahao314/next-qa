@@ -8,8 +8,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/auth/:path*',
-        destination: `http://123.56.65.40:8080/api/auth/:path*`
+        source: '/backend/:path*',
+        destination: `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/:path*`
       }
     ];
   },

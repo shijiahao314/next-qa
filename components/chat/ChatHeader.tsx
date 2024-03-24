@@ -1,12 +1,12 @@
 'use client';
 
-import { ChatInfo, UpdateChatInfoRequest } from '@/api/model/chat';
+import { ChatInfo, UpdateChatInfoRequest } from '@/action/model/chat';
 import { useBearStore, useChatStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
 
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, Suspense, useEffect, useState } from 'react';
-import { UpdateChatInfo } from '@/api/chat';
+import { UpdateChatInfo } from '@/action/chat';
 
 export default function ChatHeader() {
   const setNavOpen = useBearStore(useShallow((state) => state.setNavOpen));

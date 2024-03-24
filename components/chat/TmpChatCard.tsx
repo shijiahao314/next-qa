@@ -1,9 +1,7 @@
 import React from 'react';
 
 import MarkdownCard from '../markdown';
-import { ChatCard, DeleteChatCardResponse, FormattedTime } from '@/api/model/chat';
-import { DeleteChatCard } from '@/api/chat';
-import { useChatStore } from '@/lib/store';
+import { FormattedTime } from '@/action/model/chat';
 
 export default function ChatContent({
   role,

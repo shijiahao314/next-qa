@@ -1,9 +1,9 @@
 'use client';
 
-import { DeleteUser, GetUser } from '@/api/user';
+import { GetUser } from '@/action/user';
 import { useEffect, useState } from 'react';
 import NewUser from './NewUser';
-import { GetUserRequest, GetUserResponse, UserInfo } from '@/api/model/user';
+import { GetUserResponse, UserInfo } from '@/action/model/user';
 
 export default function UserTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,10 +23,7 @@ export default function UserTable() {
   };
 
   useEffect(() => {
-    GetUser({
-      page: 1,
-      size: 10
-    }).then(([success, resp]: [boolean, GetUserResponse]) => {
+    GetUser(1, 10).then(([success, resp]: [boolean, GetUserResponse]) => {
       if (success) {
         setUsers(resp.data.user_infos);
       } else {
