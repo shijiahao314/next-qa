@@ -1,6 +1,6 @@
 'use client';
 
-import { ChatCard, ChatInfo } from '@/api/model/chat';
+import { ChatCard, ChatInfo } from '@/action/model/chat';
 import { useEffect, useState } from 'react';
 import { create } from 'zustand';
 import { persist, combine, createJSONStorage } from 'zustand/middleware';

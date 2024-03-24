@@ -2,7 +2,7 @@
 
 import ChatContent from './ChatCard';
 import { useChatStore } from '@/lib/store';
-import { ChatCard, ChatRole } from '@/api/model/chat';
+import { ChatCard, ChatRole } from '@/action/model/chat';
 import { useEffect, useRef } from 'react';
 import TmpChatCard from './TmpChatCard';
 import { time } from 'console';

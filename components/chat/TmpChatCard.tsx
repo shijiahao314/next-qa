@@ -1,8 +1,8 @@
 import React from 'react';
 
 import MarkdownCard from '../markdown';
-import { ChatCard, DeleteChatCardResponse, FormattedTime } from '@/api/model/chat';
-import { DeleteChatCard } from '@/api/chat';
+import { ChatCard, DeleteChatCardResponse, FormattedTime } from '@/action/model/chat';
+import { DeleteChatCard } from '@/action/chat';
 import { useChatStore } from '@/lib/store';
 
 export default function ChatContent({

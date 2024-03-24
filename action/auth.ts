@@ -12,9 +12,6 @@ import {
   SignUpResponse
 } from './model/auth';
 
-// if 'use server', API_URL = `${BACKEND_URL}/api/auth`.
-// if 'use client', API_URL = '/api/auth',
-// then `next.config.js` will rewrites.
 const API_URL = '/api/auth';
 
 // SignUp
@@ -25,14 +22,15 @@ export async function SignUp(signUpRequest: SignUpRequest): Promise<[boolean, Si
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(signUpRequest),
-    credentials: 'include',
-    cache: 'no-store'
+    body: JSON.stringify(signUpRequest)
   });
   const resp: SignUpResponse = await req.json();
-  if (!req.ok) {
+  if (resp.code != 0) {
+    // 注册失败
+    console.error('SignUp failed: ', resp.msg);
     return [false, resp];
   }
+  // 注册成功
   return [true, resp];
 }
 
@@ -45,13 +43,15 @@ export async function Login(loginRequest: LoginRequest): Promise<[boolean, Login
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(loginRequest),
-    credentials: 'include',
-    cache: 'no-store'
+    credentials: 'include'
   });
   const resp: LoginResponse = await req.json();
-  if (!req.ok) {
+  if (resp.code != 0) {
+    // 登录失败
+    console.error('Login failed: ', resp.msg);
     return [false, resp];
   }
+  // 登录成功
   return [true, resp];
 }
 
@@ -63,29 +63,29 @@ export async function Logout(logoutRequest: LogoutRequest): Promise<[boolean, Lo
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(logoutRequest),
-    credentials: 'include',
-    cache: 'no-store'
+    body: JSON.stringify(logoutRequest)
   });
   const resp: LoginResponse = await req.json();
-  if (!req.ok) {
+  if (resp.code != 0) {
+    // 登出失败
+    console.error('Logout failed: ', resp.msg);
     return [false, resp];
   }
+  // 登出成功
   return [true, resp];
 }
 
 // IsLogin
 export async function IsLogin(): Promise<[boolean, IsLoginResponse]> {
   const url = `${API_URL}/islogin`;
-  const req = await fetch(url, {
-    method: 'GET',
-    credentials: 'include',
-    cache: 'no-store'
-  });
+  const req = await fetch(url);
   const resp: IsLoginResponse = await req.json();
-  if (!req.ok) {
+  if (resp.code != 0) {
+    // 是否登录失败
+    console.error('IsLogin failed: ', resp.msg);
     return [false, resp];
   }
+  // 是否登录成功
   return [true, resp];
 }
 

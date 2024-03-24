@@ -1,7 +1,7 @@
 'use client';
 
-import { Logout } from '@/api/auth';
-import { LogoutResponse } from '@/api/model/auth';
+import { Logout } from '@/func/auth';
+import { LogoutResponse } from '@/action/model/auth';
 import MyToastContainer from '@/components/frame/MyToastContainer';
 import { useBearStore } from '@/lib/store';
 import { useUserStore } from '@/lib/user';

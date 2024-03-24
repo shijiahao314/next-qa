@@ -7,8 +7,8 @@ import ChatBody from '@/components/chat/ChatBody';
 import HistoryChat from '@/components/chat/HistoryChat';
 import ChatBodyLoading from './loading';
 import MyToastContainer from '@/components/frame/MyToastContainer';
-import { IsLogin } from '@/api/auth';
-import { IsLoginResponse } from '@/api/model/auth';
+import { IsLogin } from '@/func/auth';
+import { IsLoginResponse } from '@/action/model/auth';
 import { useBearStore, useChatStore } from '@/lib/store';
 import { toast } from 'react-toastify';
 import {
@@ -18,8 +18,8 @@ import {
   GetChatCardsResponse,
   WSChatReceiveMessage,
   WSChatSendMessage
-} from '@/api/model/chat';
-import { GetChatCards } from '@/api/chat';
+} from '@/action/model/chat';
+import { GetChatCards } from '@/action/chat';
 
 export default function Page() {
   const setIsLogin = useBearStore((state) => state.setIgLogin);

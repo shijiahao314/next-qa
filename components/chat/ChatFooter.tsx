@@ -1,14 +1,14 @@
 'use client';
 
-import { AddChatCard } from '@/api/chat';
+import { AddChatCard } from '@/action/chat';
 import {
   AddChatCardResponse,
   ChatCard,
   ChatCardDTO,
   ChatRole,
   WSChatSendMessage
-} from '@/api/model/chat';
-import { GetOpenAIStream } from '@/api/openai';
+} from '@/action/model/chat';
+import { GetOpenAIStream } from '@/func/openai';
 import { useBearStore, useChatStore } from '@/lib/store';
 import { Message, OpenAIStream, StreamingTextResponse } from 'ai';
 import { useRef } from 'react';

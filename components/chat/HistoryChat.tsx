@@ -2,14 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { useBearStore, useChatStore } from '@/lib/store';
-import { AddChatInfo, DeleteChatInfo, GetChatInfos } from '@/api/chat';
+import { AddChatInfo, DeleteChatInfo, GetChatInfos } from '@/action/chat';
 import {
   AddChatInfoResponse,
   ChatInfo,
   DeleteChatInfoResponse,
   FormattedTime,
   GetChatInfosResponse
-} from '@/api/model/chat';
+} from '@/action/model/chat';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function HistoryChat() {

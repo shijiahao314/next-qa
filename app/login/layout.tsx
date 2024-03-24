@@ -3,12 +3,12 @@
 import { debounce } from 'lodash';
 
 import { useRouter } from 'next/navigation';
-import { Login, SignUp } from '@/api/auth';
+import { Login, SignUp } from '@/action/auth';
 import { useEffect, useState } from 'react';
 import { Id, ToastContainer, toast } from 'react-toastify';
 import MyToastContainer from '@/components/frame/MyToastContainer';
 import { useBearStore } from '@/lib/store';
-import { LoginRequest, LoginResponse, SignUpRequest, SignUpResponse } from '@/api/model/auth';
+import { LoginRequest, LoginResponse, SignUpRequest, SignUpResponse } from '@/action/model/auth';
 import { getProviders, signIn, signOut, useSession } from 'next-auth/react';
 
 function sleep(ms: number) {
@@ -43,6 +43,9 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
     };
     Login(loginRequest).then(([success, resp]: [boolean, LoginResponse]) => {
       if (success) {
+        console.log('====================================');
+        console.log('push');
+        console.log('====================================');
         toast.update(toastId, {
           render: '登录成功，跳转中...',
           type: toast.TYPE.SUCCESS,
@@ -52,14 +55,13 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
             router.push('/chat');
           }
         });
-        // await sleep(2000);
-      } else {
-        toast.update(toastId, {
-          render: '登录失败: ' + resp.msg,
-          type: toast.TYPE.ERROR,
-          autoClose: 2000
-        });
+        return;
       }
+      toast.update(toastId, {
+        render: '登录失败: ' + resp.msg,
+        type: toast.TYPE.ERROR,
+        autoClose: 2000
+      });
     });
   };
   // sign up
@@ -72,13 +74,7 @@ export default function LoginLayout({ children }: { children: React.ReactNode })
       username: formData.username,
       password: formData.password
     };
-    console.log('====================================');
-    console.log(toastId);
-    console.log('====================================');
     SignUp(signUpRequest).then(([success, resp]: [boolean, SignUpResponse]) => {
-      console.log('====================================');
-      console.log(success);
-      console.log('====================================');
       if (success) {
         toast.update(toastId, {
           render: '注册成功，已登录，跳转中...',

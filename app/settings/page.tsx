@@ -1,7 +1,7 @@
 'use client';
 
-import { GetSettingsRequest, GetSettingsResponse } from '@/api/model/settings';
-import { GetSettings } from '@/api/settings';
+import { GetSettingsRequest, GetSettingsResponse } from '@/action/model/settings';
+import { GetSettings } from '@/action/settings';
 import { useBearStore } from '@/lib/store';
 
 export default function Page() {

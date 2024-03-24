@@ -1,7 +1,7 @@
 'use client';
 
-import { User } from '@/api/model/user';
-import { AddUser } from '@/api/user';
+import { User } from '@/action/model/user';
+import { AddUser } from '@/action/user';
 import { useState } from 'react';
 
 interface ModalProps {
