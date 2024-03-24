@@ -1,10 +1,9 @@
 'use client';
 
-import { Logout } from '@/func/auth';
+import { Logout } from '@/action/auth';
 import { LogoutResponse } from '@/action/model/auth';
 import MyToastContainer from '@/components/frame/MyToastContainer';
 import { useBearStore } from '@/lib/store';
-import { useUserStore } from '@/lib/user';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-toastify';

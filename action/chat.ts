@@ -29,19 +29,29 @@ const API_URL = `/api/chat`;
 export async function AddChatInfo(
   addChatInfoRequest: AddChatInfoRequest
 ): Promise<[boolean, AddChatInfoResponse]> {
+  console.log('====================================');
+  console.log(111);
+  console.log('====================================');
   const url = `${API_URL}/chatInfo`;
-  const resp = await fetch(url, {
+  const req = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(addChatInfoRequest)
+    body: JSON.stringify(addChatInfoRequest),
+    credentials: 'include'
   });
-  const data: AddChatInfoResponse = await resp.json();
-  if (!resp.ok) {
-    return [false, data];
+  const resp: AddChatInfoResponse = await req.json();
+  console.log('====================================');
+  console.log(resp);
+  console.log('====================================');
+  if (resp.code != 0) {
+    // 失败
+    console.error('AddChatInfo failed: ', resp.msg);
+    return [false, resp];
   }
-  return [true, data];
+  // 成功
+  return [true, resp];
 }
 
 // DeleteChatInfo

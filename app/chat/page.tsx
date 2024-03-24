@@ -1,52 +1,20 @@
 'use client';
 
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import ChatHeader from '@/components/chat/ChatHeader';
 import ChatFooter from '@/components/chat/ChatFooter';
 import ChatBody from '@/components/chat/ChatBody';
 import HistoryChat from '@/components/chat/HistoryChat';
 import ChatBodyLoading from './loading';
 import MyToastContainer from '@/components/frame/MyToastContainer';
-import { IsLogin } from '@/func/auth';
-import { IsLoginResponse } from '@/action/model/auth';
-import { useBearStore, useChatStore } from '@/lib/store';
+import { useChatStore } from '@/lib/store';
 import { toast } from 'react-toastify';
-import {
-  ChatCard,
-  ChatCardDTO,
-  DeleteChatCardResponse,
-  GetChatCardsResponse,
-  WSChatReceiveMessage,
-  WSChatSendMessage
-} from '@/action/model/chat';
+import { GetChatCardsResponse } from '@/action/model/chat';
 import { GetChatCards } from '@/action/chat';
 
 export default function Page() {
-  const setIsLogin = useBearStore((state) => state.setIgLogin);
-
   const selectedChatInfoID: string = useChatStore((state) => state.selectedChatInfoID);
   const setChatCards = useChatStore((state) => state.setChatCards);
-
-  // check login
-  useEffect(() => {
-    console.log('====================================');
-    console.log('check isLogin');
-    console.log('====================================');
-    IsLogin({}).then(([success, resp]: [boolean, IsLoginResponse]) => {
-      if (!success) {
-        setIsLogin(false);
-        toast.error('未登录', {
-          position: 'top-center',
-          autoClose: 3000,
-          pauseOnHover: false,
-          closeOnClick: true,
-          theme: 'colored'
-        });
-      } else {
-        setIsLogin(true);
-      }
-    });
-  }, []);
 
   // load chat cards
   useEffect(() => {
@@ -63,15 +31,20 @@ export default function Page() {
 
   return (
     <>
-      <div className="flex w-full flex-col border-my-border dark:border-my-darkborder md:border-r-2">
-        <MyToastContainer></MyToastContainer>
-        <ChatHeader></ChatHeader>
-        <Suspense fallback={<ChatBodyLoading></ChatBodyLoading>}>
-          <ChatBody></ChatBody>
-        </Suspense>
-        <ChatFooter></ChatFooter>
+      <head>
+        <title>NextQA - 开放对话</title>
+      </head>
+      <div className="absolute flex h-full w-full flex-row overflow-hidden md:relative">
+        <div className="flex w-full flex-col border-my-border dark:border-my-darkborder md:border-r-2">
+          <MyToastContainer></MyToastContainer>
+          <ChatHeader></ChatHeader>
+          <Suspense fallback={<ChatBodyLoading></ChatBodyLoading>}>
+            <ChatBody></ChatBody>
+          </Suspense>
+          <ChatFooter></ChatFooter>
+        </div>
+        <HistoryChat></HistoryChat>
       </div>
-      <HistoryChat></HistoryChat>
     </>
   );
 }

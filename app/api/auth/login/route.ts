@@ -12,11 +12,11 @@ export async function POST(request: Request) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
     // credentials: 'include',
     // cache: 'no-store'
   });
-  
+
   // const resp: LoginResponse = await res.json();
   // // console.log('====================================');
   // // console.log('response=', resp);
@@ -26,5 +26,5 @@ export async function POST(request: Request) {
   // console.log(cookies);
   // console.log('====================================');
   // const response: NextResponse = NextResponse.json(resp);
-  return res
+  return res;
 }

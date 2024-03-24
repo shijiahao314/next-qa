@@ -1,5 +1,3 @@
-import ChatContent from '@/components/chat/ChatCard';
-
 export default function ChatBodyLoading() {
   return (
     <div className="flex flex-shrink flex-grow flex-col overflow-x-hidden overflow-y-hidden px-5 py-4">

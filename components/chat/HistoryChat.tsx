@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useBearStore, useChatStore } from '@/lib/store';
 import { AddChatInfo, DeleteChatInfo, GetChatInfos } from '@/action/chat';
 import {
