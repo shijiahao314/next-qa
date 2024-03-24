@@ -5,10 +5,9 @@ const loginPath = '/login';
 const userInfoPath = '/userInfo';
 
 export async function middleware(request: NextRequest) {
-  console.log('====================================');
-  console.log(request.url);
-  console.log(request.cookies.getAll());
-  console.log('====================================');
+  // console.log('====================================');
+  // console.log(request.url);
+  // console.log('====================================');
 
   // 获取 session
   const session = request.cookies.get('session')?.value;
@@ -61,6 +60,6 @@ export const config = {
      * - favicon.ico (favicon file)
      */
     // exclude: /backend
-    '/((?!api|_next/static|_next/image|favicon.ico|backend).*)'
+    '/((?!api|_next/static|_next/image|favicon.ico|backend|theme.js).*)'
   ]
 };

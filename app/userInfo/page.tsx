@@ -5,7 +5,7 @@ import { LogoutResponse } from '@/action/model/auth';
 import MyToastContainer from '@/components/frame/MyToastContainer';
 import { useBearStore } from '@/lib/store';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 export default function UserInfoPage() {
@@ -13,6 +13,8 @@ export default function UserInfoPage() {
   const username = 'shijiahao314';
   // const email = useUserStore((state) => state.email);
   const email = 'shijiahao314@foxmail.com';
+
+  useEffect(() => {}, []);
 
   const setNavOpen = useBearStore((state) => state.setNavOpen);
   const setIsLogin = useBearStore((state) => state.setIgLogin);
@@ -49,6 +51,9 @@ export default function UserInfoPage() {
 
   return (
     <>
+      <head>
+        <title>NextQA - 用户信息</title>
+      </head>
       <MyToastContainer></MyToastContainer>
       <div className="flex h-full w-full flex-col">
         <div className="relative flex flex-row justify-between border-b-[1px] border-my-border px-5 py-4 shadow dark:border-my-darkborder md:hidden">
