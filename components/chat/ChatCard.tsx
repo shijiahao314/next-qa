@@ -10,7 +10,7 @@ export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
   const content = chatCard.content;
   const deleteChatCard = useChatStore((state) => state.deleteChatCard);
   const handleDeleteChatCard = () => {
-    DeleteChatCard(chatCard.id, {}).then(([success, resp]: [boolean, DeleteChatCardResponse]) => {
+    DeleteChatCard(chatCard.id).then(([success, resp]: [boolean, DeleteChatCardResponse]) => {
       if (success) {
         deleteChatCard(chatCard.id);
       }

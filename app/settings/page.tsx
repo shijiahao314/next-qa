@@ -67,8 +67,7 @@ export default function Page() {
     console.log('====================================');
     console.log('sync settings');
     console.log('====================================');
-    const getSettingsRequest: GetSettingsRequest = {};
-    GetSettings(getSettingsRequest).then(([success, resp]: [boolean, GetSettingsResponse]) => {
+    GetSettings().then(([success, resp]: [boolean, GetSettingsResponse]) => {
       if (success) {
         console.log(resp);
       } else {

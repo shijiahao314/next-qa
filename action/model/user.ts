@@ -6,11 +6,17 @@ export interface UserInfo {
   role: string;
 }
 
-export interface User {
+// AddUser
+export interface AddUserRequest {
   username: string;
   password: string;
   role: string;
 }
+export interface AddUserResponse extends BaseResponse {}
+
+// DeleteUser
+export interface DeleteUserRequest {}
+export interface DeleteUserResponse extends BaseResponse {}
 
 // GetUser
 export interface GetUserRequest {
@@ -25,5 +31,3 @@ export interface GetUserResponse extends BaseResponse {
     user_infos: UserInfo[];
   };
 }
-
-export interface PostUserResponse extends BaseResponse {}

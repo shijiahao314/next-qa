@@ -23,7 +23,7 @@ export default function HistoryChat() {
   const setSelectedChatInfoID = useChatStore((state) => state.setSelectedChatInfoID);
 
   useEffect(() => {
-    GetChatInfos({}).then(([success, resp]: [boolean, GetChatInfosResponse]) => {
+    GetChatInfos().then(([success, resp]: [boolean, GetChatInfosResponse]) => {
       if (success) {
         const data = resp.data.chat_infos;
         if (data.length > 0) {
@@ -102,7 +102,7 @@ export default function HistoryChat() {
                         className="hidden h-4 w-4 cursor-pointer text-sm text-white group-hover:block"
                         onClick={(e) => {
                           e.stopPropagation();
-                          DeleteChatInfo(chatInfo.id, {}).then(
+                          DeleteChatInfo(chatInfo.id).then(
                             ([success, resp]: [boolean, DeleteChatInfoResponse]) => {
                               if (success) {
                                 setChatInfos(chatInfos.filter((item) => item.id !== chatInfo.id));

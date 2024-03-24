@@ -1,55 +1,43 @@
 'use client';
 
-import { GetUserRequest, GetUserResponse, User } from './model/user';
+import { GetUserResponse, AddUserRequest, AddUserResponse, DeleteUserResponse } from './model/user';
 
-const API_URL = '/api/admin/user';
+const API_URL = '/backend/admin/user';
 
-export async function GetUser(getUserRequest: GetUserRequest): Promise<[boolean, GetUserResponse]> {
-  const queryParams = `?page=${getUserRequest.page}&size=${getUserRequest.size}`;
-  const url = `${API_URL}${queryParams}`;
-  const res = await fetch(url, {
-    method: 'GET',
+export async function AddUser(addUserRequest: AddUserRequest): Promise<[boolean, AddUserResponse]> {
+  const url = API_URL;
+  const resp = await fetch(url, {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    next: { revalidate: 60 }
+    body: JSON.stringify(addUserRequest)
   });
-  const data: GetUserResponse = await res.json();
-  if (!res.ok) {
+  const data: AddUserResponse = await resp.json();
+  if (!resp.ok) {
     return [false, data];
   }
   return [true, data];
 }
 
-export async function AddUser(user: User): Promise<boolean> {
-  const res = await fetch(API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(user)
-  });
-
-  if (!res.ok) {
-    return false;
-  }
-
-  return true;
-}
-
-export async function DeleteUser(userid: string): Promise<boolean> {
+export async function DeleteUser(userid: string): Promise<[boolean, DeleteUserResponse]> {
   const url = `${API_URL}/${userid}`;
-  const res = await fetch(url, {
+  const resp = await fetch(url, {
     method: 'DELETE'
   });
-
-  if (!res.ok) {
-    return false;
+  const data: DeleteUserResponse = await resp.json();
+  if (!resp.ok) {
+    return [false, data];
   }
-
-  return true;
+  return [true, data];
 }
 
-export async function GetCurrentUser(): Promise<string> {
-  return '1';
+export async function GetUser(page: number, size: number): Promise<[boolean, GetUserResponse]> {
+  const url = `${API_URL}?page=${page}&size=${size}`;
+  const resp = await fetch(url);
+  const data: GetUserResponse = await resp.json();
+  if (!resp.ok) {
+    return [false, data];
+  }
+  return [true, data];
 }

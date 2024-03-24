@@ -1,6 +1,6 @@
 'use client';
 
-import { User } from '@/action/model/user';
+import { AddUserRequest } from '@/action/model/user';
 import { AddUser } from '@/action/user';
 import { useState } from 'react';
 
@@ -24,7 +24,7 @@ export default function NewUser({ isOpen, onClose }: ModalProps) {
     e.preventDefault();
     try {
       // 向服务器发送 POST 请求，将 formData 发送到服务器
-      const user: User = {
+      const user: AddUserRequest = {
         username: formData.username,
         password: formData.password,
         role: formData.role

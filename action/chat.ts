@@ -4,67 +4,53 @@ import {
   // ChatInfo
   AddChatInfoRequest,
   AddChatInfoResponse,
-  DeleteChatInfoRequest,
   DeleteChatInfoResponse,
   UpdateChatInfoRequest,
   UpdateChatInfoResponse,
-  GetChatInfosRequest,
   GetChatInfosResponse,
   // ChatCard
   AddChatCardRequset,
   AddChatCardResponse,
-  DeleteChatCardRequest,
   DeleteChatCardResponse,
   UpdateChatCardRequest,
   UpdateChatCardResponse,
-  GetChatCardRequest,
   GetChatCardsResponse
 } from './model/chat';
 
-// const API_URL = `${BACKEND_URL}/api/chat`;
-const API_URL = `/api/chat`;
+const API_URL = '/backend/chat';
 
 // ChatInfo
 // AddChatInfo
 export async function AddChatInfo(
   addChatInfoRequest: AddChatInfoRequest
 ): Promise<[boolean, AddChatInfoResponse]> {
-  console.log('====================================');
-  console.log(111);
-  console.log('====================================');
   const url = `${API_URL}/chatInfo`;
-  const req = await fetch(url, {
+  const resp = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(addChatInfoRequest),
-    credentials: 'include'
+    body: JSON.stringify(addChatInfoRequest)
   });
-  const resp: AddChatInfoResponse = await req.json();
-  console.log('====================================');
-  console.log(resp);
-  console.log('====================================');
-  if (resp.code != 0) {
-    // 失败
-    console.error('AddChatInfo failed: ', resp.msg);
-    return [false, resp];
+  const data: AddChatInfoResponse = await resp.json();
+  if (data.code != 0) {
+    console.error('AddChatInfo failed: ', data.msg);
+    return [false, data];
   }
-  // 成功
-  return [true, resp];
+  return [true, data];
 }
 
 // DeleteChatInfo
 export async function DeleteChatInfo(
-  chatInfoId: string,
-  deleteChatInfoRequest: DeleteChatInfoRequest
+  chatInfoId: string
 ): Promise<[boolean, DeleteChatInfoResponse]> {
   const url = `${API_URL}/chatInfo/${chatInfoId}`;
   const resp = await fetch(url, {
     method: 'DELETE'
   });
   const data: DeleteChatInfoResponse = await resp.json();
-  if (!resp.ok) {
+  if (data.code != 0) {
+    console.error('AddChatInfo failed: ', data.msg);
     return [false, data];
   }
   return [true, data];
@@ -84,27 +70,21 @@ export async function UpdateChatInfo(
     body: JSON.stringify(updateChatInfoRequest)
   });
   const data: UpdateChatInfoResponse = await resp.json();
-  if (!resp.ok) {
+  if (data.code != 0) {
+    console.error('UpdateChatInfo failed: ', data.msg);
     return [false, data];
   }
   return [true, data];
 }
 
 // GetChatInfos
-export async function GetChatInfos(
-  getChatInfosRequest: GetChatInfosRequest
-): Promise<[boolean, GetChatInfosResponse]> {
+export async function GetChatInfos(): Promise<[boolean, GetChatInfosResponse]> {
   const url = `${API_URL}/chatInfos`;
   const resp = await fetch(url);
   const data: GetChatInfosResponse = await resp.json();
-  if (!resp.ok) {
+  if (data.code != 0) {
     return [false, data];
   }
-  // convert datetime format
-  // data.data.chat_infos.forEach(chatInfo => {
-  //   chatInfo.ctime = timeFormatter.format(new Date(chatInfo.ctime));
-  //   chatInfo.utime = timeFormatter.format(new Date(chatInfo.utime));
-  // });
   return [true, data];
 }
 
@@ -122,7 +102,8 @@ export async function AddChatCard(
     body: JSON.stringify(addChatCardRequset)
   });
   const data: AddChatCardResponse = await resp.json();
-  if (!resp.ok) {
+  if (data.code != 0) {
+    console.error('AddChatCard failed: ', data.msg);
     return [false, data];
   }
   return [true, data];
@@ -130,19 +111,15 @@ export async function AddChatCard(
 
 // DeleteChatCard
 export async function DeleteChatCard(
-  chatCardId: string,
-  deleteChatCardRequset: DeleteChatCardRequest
+  chatCardId: string
 ): Promise<[boolean, DeleteChatCardResponse]> {
   const url = `${API_URL}/chatCard/${chatCardId}`;
   const resp = await fetch(url, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(deleteChatCardRequset)
+    method: 'DELETE'
   });
   const data: AddChatCardResponse = await resp.json();
-  if (!resp.ok) {
+  if (data.code != 0) {
+    console.error('DeleteChatCard failed: ', data.msg);
     return [false, data];
   }
   return [true, data];
@@ -161,27 +138,18 @@ export async function UpdateChatCard(
     body: JSON.stringify(updateChatCardRequest)
   });
   const data: UpdateChatCardResponse = await resp.json();
-  if (!resp.ok) {
+  if (data.code != 0) {
     return [false, data];
   }
   return [true, data];
 }
 
 // GetChatCards
-export async function GetChatCards(
-  getChatCardRequest: GetChatCardRequest
-): Promise<[boolean, GetChatCardsResponse]> {
-  const pathParams = `/${getChatCardRequest.chat_info_id}`;
-  const url = `${API_URL}/chatCards${pathParams}`;
-  const resp = await fetch(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    cache: 'no-store'
-  });
+export async function GetChatCards(chat_info_id: string): Promise<[boolean, GetChatCardsResponse]> {
+  const url = `${API_URL}/chatCards/${chat_info_id}`;
+  const resp = await fetch(url);
   const data: GetChatCardsResponse = await resp.json();
-  if (!resp.ok) {
+  if (data.code != 0) {
     return [false, data];
   }
   return [true, data];

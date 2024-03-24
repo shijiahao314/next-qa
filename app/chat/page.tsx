@@ -19,9 +19,7 @@ export default function Page() {
   // load chat cards
   useEffect(() => {
     if (selectedChatInfoID != '') {
-      GetChatCards({
-        chat_info_id: selectedChatInfoID
-      }).then(([success, resp]: [boolean, GetChatCardsResponse]) => {
+      GetChatCards(selectedChatInfoID).then(([success, resp]: [boolean, GetChatCardsResponse]) => {
         if (success) {
           setChatCards(resp.data.chat_cards);
         }
