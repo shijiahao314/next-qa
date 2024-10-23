@@ -17,10 +17,9 @@ export default function SideNav() {
     <svg
       className={
         'aria-hidden h-5 w-5 fill-current ' +
-        `${
-          pathname === '/xxx'
-            ? 'text-base-0 transition dark:text-base-8'
-            : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
+        `${pathname === '/xxx'
+          ? 'text-base-0 transition dark:text-base-8'
+          : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
         }`
       }
       xmlns="http://www.w3.org/2000/svg"
@@ -32,16 +31,34 @@ export default function SideNav() {
 
   const items = [
     {
+      pathname: '/kb',
+      title: '知识库管理',
+      svg: (
+        <svg
+          viewBox="0 0 1024 1024"
+          className={
+            'aria-hidden h-5 w-5 fill-current ' +
+            `${pathname === '/kb'
+              ? 'text-my-light transition'
+              : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
+            }`
+          }
+          version="1.1"
+        >
+          <path d="M912.9 129.3H769.2c-24.9 0-45 20.1-45 45v677.8c0 24.9 20.1 45 45 45h143.7c24.9 0 45-20.1 45-45V174.3c0-24.8-20.1-45-45-45z m-27 72v466.9h-89.7V201.3h89.7z m-89.7 623.8v-84.9h89.7v84.9h-89.7zM636.8 129.3H493.1c-24.9 0-45 20.1-45 45v677.8c0 24.9 20.1 45 45 45h143.7c24.9 0 45-20.1 45-45V174.3c0-24.8-20.2-45-45-45z m-27 72v466.9h-89.7V201.3h89.7z m-89.7 623.8v-84.9h89.7v84.9h-89.7zM409.3 162.7l-140-32.5c-3.4-0.8-6.8-1.2-10.2-1.2-20.5 0-39 14.1-43.8 34.8L65.6 808.9c-5.6 24.2 9.5 48.4 33.7 54l140 32.5c3.4 0.8 6.8 1.2 10.2 1.2 20.5 0 39-14.1 43.8-34.8l116-499.9c0.3-1 0.6-2.1 0.9-3.2 0.2-1.1 0.4-2.1 0.6-3.2L443 216.6c5.6-24.1-9.5-48.3-33.7-53.9z m-130 43.7l87.4 20.3-18.7 80.6-87.4-20.3 18.7-80.6z m-50 612.8l-87.4-20.3 102.5-441.7 87.4 20.3-102.5 441.7z" p-id="4276"></path>
+        </svg>
+      )
+    },
+    {
       pathname: '/qa',
       title: '知识库问答',
       svg: (
         <svg
           className={
             'aria-hidden h-5 w-5 fill-current ' +
-            `${
-              pathname === '/qa'
-                ? 'text-base-0 transition dark:text-base-8'
-                : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
+            `${pathname === '/qa'
+              ? 'text-my-light transition'
+              : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
             }`
           }
           viewBox="0 0 1231 1024"
@@ -57,10 +74,9 @@ export default function SideNav() {
         <svg
           className={
             'aria-hidden h-5 w-5 fill-current ' +
-            `${
-              pathname === '/chat'
-                ? 'text-base-0 transition dark:text-base-8'
-                : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
+            `${pathname === '/chat'
+              ? 'text-my-light transition'
+              : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
             }`
           }
           viewBox="0 0 24 24"
@@ -77,10 +93,9 @@ export default function SideNav() {
           viewBox="0 0 1109 1024"
           className={
             'aria-hidden h-5 w-5 fill-current ' +
-            `${
-              pathname === '/users'
-                ? 'text-base-0 transition dark:text-base-8'
-                : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
+            `${pathname === '/users'
+              ? 'text-my-light transition'
+              : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
             }`
           }
         >
@@ -116,9 +131,9 @@ export default function SideNav() {
             console.log('====================================');
             router.push('/welcome');
           }}
-          className="relative my-4 flex h-20 flex-shrink-0 flex-grow-0 cursor-pointer items-center justify-center"
+          className="relative pt-8 pb-4 flex flex-col flex-shrink-0 flex-grow-0 cursor-pointer items-center justify-center border-b-[1px] border-my-border px-2 dark:border-my-darkborder"
         >
-          <svg className="h-9" viewBox="0 0 1024 1024">
+          <svg className="h-12" viewBox="0 0 1024 1024">
             <path
               d="M850.34568 1023.999787a54.186509 54.186509 0 0 1-36.266561-15.573288L669.226208 874.666889a46.079866 46.079866 0 0 0-27.306587-10.879968h-149.332898a36.906559 36.906559 0 0 1-36.906559-29.653247 35.626563 35.626563 0 0 1 34.773232-42.666542h194.132767l138.879595 129.279622V789.333804h127.999627V380.161665h-115.839662a37.119892 37.119892 0 0 1-37.119892-29.653247 35.626563 35.626563 0 0 1 34.986565-42.666543h123.519639a65.27981 65.27981 0 0 1 63.999814 65.493143v422.185435a65.066477 65.066477 0 0 1-63.999814 65.493142H895.99888v111.573008a49.706522 49.706522 0 0 1-27.51992 47.786528 42.666542 42.666542 0 0 1-17.279949 3.626656z"
               fill="#0077F0"
@@ -131,25 +146,35 @@ export default function SideNav() {
               p-id="21297"
             />
           </svg>
+          <div className="text-2xl font-semibold italic">NextQA</div>
         </div>
-        <UserStatus></UserStatus>
-        <div className="flex flex-shrink flex-grow flex-col items-center justify-between overflow-y-auto overflow-x-hidden border-b-[1px] border-my-border px-2 dark:border-my-darkborder">
+        {/* <UserStatus></UserStatus> */}
+        <div className="flex flex-shrink flex-grow flex-col items-center justify-center overflow-y-auto overflow-x-hidden border-b-[1px] border-my-border px-2 dark:border-my-darkborder">
           <ul className="space-y-2 py-2 font-medium" role="menu">
             {items.map((item) => (
               <li className="h-10" key={item.pathname}>
                 <a
                   className={
                     'flex items-center px-3 py-2 ' +
-                    `${
-                      pathname === item.pathname
-                        ? 'pointer-events-none cursor-default rounded-lg bg-my-bgHover text-base-0 dark:bg-my-darkbgHover dark:text-base-8'
-                        : 'group rounded-lg hover:bg-my-bgHover dark:hover:bg-my-darkbgHover'
+                    `${pathname === item.pathname
+                      ? 'pointer-events-none cursor-default rounded-lg bg-my-secondary dark:bg-my-darkSecondary text-white'
+                      : 'group rounded-lg hover:bg-my-bgHover dark:hover:bg-my-darkbgHover'
                     }`
                   }
                   href={item.pathname}
                 >
                   {item.svg}
-                  <span className="ms-3 whitespace-nowrap">{item.title}</span>
+                  <span
+                    className={
+                      'ms-3 whitespace-nowrap ' +
+                      `${pathname === item.pathname
+                        ? ''
+                        : ''
+                      }`
+                    }
+                  >
+                    {item.title}
+                  </span>
                 </a>
               </li>
             ))}

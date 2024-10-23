@@ -25,7 +25,7 @@ export default function Page() {
         value: (
           <select
             id="countries"
-            className="h-10 rounded-lg border-[1px] border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-10 rounded-lg border-[1px] border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
           >
             <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
             <option value="gpt-3.5-turbo-0301">gpt-3.5-turbo-0301</option>

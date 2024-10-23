@@ -32,8 +32,8 @@ export default function Page() {
       <head>
         <title>NextQA - 开放对话</title>
       </head>
-      <div className="absolute flex h-full w-full flex-row overflow-hidden md:relative">
-        <div className="flex w-full flex-col border-my-border dark:border-my-darkborder md:border-r-2">
+      <div className="absolute w-full h-full flex flex-row overflow-hidden md:relative">
+        <div className="w-full flex flex-col border-my-border dark:border-my-darkborder md:border-r-2">
           <MyToastContainer></MyToastContainer>
           <ChatHeader></ChatHeader>
           <Suspense fallback={<ChatBodyLoading></ChatBodyLoading>}>
