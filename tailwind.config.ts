@@ -85,7 +85,7 @@ const config: Config = {
           darkSecondary: 'rgba(0, 64, 180, 243)', // light-blue-5 (dark)
           darkSecondaryHover: 'rgba(0, 110, 200, 246)', // light-blue-6 (dark)
           darkSecondaryActive: 'rgba(0, 157, 220, 249)', // light-blue-7 (dark)
-          
+
           // tertiary
           tertiary: 'rgba(107, 112, 115, 1)', // grey-5
           tertiaryHover: 'rgba(85, 91, 97, 1)', // grey-6

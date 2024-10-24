@@ -169,7 +169,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                   name="username"
                   value={formData.username}
                   onChange={handleChange}
-                // required
+                  // required
                 ></input>
                 <input
                   className="h-12 w-full rounded-lg border-2 border-my-border bg-my-bg px-2 dark:border-my-darkborder dark:bg-my-darkbg2"
@@ -178,7 +178,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                   type="password"
                   value={formData.password}
                   onChange={handleChange}
-                // required
+                  // required
                 ></input>
                 <div className="flex flex-row space-x-2">
                   <button

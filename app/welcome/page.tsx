@@ -7,11 +7,14 @@ import MarkdownCard from '@/components/markdown';
 // import { useBearStore } from '@/lib/store';
 
 export default function WelcomePage() {
-  const markdownContent = readFileSync('app/welcome/welcome.md', 'utf-8');
+  const markdownContent = readFileSync('./welcome.md', 'utf-8');
   // const setNavOpen = useBearStore((state) => state.setNavOpen);
 
   return (
     <>
+      <head>
+        <title>NextQA - 欢迎！</title>
+      </head>
       <div className="flex h-full w-full flex-col">
         {/* <div className="relative flex flex-row justify-between border-b-[1px] border-my-border px-5 py-4 shadow dark:border-my-darkborder md:hidden">
           <button

@@ -17,9 +17,10 @@ export default function SideNav() {
     <svg
       className={
         'aria-hidden h-5 w-5 fill-current ' +
-        `${pathname === '/xxx'
-          ? 'text-base-0 transition dark:text-base-8'
-          : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
+        `${
+          pathname === '/xxx'
+            ? 'text-base-0 transition dark:text-base-8'
+            : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
         }`
       }
       xmlns="http://www.w3.org/2000/svg"
@@ -38,14 +39,18 @@ export default function SideNav() {
           viewBox="0 0 1024 1024"
           className={
             'aria-hidden h-5 w-5 fill-current ' +
-            `${pathname === '/kb'
-              ? 'text-my-light transition'
-              : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
+            `${
+              pathname === '/kb'
+                ? 'text-my-light transition'
+                : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
             }`
           }
           version="1.1"
         >
-          <path d="M912.9 129.3H769.2c-24.9 0-45 20.1-45 45v677.8c0 24.9 20.1 45 45 45h143.7c24.9 0 45-20.1 45-45V174.3c0-24.8-20.1-45-45-45z m-27 72v466.9h-89.7V201.3h89.7z m-89.7 623.8v-84.9h89.7v84.9h-89.7zM636.8 129.3H493.1c-24.9 0-45 20.1-45 45v677.8c0 24.9 20.1 45 45 45h143.7c24.9 0 45-20.1 45-45V174.3c0-24.8-20.2-45-45-45z m-27 72v466.9h-89.7V201.3h89.7z m-89.7 623.8v-84.9h89.7v84.9h-89.7zM409.3 162.7l-140-32.5c-3.4-0.8-6.8-1.2-10.2-1.2-20.5 0-39 14.1-43.8 34.8L65.6 808.9c-5.6 24.2 9.5 48.4 33.7 54l140 32.5c3.4 0.8 6.8 1.2 10.2 1.2 20.5 0 39-14.1 43.8-34.8l116-499.9c0.3-1 0.6-2.1 0.9-3.2 0.2-1.1 0.4-2.1 0.6-3.2L443 216.6c5.6-24.1-9.5-48.3-33.7-53.9z m-130 43.7l87.4 20.3-18.7 80.6-87.4-20.3 18.7-80.6z m-50 612.8l-87.4-20.3 102.5-441.7 87.4 20.3-102.5 441.7z" p-id="4276"></path>
+          <path
+            d="M912.9 129.3H769.2c-24.9 0-45 20.1-45 45v677.8c0 24.9 20.1 45 45 45h143.7c24.9 0 45-20.1 45-45V174.3c0-24.8-20.1-45-45-45z m-27 72v466.9h-89.7V201.3h89.7z m-89.7 623.8v-84.9h89.7v84.9h-89.7zM636.8 129.3H493.1c-24.9 0-45 20.1-45 45v677.8c0 24.9 20.1 45 45 45h143.7c24.9 0 45-20.1 45-45V174.3c0-24.8-20.2-45-45-45z m-27 72v466.9h-89.7V201.3h89.7z m-89.7 623.8v-84.9h89.7v84.9h-89.7zM409.3 162.7l-140-32.5c-3.4-0.8-6.8-1.2-10.2-1.2-20.5 0-39 14.1-43.8 34.8L65.6 808.9c-5.6 24.2 9.5 48.4 33.7 54l140 32.5c3.4 0.8 6.8 1.2 10.2 1.2 20.5 0 39-14.1 43.8-34.8l116-499.9c0.3-1 0.6-2.1 0.9-3.2 0.2-1.1 0.4-2.1 0.6-3.2L443 216.6c5.6-24.1-9.5-48.3-33.7-53.9z m-130 43.7l87.4 20.3-18.7 80.6-87.4-20.3 18.7-80.6z m-50 612.8l-87.4-20.3 102.5-441.7 87.4 20.3-102.5 441.7z"
+            p-id="4276"
+          ></path>
         </svg>
       )
     },
@@ -56,9 +61,10 @@ export default function SideNav() {
         <svg
           className={
             'aria-hidden h-5 w-5 fill-current ' +
-            `${pathname === '/qa'
-              ? 'text-my-light transition'
-              : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
+            `${
+              pathname === '/qa'
+                ? 'text-my-light transition'
+                : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
             }`
           }
           viewBox="0 0 1231 1024"
@@ -74,9 +80,10 @@ export default function SideNav() {
         <svg
           className={
             'aria-hidden h-5 w-5 fill-current ' +
-            `${pathname === '/chat'
-              ? 'text-my-light transition'
-              : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
+            `${
+              pathname === '/chat'
+                ? 'text-my-light transition'
+                : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
             }`
           }
           viewBox="0 0 24 24"
@@ -93,9 +100,10 @@ export default function SideNav() {
           viewBox="0 0 1109 1024"
           className={
             'aria-hidden h-5 w-5 fill-current ' +
-            `${pathname === '/users'
-              ? 'text-my-light transition'
-              : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
+            `${
+              pathname === '/users'
+                ? 'text-my-light transition'
+                : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
             }`
           }
         >
@@ -131,7 +139,7 @@ export default function SideNav() {
             console.log('====================================');
             router.push('/welcome');
           }}
-          className="relative pt-8 pb-4 flex flex-col flex-shrink-0 flex-grow-0 cursor-pointer items-center justify-center border-b-[1px] border-my-border px-2 dark:border-my-darkborder"
+          className="relative flex flex-shrink-0 flex-grow-0 cursor-pointer flex-col items-center justify-center border-b-[1px] border-my-border px-2 pb-4 pt-8 dark:border-my-darkborder"
         >
           <svg className="h-12" viewBox="0 0 1024 1024">
             <path
@@ -156,9 +164,10 @@ export default function SideNav() {
                 <a
                   className={
                     'flex items-center px-3 py-2 ' +
-                    `${pathname === item.pathname
-                      ? 'pointer-events-none cursor-default rounded-lg bg-my-secondary dark:bg-my-darkSecondary text-white'
-                      : 'group rounded-lg hover:bg-my-bgHover dark:hover:bg-my-darkbgHover'
+                    `${
+                      pathname === item.pathname
+                        ? 'pointer-events-none cursor-default rounded-lg bg-my-secondary text-white dark:bg-my-darkSecondary'
+                        : 'group rounded-lg hover:bg-my-bgHover dark:hover:bg-my-darkbgHover'
                     }`
                   }
                   href={item.pathname}
@@ -166,11 +175,7 @@ export default function SideNav() {
                   {item.svg}
                   <span
                     className={
-                      'ms-3 whitespace-nowrap ' +
-                      `${pathname === item.pathname
-                        ? ''
-                        : ''
-                      }`
+                      'ms-3 whitespace-nowrap ' + `${pathname === item.pathname ? '' : ''}`
                     }
                   >
                     {item.title}
