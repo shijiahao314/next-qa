@@ -1,11 +1,14 @@
+'use client';
+
+import Head from 'next/head';
 import UserTable from '../../components/user/UserTable';
 
-export default async function UsersPage() {
+export default function UsersPage() {
   return (
     <>
-      <head>
+      <Head>
         <title>NextQA - 用户管理</title>
-      </head>
+      </Head>
       <div className="flex h-full w-full flex-col px-10 py-10">
         <UserTable></UserTable>
       </div>

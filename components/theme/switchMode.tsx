@@ -1,38 +1,23 @@
 'use client';
 
+import { useTheme } from 'next-themes';
+
 export default function SwitchModeButton() {
-  const switchOnClick = () => {
-    // if set via local storage previously
-    if (localStorage.getItem('color-theme')) {
-      if (localStorage.getItem('color-theme') === 'light') {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('color-theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('color-theme', 'light');
-      }
-      // if NOT set via local storage previously
-    } else {
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('color-theme', 'light');
-      } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('color-theme', 'dark');
-      }
-    }
-  };
+  const { resolvedTheme, setTheme } = useTheme();
+
   return (
     <>
       <button
         id="theme-toggle"
         type="button"
         className="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-        onClick={switchOnClick}
+        onClick={() => {
+          setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
+        }}
       >
         <svg
           id="theme-toggle-dark-icon"
-          className="block h-6 w-6 dark:hidden"
+          className="block h-6 w-6  dark:hidden"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"

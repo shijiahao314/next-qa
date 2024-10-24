@@ -1,15 +1,13 @@
 'use client';
 
-import { debounce } from 'lodash';
-
-import { useRouter } from 'next/navigation';
 import { Login, SignUp } from '@/action/auth';
-import { useEffect, useState } from 'react';
-import { Id, ToastContainer, toast } from 'react-toastify';
+import { LoginRequest, LoginResponse, SignUpRequest, SignUpResponse } from '@/action/model/auth';
 import MyToastContainer from '@/components/frame/MyToastContainer';
 import { useBearStore } from '@/lib/store';
-import { LoginRequest, LoginResponse, SignUpRequest, SignUpResponse } from '@/action/model/auth';
-import { getProviders, signIn, signOut, useSession } from 'next-auth/react';
+import { debounce } from 'lodash';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { Id, toast } from 'react-toastify';
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

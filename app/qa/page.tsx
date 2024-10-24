@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import Head from 'next/head';
+import { useEffect, useRef, useState } from 'react';
 
 class GetKBRsp {
   code!: number;
@@ -20,7 +21,7 @@ class QueryRsp {
   text!: string;
 }
 
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'http://10.112.20.92:8080/api';
 
 export default function Page() {
   const [kbs, setKBs] = useState<string[]>([]); // KB 列表
@@ -164,9 +165,9 @@ export default function Page() {
 
   return (
     <>
-      <head>
-        <title>QA - 知识库问答</title>
-      </head>
+      <Head>
+        <title>知识库问答</title>
+      </Head>
       <div className="absolute flex h-full w-full flex-col overflow-hidden p-10 md:relative">
         <label className="text-4xl">知识库问答</label>
         <div className="m-4 flex flex-grow flex-col">

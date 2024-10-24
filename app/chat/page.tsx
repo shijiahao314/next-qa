@@ -1,16 +1,15 @@
 'use client';
 
-import React, { Suspense, useEffect } from 'react';
-import ChatHeader from '@/components/chat/ChatHeader';
-import ChatFooter from '@/components/chat/ChatFooter';
+import { GetChatCards } from '@/action/chat';
+import { GetChatCardsResponse } from '@/action/model/chat';
 import ChatBody from '@/components/chat/ChatBody';
+import ChatFooter from '@/components/chat/ChatFooter';
+import ChatHeader from '@/components/chat/ChatHeader';
 import HistoryChat from '@/components/chat/HistoryChat';
-import ChatBodyLoading from './loading';
 import MyToastContainer from '@/components/frame/MyToastContainer';
 import { useChatStore } from '@/lib/store';
-import { toast } from 'react-toastify';
-import { GetChatCardsResponse } from '@/action/model/chat';
-import { GetChatCards } from '@/action/chat';
+import { Suspense, useEffect } from 'react';
+import ChatBodyLoading from './loading';
 
 export default function Page() {
   const selectedChatInfoID: string = useChatStore((state) => state.selectedChatInfoID);
@@ -25,13 +24,10 @@ export default function Page() {
         }
       });
     }
-  }, [selectedChatInfoID]);
+  }, [selectedChatInfoID, setChatCards]);
 
   return (
     <>
-      <head>
-        <title>NextQA - 开放对话</title>
-      </head>
       <div className="absolute flex h-full w-full flex-row overflow-hidden md:relative">
         <div className="flex w-full flex-col border-my-border dark:border-my-darkborder md:border-r-2">
           <MyToastContainer></MyToastContainer>

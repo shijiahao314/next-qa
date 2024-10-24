@@ -1,18 +1,17 @@
 'use client';
 
-import SwitchModeButton from '../theme/switchMode';
-import { usePathname, useRouter } from 'next/navigation';
-import SettingButton from './settingsButton';
-import UserStatus from './UserStatus';
 import { useBearStore } from '@/lib/store';
+import { usePathname, useRouter } from 'next/navigation';
 import { useShallow } from 'zustand/react/shallow';
+import SwitchModeButton from '../theme/switchMode';
+import SettingButton from './settingsButton';
 
 export default function SideNav() {
   const navOpen = useBearStore(useShallow((state) => state.navOpen));
   const setNavOpen = useBearStore(useShallow((state) => state.setNavOpen));
-
   const pathname = usePathname();
   const router = useRouter();
+
   const defaultSvg = (
     <svg
       className={

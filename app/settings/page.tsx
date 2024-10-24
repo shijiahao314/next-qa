@@ -1,8 +1,9 @@
 'use client';
 
-import { GetSettingsRequest, GetSettingsResponse } from '@/action/model/settings';
+import { GetSettingsResponse } from '@/action/model/settings';
 import { GetSettings } from '@/action/settings';
 import { useBearStore } from '@/lib/store';
+import Head from 'next/head';
 
 export default function Page() {
   const settings = [
@@ -80,9 +81,9 @@ export default function Page() {
 
   return (
     <>
-      <head>
+      <Head>
         <title>NextQA - 设置</title>
-      </head>
+      </Head>
       <div className="flex h-full w-full flex-col">
         <div className="relative flex flex-row justify-between border-b-[1px] border-my-border px-5 py-4 shadow dark:border-my-darkborder">
           <button
