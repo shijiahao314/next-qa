@@ -59,7 +59,7 @@ export default function Page() {
   useEffect(() => {
     async function fetchDBs() {
       try {
-        let res = await fetch('http://localhost:8080/api/db', {
+        let res = await fetch(API_URL + '/db', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -107,7 +107,7 @@ export default function Page() {
         ansArea.current.value =
           '等待回复中，本地模型第一次对话预计需要 30 秒，后续对话需要 10 秒左右';
       }
-      let res = await fetch('http://localhost:8080/api/query', {
+      let res = await fetch(API_URL + '/query', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
