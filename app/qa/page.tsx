@@ -164,9 +164,9 @@ export default function Page() {
 
   return (
     <>
-      <title>QA-知识库问答</title>
+      <title>QA-知识图问答</title>
       <div className="absolute flex h-full w-full flex-col overflow-hidden p-8 md:relative md:p-16">
-        <label className="text-4xl">知识库问答</label>
+        <label className="text-4xl">知识图问答</label>
         <div className="m-4 flex flex-grow flex-col">
           <div className="flex flex-col">
             <label className="inline-block whitespace-nowrap text-2xl">Select</label>

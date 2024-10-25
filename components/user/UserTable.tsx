@@ -1,9 +1,9 @@
 'use client';
 
+import { GetUserResponse, UserInfo } from '@/action/model/user';
 import { GetUser } from '@/action/user';
 import { useEffect, useState } from 'react';
 import NewUser from './NewUser';
-import { GetUserResponse, UserInfo } from '@/action/model/user';
 
 export default function UserTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
