@@ -111,7 +111,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
         </div>
       </div> */}
         <div className="m-4 flex w-full flex-col">
-          <div className="flex w-full flex-row justify-start">
+          {/* <div className="flex w-full flex-row justify-start">
             <div
               className="absolute flex h-10 flex-row items-center justify-center rounded-lg border-2 border-my-border px-2 py-1 text-center text-sm hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2 md:hidden"
               role="button"
@@ -139,7 +139,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
               </svg>
               主页
             </div>
-          </div>
+          </div> */}
           <div className="flex flex-shrink flex-grow flex-col items-center justify-center">
             <div className="rounded-lg border-2 border-my-border bg-my-bg px-6 py-5 shadow-md dark:border-my-darkborder dark:bg-my-darkbg1 md:max-w-md">
               <div className="mb-3 flex h-20 flex-row items-center justify-center space-x-3">
