@@ -51,9 +51,7 @@ export default function UserInfoPage() {
 
   return (
     <>
-      <head>
-        <title>NextQA - 用户信息</title>
-      </head>
+      <title>Info-用户信息</title>
       <MyToastContainer></MyToastContainer>
       <div className="flex h-full w-full flex-col">
         <div className="relative flex flex-row justify-between border-b-[1px] border-my-border px-5 py-4 shadow dark:border-my-darkborder md:hidden">

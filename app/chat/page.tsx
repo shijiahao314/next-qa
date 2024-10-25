@@ -28,6 +28,7 @@ export default function Page() {
 
   return (
     <>
+      <title>Chat-开放对话</title>
       <div className="absolute flex h-full w-full flex-row overflow-hidden md:relative">
         <div className="flex w-full flex-col border-my-border dark:border-my-darkborder md:border-r-2">
           <MyToastContainer></MyToastContainer>

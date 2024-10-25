@@ -81,9 +81,7 @@ export default function Page() {
 
   return (
     <>
-      <Head>
-        <title>NextQA - 设置</title>
-      </Head>
+      <title>Settings-设置</title>
       <div className="flex h-full w-full flex-col">
         <div className="relative flex flex-row justify-between border-b-[1px] border-my-border px-5 py-4 shadow dark:border-my-darkborder">
           <button

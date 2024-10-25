@@ -1,6 +1,5 @@
 'use client';
 
-import Head from 'next/head';
 import { useEffect, useRef, useState } from 'react';
 
 class GetKBRsp {
@@ -165,15 +164,13 @@ export default function Page() {
 
   return (
     <>
-      <Head>
-        <title>知识库问答</title>
-      </Head>
-      <div className="absolute flex h-full w-full flex-col overflow-hidden p-10 md:relative">
+      <title>QA-知识库问答</title>
+      <div className="absolute flex h-full w-full flex-col overflow-hidden p-8 md:relative md:p-16">
         <label className="text-4xl">知识库问答</label>
         <div className="m-4 flex flex-grow flex-col">
           <div className="flex flex-col">
             <label className="inline-block whitespace-nowrap text-2xl">Select</label>
-            <div className="m-4 flex flex-col gap-x-6 gap-y-4">
+            <div className="m-4 flex flex-col gap-4">
               <div className="flex flex-row">
                 <label className="flex items-center whitespace-nowrap text-lg">KB 知识库：</label>
                 <div className="flex items-center">
@@ -214,10 +211,10 @@ export default function Page() {
           </div>
 
           <div className="flex flex-grow flex-col">
-            <label className="inline-block whitespace-nowrap text-2xl">Query</label>
-            <div className="m-4 flex flex-grow flex-col gap-3 rounded-lg border-2 border-my-border p-4 dark:border-my-darkborder">
+            <label className="inline-block text-2xl">Query</label>
+            <div className="mx-4 mt-4 flex flex-grow flex-col gap-4 rounded-lg border-2 border-my-border p-4 dark:border-my-darkborder">
               <div className="flex flex-row gap-2">
-                <label className="flex items-center whitespace-nowrap">Method:</label>
+                <label className="flex items-center">Method:</label>
                 <select className={`${selectStyle}`} onChange={handleSelectMethod}>
                   <option key="local">local</option>
                   <option key="global">global</option>
@@ -226,7 +223,7 @@ export default function Page() {
               <div className="flex w-full flex-row gap-3">
                 <textarea
                   ref={queryArea}
-                  className="w-full resize-none overflow-y-visible break-words rounded-lg border-my-border bg-my-bg px-4 py-2 pb-2 pl-4 pr-32 pt-2 text-xl leading-normal shadow outline outline-2 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
+                  className="w-full resize-none overflow-y-visible rounded-lg border-my-border bg-my-bg px-4 py-2 leading-normal shadow outline outline-2 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
                   rows={3}
                   onChange={handleChangeText}
                   placeholder={`${method === 'local' ? 'What are the top themes in this story?' : 'Who is Scrooge, and what are his main relationships?'}`}
@@ -241,7 +238,7 @@ export default function Page() {
               <div className="flex w-full flex-grow gap-2">
                 <textarea
                   ref={ansArea}
-                  className="w-full resize-none rounded-md px-4 py-2 text-xl text-black disabled:bg-blue-200"
+                  className="w-full resize-none rounded-lg px-4 py-2 shadow outline outline-2 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
                   disabled
                 ></textarea>
               </div>
