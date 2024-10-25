@@ -134,30 +134,19 @@ export default function SideNav() {
       )
     }
     // { pathname: '1', title: '1', svg: defaultSvg },
-    // { pathname: '2', title: '2', svg: defaultSvg },
-    // { pathname: '3', title: '3', svg: defaultSvg },
-    // { pathname: '4', title: '4', svg: defaultSvg },
-    // { pathname: '5', title: '5', svg: defaultSvg },
-    // { pathname: '6', title: '6', svg: defaultSvg },
-    // { pathname: '7', title: '7', svg: defaultSvg },
-    // { pathname: '8', title: '8', svg: defaultSvg },
-    // { pathname: '9', title: '9', svg: defaultSvg },
-    // { pathname: '0', title: '0', svg: defaultSvg }
   ];
 
   return (
     <>
+      {/* 左边导航栏 */}
       <div
         className={
-          'absolute z-30 flex h-full transform flex-col justify-between border-my-border bg-my-bg px-4 transition-transform duration-300 dark:border-my-darkborder dark:bg-my-darkbg1 md:relative md:translate-x-0 md:border-r-2 ' +
+          'absolute z-30 flex h-full transform flex-col justify-between border-my-border bg-my-bg px-4 transition-transform duration-300 dark:border-my-darkborder dark:bg-my-darkbg1 sm:relative sm:translate-x-0 sm:border-r-2 ' +
           `${navOpen ? 'translate-x-0' : '-translate-x-full'}`
         }
       >
         <div
           onClick={() => {
-            console.log('====================================');
-            console.log('logo click');
-            console.log('====================================');
             router.push('/welcome');
           }}
           className="relative flex flex-shrink-0 flex-grow-0 cursor-pointer flex-col items-center justify-center border-b-[1px] border-my-border px-2 pb-4 pt-8 dark:border-my-darkborder"
@@ -177,7 +166,6 @@ export default function SideNav() {
           </svg>
           <div className="text-2xl font-semibold italic">NextQA</div>
         </div>
-        {/* <UserStatus></UserStatus> */}
         <div className="flex flex-shrink flex-grow flex-col items-center justify-center overflow-y-auto overflow-x-hidden border-b-[1px] border-my-border px-2 dark:border-my-darkborder">
           <ul className="space-y-2 py-2 font-medium" role="menu">
             {items.map((item) => (
@@ -211,9 +199,47 @@ export default function SideNav() {
           <SettingButton></SettingButton>
         </div>
       </div>
+      {/* 上方导航栏 */}
+      <div className="flex w-full flex-row justify-between border-b-[1px] border-my-border bg-my-bg px-5 py-4 shadow dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden">
+        <button
+          className="h-12 w-12 place-content-center items-center rounded-lg border-[1px] border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg2 sm:hidden"
+          onClick={() => {
+            setNavOpen(true);
+          }}
+        >
+          <svg viewBox="0 0 1024 1024">
+            <path
+              d="M170.666667 213.333333h682.666666v85.333334H170.666667V213.333333z m0 512h682.666666v85.333334H170.666667v-85.333334z m0-256h682.666666v85.333334H170.666667v-85.333334z"
+              fill="#999"
+            />
+          </svg>
+        </button>
+        <div
+          onClick={() => {
+            router.push('/welcome');
+          }}
+          className="relative flex h-12 flex-shrink-0 flex-grow-0 cursor-pointer flex-row items-center justify-center"
+        >
+          <svg className="w-12 p-1" viewBox="0 0 1024 1024">
+            <path
+              d="M850.34568 1023.999787a54.186509 54.186509 0 0 1-36.266561-15.573288L669.226208 874.666889a46.079866 46.079866 0 0 0-27.306587-10.879968h-149.332898a36.906559 36.906559 0 0 1-36.906559-29.653247 35.626563 35.626563 0 0 1 34.773232-42.666542h194.132767l138.879595 129.279622V789.333804h127.999627V380.161665h-115.839662a37.119892 37.119892 0 0 1-37.119892-29.653247 35.626563 35.626563 0 0 1 34.986565-42.666543h123.519639a65.27981 65.27981 0 0 1 63.999814 65.493143v422.185435a65.066477 65.066477 0 0 1-63.999814 65.493142H895.99888v111.573008a49.706522 49.706522 0 0 1-27.51992 47.786528 42.666542 42.666542 0 0 1-17.279949 3.626656z"
+              fill="#0077F0"
+              opacity=".5"
+              p-id="21296"
+            />
+            <path
+              d="M789.332524 64.002587v486.611914H399.786994a63.999813 63.999813 0 0 0-42.666542 16.853284l-153.38622 140.159591v-93.013062a63.999813 63.999813 0 0 0-63.999813-63.999813H64.001307V64.002587h725.331217m32.21324-63.999814h-789.331031A31.786574 31.786574 0 0 0 0.001493 31.789347v551.038393a31.786574 31.786574 0 0 0 31.786574 31.786574h107.946352v166.399515a31.786574 31.786574 0 0 0 31.999907 31.786574 31.359909 31.359909 0 0 0 21.333271-8.319976l206.719397-189.866113h421.75877A31.786574 31.786574 0 0 0 853.332338 582.82774V31.789347A31.786574 31.786574 0 0 0 821.545764 0.002773z"
+              fill="#0077F0"
+              p-id="21297"
+            />
+          </svg>
+          <div className="text-2xl font-semibold italic">NextQA</div>
+        </div>
+        <div className="h-12 w-12 "></div>
+      </div>
       <div
         className={
-          'absolute z-20 h-screen w-screen bg-black/50 md:hidden ' +
+          'absolute z-20 h-screen w-screen bg-black/50 sm:hidden ' +
           `${navOpen ? 'block' : 'hidden'}`
         }
         onClick={() => {

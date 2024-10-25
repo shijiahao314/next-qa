@@ -11,10 +11,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <title>NextQA</title>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="flex h-[100svh] w-screen flex-row overflow-hidden border-my-border bg-my-bg text-my-text0 dark:border-my-darkborder dark:bg-my-darkbg0 dark:text-my-darktext0">
+      <body className="flex h-[100svh] w-screen flex-col overflow-hidden border-my-border bg-my-bg text-my-text0 dark:border-my-darkborder dark:bg-my-darkbg0 dark:text-my-darktext0 sm:flex-row">
         <ThemeProvider attribute="class">
           <SideNav></SideNav>
-          <div className="h-full w-full">{children}</div>
+          <div className="flex h-full w-full">{children}</div>
         </ThemeProvider>
       </body>
     </html>
