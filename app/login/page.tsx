@@ -99,47 +99,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
       <MyToastContainer></MyToastContainer>
       <div className="hidden h-full w-full opacity-0"></div>
       <div className="flex h-full w-full flex-row text-my-text0 duration-200 dark:text-my-darktext0">
-        {/* <div className="hidden h-full flex-shrink flex-grow sm:w-3/5 md:block">
-        <div className="h-20 w-20">
-          <Image
-            className="bg-gray-500"
-            width={100}
-            height={100}
-            src={svg}
-            alt="nextjs logo"
-          ></Image>
-        </div>
-      </div> */}
         <div className="m-4 flex w-full flex-col">
-          {/* <div className="flex w-full flex-row justify-start">
-            <div
-              className="absolute flex h-10 flex-row items-center justify-center rounded-lg border-2 border-my-border px-2 py-1 text-center text-sm hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2 md:hidden"
-              role="button"
-              onClick={() => router.push('/chat')}
-            >
-              <svg
-                className="pr-1"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1024 1024"
-                version="1.1"
-                p-id="1596"
-                width="20"
-                height="20"
-              >
-                <path
-                  d="M952.48 476.64L549.36 71.52a52.64 52.64 0 0 0-74.72 0l-83.2 81.2a8 8 0 0 1-12.4-1.52A52.48 52.48 0 0 0 336 128H248c-29.12 0-48 26.72-48 56v160L71.52 476.64a53.12 53.12 0 0 0 37.36 90.64L168 568a8 8 0 0 1 8 8v336a57.04 57.04 0 0 0 54.48 56h172.96c29.12 0 52.56-26.72 52.56-56V728a8 8 0 0 1 8-8h80a8 8 0 0 1 8 8v184c0 29.28 23.52 56 52.64 56H777.6a56.96 56.96 0 0 0 54.4-56V752a32 32 0 0 0-64 0v144a8 8 0 0 1-8 8H624a8 8 0 0 1-8-8V712a56.64 56.64 0 0 0-54-56H442.56C413.44 656 392 682.72 392 712v184a8 8 0 0 1-8 8H248a8 8 0 0 1-8-8V560c0-29.28-22.32-56.72-51.52-56.72l-32.8 0.48a8 8 0 0 1-5.76-13.68L248 392a59.28 59.28 0 0 0 16-40V200a8 8 0 0 1 8-8h49.84a8 8 0 0 1 7.52 5.28A54.48 54.48 0 0 0 360 231.2a52.56 52.56 0 0 0 57.6-11.52l88.72-86.24a8 8 0 0 1 11.2 0l356.8 356.8a8 8 0 0 1-5.68 13.68H800a32.72 32.72 0 0 0-33.44 31.28A34 34 0 0 0 800 568h112a57.76 57.76 0 0 0 51.92-33.52 53.12 53.12 0 0 0-11.44-57.84z"
-                  fill="currentColor"
-                  p-id="1597"
-                />
-                <path
-                  d="M800 640m-32 0a32 32 0 1 0 64 0 32 32 0 1 0-64 0Z"
-                  fill="currentColor"
-                  p-id="1598"
-                />
-              </svg>
-              主页
-            </div>
-          </div> */}
           <div className="flex flex-shrink flex-grow flex-col items-center justify-center">
             <div className="rounded-lg border-2 border-my-border bg-my-bg px-6 py-5 shadow-md dark:border-my-darkborder dark:bg-my-darkbg1 md:max-w-md">
               <div className="mb-3 flex h-20 flex-row items-center justify-center space-x-3">
@@ -199,13 +159,14 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                 <div className="px-2 text-sm text-my-text3 dark:text-my-darktext3">或</div>
                 <div className="h-[2px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
               </div>
-              <div className="flex flex-row items-center justify-center">
+              <div className="flex flex-row items-center justify-center gap-4">
+                {/* with github */}
                 <a
                   href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL}`}
                   className="rounded-lg border-[1px] border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
                   role="button"
                 >
-                  <svg width="20" height="20" viewBox="0 0 98 96">
+                  <svg width="24" height="24" viewBox="0 0 98 96">
                     <path
                       fillRule="evenodd"
                       clipRule="evenodd"
@@ -213,6 +174,48 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                       //   fill="#fff #24292f" // #24292f
                       fill="currentColor"
                     />
+                  </svg>
+                </a>
+                {/* with google */}
+                <a
+                  href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL}`}
+                  className="rounded-lg border-[1px] border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
+                  role="button"
+                >
+                  <svg width="24" height="24" viewBox="0 0 1024 1024">
+                    <path
+                      d="M214.101333 512c0-32.512 5.546667-63.701333 15.36-92.928L57.173333 290.218667A491.861333 491.861333 0 0 0 4.693333 512c0 79.701333 18.858667 154.88 52.394667 221.610667l172.202667-129.066667A290.56 290.56 0 0 1 214.101333 512"
+                      fill="#FBBC05"
+                    ></path>
+                    <path
+                      d="M516.693333 216.192c72.106667 0 137.258667 25.002667 188.458667 65.962667L854.101333 136.533333C763.349333 59.178667 646.997333 11.392 516.693333 11.392c-202.325333 0-376.234667 113.28-459.52 278.826667l172.373334 128.853333c39.68-118.016 152.832-202.88 287.146666-202.88"
+                      fill="#EA4335"
+                    ></path>
+                    <path
+                      d="M516.693333 807.808c-134.357333 0-247.509333-84.864-287.232-202.88l-172.288 128.853333c83.242667 165.546667 257.152 278.826667 459.52 278.826667 124.842667 0 244.053333-43.392 333.568-124.757333l-163.584-123.818667c-46.122667 28.458667-104.234667 43.776-170.026666 43.776"
+                      fill="#34A853"
+                    ></path>
+                    <path
+                      d="M1005.397333 512c0-29.568-4.693333-61.44-11.648-91.008H516.650667V614.4h274.602666c-13.696 65.962667-51.072 116.650667-104.533333 149.632l163.541333 123.818667c93.994667-85.418667 155.136-212.650667 155.136-375.850667"
+                      fill="#4285F4"
+                    ></path>
+                  </svg>
+                </a>
+                {/* with wechat */}
+                <a
+                  href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL}`}
+                  className="rounded-lg border-[1px] border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
+                  role="button"
+                >
+                  <svg width="24" height="24" viewBox="0 0 1024 1024">
+                    <path
+                      d="M208.979592 1024h606.040816c115.461224 0 208.979592-93.518367 208.979592-208.979592V208.979592C1024 93.518367 930.481633 0 815.020408 0H208.979592C93.518367 0 0 93.518367 0 208.979592v606.040816c0 115.461224 93.518367 208.979592 208.979592 208.979592z"
+                      fill="#03DB6C"
+                    ></path>
+                    <path
+                      d="M308.558367 226.429388c83.382857-29.257143 175.333878-21.420408 252.656327 21.420408l-0.731429-0.313469c58.514286 30.72 100.728163 85.472653 115.461225 150.047346a265.404082 265.404082 0 0 0-197.799184 65.097143c-31.764898 28.630204-53.080816 66.873469-60.604082 108.878368-4.91102 30.406531-2.089796 61.44 8.045715 90.383673-37.929796 1.149388-75.859592-4.284082-112.117551-15.986939l-89.025306 48.169796c8.881633-26.226939 16.927347-52.349388 26.122449-78.576326a235.091592 235.091592 0 0 1-98.533878-134.478368c-12.747755-51.2-4.075102-105.430204 24.032653-149.942857 31.137959-48.901224 77.844898-85.786122 132.493061-104.698775z m217.547755 97.802449c-10.03102-7.209796-22.987755-9.195102-34.690612-5.22449a37.616327 37.616327 0 0 0-23.614694 29.152653c-2.089796 13.270204 3.030204 26.540408 13.479184 35.004082 10.762449 8.672653 25.39102 10.762449 38.138776 5.224489a37.302857 37.302857 0 0 0 22.256326-31.451428v-1.253878c0.20898-12.434286-5.642449-24.137143-15.56898-31.451428z m-217.547755-3.866123c-16.718367 6.060408-26.853878 23.092245-24.346122 40.751021a37.626776 37.626776 0 0 0 34.795102 32.287347c17.763265 1.149388 33.854694-10.34449 38.661224-27.480817 3.239184-13.583673-1.044898-27.794286-11.284898-37.198367-10.13551-9.404082-24.659592-12.643265-37.825306-8.359184z m461.740409 119.118368a201.247347 201.247347 0 0 1 93.831836 96.026122v-1.044898c19.644082 45.244082 17.972245 96.966531-4.702041 140.852245a218.770286 218.770286 0 0 1-68.440816 75.546122c6.791837 21.733878 13.583673 42.422857 20.58449 64.156735-25.286531-11.807347-47.020408-27.480816-73.142857-37.929796-42.840816 14.001633-88.398367 17.136327-132.702041 9.195102a220.891429 220.891429 0 0 1-149.733878-98.429387 160.956082 160.956082 0 0 1-20.37551-121.208164c13.061224-55.902041 50.886531-102.713469 102.71347-127.164081a255.038694 255.038694 0 0 1 231.967347 0zM561.737143 522.44898c-8.986122 12.016327-7.732245 28.943673 2.925714 39.497142a29.988571 29.988571 0 0 0 49.110204-10.448979 30.197551 30.197551 0 0 0-13.374694-37.302857 30.093061 30.093061 0 0 0-38.661224 8.254694z m168.64653-10.971429c-15.986939 0-25.077551 14.837551-28.525714 28.734694 1.358367 8.045714 4.806531 15.56898 10.24 21.733877 6.896327 6.582857 16.613878 9.508571 26.017959 7.941225 9.404082-1.671837 17.554286-7.523265 22.047347-16.091429 4.493061-9.717551 3.552653-21.106939-2.612245-29.884081a29.80049 29.80049 0 0 0-27.167347-12.434286z"
+                      fill="#FFFFFF"
+                    ></path>
                   </svg>
                 </a>
               </div>
