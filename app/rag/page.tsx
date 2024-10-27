@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-
 class GetKBRsp {
   code!: number;
   msg!: string;
