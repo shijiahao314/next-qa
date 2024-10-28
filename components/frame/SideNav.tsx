@@ -212,6 +212,7 @@ export default function SideNav() {
           <SettingButton></SettingButton>
         </div>
       </div>
+
       {/* 上方导航栏 */}
       <div className="flex w-full flex-row justify-between border-b-[1px] border-my-border bg-my-bg px-5 py-4 shadow dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden">
         <button
