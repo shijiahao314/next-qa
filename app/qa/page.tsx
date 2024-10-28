@@ -165,11 +165,13 @@ export default function Page() {
   return (
     <>
       <title>QA-知识图问答</title>
-      <div className="flex h-full w-full flex-col overflow-hidden p-8 md:relative md:p-12">
-        <label className="w-full text-xl font-bold">知识图问答</label>
-        <div className="m-4 flex flex-grow flex-col">
+      <div className="flex w-full flex-col overflow-y-auto md:relative">
+        <label className="shadow-b-2 w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50">
+          知识图问答
+        </label>
+        <div className="flex flex-grow flex-col gap-4 overflow-y-auto px-8 py-4">
           <div className="flex flex-col">
-            <label className="text-xl font-semibold">Select</label>
+            <label className="text-lg font-semibold">Select</label>
             <div className="m-4 flex flex-col gap-4">
               <div className="flex flex-row">
                 <label className="flex items-center whitespace-nowrap text-lg">KB 知识库：</label>
@@ -211,7 +213,7 @@ export default function Page() {
           </div>
 
           <div className="flex flex-grow flex-col">
-            <label className="text-xl font-semibold">Query</label>
+            <label className="text-lg font-semibold">Query</label>
             <div className="mx-4 mt-4 flex flex-grow flex-col gap-4 rounded-lg border-2 border-my-border p-4 dark:border-my-darkborder">
               <div className="flex flex-row gap-2">
                 <label className="flex items-center">Method:</label>

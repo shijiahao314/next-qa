@@ -35,8 +35,7 @@ export default function UserTable() {
     });
   }, []);
 
-  const cellStyle =
-    'table-cell items-center justify-center align-middle border-r-[1px] font-medium';
+  const cellStyle = 'table-cell items-center justify-center align-middle border-r font-medium';
 
   return (
     <div className="relative h-full w-full flex-col">
@@ -63,7 +62,7 @@ export default function UserTable() {
           {users != null &&
             users.length != 0 &&
             users.map((user: UserInfo) => (
-              <tr className="h-10 border-collapse border-[1px] border-solid" key={user.userid}>
+              <tr className="h-10 border-collapse border border-solid" key={user.userid}>
                 <td className={cellStyle}>{user.userid.toString()}</td>
                 <td className={cellStyle}>{user.username}</td>
                 <td className={cellStyle}>{user.role}</td>

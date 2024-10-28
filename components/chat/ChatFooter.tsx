@@ -119,7 +119,7 @@ export default function ChatFooter() {
           rows={3}
         ></textarea>
         <button
-          className="absolute bottom-8 right-10 flex h-12 w-20 place-content-center items-center rounded-lg border-[1px] border-black/30 bg-my-primary text-sm text-my-darktext0 duration-200 hover:bg-my-primaryHover dark:border-white/50 dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover md:text-base "
+          className="absolute bottom-8 right-10 flex h-12 w-20 place-content-center items-center rounded-lg border border-black/30 bg-my-primary text-sm text-my-darktext0 duration-200 hover:bg-my-primaryHover dark:border-white/50 dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover md:text-base "
           type="submit"
           onClick={handleAddChatCard}
         >

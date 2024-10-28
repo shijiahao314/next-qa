@@ -12,8 +12,10 @@ export default function Page() {
   return (
     <>
       <title>RAG-知识库问答</title>
-      <div className="absolute flex h-full w-full flex-col overflow-hidden p-8 md:relative md:p-16">
-        <label className="text-4xl">知识库问答</label>
+      <div className="flex w-full flex-col overflow-y-auto md:relative">
+        <label className="shadow-b-2 w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50">
+          知识库问答
+        </label>
       </div>
     </>
   );

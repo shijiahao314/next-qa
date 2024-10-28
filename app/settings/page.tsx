@@ -14,7 +14,7 @@ export default function Page() {
         descp: '使用自定义 OpenAI API Key 访问 ChatGPT',
         value: (
           <input
-            className="h-10 rounded-lg border-[1px] border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-10 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
             placeholder="OpenAI API Key"
             type="password"
           ></input>
@@ -26,7 +26,7 @@ export default function Page() {
         value: (
           <select
             id="countries"
-            className="h-10 rounded-lg border-[1px] border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-10 rounded-lg border border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
           >
             <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
             <option value="gpt-3.5-turbo-0301">gpt-3.5-turbo-0301</option>
@@ -83,22 +83,9 @@ export default function Page() {
     <>
       <title>Settings-设置</title>
       <div className="flex h-full w-full flex-col">
-        {/* <div className="relative flex flex-row justify-between border-b-[1px] border-my-border px-5 py-4 shadow dark:border-my-darkborder">
-          <button
-            className="h-12 w-12 place-content-center items-center rounded-lg border-[1px] border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg1 md:hidden"
-            onClick={() => {
-              setNavOpen(true);
-            }}
-          >
-            <svg viewBox="0 0 1024 1024">
-              <path
-                d="M170.666667 213.333333h682.666666v85.333334H170.666667V213.333333z m0 512h682.666666v85.333334H170.666667v-85.333334z m0-256h682.666666v85.333334H170.666667v-85.333334z"
-                fill="#999"
-              />
-            </svg>
-          </button>
+        <div className="relative flex flex-row justify-between border-b border-my-border bg-my-bg px-5 py-4 shadow dark:border-my-darkborder dark:bg-my-darkbg1/50">
           <div>
-            <div className="text-center text-xl font-bold md:text-start">设置</div>
+            <div className="text-start text-xl font-bold">设置</div>
             <div className="text-center text-sm text-my-text1 dark:text-my-darktext1 md:text-start">
               所有设置选项
             </div>
@@ -114,7 +101,7 @@ export default function Page() {
               />
             </svg>
           </button>
-        </div> */}
+        </div>
         <div className="relative flex flex-shrink flex-grow flex-col overflow-auto overflow-x-hidden p-5">
           {settings.map((group, index) => (
             <div

@@ -9,7 +9,7 @@ import SettingButton from './settingsButton';
 export default function SideNav() {
   const navOpen = useBearStore(useShallow((state) => state.navOpen));
   const setNavOpen = useBearStore(useShallow((state) => state.setNavOpen));
-  const pathname = usePathname();
+  const curPath = usePathname();
   const router = useRouter();
 
   const defaultSvg = (
@@ -17,7 +17,7 @@ export default function SideNav() {
       className={
         'aria-hidden h-5 w-5 fill-current ' +
         `${
-          pathname === '/xxx'
+          curPath === '/xxx'
             ? 'text-base-0 transition dark:text-base-8'
             : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
         }`
@@ -39,7 +39,7 @@ export default function SideNav() {
           className={
             'aria-hidden h-5 w-5 fill-current ' +
             `${
-              pathname === '/kb'
+              curPath === '/kb'
                 ? 'text-my-light transition'
                 : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
             }`
@@ -61,7 +61,7 @@ export default function SideNav() {
           className={
             'aria-hidden h-5 w-5 fill-current ' +
             `${
-              pathname === '/qa'
+              curPath === '/qa'
                 ? 'text-my-light transition'
                 : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
             }`
@@ -83,7 +83,7 @@ export default function SideNav() {
           className={
             'aria-hidden h-5 w-5 fill-current ' +
             `${
-              pathname === '/rag'
+              curPath === '/rag'
                 ? 'text-my-light transition'
                 : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
             }`
@@ -102,7 +102,7 @@ export default function SideNav() {
           className={
             'aria-hidden h-5 w-5 fill-current ' +
             `${
-              pathname === '/chat'
+              curPath === '/chat'
                 ? 'text-my-light transition'
                 : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
             }`
@@ -122,7 +122,7 @@ export default function SideNav() {
           className={
             'aria-hidden h-5 w-5 fill-current ' +
             `${
-              pathname === '/users'
+              curPath === '/users'
                 ? 'text-my-light transition'
                 : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
             }`
@@ -149,7 +149,7 @@ export default function SideNav() {
           onClick={() => {
             router.push('/welcome');
           }}
-          className="relative flex flex-shrink-0 flex-grow-0 cursor-pointer flex-col items-center justify-center border-b-[1px] border-my-border px-2 pb-4 pt-8 dark:border-my-darkborder"
+          className="relative flex flex-shrink-0 flex-grow-0 cursor-pointer flex-col items-center justify-center border-b border-my-border px-2 pb-4 pt-8 dark:border-my-darkborder"
         >
           <svg className="h-12" viewBox="0 0 1024 1024">
             <path
@@ -166,7 +166,7 @@ export default function SideNav() {
           </svg>
           <div className="text-2xl font-semibold italic">NextQA</div>
         </div>
-        <div className="flex flex-shrink flex-grow flex-col items-center justify-center overflow-y-auto overflow-x-hidden border-b-[1px] border-my-border px-2 dark:border-my-darkborder">
+        <div className="flex flex-shrink flex-grow flex-col items-center justify-center overflow-y-auto overflow-x-hidden border-b border-my-border px-2 dark:border-my-darkborder">
           <ul className="space-y-2 py-2 font-medium" role="menu">
             {items.map((item) => (
               <li className="h-10" key={item.pathname}>
@@ -174,7 +174,7 @@ export default function SideNav() {
                   className={
                     'flex items-center px-3 py-2 ' +
                     `${
-                      pathname === item.pathname
+                      curPath === item.pathname
                         ? 'pointer-events-none cursor-default rounded-lg bg-my-secondary text-white dark:bg-my-darkSecondary'
                         : 'group rounded-lg hover:bg-my-bgHover dark:hover:bg-my-darkbgHover'
                     }`
@@ -183,9 +183,7 @@ export default function SideNav() {
                 >
                   {item.svg}
                   <span
-                    className={
-                      'ms-3 whitespace-nowrap ' + `${pathname === item.pathname ? '' : ''}`
-                    }
+                    className={'ms-3 whitespace-nowrap ' + `${curPath === item.pathname ? '' : ''}`}
                   >
                     {item.title}
                   </span>
@@ -214,9 +212,9 @@ export default function SideNav() {
       </div>
 
       {/* 上方导航栏 */}
-      <div className="flex w-full flex-row justify-between border-b-[1px] border-my-border bg-my-bg px-5 py-4 shadow dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden">
+      <div className="flex w-full flex-row justify-between border-b border-my-border bg-my-bg px-5 py-4 shadow dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden">
         <button
-          className="h-12 w-12 place-content-center items-center rounded-lg border-[1px] border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg2 sm:hidden"
+          className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg2 sm:hidden"
           onClick={() => {
             setNavOpen(true);
           }}

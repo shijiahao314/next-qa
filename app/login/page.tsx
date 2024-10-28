@@ -163,7 +163,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                 {/* with github */}
                 <a
                   href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL}`}
-                  className="rounded-lg border-[1px] border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
+                  className="rounded-lg border border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
                   role="button"
                 >
                   <svg width="24" height="24" viewBox="0 0 98 96">
@@ -179,7 +179,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                 {/* with google */}
                 <a
                   href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL}`}
-                  className="rounded-lg border-[1px] border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
+                  className="rounded-lg border border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
                   role="button"
                 >
                   <svg width="24" height="24" viewBox="0 0 1024 1024">
@@ -204,7 +204,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                 {/* with wechat */}
                 <a
                   href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL}`}
-                  className="rounded-lg border-[1px] border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
+                  className="rounded-lg border border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
                   role="button"
                 >
                   <svg width="24" height="24" viewBox="0 0 1024 1024">

@@ -43,7 +43,7 @@ export default function HistoryChat() {
         }
       >
         <div className="flex w-60 flex-col">
-          <div className="relative flex h-20 w-full flex-shrink-0 flex-grow-0 items-center justify-center border-b-[1px] bg-my-bg text-lg shadow dark:border-my-darkborder dark:bg-my-darkbg1">
+          <div className="relative flex h-20 w-full flex-shrink-0 flex-grow-0 items-center justify-center border-b bg-my-bg text-lg shadow dark:border-my-darkborder dark:bg-my-darkbg1">
             对话历史
           </div>
           <div className="flex flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 class GetKBRsp {
   code!: number;
@@ -156,7 +156,7 @@ export default function KBPage() {
     <>
       <title>KB-知识库管理</title>
       <div className="flex w-full flex-col overflow-y-auto md:relative">
-        <label className="shadow-b-2 w-full border-b border-my-border py-4 pl-8 text-xl font-bold dark:border-my-darkborder">
+        <label className="shadow-b-2 w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50">
           知识库管理
         </label>
         <div className="flex flex-grow flex-col gap-4 overflow-y-auto px-8 py-4">
@@ -194,6 +194,15 @@ export default function KBPage() {
                 </button>
                 <button
                   onClick={() => {
+                    // Indexing
+                    console.log('Indexing');
+                  }}
+                  className="h-10 w-24 rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                >
+                  Indexing
+                </button>
+                <button
+                  onClick={() => {
                     // 上传文件
                     console.log('删除文件');
                   }}
@@ -217,7 +226,7 @@ export default function KBPage() {
                     className="border-b border-my-border dark:border-my-darkborder"
                     key={filename}
                   >
-                    <td className="flex h-8 items-center justify-center">
+                    <td className="flex h-10 items-center justify-center">
                       <input
                         type="checkbox"
                         value=""
@@ -233,10 +242,10 @@ export default function KBPage() {
           </div>
 
           {/* 输出文件管理 */}
-          <div className="flex flex-grow flex-col gap-2 rounded-lg border-2 border-my-border px-4 pb-4 pt-2 dark:border-my-darkborder">
+          <div className="flex flex-col gap-2 rounded-lg border-2 border-my-border px-4 pb-4 pt-2 dark:border-my-darkborder sm:gap-4">
             <label className="text-lg font-semibold">输出文件</label>
-            <div className="flex w-full flex-grow flex-col gap-2 overflow-x-auto sm:flex-row">
-              <div className="flex flex-grow flex-col gap-2">
+            <div className="flex w-full flex-grow flex-col gap-2 overflow-x-auto sm:flex-row sm:gap-4">
+              <div className="flex flex-grow flex-col gap-2 sm:gap-4">
                 <div className="flex flex-row flex-wrap justify-between gap-2 sm:gap-4">
                   <div className="flex flex-row">
                     <label className="flex items-center whitespace-nowrap text-lg">
@@ -284,7 +293,7 @@ export default function KBPage() {
                         className="border-b border-my-border dark:border-my-darkborder"
                         key={filename}
                       >
-                        <td className="flex h-8 items-center justify-center">
+                        <td className="flex h-10 items-center justify-center">
                           <input
                             type="checkbox"
                             value=""
@@ -300,9 +309,9 @@ export default function KBPage() {
                   </tbody>
                 </table>
               </div>
-              <div className="flex flex-grow">
+              {/* <div className="flex flex-grow">
                 <textarea className="w-full rounded-lg border-2 border-my-border dark:border-my-darkborder"></textarea>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
