@@ -1,5 +1,6 @@
 'use client';
 
+import { set } from 'lodash';
 import { useEffect, useState } from 'react';
 
 class GetKBRsp {
@@ -141,9 +142,13 @@ export default function KBPage() {
     }
 
     if (selectedDB) {
-      fetchOutputs();
+      if (dbs.length > 0) {
+        fetchOutputs();
+      } else {
+        setOutputs([]);
+      }
     }
-  }, [selectedDB]);
+  }, [dbs, selectedDB]);
 
   function handleSelectKB(event: React.ChangeEvent<HTMLSelectElement>) {
     setSelectedKB(event.target.value);
