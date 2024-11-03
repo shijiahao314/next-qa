@@ -35,7 +35,11 @@
 
 ![light mode](/images/image-light.png)
 
-![on mobile](/images/image-mobile.png) ![on mobile](/images/image-mobile2.png)
+<p align="center">
+  <img src="/images/image-mobile.png" alt="on mobile" width="45%">
+  <img src="/images/image-mobile2.png" alt="on mobile" width="45%">
+</p>
+
 
 ## 安装
 
