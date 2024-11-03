@@ -25,13 +25,17 @@
 
 ## 系统展示
 
-|                                    |                                   |
-| ---------------------------------- | --------------------------------- |
-| ![light mode](/images/image-0.png) | ![dark mode](/images/image-1.png) |
+![login page](/images/image-login.png)
 
-|                                      |                                     |                                           |
-| ------------------------------------ | ----------------------------------- | ----------------------------------------- |
-| ![light mode](/images/image-2-1.png) | ![dark mode](/images/image-2-2.png) | ![mobile behavior](/images/image-2-3.png) |
+![kb page](/images/image-kb.png)
+
+![kb setting page](/images/image-kb-setting.png)
+
+![qa page](/images/image-qa.png)
+
+![light mode](/images/image-light.png)
+
+![on mobile](/images/image-mobile.png) ![on mobile](/images/image-mobile2.png)
 
 ## 安装
 
