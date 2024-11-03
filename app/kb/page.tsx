@@ -198,7 +198,7 @@ export default function KBPage() {
           <input
             className="h-10 w-48 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
             placeholder="http://127.0.0.1:11434/v1"
-            value={'http://127.0.0.1:11434/v1'}
+            defaultValue={'http://127.0.0.1:11434/v1'}
           ></input>
         )
       },
@@ -207,9 +207,9 @@ export default function KBPage() {
         descp: 'LLM 对话最大 Token 数',
         value: (
           <input
-            className="h-10 w-48 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-10 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
             placeholder="8192"
-            value={8192}
+            defaultValue={8192}
           ></input>
         )
       }
@@ -246,18 +246,18 @@ export default function KBPage() {
           <input
             className="h-10 w-48 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
             placeholder="http://127.0.0.1:11434/v1"
-            value={'http://127.0.0.1:11434/v1'}
+            defaultValue={'http://127.0.0.1:11434/v1'}
           ></input>
         )
       },
       {
-        title: 'concurrent_requests',
+        title: 'Concurrent Requests',
         descp: '最大并发请求数',
         value: (
           <input
-            className="h-10 w-48 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-10 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
             placeholder="25"
-            value={25}
+            defaultValue={25}
           ></input>
         )
       }
@@ -454,7 +454,7 @@ export default function KBPage() {
               {group.map((item) => (
                 <div
                   key={item.title}
-                  className="flex flex-row items-center justify-between border-my-border px-5 py-3 dark:border-my-darkborder"
+                  className="flex flex-row items-center justify-between gap-2 border-my-border px-5 py-3 dark:border-my-darkborder"
                 >
                   <div>
                     <div className="text-base text-my-text0 dark:text-my-darktext0">
