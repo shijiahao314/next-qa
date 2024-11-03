@@ -114,6 +114,29 @@ export default function SideNav() {
       )
     },
     {
+      pathname: '/logs',
+      title: '日志监控',
+      svg: (
+        <svg
+          viewBox="0 0 1024 1024"
+          className={
+            'aria-hidden h-5 w-5 fill-current ' +
+            `${
+              curPath === '/logs'
+                ? 'text-my-light transition'
+                : 'text-gray-500 transition group-hover:text-base-0 dark:text-gray-400 dark:group-hover:text-base-8'
+            }`
+          }
+        >
+          <path d="M897.28 170.666667h-750.933333c-28.16 0-51.2 23.04-51.2 51.2v665.6c0 28.16 23.04 51.2 51.2 51.2h750.933333c28.16 0 51.2-23.04 51.2-51.2V221.866667c0-28.16-22.613333-51.2-51.2-51.2z m-17.066667 699.733333h-716.8V238.933333h716.8v631.466667z"></path>
+          <path d="M744.96 699.733333H333.226667c-18.346667 0-32.853333-14.933333-32.853334-32.853333v-2.133333c0-18.346667 14.933333-32.853333 32.853334-32.853334h411.733333c18.346667 0 32.853333 14.933333 32.853333 32.853334v2.133333c0 17.92-14.506667 32.853333-32.853333 32.853333zM743.68 546.133333h-221.866667c-18.773333 0-34.133333-15.36-34.133333-34.133333s15.36-34.133333 34.133333-34.133333h221.866667c18.773333 0 34.133333 15.36 34.133333 34.133333s-14.933333 34.133333-34.133333 34.133333zM718.08 307.2c-18.773333 0-34.133333-15.36-34.133333-34.133333V119.466667c0-18.773333 15.36-34.133333 34.133333-34.133334s34.133333 15.36 34.133333 34.133334v153.6c0 18.773333-14.933333 34.133333-34.133333 34.133333zM325.546667 307.2c-18.773333 0-34.133333-15.36-34.133334-34.133333V119.466667c0-18.773333 15.36-34.133333 34.133334-34.133334s34.133333 15.36 34.133333 34.133334v153.6c0 18.773333-14.933333 34.133333-34.133333 34.133333z"></path>
+        </svg>
+      )
+    }
+  ];
+
+  const adminItems = [
+    {
       pathname: '/users',
       title: '用户管理',
       svg: (
@@ -133,7 +156,7 @@ export default function SideNav() {
         </svg>
       )
     }
-    // { pathname: '1', title: '1', svg: defaultSvg },
+    // { pathname: '1', title: '1', svg: defaultSvg }
   ];
 
   return (
@@ -141,7 +164,7 @@ export default function SideNav() {
       {/* 左边导航栏 */}
       <div
         className={
-          'absolute z-30 flex h-full transform flex-col justify-between border-my-border bg-my-bg px-4 transition-transform duration-300 dark:border-my-darkborder dark:bg-my-darkbg1 sm:relative sm:translate-x-0 sm:border-r-2 ' +
+          'absolute z-50 flex h-full transform flex-col justify-between border-my-border bg-my-bg px-4 transition-transform duration-300 dark:border-my-darkborder dark:bg-my-darkbg1 sm:relative sm:translate-x-0 sm:border-r-2 ' +
           `${navOpen ? 'translate-x-0' : '-translate-x-full'}`
         }
       >
@@ -190,7 +213,37 @@ export default function SideNav() {
                 </a>
               </li>
             ))}
+            {adminItems.length > 0 ? (
+              <div className="flex w-full items-center pt-2">
+                <div className="h-[2px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
+                <div className="px-2 text-sm text-my-text3 dark:text-my-darktext3">admin</div>
+                <div className="h-[2px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
+              </div>
+            ) : null}
+            {adminItems.map((item) => (
+              <li className="" key={item.pathname}>
+                <a
+                  className={
+                    'flex items-center px-3 py-2 ' +
+                    `${
+                      curPath === item.pathname
+                        ? 'pointer-events-none cursor-default rounded-lg bg-my-secondary text-white dark:bg-my-darkSecondary'
+                        : 'group rounded-lg hover:bg-my-bgHover dark:hover:bg-my-darkbgHover'
+                    }`
+                  }
+                  href={item.pathname}
+                >
+                  {item.svg}
+                  <span
+                    className={'ms-3 whitespace-nowrap ' + `${curPath === item.pathname ? '' : ''}`}
+                  >
+                    {item.title}
+                  </span>
+                </a>
+              </li>
+            ))}
           </ul>
+          <ul className="space-y-2 py-2 font-medium" role="menu"></ul>
         </div>
         <div className="flex flex-shrink-0 flex-grow-0 flex-row justify-center space-x-2 py-6">
           <a
@@ -212,7 +265,7 @@ export default function SideNav() {
       </div>
 
       {/* 上方导航栏 */}
-      <div className="flex w-full flex-row justify-between border-b border-my-border bg-my-bg px-5 py-4 shadow dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden">
+      <div className="z-40 flex w-full flex-row justify-between border-b border-my-border bg-my-bg px-5 py-4 shadow dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden">
         <button
           className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg2 sm:hidden"
           onClick={() => {
@@ -251,7 +304,7 @@ export default function SideNav() {
       </div>
       <div
         className={
-          'absolute z-20 h-screen w-screen bg-black/50 sm:hidden ' +
+          'absolute z-40 h-screen w-screen bg-black/50 sm:hidden ' +
           `${navOpen ? 'block' : 'hidden'}`
         }
         onClick={() => {

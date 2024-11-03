@@ -6,7 +6,7 @@ class GetKBRsp {
   kbs!: string[];
 }
 
-const API_URL = 'http://10.112.20.92:8080/api';
+const API_URL = 'http://10.112.67.227:8080/api';
 
 export default function Page() {
   return (

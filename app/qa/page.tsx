@@ -20,7 +20,7 @@ class QueryRsp {
   text!: string;
 }
 
-const API_URL = 'http://10.112.20.92:8080/api';
+const API_URL = 'http://10.112.67.227:8080/api';
 
 export default function Page() {
   const [kbs, setKBs] = useState<string[]>([]); // KB 列表
@@ -228,7 +228,7 @@ export default function Page() {
                   className="w-full resize-none overflow-y-visible rounded-lg border-my-border bg-my-bg px-4 py-2 leading-normal shadow outline outline-2 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
                   rows={3}
                   onChange={handleChangeText}
-                  placeholder={`${method === 'local' ? 'What are the top themes in this story?' : 'Who is Scrooge, and what are his main relationships?'}`}
+                  placeholder={`${method === 'local' ? 'Who is Scrooge, and what are his main relationships?' : 'What are the top themes in this story?'}`}
                 ></textarea>
                 <button
                   className="inline-block w-24 whitespace-nowrap rounded-md bg-my-primary px-4 py-2 text-lg text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
