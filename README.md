@@ -1,6 +1,8 @@
-# NextQA：提供基于知识库问答与开放对话的系统
+# NextQA：知识库问答与开放对话
 
-> 后端Github仓库：[Go-QA](https://github.com/shijiahao314/go-qa)
+> 后端 Github 仓库 1：[Go-QA](https://github.com/shijiahao314/go-qa)
+> 
+> 后端 Github 仓库 2：[GraphRAG-Go](https://github.com/shijiahao314/graphrag-go)
 
 ## 技术栈
 
