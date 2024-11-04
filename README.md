@@ -5,7 +5,7 @@
 ## 技术栈
 
 - 前端：Next.js、React、Tailwind
-- 后端：Golang、gin、gorn、casbin
+- 后端：Go、Gin、Gorm、Casbin
 - 数据库及缓存：MySQL、Redis
 - DevOps: Docker、Git
 
@@ -41,9 +41,19 @@
 </p>
 
 
-## 安装
+## 部署使用
 
-### 使用 npm 构建前端
+### git clone 项目
+
+```bash
+git clone git@github.com:shijiahao314/next-qa.git
+```
+
+### 创建 .env.local 文件
+
+需要创建`.env.local`文件，并参照`.env.example`填写
+
+### npm 构建并允许
 
 ```bash
 # 禁止使用 npm install 或 npm i 安装，该操作会修改 package-lock.json 导致安装依赖的版本不同
