@@ -36,9 +36,9 @@
 ![light mode](/images/image-light.png)
 
 <p align="center">
-  <img src="/images/image-mobile.png" alt="on mobile" width="33%">
-  <img src="/images/image-mobile2.png" alt="on mobile" width="33%">
-  <img src="/images/image-mobile3.png" alt="on mobile" width="33%">
+  <img src="/images/image-mobile.png" alt="on mobile 1" width="30%">
+  <img src="/images/image-mobile2.png" alt="on mobile 2 " width="30%">
+  <img src="/images/image-mobile3.png" alt="on mobile 3" width="30%">
 </p>
 
 
