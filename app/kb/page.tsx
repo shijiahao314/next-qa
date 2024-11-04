@@ -1,6 +1,6 @@
 'use client';
 
-import { set } from 'lodash';
+import { API_URL } from '@/app/config';
 import KBSettingModal from '@/components/frame/SettingModal';
 import { useEffect, useState } from 'react';
 
@@ -27,8 +27,6 @@ class GetOuptutRsp {
   msg!: string;
   files!: string[];
 }
-
-const API_URL = 'http://10.112.67.227:8080/api';
 
 export default function KBPage() {
   const [kbs, setKBs] = useState<string[]>([]); // KB 列表
@@ -264,6 +262,16 @@ export default function KBPage() {
     ]
   ];
 
+  // 上传文件
+  function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (file) {
+      console.log('====================================');
+      console.log(file);
+      console.log('====================================');
+    }
+  }
+
   return (
     <>
       <title>KB-知识库管理</title>
@@ -313,11 +321,19 @@ export default function KBPage() {
                   onClick={() => {
                     // 上传文件
                     console.log('上传文件');
+                    document.getElementById('upload')?.click();
                   }}
                   className="h-10 w-24 rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
                 >
                   上传文件
                 </button>
+                <input
+                  className="hidden"
+                  type="file"
+                  name="upload"
+                  id="upload"
+                  onChange={handleFileUpload}
+                />
                 <button
                   onClick={() => {
                     // Indexing

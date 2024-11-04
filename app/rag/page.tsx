@@ -1,13 +1,5 @@
 'use client';
 
-class GetKBRsp {
-  code!: number;
-  msg!: string;
-  kbs!: string[];
-}
-
-const API_URL = 'http://10.112.67.227:8080/api';
-
 export default function Page() {
   return (
     <>

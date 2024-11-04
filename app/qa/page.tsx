@@ -1,5 +1,6 @@
 'use client';
 
+import { API_URL } from '@/app/config';
 import { useEffect, useRef, useState } from 'react';
 
 class GetKBRsp {
@@ -19,8 +20,6 @@ class QueryRsp {
   msg!: string;
   text!: string;
 }
-
-const API_URL = 'http://10.112.67.227:8080/api';
 
 export default function Page() {
   const [kbs, setKBs] = useState<string[]>([]); // KB 列表
