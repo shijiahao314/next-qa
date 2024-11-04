@@ -36,8 +36,9 @@
 ![light mode](/images/image-light.png)
 
 <p align="center">
-  <img src="/images/image-mobile.png" alt="on mobile" width="45%">
-  <img src="/images/image-mobile2.png" alt="on mobile" width="45%">
+  <img src="/images/image-mobile.png" alt="on mobile" width="33%">
+  <img src="/images/image-mobile2.png" alt="on mobile" width="33%">
+  <img src="/images/image-mobile3.png" alt="on mobile" width="33%">
 </p>
 
 
@@ -53,7 +54,7 @@ git clone git@github.com:shijiahao314/next-qa.git
 
 需要创建`.env.local`文件，并参照`.env.example`填写
 
-### npm 构建并允许
+### npm 构建并运行
 
 ```bash
 # 禁止使用 npm install 或 npm i 安装，该操作会修改 package-lock.json 导致安装依赖的版本不同
