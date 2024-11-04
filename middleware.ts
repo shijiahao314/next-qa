@@ -1,13 +1,15 @@
 import { NextResponse, type NextRequest } from 'next/server';
+import { BACKEND_API_URL } from './app/config';
 import { IsLoginResponse } from './action/model/auth';
 
 const loginPath = '/login';
 const userInfoPath = '/userInfo';
 
 export async function middleware(request: NextRequest) {
-  // console.log('====================================');
-  // console.log(request.url);
-  // console.log('====================================');
+  console.log('====================================');
+  console.log('request.url=', request.url);
+  console.log('BACKEND_API_URL=', BACKEND_API_URL);
+  console.log('====================================');
 
   // 获取 session
   //   const session = request.cookies.get('session')?.value;
@@ -25,7 +27,7 @@ export async function middleware(request: NextRequest) {
   //   // 请求头中为 'Cookie'
   //   // 响应头中为 'Set-Cookie'
   //   // 两者意义不同
-  //   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/islogin`, {
+  //   const res = await fetch(BACKEND_API_URL+'/auth/islogin', {
   //     method: 'GET',
   //     headers: {
   //       'Content-Type': 'application/json',

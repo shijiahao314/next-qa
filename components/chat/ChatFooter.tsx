@@ -1,19 +1,11 @@
 'use client';
 
 import { AddChatCard } from '@/action/chat';
-import {
-  AddChatCardResponse,
-  ChatCard,
-  ChatCardDTO,
-  ChatRole,
-  WSChatSendMessage
-} from '@/action/model/chat';
-import { GetOpenAIStream } from '@/func/openai';
-import { useBearStore, useChatStore } from '@/lib/store';
-import { Message, OpenAIStream, StreamingTextResponse } from 'ai';
-import { useRef } from 'react';
+import { AddChatCardResponse, ChatCardDTO, ChatRole } from '@/action/model/chat';
+import { useChatStore } from '@/lib/store';
 import { useChat } from 'ai/react';
-import openai, { OpenAI } from 'openai';
+import { OpenAI } from 'openai';
+import { useRef } from 'react';
 
 export default function ChatFooter() {
   const getSelectedChatInfoID = useChatStore((state) => state.getSelectedChatInfoID);
