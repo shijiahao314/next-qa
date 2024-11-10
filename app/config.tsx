@@ -1,2 +1,2 @@
-export const API_URL = 'http://10.112.67.227:8080/api';
-export const BACKEND_API_URL = 'http://10.112.67.227:8080/api';
+export const API_URL = process.env.NEXT_PUBLIC_API_URL;
+export const BACKEND_API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
