@@ -1,15 +1,13 @@
 'use client';
 
-import { useBearStore } from '@/lib/store';
 import { usePathname, useRouter } from 'next/navigation';
-import { useShallow } from 'zustand/react/shallow';
+import { useState } from 'react';
 import SwitchModeButton from '../theme/switchMode';
 import { useHeader } from './HeaderProvider';
 import SettingButton from './settingsButton';
 
 export default function NavProvider({ children }: { children: React.ReactNode }) {
-  const navOpen = useBearStore(useShallow((state) => state.navOpen));
-  const setNavOpen = useBearStore(useShallow((state) => state.setNavOpen));
+  const [navOpen, setNavOpen] = useState(false);
   const curPath = usePathname();
   const router = useRouter();
   const { header, rbtn } = useHeader();

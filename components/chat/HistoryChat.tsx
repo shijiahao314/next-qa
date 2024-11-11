@@ -12,15 +12,12 @@ export default function HistoryChat() {
 
   return (
     <>
-      <div className="flex flex-col sm:w-60">
-        <div className="flex h-20 w-full flex-shrink-0 flex-grow-0 items-center justify-center border-b bg-my-bg text-lg shadow dark:border-my-darkborder dark:bg-my-darkbg1">
-          对话历史
-        </div>
+      <div className="flex h-full flex-col overflow-y-auto sm:w-60">
         <div className="flex flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden">
           <div className="space-y-3 px-4 py-5">
             {/* 新的聊天 */}
             <div
-              className="group flex w-full cursor-pointer resize-none flex-row items-center justify-center rounded-lg border-2 border-my-bg bg-my-bg px-3 py-3 font-sans shadow-md hover:border-my-bgHover hover:bg-my-bgHover dark:border-my-darkbg2 dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3"
+              className="group flex w-full cursor-pointer resize-none flex-row items-center justify-center rounded-lg border border-my-border px-3 py-3 shadow-sm  hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3"
               onClick={() => {
                 const nowTime: Date = new Date();
                 const newChatInfo: ChatInfo = {
@@ -58,7 +55,7 @@ export default function HistoryChat() {
                   />
                 </svg>
               </div>
-              <div className="px-3 text-lg font-medium">新的聊天</div>
+              <div className="px-3 font-medium">新的聊天</div>
             </div>
             {chatInfos != null &&
               chatInfos.length != 0 &&

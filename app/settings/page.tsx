@@ -91,7 +91,7 @@ export default function Page() {
             </div>
           </div>
           <button
-            className="h-12 w-12 place-content-center items-center rounded-lg border-[1px] border-my-border p-2 text-base font-semibold hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbgHover/25"
+            className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbgHover/25"
             onClick={syncSettings}
           >
             <svg viewBox="0 0 1024 1024">

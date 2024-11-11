@@ -6,15 +6,12 @@ import ChatHeader from '@/components/chat/ChatHeader';
 import HistoryChat from '@/components/chat/HistoryChat';
 import { useHeader } from '@/components/frame/HeaderProvider';
 import MyToastContainer from '@/components/frame/MyToastContainer';
-import { useChatStore } from '@/lib/store';
 import { Suspense, useEffect, useState } from 'react';
 import ChatBodyLoading from './loading';
 
 export default function Page() {
-  const selectedChatInfoID: string = useChatStore((state) => state.selectedChatInfoID);
-  const setChatCards = useChatStore((state) => state.setChatCards);
   const { setHeader, setRbtn } = useHeader();
-  const [historyOpen, setHistoryOpen] = useState<Boolean>(false);
+  const [historyOpen, setHistoryOpen] = useState(false);
 
   useEffect(() => {
     // 设置 header 内容
@@ -46,17 +43,6 @@ export default function Page() {
       </button>
     );
   }, [setHeader, setRbtn]);
-
-  // load chat cards
-  useEffect(() => {
-    if (selectedChatInfoID != '') {
-      // GetChatCards(selectedChatInfoID).then(([success, resp]: [boolean, GetChatCardsResponse]) => {
-      //   if (success) {
-      //     setChatCards(resp.data.chat_cards);
-      //   }
-      // });
-    }
-  }, [selectedChatInfoID, setChatCards]);
 
   return (
     <>
