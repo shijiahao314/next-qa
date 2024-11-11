@@ -1,12 +1,10 @@
 'use client';
 
-import ChatContent from './ChatCard';
-import { useChatStore } from '@/lib/store';
 import { ChatCard, ChatRole } from '@/action/model/chat';
+import { useChatStore } from '@/lib/store';
 import { useEffect, useRef } from 'react';
+import ChatContent from './ChatCard';
 import TmpChatCard from './TmpChatCard';
-import { time } from 'console';
-import { useCompletion } from 'ai/react';
 
 // 如果需要loading，则改为async
 export default function ChatBody() {

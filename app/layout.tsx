@@ -1,6 +1,7 @@
 'use client';
 
-import SideNav from '@/components/frame/SideNav';
+import { HeaderProvider } from '@/components/frame/HeaderContent'; // 不再在这里调用 useHeader
+import NavProvider from '@/components/frame/NavProvider';
 import { ThemeProvider } from 'next-themes';
 import './globals.css';
 
@@ -13,8 +14,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="flex h-[100svh] w-screen flex-col overflow-hidden border-my-border bg-my-bg text-my-text0 dark:border-my-darkborder dark:bg-my-darkbg0 dark:text-my-darktext0 sm:flex-row">
         <ThemeProvider attribute="class">
-          <SideNav></SideNav>
-          <div className="relative flex w-full flex-grow">{children}</div>
+          <HeaderProvider>
+            {' '}
+            {/* 将 HeaderProvider 包裹在这里 */}
+            <NavProvider>
+              <div className="relative flex w-full flex-grow">{children}</div>
+            </NavProvider>
+          </HeaderProvider>
         </ThemeProvider>
       </body>
     </html>

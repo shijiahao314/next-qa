@@ -9,12 +9,16 @@ import { Fragment, Suspense, useEffect, useState } from 'react';
 import { UpdateChatInfo } from '@/action/chat';
 
 export default function ChatHeader() {
-  const setNavOpen = useBearStore(useShallow((state) => state.setNavOpen));
   const setHistoryOpen = useBearStore(useShallow((state) => state.setHistoryOpen));
 
   const chatInfos: ChatInfo[] = useChatStore(useShallow((state) => state.chatInfos));
   const setChatInfos = useChatStore(useShallow((state) => state.setChatInfos));
   const selectedChatInfoID: string = useChatStore(useShallow((state) => state.selectedChatInfoID));
+  // currentChatInfo
+  const [chatInfo, setChatInfo] = useState<ChatInfo>();
+  useEffect(() => {
+    setChatInfo(chatInfos.find((chatInfo) => chatInfo.id === selectedChatInfoID));
+  }, [selectedChatInfoID, chatInfos]);
 
   // Dialog (Modal)
   let [isOpen, setIsOpen] = useState(false);
@@ -23,47 +27,17 @@ export default function ChatHeader() {
     setIsOpen(false);
   }
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  // formData
-  const [formdata, setFormData] = useState({
-    title: chatInfos.find((chatInfo) => chatInfo.id === selectedChatInfoID)?.title || 'error'
-  });
-  useEffect(() => {
-    setFormData({
-      title: chatInfos.find((chatInfo) => chatInfo.id === selectedChatInfoID)?.title || 'error'
-    });
-  }, [selectedChatInfoID]);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formdata,
-      [e.target.name]: e.target.value
-    });
-  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const updateChatInfoRequest: UpdateChatInfoRequest = {
-      title: formdata.title
-    };
-    UpdateChatInfo(selectedChatInfoID, updateChatInfoRequest).then(([success, resp]) => {
-      if (success) {
-        setChatInfos(
-          chatInfos.map((chatInfo) => {
-            if (chatInfo.id === selectedChatInfoID) {
-              chatInfo.title = formdata.title;
-            }
-            return chatInfo;
-          })
-        );
-        closeModal();
-      }
-    });
   };
 
   return (
     <>
+      <div className="flex flex-col items-center justify-center overflow-y-auto md:relative">
+        <label className="text-xl font-bold">{chatInfo?.title || '加载中...'}</label>
+        <label className="text-sm">共 {chatInfo?.num || 0} 条对话</label>
+      </div>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-30" onClose={() => {}}>
           <Transition.Child
@@ -104,7 +78,7 @@ export default function ChatHeader() {
                       <input
                         className="bg-my-bg1 flex-grow rounded-lg px-2 text-center outline outline-2 outline-my-border focus:border-[0.15rem] dark:bg-my-darkbg1 dark:outline-my-darkborder"
                         name="title"
-                        value={formdata.title}
+                        value={chatInfo?.title}
                         onChange={handleChange}
                       ></input>
                     </div>

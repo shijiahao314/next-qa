@@ -1,15 +1,7 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import { ChatInfo, FormattedTime } from '@/action/model/chat';
 import { useBearStore, useChatStore } from '@/lib/store';
-import { AddChatInfo, DeleteChatInfo, GetChatInfos } from '@/action/chat';
-import {
-  AddChatInfoResponse,
-  ChatInfo,
-  DeleteChatInfoResponse,
-  FormattedTime,
-  GetChatInfosResponse
-} from '@/action/model/chat';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function HistoryChat() {
@@ -17,22 +9,9 @@ export default function HistoryChat() {
   const setHistoryOpen = useBearStore((state) => state.setHistoryOpen);
 
   const chatInfos = useChatStore((state) => state.chatInfos);
-  const getChatInfos = useChatStore((state) => state.getChatInfos);
   const setChatInfos = useChatStore((state) => state.setChatInfos);
   const selectedChatInfoID: string = useChatStore((state) => state.selectedChatInfoID);
   const setSelectedChatInfoID = useChatStore((state) => state.setSelectedChatInfoID);
-
-  useEffect(() => {
-    GetChatInfos().then(([success, resp]: [boolean, GetChatInfosResponse]) => {
-      if (success) {
-        const data = resp.data.chat_infos;
-        if (data.length > 0) {
-          setChatInfos(data);
-          setSelectedChatInfoID(data[0].id);
-        }
-      }
-    });
-  }, []);
 
   return (
     <>
@@ -48,18 +27,32 @@ export default function HistoryChat() {
           </div>
           <div className="flex flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden">
             <div className="space-y-3 px-4 py-5">
+              {/* 新的聊天 */}
               <div
                 className="group flex w-full cursor-pointer resize-none flex-row items-center justify-center rounded-lg border-2 border-my-bg bg-my-bg px-3 py-3 font-sans shadow-md hover:border-my-bgHover hover:bg-my-bgHover dark:border-my-darkbg2 dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3"
-                onClick={(e) => {
-                  setHistoryOpen(false);
-                  AddChatInfo({
-                    title: '新的聊天'
-                  }).then(([success, resp]: [boolean, AddChatInfoResponse]) => {
-                    if (success) {
-                      setChatInfos([resp.data.chat_info, ...chatInfos]);
-                      setSelectedChatInfoID(resp.data.chat_info.id);
+                onClick={() => {
+                  const nowTime: Date = new Date();
+                  const newChatInfo: ChatInfo = {
+                    id: nowTime.getTime().toString(),
+                    title: '新的聊天',
+                    num: 0,
+                    ctime: nowTime,
+                    utime: nowTime
+                  };
+                  console.log('====================================');
+                  console.log('新的聊天');
+                  console.log(newChatInfo);
+                  console.log('====================================');
+                  let index = 0;
+                  for (let i = 0; i < chatInfos.length; i++) {
+                    if (chatInfos[i].utime < nowTime) {
+                      index = i;
+                      break;
                     }
-                  });
+                  }
+                  chatInfos.splice(index, 0, newChatInfo);
+                  setChatInfos(chatInfos);
+                  setSelectedChatInfoID(newChatInfo.id);
                 }}
               >
                 <div className="h-8 w-8">
@@ -90,29 +83,42 @@ export default function HistoryChat() {
                     }
                     key={chatInfo.id}
                     onClick={(e) => {
-                      if (selectedChatInfoID != chatInfo.id) {
-                        setHistoryOpen(false);
+                      if (selectedChatInfoID !== chatInfo.id) {
+                        console.log('====================================');
+                        console.log('选择对话');
+                        console.log(chatInfo);
+                        console.log('====================================');
                         setSelectedChatInfoID(chatInfo.id);
                       }
                     }}
                   >
                     <div className="flex flex-row items-center justify-between">
                       <div className="text-sm font-semibold">{chatInfo.title}</div>
+                      {/* 删除对话 */}
                       <div
                         className="hidden h-4 w-4 cursor-pointer text-sm text-white group-hover:block"
                         onClick={(e) => {
-                          e.stopPropagation();
-                          DeleteChatInfo(chatInfo.id).then(
-                            ([success, resp]: [boolean, DeleteChatInfoResponse]) => {
-                              if (success) {
-                                setChatInfos(chatInfos.filter((item) => item.id !== chatInfo.id));
-                                if (chatInfo.id === selectedChatInfoID && chatInfos.length > 0) {
-                                  // 必须使用 get 获取最新值，若使用 chatInfos[0].id 则会获取旧值
-                                  setSelectedChatInfoID(getChatInfos()[0].id);
-                                }
-                              }
+                          e.stopPropagation(); // 阻止事件冒泡
+                          // 删除所选对话
+                          console.log('====================================');
+                          console.log('删除对话');
+                          console.log(chatInfo);
+                          console.log('====================================');
+                          // When using React, you should never mutate the state directly.
+                          // If an object(or Array, which is an object too) is changed, you should create a new copy.
+                          var newChatInfos = [...chatInfos]; // 创建一个新数组
+                          var index = newChatInfos.indexOf(chatInfo);
+                          if (index !== -1) {
+                            newChatInfos.splice(index, 1);
+                            setChatInfos(newChatInfos);
+                          }
+                          if (selectedChatInfoID === chatInfo.id) {
+                            if (newChatInfos.length > 0) {
+                              setSelectedChatInfoID(newChatInfos[0].id);
+                            } else {
+                              setSelectedChatInfoID('');
                             }
-                          );
+                          }
                         }}
                       >
                         <svg viewBox="0 0 1024 1024">
@@ -121,21 +127,6 @@ export default function HistoryChat() {
                             fill="red"
                           />
                         </svg>
-                        {/* <svg
-                          className="mx-1 hidden cursor-pointer group-hover:block"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="14.663"
-                          height="14.663"
-                          fill="none"
-                        >
-                          <g>
-                            <path d="M7.337.667c-3.69 0-6.67 2.98-6.67 6.67a6.66 6.66 0 0 0 6.67 6.66c3.68 0 6.66-2.98 6.66-6.66a6.66 6.66 0 0 0-6.66-6.67Z"></path>
-                            <path
-                              fill="#aaa"
-                              d="m10.138 5.471-4.667 4.667q-.046.046-.1.083-.055.036-.116.062-.06.025-.125.038-.064.012-.13.012t-.13-.012q-.064-.013-.125-.038-.06-.026-.115-.062-.055-.037-.101-.083-.047-.046-.083-.101-.037-.055-.062-.115-.025-.06-.038-.125-.013-.065-.013-.13 0-.066.013-.13.013-.065.038-.125.025-.061.062-.116.036-.054.083-.1l4.666-4.667q.047-.047.101-.083.055-.037.116-.062.06-.025.125-.038.064-.013.13-.013.065 0 .13.013.064.013.125.038.06.025.115.062.055.036.101.083.046.046.083.1.036.055.062.116.025.06.038.125.012.064.012.13t-.012.13q-.013.064-.038.125-.026.06-.062.115-.037.055-.083.101ZM5.471 4.53l.667.666q.046.047.083.101.036.055.062.116.025.06.038.125.012.064.012.13 0 .065-.012.13-.013.064-.038.125-.026.06-.062.115-.036.055-.083.101-.046.046-.1.083-.056.036-.116.062-.06.025-.125.038-.065.012-.13.012-.066 0-.13-.012-.065-.013-.125-.038-.061-.026-.116-.062-.054-.036-.1-.083l-.667-.667q-.047-.046-.083-.1-.037-.055-.062-.116-.025-.06-.038-.125-.013-.064-.013-.13t.013-.13q.013-.064.038-.125.025-.06.062-.115.036-.055.083-.101.046-.047.1-.083.055-.037.116-.062.06-.025.125-.038.064-.013.13-.013t.13.013q.064.013.125.038.06.025.115.062.055.036.101.083Zm4 4 .667.666q.046.047.083.101.036.055.062.116.025.06.038.125.012.064.012.13 0 .065-.012.13-.013.064-.038.125-.026.06-.062.115-.036.055-.083.101-.046.046-.1.083-.056.036-.116.062-.06.025-.125.038-.065.012-.13.012-.066 0-.13-.012-.065-.013-.125-.038-.061-.026-.116-.062-.054-.036-.1-.083l-.667-.667q-.047-.046-.083-.1-.037-.055-.062-.116-.025-.06-.038-.125-.013-.064-.013-.13t.013-.13q.013-.064.038-.125.025-.06.062-.115.036-.055.083-.101.046-.047.1-.083.055-.037.116-.062.06-.025.125-.038.064-.013.13-.013t.13.013q.064.013.125.038.06.025.115.062.055.036.101.083Zm3.859-1.192q0-2.491-1.755-4.248-1.754-1.756-4.238-1.756-2.492 0-4.248 1.756-1.756 1.756-1.756 4.248 0 2.484 1.756 4.238 1.757 1.755 4.248 1.755 2.484 0 4.238-1.755 1.755-1.754 1.755-4.238Zm1.333 0q0 3.036-2.145 5.181t-5.181 2.145q-3.043 0-5.19-2.145Q0 10.374 0 7.337q0-3.044 2.147-5.19Q4.293 0 7.337 0q3.037 0 5.181 2.147 2.145 2.147 2.145 5.19ZM10.332 5q0 .066-.013.13t-.038.125q-.025.06-.061.114-.037.055-.083.101-.046.047-.1.083-.055.036-.116.061-.06.025-.125.038-.064.013-.13.013-.065 0-.13-.013-.063-.013-.124-.038-.06-.025-.115-.061-.054-.036-.1-.083-.047-.046-.083-.1-.037-.055-.062-.115-.025-.061-.038-.125-.012-.064-.012-.13 0-.065.012-.13.013-.064.038-.124.025-.061.062-.115.036-.055.082-.101.047-.047.101-.083.055-.036.115-.061.06-.025.125-.038.064-.013.13-.013.065 0 .13.013.064.013.124.038t.115.061q.055.036.1.083.047.046.084.1.036.055.061.116.025.06.038.124.013.065.013.13ZM5.665 9.667q0 .065-.013.13-.013.064-.038.124t-.061.115q-.036.055-.083.1-.046.047-.1.084-.055.036-.116.061-.06.025-.124.038-.064.013-.13.013-.065 0-.13-.013-.064-.013-.124-.038-.061-.025-.115-.061-.055-.037-.101-.083-.047-.046-.083-.1-.036-.055-.061-.116-.025-.06-.038-.125-.013-.064-.013-.13 0-.065.013-.13.013-.063.038-.124.025-.06.061-.115.036-.054.083-.1.046-.047.1-.083.055-.037.116-.062.06-.025.124-.038.065-.012.13-.012.066 0 .13.012.064.013.124.038.061.025.115.062.055.036.101.082.047.047.083.101.036.055.061.115.025.06.038.125.013.064.013.13Zm0-4.667q0 .066-.013.13t-.038.125q-.025.06-.061.114-.036.055-.083.101-.046.047-.1.083-.055.036-.116.061-.06.025-.124.038-.064.013-.13.013-.065 0-.13-.013-.064-.013-.124-.038-.061-.025-.115-.061-.055-.036-.101-.083-.047-.046-.083-.1-.036-.055-.061-.115-.025-.061-.038-.125-.013-.064-.013-.13 0-.065.013-.13.013-.064.038-.124.025-.061.061-.115.036-.055.083-.101.046-.047.1-.083.055-.036.116-.061.06-.025.124-.038.065-.013.13-.013.066 0 .13.013t.124.038q.061.025.115.061.055.036.101.083.047.046.083.1.036.055.061.116.025.06.038.124.013.065.013.13Zm.667.667q0 .065-.013.13-.013.064-.038.124t-.061.115q-.037.055-.083.1-.046.047-.1.084-.055.036-.116.061-.06.025-.125.038-.064.013-.13.013-.065 0-.13-.013-.063-.013-.124-.038-.06-.025-.115-.061-.054-.037-.1-.083-.047-.046-.083-.1-.037-.055-.062-.116-.025-.06-.038-.125-.012-.064-.012-.13 0-.065.012-.13.013-.063.038-.124.025-.06.062-.115.036-.054.082-.1.047-.047.101-.083.055-.037.115-.062.06-.025.125-.038.064-.012.13-.012.065 0 .13.012.064.013.124.038t.115.062q.055.036.1.082.047.047.084.101.036.055.061.115.025.06.038.125.013.064.013.13ZM9.665 9q0 .066-.013.13t-.038.125q-.025.06-.061.114-.036.055-.083.101-.046.047-.1.083-.055.036-.116.061-.06.025-.124.038-.064.013-.13.013-.065 0-.13-.013-.064-.013-.124-.038-.061-.025-.115-.061-.055-.036-.101-.083-.047-.046-.083-.1-.036-.055-.061-.115-.025-.061-.038-.125-.013-.064-.013-.13 0-.065.013-.13.013-.064.038-.124.025-.061.061-.115.036-.055.083-.101.046-.047.1-.083.055-.036.116-.061.06-.025.124-.038.065-.013.13-.013.066 0 .13.013t.124.038q.061.025.115.061.055.036.101.083.047.046.083.1.036.055.061.116.025.06.038.124.013.065.013.13Zm.667.667q0 .065-.013.13-.013.064-.038.124t-.061.115q-.037.055-.083.1-.046.047-.1.084-.055.036-.116.061-.06.025-.125.038-.064.013-.13.013-.065 0-.13-.013-.063-.013-.124-.038-.06-.025-.115-.061-.054-.037-.1-.083-.047-.046-.083-.1-.037-.055-.062-.116-.025-.06-.038-.125-.012-.064-.012-.13 0-.065.012-.13.013-.063.038-.124.025-.06.062-.115.036-.054.082-.1.047-.047.101-.083.055-.037.115-.062.06-.025.125-.038.064-.012.13-.012.065 0 .13.012.064.013.124.038t.115.062q.055.036.1.082.047.047.084.101.036.055.061.115.025.06.038.125.013.064.013.13Z"
-                            ></path>
-                          </g>
-                        </svg> */}
                       </div>
                     </div>
                     <div className="flex flex-row justify-between text-xs text-my-text1 dark:text-my-darktext1">
