@@ -283,7 +283,7 @@ export default function KBPage() {
     <>
       <title>KB-知识库管理</title>
       <div className="flex w-full flex-col overflow-y-auto md:relative">
-        <label className="shadow-b-2 ms:block hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50">
+        <label className="shadow-b-2 hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
           知识库管理
         </label>
         <div className="flex flex-grow flex-col gap-4 overflow-y-auto px-8 py-4">

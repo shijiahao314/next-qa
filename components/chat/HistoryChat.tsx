@@ -3,12 +3,20 @@
 import { ChatInfo, FormattedTime } from '@/action/model/chat';
 import { useChatStore } from '@/lib/store';
 import 'react-toastify/dist/ReactToastify.css';
+import useStore from '@/lib/useStore';
 
 export default function HistoryChat() {
-  const chatInfos = useChatStore((state) => state.chatInfos);
+  const chatInfos = useStore(useChatStore, (state) => state.chatInfos);
+  const selectedChatInfoID = useStore(useChatStore, (state) => state.selectedChatInfoID);
   const setChatInfos = useChatStore((state) => state.setChatInfos);
-  const selectedChatInfoID: string = useChatStore((state) => state.selectedChatInfoID);
   const setSelectedChatInfoID = useChatStore((state) => state.setSelectedChatInfoID);
+
+  if (!chatInfos) {
+    console.log('====================================');
+    console.log(chatInfos);
+    console.log('====================================');
+    return <></>;
+  }
 
   return (
     <>

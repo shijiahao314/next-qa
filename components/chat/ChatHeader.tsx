@@ -32,7 +32,7 @@ export default function ChatHeader() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center overflow-y-auto md:relative">
+      <div className="flex flex-col items-center justify-center sm:items-start sm:justify-start">
         <label className="text-xl font-bold">{chatInfo?.title || '新的聊天'}</label>
         <label className="text-sm">共 {chatInfo?.num || 0} 条对话</label>
       </div>

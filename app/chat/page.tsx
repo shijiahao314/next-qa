@@ -50,6 +50,9 @@ export default function Page() {
       <div className="flex h-full w-full flex-row overflow-hidden sm:relative">
         <div className="flex w-full flex-col border-my-border dark:border-my-darkborder sm:border-r-2">
           <MyToastContainer></MyToastContainer>
+          <div className="hidden border-b border-my-border py-2 pl-8 dark:border-my-darkborder sm:flex">
+            <ChatHeader></ChatHeader>
+          </div>
           <Suspense fallback={<ChatBodyLoading></ChatBodyLoading>}>
             <ChatBody></ChatBody>
           </Suspense>
@@ -58,7 +61,7 @@ export default function Page() {
       </div>
       <div
         className={
-          'fixed right-0 z-50 h-screen transform border-my-border bg-my-bg transition-transform duration-300 dark:border-r-my-darkborder dark:bg-my-darkbg1 sm:relative sm:z-0 sm:translate-x-0 ' +
+          'fixed right-0 z-50 h-screen w-60 transform border-my-border bg-my-bg transition-transform duration-300 dark:border-r-my-darkborder dark:bg-my-darkbg1 sm:relative sm:z-0 sm:translate-x-0 ' +
           `${historyOpen ? 'translate-x-0' : 'translate-x-full'}`
         }
       >

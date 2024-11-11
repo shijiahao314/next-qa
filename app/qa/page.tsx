@@ -1,6 +1,7 @@
 'use client';
 
 import { API_URL } from '@/app/config';
+import { useHeader } from '@/components/frame/HeaderProvider';
 import { useEffect, useRef, useState } from 'react';
 
 class GetKBRsp {
@@ -27,9 +28,14 @@ export default function Page() {
   const [selectedKB, setSelectedKB] = useState(''); // 所选 KB
   const [selectedDB, setSelectedDB] = useState(''); // 所选 KB
   const [method, setMethod] = useState('local'); // Method
-
   const queryArea = useRef<HTMLTextAreaElement>(null); // Query
   const ansArea = useRef<HTMLTextAreaElement>(null); // Answer
+  const { setHeader } = useHeader();
+
+  useEffect(() => {
+    // 设置 header 内容
+    setHeader(<label className="flex items-center text-xl font-bold">知识图问答</label>);
+  }, [setHeader]);
 
   useEffect(() => {
     async function fetchKBs() {
@@ -165,7 +171,7 @@ export default function Page() {
     <>
       <title>QA-知识图问答</title>
       <div className="flex w-full flex-col overflow-y-auto md:relative">
-        <label className="shadow-b-2 w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50">
+        <label className="shadow-b-2 hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
           知识图问答
         </label>
         <div className="flex flex-grow flex-col gap-4 overflow-y-auto px-8 py-4">

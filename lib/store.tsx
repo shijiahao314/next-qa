@@ -40,11 +40,10 @@ interface ChatState {
   selectedChatInfoID: string;
   getSelectedChatInfoID: () => string;
   setSelectedChatInfoID: (chatInfoID: string) => void;
-  chatCards: ChatCard[];
+  chatMap: Map<string, ChatCard[]>;
   getChatCards: () => ChatCard[];
-  setChatCards: (chatCards: ChatCard[]) => void;
-  addChatCard: (chatCard: ChatCard) => void;
-  deleteChatCard: (chatCardId: string) => void;
+  addChatCard: (chatCard: ChatCard, chatInfoID: string) => void;
+  deleteChatCard: (chatCardID: string, chatInfoID: string) => void;
   tmpChatContent: string;
   setTmpChatContent: (content: string) => void;
   tmpCompletionContent: string;
@@ -65,29 +64,48 @@ export const useChatStore = create<ChatState>()(
         selectedChatInfoID: '',
         getSelectedChatInfoID: () => get().selectedChatInfoID,
         setSelectedChatInfoID: (chatInfoID: string) => set({ selectedChatInfoID: chatInfoID }),
-        chatCards: [],
-        getChatCards: () => get().chatCards,
-        // setChatCards: (chatCards: ChatCard[]) => set({ chatCards: chatCards })
-        setChatCards: (chatCards: ChatCard[]) =>
-          set((state) => ({
-            chatCards: [...chatCards]
-          })),
-        addChatCard: (chatCard: ChatCard) => {
-          set((state) => ({
-            chatCards: [...state.chatCards, chatCard]
-          }));
-          let _chatInfos: ChatInfo[] = get().chatInfos;
-          _chatInfos.forEach((chatInfo) => {
-            if (chatInfo.id === chatCard.chat_info_id) {
-              chatInfo.num++;
-            }
-          });
+        chatMap: new Map<string, ChatCard[]>([['', []]]),
+        getChatCards: () => {
+          let selectedChatInfoID = get().selectedChatInfoID;
+          if (!selectedChatInfoID) {
+            return [];
+          }
+          if (!get().chatMap) {
+            return [];
+          }
+          let _chatMap = get().chatMap.get(selectedChatInfoID);
+          if (_chatMap) {
+            return _chatMap;
+          }
+          return [];
         },
-        deleteChatCard: (chatCardId: string) => {
-          set((state) => ({
-            ...state,
-            chatCards: state.chatCards.filter((chatCard) => chatCard.id != chatCardId)
-          }));
+        addChatCard: (chatCard: ChatCard, chatInfoID: string) => {
+          let _chatMap = new Map(get().chatMap);
+          let _chatCards = _chatMap.get(chatInfoID);
+          if (_chatCards) {
+            // 更新 chatMap
+            _chatCards.push(chatCard);
+            set({ chatMap: _chatMap });
+            // 更新 num
+            let _chatInfos: ChatInfo[] = get().chatInfos;
+            _chatInfos.forEach((chatInfo) => {
+              if (chatInfo.id === chatCard.chat_info_id) {
+                chatInfo.num++;
+              }
+            });
+          }
+        },
+        deleteChatCard: (chatCardID: string, chatInfoID: string) => {
+          let _chatMap = new Map(get().chatMap);
+          let _chatCards = _chatMap.get(chatInfoID);
+          if (_chatCards) {
+            for (let i = 0; i < _chatCards.length; i++) {
+              if (_chatCards[i].id === chatCardID) {
+                _chatCards.splice(i, 1);
+              }
+            }
+          }
+          set({ chatMap: _chatMap });
           let _chatInfos: ChatInfo[] = get().chatInfos;
           const _selectedChatInfoID = get().selectedChatInfoID;
           _chatInfos.forEach((chatInfo) => {
