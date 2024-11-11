@@ -1,12 +1,10 @@
 'use client';
 
-import { ChatInfo, UpdateChatInfoRequest } from '@/action/model/chat';
+import { ChatInfo } from '@/action/model/chat';
 import { useBearStore, useChatStore } from '@/lib/store';
-import { useShallow } from 'zustand/react/shallow';
-
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, Suspense, useEffect, useState } from 'react';
-import { UpdateChatInfo } from '@/action/chat';
+import { Fragment, useEffect, useState } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
 export default function ChatHeader() {
   const setHistoryOpen = useBearStore(useShallow((state) => state.setHistoryOpen));
@@ -35,9 +33,10 @@ export default function ChatHeader() {
   return (
     <>
       <div className="flex flex-col items-center justify-center overflow-y-auto md:relative">
-        <label className="text-xl font-bold">{chatInfo?.title || '加载中...'}</label>
+        <label className="text-xl font-bold">{chatInfo?.title || '新的聊天'}</label>
         <label className="text-sm">共 {chatInfo?.num || 0} 条对话</label>
       </div>
+
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-30" onClose={() => {}}>
           <Transition.Child

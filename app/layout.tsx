@@ -1,6 +1,6 @@
 'use client';
 
-import { HeaderProvider } from '@/components/frame/HeaderContent'; // 不再在这里调用 useHeader
+import { HeaderProvider } from '@/components/frame/HeaderProvider'; // 不再在这里调用 useHeader
 import NavProvider from '@/components/frame/NavProvider';
 import { ThemeProvider } from 'next-themes';
 import './globals.css';
@@ -17,9 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <HeaderProvider>
             {' '}
             {/* 将 HeaderProvider 包裹在这里 */}
-            <NavProvider>
-              <div className="relative flex w-full flex-grow">{children}</div>
-            </NavProvider>
+            <NavProvider>{children}</NavProvider>
           </HeaderProvider>
         </ThemeProvider>
       </body>

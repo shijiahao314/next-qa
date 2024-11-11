@@ -1,6 +1,7 @@
 'use client';
 
 import { API_URL } from '@/app/config';
+import { useHeader } from '@/components/frame/HeaderProvider';
 import KBSettingModal from '@/components/frame/SettingModal';
 import { useEffect, useState } from 'react';
 
@@ -35,6 +36,12 @@ export default function KBPage() {
   const [selectedDB, setSelectedDB] = useState(''); // 所选 KB
   const [inputs, setInputs] = useState<string[]>([]); // Input 列表
   const [outputs, setOutputs] = useState<string[]>([]); // Output 列表
+  const { setHeader } = useHeader();
+
+  useEffect(() => {
+    // 设置 header 内容
+    setHeader(<label className="flex items-center text-xl font-bold">知识库管理</label>);
+  }, [setHeader]);
 
   useEffect(() => {
     async function fetchKBs() {
@@ -276,7 +283,7 @@ export default function KBPage() {
     <>
       <title>KB-知识库管理</title>
       <div className="flex w-full flex-col overflow-y-auto md:relative">
-        <label className="shadow-b-2 w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50">
+        <label className="shadow-b-2 ms:block hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50">
           知识库管理
         </label>
         <div className="flex flex-grow flex-col gap-4 overflow-y-auto px-8 py-4">
