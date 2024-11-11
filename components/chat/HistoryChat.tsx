@@ -1,7 +1,7 @@
 'use client';
 
 import { ChatInfo, FormattedTime } from '@/action/model/chat';
-import { useBearStore, useChatStore } from '@/lib/store';
+import { useChatStore } from '@/lib/store';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function HistoryChat() {
