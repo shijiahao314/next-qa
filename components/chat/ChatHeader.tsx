@@ -1,43 +1,64 @@
 'use client';
 
 import { ChatInfo } from '@/action/model/chat';
-import { useBearStore, useChatStore } from '@/lib/store';
+import { useChatStore } from '@/lib/store';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useState } from 'react';
-import { useShallow } from 'zustand/react/shallow';
 
 export default function ChatHeader() {
-  const setHistoryOpen = useBearStore(useShallow((state) => state.setHistoryOpen));
+  const chatMap = useChatStore((state) => state.chatMap);
+  const selectedChatInfoID = useChatStore((state) => state.selectedChatInfoID);
+  const chatInfos = useChatStore((state) => state.chatInfos);
+  const setChatInfos = useChatStore((state) => state.setChatInfos);
+  const [curChatInfo, setCurChatInfo] = useState<ChatInfo>({} as ChatInfo);
+  const [tmpTitle, setTmpTitle] = useState<string>('');
 
-  const chatInfos: ChatInfo[] = useChatStore(useShallow((state) => state.chatInfos));
-  const setChatInfos = useChatStore(useShallow((state) => state.setChatInfos));
-  const selectedChatInfoID: string = useChatStore(useShallow((state) => state.selectedChatInfoID));
-  // currentChatInfo
-  const [chatInfo, setChatInfo] = useState<ChatInfo>();
   useEffect(() => {
-    setChatInfo(chatInfos.find((chatInfo) => chatInfo.id === selectedChatInfoID));
-  }, [selectedChatInfoID, chatInfos]);
+    let chatInfo = chatInfos.find((chatInfo) => chatInfo.id === selectedChatInfoID);
+    if (chatInfo) {
+      setCurChatInfo(chatInfo);
+    }
+  }, [chatMap, selectedChatInfoID, chatInfos]);
 
   // Dialog (Modal)
-  let [isOpen, setIsOpen] = useState(false);
+  let [modalOpen, setModalOpen] = useState(false);
 
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTmpTitle(e.target.value);
+  };
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    let newChatInfo: ChatInfo = curChatInfo;
+    let date = new Date();
+    newChatInfo.title = tmpTitle;
+    newChatInfo.utime = date;
+    let newChatInfos = [...chatInfos];
+    const index = newChatInfos.findIndex((chatInfo) => chatInfo.id === selectedChatInfoID);
+    newChatInfos[index] = newChatInfo;
+    setChatInfos(newChatInfos);
+    setModalOpen(false);
   };
 
   return (
     <>
       <div className="flex flex-col items-center justify-center sm:items-start sm:justify-start">
-        <label className="text-xl font-bold">{chatInfo?.title || '新的聊天'}</label>
-        <label className="text-sm">共 {chatInfo?.num || 0} 条对话</label>
+        <label
+          className="cursor-pointer text-xl font-bold underline underline-offset-2"
+          onClick={() => {
+            console.log('====================================');
+            console.log('编辑对话');
+            console.log('====================================');
+            setModalOpen(true);
+            if (curChatInfo) {
+              setTmpTitle(curChatInfo.title);
+            }
+          }}
+        >
+          {curChatInfo?.title || '新的聊天'}
+        </label>
+        <label className="text-xs">共 {curChatInfo?.num || 0} 条对话</label>
       </div>
 
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition appear show={modalOpen} as={Fragment}>
         <Dialog as="div" className="relative z-30" onClose={() => {}}>
           <Transition.Child
             as={Fragment}
@@ -77,7 +98,7 @@ export default function ChatHeader() {
                       <input
                         className="bg-my-bg1 flex-grow rounded-lg px-2 text-center outline outline-2 outline-my-border focus:border-[0.15rem] dark:bg-my-darkbg1 dark:outline-my-darkborder"
                         name="title"
-                        value={chatInfo?.title}
+                        value={tmpTitle}
                         onChange={handleChange}
                       ></input>
                     </div>
@@ -92,7 +113,7 @@ export default function ChatHeader() {
                     </button>
                     <button
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-6 py-2 text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
+                      onClick={() => setModalOpen(false)}
                     >
                       取消
                     </button>

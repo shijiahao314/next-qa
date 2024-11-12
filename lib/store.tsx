@@ -2,7 +2,7 @@
 
 import { ChatCard, ChatInfo } from '@/action/model/chat';
 import { create } from 'zustand';
-import { combine, devtools, persist } from 'zustand/middleware';
+import { combine, devtools, persist, StorageValue } from 'zustand/middleware';
 
 // 直接操作变量，和使用函数操作变量似乎不同
 // 直接操作变量，会导致组件重新渲染，而使用函数操作变量不会？
@@ -15,15 +15,11 @@ export const useBearStore = create(
     persist(
       combine(
         {
-          isLogin: false,
-          navOpen: false,
-          historyOpen: false
+          isLogin: false
         },
         (set, get) => ({
           getIsLogin: () => get().isLogin,
-          setIgLogin: (state: boolean) => set({ isLogin: state }),
-          setNavOpen: (state: boolean) => set({ navOpen: state }),
-          setHistoryOpen: (state: boolean) => set({ historyOpen: state })
+          setIgLogin: (state: boolean) => set({ isLogin: state })
         })
       ),
       {
@@ -34,97 +30,143 @@ export const useBearStore = create(
 );
 
 interface ChatState {
+  // chatInfos
   chatInfos: ChatInfo[];
-  getChatInfos: () => ChatInfo[];
   setChatInfos: (chatInfos: ChatInfo[]) => void;
+  // selectedChatInfo
   selectedChatInfoID: string;
   getSelectedChatInfoID: () => string;
   setSelectedChatInfoID: (chatInfoID: string) => void;
+  // chatMap
   chatMap: Map<string, ChatCard[]>;
-  getChatCards: () => ChatCard[];
-  addChatCard: (chatCard: ChatCard, chatInfoID: string) => void;
-  deleteChatCard: (chatCardID: string, chatInfoID: string) => void;
+  // chatCard CRUD
+  addChatCard: (key: string, chatCard: ChatCard) => void;
+  removeChatCard: (key: string, chatId: string) => void;
+  updateChatCard: (key: string, chatCard: ChatCard) => void;
+  getChatsCard: (key: string) => ChatCard[];
+  // tmpChatContent
   tmpChatContent: string;
   setTmpChatContent: (content: string) => void;
+  // tmpCompletionContent
   tmpCompletionContent: string;
-  getTmpCompletionContent: () => string;
-  setTmpCompletionContent: (content: string) => void;
-  addTmpCompletionContent: (content: string) => void;
-  // handleDeleteChatCard: (chatCardId: string) => void;
-  // handleUpdateChatCard: (chatCard: ChatCard) => void;
+}
+
+function sortChatInfos(chatInfos: ChatInfo[]) {
+  return chatInfos.sort((a, b) => {
+    const aTime = new Date(a.utime).getTime();
+    const bTime = new Date(b.utime).getTime();
+    return bTime - aTime;
+  });
 }
 
 export const useChatStore = create<ChatState>()(
   devtools(
     persist(
       (set, get) => ({
+        // chatInfos
         chatInfos: [],
-        getChatInfos: () => get().chatInfos,
-        setChatInfos: (chatInfos: ChatInfo[]) => set({ chatInfos: chatInfos }),
+        setChatInfos: (chatInfos: ChatInfo[]) => {
+          chatInfos = sortChatInfos(chatInfos); // sort
+          set({ chatInfos: chatInfos });
+        },
+        // selectedChatInfo
         selectedChatInfoID: '',
         getSelectedChatInfoID: () => get().selectedChatInfoID,
         setSelectedChatInfoID: (chatInfoID: string) => set({ selectedChatInfoID: chatInfoID }),
-        chatMap: new Map<string, ChatCard[]>([['', []]]),
-        getChatCards: () => {
-          let selectedChatInfoID = get().selectedChatInfoID;
-          if (!selectedChatInfoID) {
-            return [];
-          }
-          if (!get().chatMap) {
-            return [];
-          }
-          let _chatMap = get().chatMap.get(selectedChatInfoID);
-          if (_chatMap) {
-            return _chatMap;
-          }
-          return [];
-        },
-        addChatCard: (chatCard: ChatCard, chatInfoID: string) => {
-          let _chatMap = new Map(get().chatMap);
-          let _chatCards = _chatMap.get(chatInfoID);
-          if (_chatCards) {
-            // 更新 chatMap
-            _chatCards.push(chatCard);
-            set({ chatMap: _chatMap });
-            // 更新 num
-            let _chatInfos: ChatInfo[] = get().chatInfos;
-            _chatInfos.forEach((chatInfo) => {
-              if (chatInfo.id === chatCard.chat_info_id) {
-                chatInfo.num++;
-              }
-            });
-          }
-        },
-        deleteChatCard: (chatCardID: string, chatInfoID: string) => {
-          let _chatMap = new Map(get().chatMap);
-          let _chatCards = _chatMap.get(chatInfoID);
-          if (_chatCards) {
-            for (let i = 0; i < _chatCards.length; i++) {
-              if (_chatCards[i].id === chatCardID) {
-                _chatCards.splice(i, 1);
-              }
-            }
-          }
-          set({ chatMap: _chatMap });
-          let _chatInfos: ChatInfo[] = get().chatInfos;
-          const _selectedChatInfoID = get().selectedChatInfoID;
-          _chatInfos.forEach((chatInfo) => {
-            if (chatInfo.id === _selectedChatInfoID) {
-              chatInfo.num--;
-            }
+        // chatMap
+        chatMap: new Map<string, ChatCard[]>(),
+        // chatCard CRUD
+        addChatCard: (key, chatCard) => {
+          set((state) => {
+            // chatMap
+            const chatMap = new Map(state.chatMap); // deep copy
+            const chatCards = chatMap.get(key) || [];
+            chatMap.set(key, [...chatCards, chatCard]);
+            // chatInfo
+            let chatInfos = [...state.chatInfos]; // deep copy
+            const index = chatInfos.findIndex((chatInfo) => chatInfo.id === key);
+            chatInfos[index].num++;
+            chatInfos[index].utime = new Date();
+            chatInfos = sortChatInfos(chatInfos);
+            return { chatMap: chatMap, chatInfos: chatInfos };
           });
         },
+        removeChatCard: (key, chatId) => {
+          set((state) => {
+            // chatMap
+            const chatMap = new Map(state.chatMap); // deep copy
+            const chatCards = chatMap.get(key);
+            if (chatCards) {
+              chatMap.set(
+                key,
+                chatCards.filter((chat) => chat.id !== chatId)
+              );
+            }
+            // chatInfo
+            let chatInfos = [...state.chatInfos]; // deep copy
+            const index = chatInfos.findIndex((chatInfo) => chatInfo.id === key);
+            chatInfos[index].num--;
+            chatInfos[index].utime = new Date();
+            chatInfos = sortChatInfos(chatInfos);
+            return { chatMap: chatMap, chatInfos: chatInfos };
+          });
+        },
+        updateChatCard: (key, updatedChatCard) => {
+          set((state) => {
+            // chatMap
+            const chatMap = new Map(state.chatMap); // deep copy
+            const chatCards = chatMap.get(key);
+            if (chatCards) {
+              chatMap.set(
+                key,
+                chatCards.map((chat) => (chat.id === updatedChatCard.id ? updatedChatCard : chat))
+              );
+            }
+            // chatInfo
+            let chatInfos = [...state.chatInfos]; // deep copy
+            const index = chatInfos.findIndex((chatInfo) => chatInfo.id === key);
+            chatInfos[index].utime = new Date();
+            chatInfos = sortChatInfos(chatInfos);
+            return { chatMap: chatMap };
+          });
+        },
+        getChatsCard: (key) => {
+          return get().chatMap.get(key) || [];
+        },
+        // tmpChatContent
         tmpChatContent: '',
         setTmpChatContent: (content: string) => set({ tmpChatContent: content }),
-        tmpCompletionContent: '',
-        getTmpCompletionContent: () => get().tmpCompletionContent,
-        setTmpCompletionContent: (content: string) => set({ tmpCompletionContent: content }),
-        addTmpCompletionContent: (content: string) => {
-          set({ tmpCompletionContent: get().tmpCompletionContent + content });
-        }
+        // tmpCompletionContent
+        tmpCompletionContent: ''
       }),
       {
-        name: chatStoreName
+        name: chatStoreName,
+        storage: {
+          getItem: (name) => {
+            const str = localStorage.getItem(name);
+            if (!str) return null;
+            const existingValue = JSON.parse(str);
+            return {
+              ...existingValue,
+              state: {
+                ...existingValue.state,
+                chatMap: new Map(existingValue.state.chatMap)
+              }
+            };
+          },
+          setItem: (name, newValue: StorageValue<ChatState>) => {
+            // functions cannot be JSON encoded
+            const str = JSON.stringify({
+              ...newValue,
+              state: {
+                ...newValue.state,
+                chatMap: Array.from(newValue.state.chatMap.entries())
+              }
+            });
+            localStorage.setItem(name, str);
+          },
+          removeItem: (name) => localStorage.removeItem(name)
+        }
       }
     )
   )

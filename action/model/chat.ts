@@ -3,7 +3,6 @@ import { BaseResponse } from './base';
 // ChatInfo
 export interface ChatInfo {
   id: string;
-  // userid: string;
   title: string;
   num: number;
   ctime: Date;

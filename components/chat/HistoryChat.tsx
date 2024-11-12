@@ -2,25 +2,28 @@
 
 import { ChatInfo, FormattedTime } from '@/action/model/chat';
 import { useChatStore } from '@/lib/store';
+import { useEffect, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
-import useStore from '@/lib/useStore';
 
 export default function HistoryChat() {
-  const chatInfos = useStore(useChatStore, (state) => state.chatInfos);
-  const selectedChatInfoID = useStore(useChatStore, (state) => state.selectedChatInfoID);
-  const setChatInfos = useChatStore((state) => state.setChatInfos);
+  const selectedChatInfoID = useChatStore((state) => state.selectedChatInfoID);
   const setSelectedChatInfoID = useChatStore((state) => state.setSelectedChatInfoID);
+  const chatInfos = useChatStore((state) => state.chatInfos);
+  const setChatInfos = useChatStore((state) => state.setChatInfos);
 
-  if (!chatInfos) {
-    console.log('====================================');
-    console.log(chatInfos);
-    console.log('====================================');
-    return <></>;
+  // useEffect only runs on the client, so now we can safely show the UI
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
   }
 
   return (
     <>
-      <div className="flex h-full flex-col overflow-y-auto sm:w-60">
+      <div className="flex h-full w-full flex-col overflow-y-auto">
         <div className="flex flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden">
           <div className="space-y-3 px-4 py-5">
             {/* 新的聊天 */}
@@ -65,72 +68,71 @@ export default function HistoryChat() {
               </div>
               <div className="px-3 font-medium">新的聊天</div>
             </div>
-            {chatInfos != null &&
-              chatInfos.length != 0 &&
-              chatInfos.map((chatInfo: ChatInfo) => (
-                <div
-                  className={
-                    'group w-full cursor-default resize-none space-y-3 rounded-lg border-2 bg-my-bg px-3 py-3 font-sans shadow-md hover:bg-my-bgHover dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ' +
-                    `${
-                      selectedChatInfoID === chatInfo.id
-                        ? 'border-my-primary dark:border-my-darkPrimary'
-                        : 'border-my-bg hover:border-my-bgHover dark:border-my-darkbg2'
-                    }`
+            {chatInfos.map((chatInfo: ChatInfo) => (
+              // chatInfo.id === selectedChatInfoID ?<></> :<></>
+              <div
+                className={
+                  'group w-full cursor-default resize-none space-y-3 rounded-lg border-2 bg-my-bg px-3 py-3 font-sans shadow-md hover:bg-my-bgHover dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ' +
+                  `${
+                    chatInfo.id === selectedChatInfoID
+                      ? 'border-my-primary dark:border-my-darkPrimary'
+                      : 'border-my-bg hover:border-my-bgHover dark:border-my-darkbg2'
+                  }`
+                }
+                key={chatInfo.id}
+                onClick={(e) => {
+                  if (chatInfo.id !== selectedChatInfoID) {
+                    console.log('====================================');
+                    console.log('选择对话');
+                    console.log(chatInfo);
+                    console.log('====================================');
+                    setSelectedChatInfoID(chatInfo.id);
                   }
-                  key={chatInfo.id}
-                  onClick={(e) => {
-                    if (selectedChatInfoID !== chatInfo.id) {
+                }}
+              >
+                <div className="flex flex-row items-center justify-between">
+                  <div className="text-sm font-semibold">{chatInfo.title}</div>
+                  {/* 删除对话 */}
+                  <div
+                    className="hidden h-4 w-4 cursor-pointer text-sm text-white group-hover:block"
+                    onClick={(e) => {
+                      e.stopPropagation(); // 阻止事件冒泡
+                      // 删除所选对话
                       console.log('====================================');
-                      console.log('选择对话');
+                      console.log('删除对话');
                       console.log(chatInfo);
                       console.log('====================================');
-                      setSelectedChatInfoID(chatInfo.id);
-                    }
-                  }}
-                >
-                  <div className="flex flex-row items-center justify-between">
-                    <div className="text-sm font-semibold">{chatInfo.title}</div>
-                    {/* 删除对话 */}
-                    <div
-                      className="hidden h-4 w-4 cursor-pointer text-sm text-white group-hover:block"
-                      onClick={(e) => {
-                        e.stopPropagation(); // 阻止事件冒泡
-                        // 删除所选对话
-                        console.log('====================================');
-                        console.log('删除对话');
-                        console.log(chatInfo);
-                        console.log('====================================');
-                        // When using React, you should never mutate the state directly.
-                        // If an object(or Array, which is an object too) is changed, you should create a new copy.
-                        var newChatInfos = [...chatInfos]; // 创建一个新数组
-                        var index = newChatInfos.indexOf(chatInfo);
-                        if (index !== -1) {
-                          newChatInfos.splice(index, 1);
-                          setChatInfos(newChatInfos);
+                      // When using React, you should never mutate the state directly.
+                      // If an object(or Array, which is an object too) is changed, you should create a new copy.
+                      var newChatInfos = [...chatInfos]; // 创建一个新数组
+                      var index = newChatInfos.indexOf(chatInfo);
+                      if (index !== -1) {
+                        newChatInfos.splice(index, 1);
+                        setChatInfos(newChatInfos);
+                      }
+                      if (chatInfo.id === selectedChatInfoID) {
+                        if (newChatInfos.length > 0) {
+                          setSelectedChatInfoID(newChatInfos[0].id);
+                        } else {
+                          setSelectedChatInfoID('');
                         }
-                        if (selectedChatInfoID === chatInfo.id) {
-                          if (newChatInfos.length > 0) {
-                            setSelectedChatInfoID(newChatInfos[0].id);
-                          } else {
-                            setSelectedChatInfoID('');
-                          }
-                        }
-                      }}
-                    >
-                      <svg viewBox="0 0 1024 1024">
-                        <path
-                          d="M562.688 510.976l321.408-321.408a36.672 36.672 0 0 0-51.84-51.84l-321.28 321.28L189.568 137.6a36.672 36.672 0 0 0-51.84 51.84l321.28 321.536-321.408 321.28a36.672 36.672 0 0 0 51.84 51.84l321.536-321.408 321.408 321.472a36.672 36.672 0 0 0 51.84-51.84z"
-                          fill="red"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="flex flex-row justify-between text-xs text-my-text1 dark:text-my-darktext1">
-                    <div>{chatInfo.num} 条对话</div>
-                    <div>{FormattedTime(chatInfo.utime)}</div>
+                      }
+                    }}
+                  >
+                    <svg viewBox="0 0 1024 1024">
+                      <path
+                        d="M562.688 510.976l321.408-321.408a36.672 36.672 0 0 0-51.84-51.84l-321.28 321.28L189.568 137.6a36.672 36.672 0 0 0-51.84 51.84l321.28 321.536-321.408 321.28a36.672 36.672 0 0 0 51.84 51.84l321.536-321.408 321.408 321.472a36.672 36.672 0 0 0 51.84-51.84z"
+                        fill="red"
+                      />
+                    </svg>
                   </div>
                 </div>
-              ))}
+                <div className="flex flex-row justify-between text-xs text-my-text1 dark:text-my-darktext1">
+                  <div>{chatInfo.num} 条对话</div>
+                  <div>{FormattedTime(chatInfo.utime)}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

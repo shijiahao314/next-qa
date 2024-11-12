@@ -16,7 +16,7 @@ export default function UserInfoPage() {
 
   useEffect(() => {}, []);
 
-  const setNavOpen = useBearStore((state) => state.setNavOpen);
+  const [navOpen, setNavOpen] = useState(false);
   const setIsLogin = useBearStore((state) => state.setIgLogin);
   const router = useRouter();
 

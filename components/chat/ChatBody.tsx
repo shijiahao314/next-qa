@@ -2,18 +2,31 @@
 
 import { ChatCard, ChatRole } from '@/action/model/chat';
 import { useChatStore } from '@/lib/store';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ChatContent from './ChatCard';
 import TmpChatCard from './TmpChatCard';
-import useStore from '@/lib/useStore';
 
 // 如果需要loading，则改为async
 export default function ChatBody() {
-  const getChatCards = useChatStore((state) => state.getChatCards);
+  const chatMap = useChatStore((state) => state.chatMap);
   const selectedChatInfoID = useChatStore((state) => state.selectedChatInfoID);
+  const getChatsCard = useChatStore((state) => state.getChatsCard);
+  const [curChatCards, setCurChatCards] = useState<ChatCard[]>([]);
+
   const tmpCompletionContent: string = useChatStore((state) => state.tmpCompletionContent);
   const tmpChatContent: string = useChatStore((state) => state.tmpChatContent);
   const chatBodyRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (chatMap && selectedChatInfoID) {
+      const chatCards = getChatsCard(selectedChatInfoID);
+      console.log('====================================');
+      console.log('selectedChatInfoID=', selectedChatInfoID);
+      console.log('chatCards=', chatCards);
+      console.log('====================================');
+      setCurChatCards(chatCards);
+    }
+  }, [chatMap, selectedChatInfoID, getChatsCard]);
 
   useEffect(() => {
     if (chatBodyRef.current) {
@@ -26,8 +39,8 @@ export default function ChatBody() {
       ref={chatBodyRef}
       className="flex flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden px-5 py-4"
     >
-      {getChatCards() != null && getChatCards().length > 0 ? (
-        getChatCards().map((chatCard: ChatCard) =>
+      {curChatCards != null ? (
+        curChatCards.map((chatCard: ChatCard) =>
           chatCard.role === 'user' ? (
             <ChatContent key={chatCard.id} chatCard={chatCard}></ChatContent>
           ) : (

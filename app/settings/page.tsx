@@ -2,10 +2,11 @@
 
 import { GetSettingsResponse } from '@/action/model/settings';
 import { GetSettings } from '@/action/settings';
-import { useBearStore } from '@/lib/store';
-import Head from 'next/head';
+import { useState } from 'react';
 
 export default function Page() {
+  const [navOpen, setNavOpen] = useState(false);
+
   const settings = [
     [
       // group1
@@ -61,8 +62,6 @@ export default function Page() {
       }
     ]
   ];
-
-  const setNavOpen = useBearStore((state) => state.setNavOpen);
 
   const syncSettings = () => {
     console.log('====================================');
