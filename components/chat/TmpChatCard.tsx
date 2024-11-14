@@ -44,7 +44,6 @@ export default function ChatContent({
             )}
           </div>
         </div>
-        <div className="flex py-1 text-xs text-my-text2 dark:text-my-darktext2">正在输入...</div>
         <div
           className={
             'max-w-full rounded-lg border-[0.1rem] border-my-border px-3 py-2 dark:border-my-darkborder ' +
@@ -58,7 +57,7 @@ export default function ChatContent({
           <MarkdownCard content={content}></MarkdownCard>
         </div>
         <div className="mx-2 text-end text-xs text-my-text3/30 dark:text-my-darktext3/30">
-          {FormattedTime(utime)}
+          正在输入...
         </div>
       </div>
     </div>

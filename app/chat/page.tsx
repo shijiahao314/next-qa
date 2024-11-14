@@ -6,8 +6,7 @@ import ChatHeader from '@/components/chat/ChatHeader';
 import HistoryChat from '@/components/chat/HistoryChat';
 import { useHeader } from '@/components/frame/HeaderProvider';
 import MyToastContainer from '@/components/frame/MyToastContainer';
-import { Suspense, useEffect, useState } from 'react';
-import ChatBodyLoading from './loading';
+import { useEffect, useState } from 'react';
 
 export default function Page() {
   const { setHeader, setRbtn } = useHeader();
@@ -47,6 +46,7 @@ export default function Page() {
   return (
     <>
       <title>Chat-开放对话</title>
+      {/* 对话窗口 */}
       <div className="flex h-full flex-grow flex-row overflow-hidden sm:relative">
         <div className="flex w-full flex-col border-my-border dark:border-my-darkborder sm:border-r-2">
           <MyToastContainer></MyToastContainer>
@@ -57,9 +57,10 @@ export default function Page() {
           <ChatFooter></ChatFooter>
         </div>
       </div>
+      {/* 历史对话 */}
       <div
         className={
-          'fixed right-0 z-50 flex h-screen w-60 transform border-my-border bg-my-bg transition-transform duration-300 dark:border-r-my-darkborder dark:bg-my-darkbg1 sm:relative sm:translate-x-0 ' +
+          'fixed right-0 z-50 flex h-screen w-60 flex-shrink-0 flex-grow-0 transform border-my-border bg-my-bg transition-transform duration-300 dark:border-r-my-darkborder dark:bg-my-darkbg1 sm:relative sm:z-0 sm:translate-x-0 ' +
           `${historyOpen ? 'translate-x-0' : 'translate-x-full'}`
         }
       >

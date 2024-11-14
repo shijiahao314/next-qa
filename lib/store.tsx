@@ -44,11 +44,6 @@ interface ChatState {
   removeChatCard: (key: string, chatId: string) => void;
   updateChatCard: (key: string, chatCard: ChatCard) => void;
   getChatsCard: (key: string) => ChatCard[];
-  // tmpChatContent
-  tmpChatContent: string;
-  setTmpChatContent: (content: string) => void;
-  // tmpCompletionContent
-  tmpCompletionContent: string;
 }
 
 function sortChatInfos(chatInfos: ChatInfo[]) {
@@ -66,8 +61,9 @@ export const useChatStore = create<ChatState>()(
         // chatInfos
         chatInfos: [],
         setChatInfos: (chatInfos: ChatInfo[]) => {
-          chatInfos = sortChatInfos(chatInfos); // sort
-          set({ chatInfos: chatInfos });
+          let newChatInfos = [...chatInfos]; // deep copy
+          newChatInfos = sortChatInfos(newChatInfos); // sort
+          set({ chatInfos: newChatInfos });
         },
         // selectedChatInfo
         selectedChatInfoID: '',
@@ -132,12 +128,7 @@ export const useChatStore = create<ChatState>()(
         },
         getChatsCard: (key) => {
           return get().chatMap.get(key) || [];
-        },
-        // tmpChatContent
-        tmpChatContent: '',
-        setTmpChatContent: (content: string) => set({ tmpChatContent: content }),
-        // tmpCompletionContent
-        tmpCompletionContent: ''
+        }
       }),
       {
         name: chatStoreName,
@@ -171,3 +162,19 @@ export const useChatStore = create<ChatState>()(
     )
   )
 );
+
+interface TmpChatStat {
+  // tmpChatContent
+  tmpChatContent: string;
+  setTmpChatContent: (chatInfos: string) => void;
+  // tmpCompletionContent
+  tmpCompletionContent: string;
+}
+
+export const useTmpChatStat = create<TmpChatStat>()((set, get) => ({
+  // tmpChatContent
+  tmpChatContent: '',
+  setTmpChatContent: (content: string) => set({ tmpChatContent: content }),
+  // tmpCompletionContent
+  tmpCompletionContent: ''
+}));

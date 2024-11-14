@@ -82,7 +82,7 @@ export default function Page() {
     <>
       <title>Settings-设置</title>
       <div className="flex h-full w-full flex-col">
-        <div className="relative flex flex-row justify-between border-b border-my-border bg-my-bg px-5 py-4 shadow dark:border-my-darkborder dark:bg-my-darkbg1/50">
+        <div className="relative flex flex-row justify-between border-b border-my-border bg-my-bg px-5 py-4 dark:border-my-darkborder dark:bg-my-darkbg1/50">
           <div>
             <div className="text-start text-xl font-bold">设置</div>
             <div className="text-center text-sm text-my-text1 dark:text-my-darktext1 md:text-start">

@@ -215,9 +215,9 @@ export default function NavProvider({ children }: { children: React.ReactNode })
             ))}
             {adminItems.length > 0 ? (
               <div className="flex w-full items-center pt-2">
-                <div className="h-[2px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
+                <div className="h-[1px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
                 <div className="px-2 text-sm text-my-text3 dark:text-my-darktext3">admin</div>
-                <div className="h-[2px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
+                <div className="h-[1px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
               </div>
             ) : null}
             {adminItems.map((item) => (
@@ -265,7 +265,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
       </div>
 
       {/* 上方导航栏 */}
-      <div className="z-30 flex w-full flex-row justify-between border-b border-my-border bg-my-bg px-5 py-4 shadow dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden">
+      <div className="z-30 flex w-full flex-row justify-between border-b border-my-border bg-my-bg px-5 py-4 dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden">
         <button
           className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg2 sm:hidden"
           onClick={() => {

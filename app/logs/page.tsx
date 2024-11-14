@@ -1,6 +1,7 @@
 'use client';
 
 import { API_URL } from '@/app/config';
+import { useHeader } from '@/components/frame/HeaderProvider';
 import { useEffect, useState } from 'react';
 
 class GetKBRsp {
@@ -27,6 +28,19 @@ export default function LogsPage() {
   const [selectedKB, setSelectedKB] = useState(''); // 所选 KB
   const [selectedDB, setSelectedDB] = useState(''); // 所选 KB
   const [logsText, setLogsText] = useState(''); // 日志内容
+  const { setHeader } = useHeader();
+
+  useEffect(() => {
+    // 设置 header 内容
+    setHeader(
+      <>
+        <div className="flex flex-col items-center justify-center">
+          {/* <label className="text-lg font-semibold">NextQA</label> */}
+          <label className="flex items-center text-xl font-bold">日志监控</label>
+        </div>
+      </>
+    );
+  }, [setHeader]);
 
   useEffect(() => {
     async function fetchKBs() {
@@ -124,7 +138,7 @@ export default function LogsPage() {
   }
 
   const selectStyle =
-    'h-10 px-4 rounded-lg border-2 border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-darkbg1';
+    'h-10 px-4 rounded-lg border border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-darkbg1';
 
   // 上传文件
   function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
@@ -140,12 +154,12 @@ export default function LogsPage() {
     <>
       <title>Logs-日志监控</title>
       <div className="flex w-full flex-col overflow-y-auto md:relative">
-        <label className="shadow-b-2 w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50">
+        <label className="hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
           日志监控
         </label>
         <div className="flex flex-grow flex-col gap-4 overflow-y-auto px-8 py-4">
           {/* 输入文件管理 */}
-          <div className="flex flex-grow flex-col gap-2 rounded-lg border-2 border-my-border p-4 dark:border-my-darkborder sm:gap-4">
+          <div className="flex flex-grow flex-col gap-2 rounded-lg border border-my-border p-4 dark:border-my-darkborder sm:gap-4">
             {/* <label className="text-lg font-semibold">日志查看</label> */}
             <div className="flex flex-row flex-wrap justify-between gap-2 sm:gap-4">
               {/* 知识库 */}
@@ -221,7 +235,7 @@ export default function LogsPage() {
               </div>
             </div>
             <textarea
-              className="flex flex-grow resize-none overflow-y-auto whitespace-nowrap rounded-lg border-2 border-my-border p-2 text-xs dark:border-my-darkborder"
+              className="flex flex-grow resize-none overflow-y-auto whitespace-nowrap rounded-lg border border-my-border p-2 text-xs dark:border-my-darkborder"
               onChange={(e) => setLogsText(e.target.value)}
               value={logsText}
             ></textarea>

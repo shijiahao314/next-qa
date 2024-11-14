@@ -5,6 +5,8 @@ import { useChatStore } from '@/lib/store';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useState } from 'react';
 
+const defaultTitle = '新的聊天';
+
 export default function ChatHeader() {
   const chatMap = useChatStore((state) => state.chatMap);
   const selectedChatInfoID = useChatStore((state) => state.selectedChatInfoID);
@@ -14,6 +16,21 @@ export default function ChatHeader() {
   const [tmpTitle, setTmpTitle] = useState<string>('');
 
   useEffect(() => {
+    console.log('====================================');
+    console.log('selectedChatInfoID=', selectedChatInfoID);
+    console.log('====================================');
+    if (selectedChatInfoID === '') {
+      const date = new Date();
+      const chatInfo: ChatInfo = {
+        id: '',
+        title: defaultTitle,
+        num: 0,
+        ctime: date,
+        utime: date
+      };
+      setCurChatInfo(chatInfo);
+      return;
+    }
     let chatInfo = chatInfos.find((chatInfo) => chatInfo.id === selectedChatInfoID);
     if (chatInfo) {
       setCurChatInfo(chatInfo);
@@ -53,13 +70,13 @@ export default function ChatHeader() {
             }
           }}
         >
-          {curChatInfo?.title || '新的聊天'}
+          {curChatInfo?.title || defaultTitle}
         </label>
         <label className="text-xs">共 {curChatInfo?.num || 0} 条对话</label>
       </div>
 
       <Transition appear show={modalOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-30" onClose={() => {}}>
+        <Dialog as="div" className="relative z-50" onClose={() => {}}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -82,21 +99,21 @@ export default function ChatHeader() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-xl bg-my-bg text-left align-middle text-my-text0 shadow-xl transition-all dark:bg-my-darkbg1 dark:text-my-darktext0">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-xl bg-my-bg text-left align-middle text-my-text0 transition-all dark:bg-my-darkbg1 dark:text-my-darktext0">
                   <Dialog.Title
                     as="h3"
-                    className="border-b-2 border-my-border p-5 text-lg font-semibold dark:border-my-darkborder"
+                    className="border-b border-my-border p-5 text-lg font-semibold dark:border-my-darkborder"
                   >
                     编辑对话记录
                   </Dialog.Title>
                   <div className="mt-2 p-5">
-                    <div className="flex w-full flex-row space-x-4 rounded-lg border-2 border-my-border px-5 py-3 text-base dark:border-my-darkborder">
+                    <div className="flex w-full flex-row space-x-4 rounded-lg border border-my-border px-5 py-3 text-base dark:border-my-darkborder">
                       <div className="flex flex-col">
                         <div className="text-base font-semibold">聊天主题</div>
                         <div className="text-sm font-light">更改当前的聊天主题</div>
                       </div>
                       <input
-                        className="bg-my-bg1 flex-grow rounded-lg px-2 text-center outline outline-2 outline-my-border focus:border-[0.15rem] dark:bg-my-darkbg1 dark:outline-my-darkborder"
+                        className="bg-my-bg1 flex-grow rounded-lg px-2 text-center outline outline-1 outline-my-border focus:border-2 focus:border-my-primary dark:bg-my-darkbg1 dark:outline-my-darkborder dark:focus:border-my-darkPrimary"
                         name="title"
                         value={tmpTitle}
                         onChange={handleChange}

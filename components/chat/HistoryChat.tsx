@@ -24,7 +24,7 @@ export default function HistoryChat() {
   return (
     <>
       <div className="flex h-full w-full flex-col overflow-y-auto">
-        <div className="flex flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden">
+        <div className="flex flex-col overflow-y-auto overflow-x-hidden">
           <div className="space-y-3 px-4 py-5">
             {/* 新的聊天 */}
             <div
@@ -94,7 +94,7 @@ export default function HistoryChat() {
                   <div className="text-sm font-semibold">{chatInfo.title}</div>
                   {/* 删除对话 */}
                   <div
-                    className="hidden h-4 w-4 cursor-pointer text-sm text-white group-hover:block"
+                    className="block h-4 w-4 cursor-pointer text-sm text-white group-hover:block sm:hidden"
                     onClick={(e) => {
                       e.stopPropagation(); // 阻止事件冒泡
                       // 删除所选对话
@@ -104,15 +104,15 @@ export default function HistoryChat() {
                       console.log('====================================');
                       // When using React, you should never mutate the state directly.
                       // If an object(or Array, which is an object too) is changed, you should create a new copy.
-                      var newChatInfos = [...chatInfos]; // 创建一个新数组
-                      var index = newChatInfos.indexOf(chatInfo);
+                      var index = chatInfos.indexOf(chatInfo);
                       if (index !== -1) {
-                        newChatInfos.splice(index, 1);
-                        setChatInfos(newChatInfos);
+                        chatInfos.splice(index, 1);
+                        setChatInfos(chatInfos);
                       }
                       if (chatInfo.id === selectedChatInfoID) {
-                        if (newChatInfos.length > 0) {
-                          setSelectedChatInfoID(newChatInfos[0].id);
+                        // 删除的为所选对象
+                        if (chatInfos.length > 0) {
+                          setSelectedChatInfoID(chatInfos[0].id);
                         } else {
                           setSelectedChatInfoID('');
                         }

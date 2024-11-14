@@ -165,13 +165,13 @@ export default function Page() {
   }
 
   const selectStyle =
-    'h-10 px-4 rounded-lg border-2 border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-darkbg1';
+    'h-10 px-4 rounded-lg border border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-darkbg1';
 
   return (
     <>
       <title>QA-知识图问答</title>
       <div className="flex w-full flex-col overflow-y-auto md:relative">
-        <label className="shadow-b-2 hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
+        <label className="hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
           知识图问答
         </label>
         <div className="flex flex-grow flex-col gap-4 overflow-y-auto px-8 py-4">
@@ -219,7 +219,7 @@ export default function Page() {
 
           <div className="flex flex-grow flex-col">
             <label className="text-lg font-semibold">Query</label>
-            <div className="mx-4 mt-4 flex flex-grow flex-col gap-4 rounded-lg border-2 border-my-border p-4 dark:border-my-darkborder">
+            <div className="mx-4 mt-4 flex flex-grow flex-col gap-4 rounded-lg border border-my-border p-4 dark:border-my-darkborder">
               <div className="flex flex-row gap-2">
                 <label className="flex items-center">Method:</label>
                 <select className={`${selectStyle}`} onChange={handleSelectMethod}>

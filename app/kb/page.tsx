@@ -165,7 +165,7 @@ export default function KBPage() {
   }
 
   const selectStyle =
-    'h-10 px-4 rounded-lg border-2 border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-darkbg1';
+    'h-10 px-4 rounded-lg border border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-darkbg1';
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -283,12 +283,12 @@ export default function KBPage() {
     <>
       <title>KB-知识库管理</title>
       <div className="flex w-full flex-col overflow-y-auto md:relative">
-        <label className="shadow-b-2 hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
+        <label className="hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
           知识库管理
         </label>
         <div className="flex flex-grow flex-col gap-4 overflow-y-auto px-8 py-4">
           {/* 输入文件管理 */}
-          <div className="flex flex-col gap-2 rounded-lg border-2 border-my-border px-4 pb-4 pt-2 dark:border-my-darkborder sm:gap-4">
+          <div className="flex flex-col gap-2 rounded-lg border border-my-border px-4 pb-4 pt-2 dark:border-my-darkborder sm:gap-4">
             <label className="text-lg font-semibold">输入文件</label>
             <div className="flex flex-row flex-wrap justify-between gap-2 sm:gap-4">
               <div className="flex flex-row">
@@ -391,7 +391,7 @@ export default function KBPage() {
           </div>
 
           {/* 输出文件管理 */}
-          <div className="flex flex-col gap-2 rounded-lg border-2 border-my-border px-4 pb-4 pt-2 dark:border-my-darkborder sm:gap-4">
+          <div className="flex flex-col gap-2 rounded-lg border border-my-border px-4 pb-4 pt-2 dark:border-my-darkborder sm:gap-4">
             <label className="text-lg font-semibold">输出文件</label>
             <div className="flex w-full flex-grow flex-col gap-2 overflow-x-auto sm:flex-row sm:gap-4">
               <div className="flex flex-grow flex-col gap-2 sm:gap-4">
@@ -459,7 +459,7 @@ export default function KBPage() {
                 </table>
               </div>
               {/* <div className="flex flex-grow">
-                <textarea className="w-full rounded-lg border-2 border-my-border dark:border-my-darkborder"></textarea>
+                <textarea className="w-full rounded-lg border border-my-border dark:border-my-darkborder"></textarea>
               </div> */}
             </div>
           </div>
@@ -472,7 +472,7 @@ export default function KBPage() {
           {settings.map((group, index) => (
             <div
               key={index}
-              className="divide-y-2 divide-solid rounded-lg border-2 border-my-border dark:border-my-darkborder"
+              className="divide-y-2 divide-solid rounded-lg border border-my-border dark:border-my-darkborder"
             >
               {group.map((item) => (
                 <div

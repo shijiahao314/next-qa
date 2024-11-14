@@ -101,7 +101,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
       <div className="flex h-full w-full flex-row text-my-text0 duration-200 dark:text-my-darktext0">
         <div className="m-4 flex w-full flex-col">
           <div className="flex flex-shrink flex-grow flex-col items-center justify-center">
-            <div className="rounded-lg border-2 border-my-border bg-my-bg px-6 py-5 shadow-md dark:border-my-darkborder dark:bg-my-darkbg1 md:max-w-md">
+            <div className="rounded-lg border border-my-border bg-my-bg px-6 py-5 shadow-md dark:border-my-darkborder dark:bg-my-darkbg1 md:max-w-md">
               <div className="mb-3 flex h-20 flex-row items-center justify-center space-x-3">
                 <svg className="h-9" viewBox="0 0 1024 1024">
                   <path
@@ -120,7 +120,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
               </div>
               <div className="w-full space-y-3">
                 <input
-                  className="h-12 w-full rounded-lg border-2 border-my-border bg-my-bg px-2 dark:border-my-darkborder dark:bg-my-darkbg2"
+                  className="h-12 w-full rounded-lg border border-my-border bg-my-bg px-2 dark:border-my-darkborder dark:bg-my-darkbg2"
                   placeholder="用户名..."
                   name="username"
                   value={formData.username}
@@ -128,7 +128,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                   // required
                 ></input>
                 <input
-                  className="h-12 w-full rounded-lg border-2 border-my-border bg-my-bg px-2 dark:border-my-darkborder dark:bg-my-darkbg2"
+                  className="h-12 w-full rounded-lg border border-my-border bg-my-bg px-2 dark:border-my-darkborder dark:bg-my-darkbg2"
                   placeholder="密码..."
                   name="password"
                   type="password"
@@ -147,7 +147,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                     登录
                   </button>
                   <button
-                    className="h-10 rounded-lg border-2 border-my-border px-2 text-center text-sm hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
+                    className="h-10 rounded-lg border border-my-border px-2 text-center text-sm hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
                     onClick={handleSignUp}
                   >
                     注册
@@ -155,9 +155,9 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                 </div>
               </div>
               <div className="my-2 flex w-full items-center">
-                <div className="h-[2px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
+                <div className="h-[1px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
                 <div className="px-2 text-sm text-my-text3 dark:text-my-darktext3">或</div>
-                <div className="h-[2px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
+                <div className="h-[1px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
               </div>
               <div className="flex flex-row items-center justify-center gap-4">
                 {/* with github */}

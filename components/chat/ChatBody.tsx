@@ -1,7 +1,7 @@
 'use client';
 
 import { ChatCard, ChatRole } from '@/action/model/chat';
-import { useChatStore } from '@/lib/store';
+import { useChatStore, useTmpChatStat } from '@/lib/store';
 import { useEffect, useRef, useState } from 'react';
 import ChatContent from './ChatCard';
 import TmpChatCard from './TmpChatCard';
@@ -13,26 +13,48 @@ export default function ChatBody() {
   const getChatsCard = useChatStore((state) => state.getChatsCard);
   const [curChatCards, setCurChatCards] = useState<ChatCard[]>([]);
 
-  const tmpCompletionContent: string = useChatStore((state) => state.tmpCompletionContent);
-  const tmpChatContent: string = useChatStore((state) => state.tmpChatContent);
+  const tmpChatContent: string = useTmpChatStat((state) => state.tmpChatContent);
+  const tmpCompletionContent: string = useTmpChatStat((state) => state.tmpCompletionContent);
   const chatBodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (chatMap && selectedChatInfoID) {
       const chatCards = getChatsCard(selectedChatInfoID);
-      console.log('====================================');
-      console.log('selectedChatInfoID=', selectedChatInfoID);
-      console.log('chatCards=', chatCards);
-      console.log('====================================');
       setCurChatCards(chatCards);
     }
   }, [chatMap, selectedChatInfoID, getChatsCard]);
 
   useEffect(() => {
-    if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    if (!chatBodyRef.current) {
+      return;
     }
-  }, [selectedChatInfoID, tmpCompletionContent, tmpChatContent]);
+    // const start = chatBodyRef.current.scrollTop;
+    const end = chatBodyRef.current.scrollHeight - chatBodyRef.current.offsetHeight;
+    //     const smoothScrollToBottom = (start: number, end: number) => {
+    //       if (chatBodyRef.current && !isScrolling) {
+    //         setIsScrolling(true);
+    //         const distance = end - start;
+    //         const duration = 100; // 动画持续时间，单位为毫秒
+    //         let startTime: number | null = null;
+    //
+    //         const step = (timestamp: number) => {
+    //           if (!startTime) startTime = timestamp;
+    //           const progress = timestamp - startTime;
+    //           const progressRatio = Math.min(progress / duration, 1); // 确保不会超过1
+    //           chatBodyRef.current!.scrollTop = start + distance * progressRatio;
+    //
+    //           if (progress < duration) {
+    //             window.requestAnimationFrame(step);
+    //           } else {
+    //             setIsScrolling(false);
+    //           }
+    //         };
+    //
+    //         window.requestAnimationFrame(step);
+    //       }
+    //     };
+    chatBodyRef.current.scrollTop = end;
+  }, [tmpChatContent, curChatCards]);
 
   return (
     <div
