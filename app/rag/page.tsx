@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <>
       <title>RAG-知识库问答</title>
-      <div className="flex w-full flex-col overflow-y-auto md:relative">
+      <div className="flex w-full flex-col overflow-y-auto sm:relative">
         <label className="hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
           知识库问答
         </label>

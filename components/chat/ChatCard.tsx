@@ -6,17 +6,18 @@ import MarkdownCard from '../markdown';
 export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
   const role = chatCard.role;
   const content = chatCard.content;
-  const handleDeleteChatCard = () => {
+  const handleCopy = () => {
     console.log('====================================');
-    console.log('删除对话');
+    console.log('复制: ', content);
     console.log('====================================');
+    navigator.clipboard.writeText(content);
   };
 
   return (
     <div className={'flex ' + `${role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
       <div
         className={
-          'mt-4 flex max-w-full flex-col md:max-w-[80%] ' +
+          'mt-4 flex max-w-full flex-col sm:max-w-[80%] ' +
           `${role === 'user' ? 'items-end' : 'items-start'}`
         }
       >
@@ -40,7 +41,7 @@ export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
                   fill="rgb(155, 155, 155)"
                 ></path>
               </svg>
-              <div className="hidden text-sm group-hover:block" onClick={handleDeleteChatCard}>
+              <div className="hidden text-sm group-hover:block" onClick={handleCopy}>
                 &nbsp;复制
               </div>
             </div>

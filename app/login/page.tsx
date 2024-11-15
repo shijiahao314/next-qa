@@ -101,7 +101,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
       <div className="flex h-full w-full flex-row text-my-text0 duration-200 dark:text-my-darktext0">
         <div className="m-4 flex w-full flex-col">
           <div className="flex flex-shrink flex-grow flex-col items-center justify-center">
-            <div className="rounded-lg border border-my-border bg-my-bg px-6 py-5 shadow-md dark:border-my-darkborder dark:bg-my-darkbg1 md:max-w-md">
+            <div className="rounded-lg border border-my-border bg-my-bg px-6 py-5 shadow-md dark:border-my-darkborder dark:bg-my-darkbg1 sm:max-w-md">
               <div className="mb-3 flex h-20 flex-row items-center justify-center space-x-3">
                 <svg className="h-9" viewBox="0 0 1024 1024">
                   <path

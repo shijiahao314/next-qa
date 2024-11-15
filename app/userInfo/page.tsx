@@ -54,9 +54,9 @@ export default function UserInfoPage() {
       <title>Info-用户信息</title>
       <MyToastContainer></MyToastContainer>
       <div className="flex h-full w-full flex-col">
-        <div className="relative flex flex-row justify-between border-b border-my-border px-5 py-4 shadow dark:border-my-darkborder md:hidden">
+        <div className="relative flex flex-row justify-between border-b border-my-border px-5 py-4 shadow dark:border-my-darkborder sm:hidden">
           <button
-            className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg1 md:hidden"
+            className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden"
             onClick={() => {
               setNavOpen(true);
             }}
@@ -69,13 +69,13 @@ export default function UserInfoPage() {
             </svg>
           </button>
           <div>
-            <div className="text-center text-xl font-bold md:text-start">用户信息</div>
-            <div className="text-center text-sm text-my-text1 dark:text-my-darktext1 md:text-start">
+            <div className="text-center text-xl font-bold sm:text-start">用户信息</div>
+            <div className="text-center text-sm text-my-text1 dark:text-my-darktext1 sm:text-start">
               查看和编辑个人信息
             </div>
           </div>
           <button
-            className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg1 md:hidden"
+            className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden"
             onClick={() => {
               setNavOpen(true);
             }}

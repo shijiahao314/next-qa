@@ -7,7 +7,7 @@ import './globals.css';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html suppressHydrationWarning lang="en" className="text-sm md:text-base">
+    <html suppressHydrationWarning lang="en" className="text-sm sm:text-base">
       <head>
         <title>NextQA</title>
         <link rel="icon" href="/favicon.ico" sizes="any" />
