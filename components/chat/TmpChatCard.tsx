@@ -22,7 +22,7 @@ export default function ChatContent({
         <div className="flex flex-row">
           <div
             className={
-              'flex items-center justify-center space-x-1 ' +
+              'flex items-center justify-center gap-x-1 ' +
               `${role === 'user' ? 'order-first mr-2' : 'order-last ml-2'}`
             }
           ></div>

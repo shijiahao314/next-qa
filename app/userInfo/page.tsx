@@ -90,7 +90,7 @@ export default function UserInfoPage() {
         </div>
         <div className="flex h-full w-full items-center justify-center">
           <div className="relative flex max-w-xl flex-shrink flex-grow flex-col justify-center overflow-auto overflow-x-hidden px-5 pb-20 pt-2">
-            <div className="m-6 flex flex-col items-center justify-center space-y-2">
+            <div className="m-6 flex flex-col items-center justify-center gap-y-2">
               <img
                 className="h-24 w-24 rounded-full border-2 border-my-primary/80 p-[1px] dark:border-my-darkPrimary"
                 src="https://placehold.co/96x96.png"
@@ -100,7 +100,7 @@ export default function UserInfoPage() {
                 编辑头像
               </button>
             </div>
-            <div className="mb-2 flex items-center justify-end space-x-2">
+            <div className="mb-2 flex items-center justify-end gap-x-2">
               {editStatus ? (
                 <>
                   <svg

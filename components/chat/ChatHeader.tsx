@@ -107,7 +107,7 @@ export default function ChatHeader() {
                     编辑对话记录
                   </Dialog.Title>
                   <div className="mt-2 p-5">
-                    <div className="flex w-full flex-row space-x-4 rounded-lg border border-my-border px-5 py-3 text-base dark:border-my-darkborder">
+                    <div className="flex w-full flex-row gap-x-4 rounded-lg border border-my-border px-5 py-3 text-base dark:border-my-darkborder">
                       <div className="flex flex-col">
                         <div className="text-base font-semibold">聊天主题</div>
                         <div className="text-sm font-light">更改当前的聊天主题</div>
@@ -121,7 +121,7 @@ export default function ChatHeader() {
                     </div>
                   </div>
 
-                  <div className="flex justify-end space-x-3 p-5">
+                  <div className="flex justify-end gap-x-3 p-5">
                     <button
                       className="inline-flex justify-center rounded-md border border-transparent bg-my-primary px-6 py-2 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
                       onClick={handleSubmit}

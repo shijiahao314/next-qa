@@ -25,7 +25,7 @@ export default function HistoryChat() {
     <>
       <div className="flex h-full w-full flex-col overflow-y-auto">
         <div className="flex flex-col overflow-y-auto overflow-x-hidden">
-          <div className="space-y-3 px-4 py-5">
+          <div className="gap-y-3 px-4 py-5">
             {/* 新的聊天 */}
             <div
               className="group flex w-full cursor-pointer resize-none flex-row items-center justify-center rounded-lg border border-my-border px-3 py-3 shadow-sm  hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3"
@@ -72,7 +72,7 @@ export default function HistoryChat() {
               // chatInfo.id === selectedChatInfoID ?<></> :<></>
               <div
                 className={
-                  'group w-full cursor-default resize-none space-y-3 rounded-lg border-2 bg-my-bg px-3 py-3 font-sans shadow-md hover:bg-my-bgHover dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ' +
+                  'group w-full cursor-default resize-none gap-y-3 rounded-lg border-2 bg-my-bg px-3 py-3 font-sans shadow-md hover:bg-my-bgHover dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ' +
                   `${
                     chatInfo.id === selectedChatInfoID
                       ? 'border-my-primary dark:border-my-darkPrimary'
