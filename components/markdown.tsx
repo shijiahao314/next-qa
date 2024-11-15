@@ -1,11 +1,8 @@
 import Markdown from 'react-markdown';
+import rehypePrism from 'rehype-prism-plus';
+import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
-import remarkBreaks from 'remark-breaks';
-import rehypeKatex from 'rehype-katex';
-import rehypeHighlight from 'rehype-highlight';
-import rehypePrettyCode from 'rehype-pretty-code';
-import rehypePrism from 'rehype-prism-plus';
 
 import '@/styles/markdown.css';
 // import '@/styles/prism_light.css';
@@ -17,12 +14,14 @@ export default function MarkdownCard({ content }: { content: string }) {
     <Markdown
       className="space-y-2"
       remarkPlugins={[remarkMath, remarkBreaks, remarkGfm]}
-      rehypePlugins={[
-        // rehypePrettyCode,
-        // rehypeKatex,
-        // rehypeHighlight
-        rehypePrism
-      ]}
+      rehypePlugins={
+        [
+          // rehypePrettyCode,
+          // rehypeKatex,
+          // rehypeHighlight
+          // rehypePrism
+        ]
+      }
     >
       {content}
     </Markdown>
