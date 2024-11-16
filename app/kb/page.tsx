@@ -459,7 +459,7 @@ export default function KBPage() {
 
       {/* 知识库设置 */}
       <KBSettingModal title="知识库设置" isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-        <div className="space-5 flex h-full w-full flex-col">
+        <div className="flex h-full w-full flex-col space-y-5">
           {settings.map((group, index) => (
             <div
               key={index}

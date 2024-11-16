@@ -26,8 +26,8 @@ export default function KBSettingModal({
   if (!isOpen) return null;
 
   return (
-    <div className="absolute z-30 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
-      <div className="z-40 flex max-h-[80%] w-11/12 flex-col rounded-lg bg-my-bg p-4 dark:bg-my-darkbg2 sm:w-2/3">
+    <div className="absolute z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
+      <div className="z-40 m-4 flex h-4/5 w-full flex-col rounded-lg bg-my-bg p-4 dark:bg-my-darkbg2 sm:w-2/3">
         {/* header */}
         <div className="flex items-center justify-between border-b-2 border-my-border px-1 pb-2 dark:border-my-darkborder">
           <label className="text-lg font-semibold text-my-text0 dark:text-my-darktext0">

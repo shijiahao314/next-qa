@@ -157,11 +157,11 @@ export default function LogsPage() {
         <label className="hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
           日志监控
         </label>
-        <div className="space-4 flex flex-grow flex-col overflow-y-auto px-8 py-4">
+        <div className="flex flex-grow flex-col space-y-4 overflow-y-auto px-8 py-4">
           {/* 输入文件管理 */}
-          <div className="sm:space-4 flex flex-grow flex-col space-x-2 rounded-lg border border-my-border p-4 dark:border-my-darkborder">
+          <div className="flex flex-grow flex-col space-y-2 rounded-lg border border-my-border p-4 dark:border-my-darkborder">
             {/* <label className="text-lg font-semibold">日志查看</label> */}
-            <div className="sm:space-4 flex flex-row flex-wrap justify-between space-x-2">
+            <div className="flex flex-row flex-wrap justify-between gap-2">
               {/* 知识库 */}
               <div className="flex flex-row">
                 <label className="flex items-center whitespace-nowrap text-lg">KB 知识库：</label>
