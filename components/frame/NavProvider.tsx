@@ -90,12 +90,12 @@ export default function NavProvider({ children }: { children: React.ReactNode })
           <div className="text-xl font-semibold italic">NextQA</div>
         </div>
         <div className="flex flex-shrink flex-grow flex-col items-center justify-center overflow-y-auto overflow-x-hidden border-b border-my-border px-2 dark:border-my-darkborder">
-          <ul className="gap-y-2 py-2 font-medium" role="menu">
+          <ul className="space-y-2 font-medium" role="menu">
             {items.map((item) => (
               <li className="h-10" key={item.pathname}>
                 <a
                   className={
-                    'flex items-center gap-x-3 rounded-lg px-3 py-2 ' +
+                    'flex items-center space-x-3 rounded-lg px-3 py-2 ' +
                     `${
                       curPath === item.pathname
                         ? 'pointer-events-none cursor-default bg-my-primary text-white dark:bg-my-darkPrimary'
@@ -150,7 +150,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
             onClick={() => {
               router.push('/welcome');
             }}
-            className="relative flex h-12 flex-shrink-0 flex-grow-0 cursor-pointer flex-row items-center justify-center gap-1"
+            className="space-1 relative flex h-12 flex-shrink-0 flex-grow-0 cursor-pointer flex-row items-center justify-center"
           >
             <svg className="w-12 p-1" viewBox="0 0 1024 1024">
               <path

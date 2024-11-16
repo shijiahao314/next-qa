@@ -12,7 +12,7 @@ export default function MarkdownCard({ content }: { content: string }) {
   return (
     // <style>
     <Markdown
-      className="gap-y-2"
+      className="space-y-2"
       remarkPlugins={[remarkMath, remarkBreaks, remarkGfm]}
       rehypePlugins={
         [

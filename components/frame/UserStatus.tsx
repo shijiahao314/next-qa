@@ -8,14 +8,14 @@ export default function UserStatus() {
   const router = useRouter();
   return (
     <>
-      <div className="flex w-full flex-col items-center gap-y-4 border-b-2 border-my-border px-2 pb-2 dark:border-my-darkborder">
+      <div className="flex w-full flex-col items-center space-y-4 border-b-2 border-my-border px-2 pb-2 dark:border-my-darkborder">
         <img
           className="h-24 w-24 rounded-full border-2 border-my-primary/80 p-[1px] dark:border-my-darkPrimary"
           src="https://placehold.co/96x96.png"
           alt="user avatar"
         ></img>
         <div
-          className="flex h-10 w-full items-center justify-center gap-x-2 rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+          className="flex h-10 w-full items-center justify-center space-x-2 rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
           role="button"
           onClick={
             isLogin

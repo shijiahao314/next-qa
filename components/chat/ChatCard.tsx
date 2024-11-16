@@ -25,7 +25,7 @@ export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
           {/* 功能按钮 */}
           <div
             className={
-              'flex items-center justify-center gap-x-2 ' +
+              'flex items-center justify-center space-x-2 ' +
               `${role === 'user' ? 'order-first mr-2' : 'order-last ml-2'}`
             }
           >

@@ -174,10 +174,10 @@ export default function Page() {
         <label className="hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
           知识图问答
         </label>
-        <div className="flex flex-grow flex-col gap-4 overflow-y-auto px-8 py-4">
+        <div className="space-4 flex flex-grow flex-col overflow-y-auto px-8 py-4">
           <div className="flex flex-col">
             <label className="text-lg font-semibold">Select</label>
-            <div className="m-4 flex flex-col gap-4">
+            <div className="space-4 m-4 flex flex-col">
               <div className="flex flex-row">
                 <label className="flex items-center whitespace-nowrap text-lg">KB 知识库：</label>
                 <div className="flex items-center">
@@ -219,15 +219,15 @@ export default function Page() {
 
           <div className="flex flex-grow flex-col">
             <label className="text-lg font-semibold">Query</label>
-            <div className="mx-4 mt-4 flex flex-grow flex-col gap-4 rounded-lg border border-my-border p-4 dark:border-my-darkborder">
-              <div className="flex flex-row gap-2">
+            <div className="space-4 mx-4 mt-4 flex flex-grow flex-col rounded-lg border border-my-border p-4 dark:border-my-darkborder">
+              <div className="flex flex-row space-x-2">
                 <label className="flex items-center">Method:</label>
                 <select className={`${selectStyle}`} onChange={handleSelectMethod}>
                   <option key="local">local</option>
                   <option key="global">global</option>
                 </select>
               </div>
-              <div className="flex w-full flex-row gap-3">
+              <div className="space-3 flex w-full flex-row">
                 <textarea
                   ref={queryArea}
                   className="w-full resize-none overflow-y-visible rounded-lg border-my-border bg-my-bg px-4 py-2 leading-normal shadow outline outline-2 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
@@ -242,7 +242,7 @@ export default function Page() {
                   发 送
                 </button>
               </div>
-              <div className="flex w-full flex-grow gap-2">
+              <div className="flex w-full flex-grow space-x-2">
                 <textarea
                   ref={ansArea}
                   className="w-full resize-none rounded-lg px-4 py-2 shadow outline outline-2 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"

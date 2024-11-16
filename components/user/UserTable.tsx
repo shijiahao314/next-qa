@@ -66,7 +66,7 @@ export default function UserTable() {
                 <td className={cellStyle}>{user.userid.toString()}</td>
                 <td className={cellStyle}>{user.username}</td>
                 <td className={cellStyle}>{user.role}</td>
-                <td className={`${cellStyle} gap-x-2`}>
+                <td className={`${cellStyle} space-x-2`}>
                   <button
                     className="h-8 w-12 rounded-md bg-my-primary text-sm text-my-darktext0 hover:bg-my-primaryHover
                       dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"

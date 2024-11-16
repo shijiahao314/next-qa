@@ -102,7 +102,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
         <div className="m-4 flex w-full flex-col">
           <div className="flex flex-shrink flex-grow flex-col items-center justify-center">
             <div className="rounded-lg border border-my-border bg-my-bg px-6 py-5 shadow-md dark:border-my-darkborder dark:bg-my-darkbg1 sm:max-w-md">
-              <div className="mb-3 flex h-20 flex-row items-center justify-center gap-x-3">
+              <div className="mb-3 flex h-20 flex-row items-center justify-center space-x-3">
                 <svg className="h-9" viewBox="0 0 1024 1024">
                   <path
                     d="M850.34568 1023.999787a54.186509 54.186509 0 0 1-36.266561-15.573288L669.226208 874.666889a46.079866 46.079866 0 0 0-27.306587-10.879968h-149.332898a36.906559 36.906559 0 0 1-36.906559-29.653247 35.626563 35.626563 0 0 1 34.773232-42.666542h194.132767l138.879595 129.279622V789.333804h127.999627V380.161665h-115.839662a37.119892 37.119892 0 0 1-37.119892-29.653247 35.626563 35.626563 0 0 1 34.986565-42.666543h123.519639a65.27981 65.27981 0 0 1 63.999814 65.493143v422.185435a65.066477 65.066477 0 0 1-63.999814 65.493142H895.99888v111.573008a49.706522 49.706522 0 0 1-27.51992 47.786528 42.666542 42.666542 0 0 1-17.279949 3.626656z"
@@ -118,7 +118,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                 </svg>
                 <div className="text-2xl font-semibold italic">NextQA</div>
               </div>
-              <div className="w-full gap-y-3">
+              <div className="w-full space-y-3">
                 <input
                   className="h-12 w-full rounded-lg border border-my-border bg-my-bg px-2 dark:border-my-darkborder dark:bg-my-darkbg2"
                   placeholder="用户名..."
@@ -136,7 +136,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                   onChange={handleChange}
                   // required
                 ></input>
-                <div className="flex flex-row gap-x-2">
+                <div className="flex flex-row space-x-2">
                   <button
                     className="h-10 flex-shrink flex-grow  rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
                     onClick={debounce(handleLogin, 300, {
@@ -159,7 +159,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                 <div className="px-2 text-sm text-my-text3 dark:text-my-darktext3">或</div>
                 <div className="h-[1px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
               </div>
-              <div className="flex flex-row items-center justify-center gap-4">
+              <div className="flex flex-row items-center justify-center space-x-4">
                 {/* with github */}
                 <a
                   href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&client_secret=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET}`}
