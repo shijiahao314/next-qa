@@ -3,7 +3,7 @@
 import { ChatInfo } from '@/action/model/chat';
 import { useChatStore } from '@/lib/store';
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 
 const defaultTitle = '新的聊天';
 
@@ -12,7 +12,13 @@ export default function ChatHeader() {
   const selectedChatInfoID = useChatStore((state) => state.selectedChatInfoID);
   const chatInfos = useChatStore((state) => state.chatInfos);
   const setChatInfos = useChatStore((state) => state.setChatInfos);
-  const [curChatInfo, setCurChatInfo] = useState<ChatInfo>({} as ChatInfo);
+  const [curChatInfo, setCurChatInfo] = useState<ChatInfo>({
+    id: '',
+    title: '',
+    num: -1,
+    ctime: new Date(),
+    utime: new Date()
+  } as ChatInfo);
   const [tmpTitle, setTmpTitle] = useState<string>('');
 
   useEffect(() => {
@@ -57,22 +63,31 @@ export default function ChatHeader() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center sm:items-start sm:justify-start">
-        <label
-          className="cursor-pointer text-xl font-bold underline underline-offset-2"
-          onClick={() => {
-            console.log('====================================');
-            console.log('编辑对话');
-            console.log('====================================');
-            setModalOpen(true);
-            if (curChatInfo) {
-              setTmpTitle(curChatInfo.title);
-            }
-          }}
-        >
-          {curChatInfo?.title || defaultTitle}
-        </label>
-        <label className="text-xs">共 {curChatInfo?.num || 0} 条对话</label>
+      <div className="flex flex-col items-center justify-center space-y-1 sm:items-start sm:justify-start">
+        {curChatInfo.title ? (
+          <label
+            className="cursor-pointer text-xl font-bold underline underline-offset-2"
+            onClick={() => {
+              setModalOpen(true);
+              if (curChatInfo) {
+                setTmpTitle(curChatInfo.title);
+              }
+            }}
+          >
+            {curChatInfo.title}
+          </label>
+        ) : (
+          <div className="animate-pulse rounded-sm bg-slate-200 text-xl text-transparent visited:hidden dark:bg-slate-700">
+            新的聊天
+          </div>
+        )}
+        {curChatInfo.num !== -1 ? (
+          <label className="text-xs">共 {curChatInfo.num} 条对话</label>
+        ) : (
+          <div className="animate-pulse rounded-sm bg-slate-100 text-xs text-transparent visited:hidden dark:bg-slate-800">
+            共 0 条对话
+          </div>
+        )}
       </div>
 
       <Transition appear show={modalOpen} as={Fragment}>
