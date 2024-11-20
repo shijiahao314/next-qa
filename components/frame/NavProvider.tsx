@@ -5,6 +5,7 @@ import { useState } from 'react';
 import SwitchModeButton from '../theme/switchMode';
 import { useHeader } from './HeaderProvider';
 import SettingButton from './settingsButton';
+import Mask from './Mask';
 
 export default function NavProvider({ children }: { children: React.ReactNode }) {
   const [navOpen, setNavOpen] = useState(false);
@@ -72,7 +73,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
       >
         <div
           onClick={() => {
-            router.push('/welcome');
+            router.push('/chat');
           }}
           className="relative flex flex-shrink-0 flex-grow-0 cursor-pointer flex-col items-center justify-center border-b border-my-border pb-2 pt-6 dark:border-my-darkborder"
         >
@@ -172,16 +173,10 @@ export default function NavProvider({ children }: { children: React.ReactNode })
         )}
         {rbtn === null ? <div className="h-12 w-12"></div> : <>{rbtn}</>}
       </div>
+
       {/* mask */}
-      <div
-        className={
-          'fixed inset-0 z-40 bg-black/50 transition-opacity duration-500 sm:hidden ' +
-          `${navOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`
-        }
-        onClick={() => {
-          setNavOpen(false);
-        }}
-      ></div>
+      <Mask status={navOpen} onClose={() => setNavOpen(false)}></Mask>
+
       {children}
     </>
   );

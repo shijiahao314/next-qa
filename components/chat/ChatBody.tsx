@@ -28,31 +28,7 @@ export default function ChatBody() {
     if (!chatBodyRef.current) {
       return;
     }
-    // const start = chatBodyRef.current.scrollTop;
     const end = chatBodyRef.current.scrollHeight - chatBodyRef.current.offsetHeight;
-    //     const smoothScrollToBottom = (start: number, end: number) => {
-    //       if (chatBodyRef.current && !isScrolling) {
-    //         setIsScrolling(true);
-    //         const distance = end - start;
-    //         const duration = 100; // 动画持续时间，单位为毫秒
-    //         let startTime: number | null = null;
-    //
-    //         const step = (timestamp: number) => {
-    //           if (!startTime) startTime = timestamp;
-    //           const progress = timestamp - startTime;
-    //           const progressRatio = Math.min(progress / duration, 1); // 确保不会超过1
-    //           chatBodyRef.current!.scrollTop = start + distance * progressRatio;
-    //
-    //           if (progress < duration) {
-    //             window.requestAnimationFrame(step);
-    //           } else {
-    //             setIsScrolling(false);
-    //           }
-    //         };
-    //
-    //         window.requestAnimationFrame(step);
-    //       }
-    //     };
     chatBodyRef.current.scrollTop = end;
   }, [tmpChatContent, curChatCards]);
 

@@ -96,8 +96,12 @@ const config: Config = {
           darkTertiaryActive: 'rgba(198, 202, 205, 1)', // grey-7 (dark)
 
           // chat
-          chatBg: '#e7f8ff',
-          darkChatBg: '#1b262a',
+          chatBgUser: '#e7f8ff',
+          darkChatBgUser: '#1b262a',
+          chatBg: '#0000000D',
+          darkChatBg: '#0000000D',
+          assistantBg: '#e7f8ff',
+          darkAssistantBg: '#ffffff',
 
           // danger
           danger: 'rgba(249, 57, 32, 1)', // red-5

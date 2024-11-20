@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MarkdownCard from '../markdown';
+import MarkdownCard from './MarkdownCard';
 import { FormattedTime } from '@/action/model/chat';
 
 export default function ChatContent({

@@ -5,6 +5,7 @@ import ChatFooter from '@/components/chat/ChatFooter';
 import ChatHeader from '@/components/chat/ChatHeader';
 import HistoryChat from '@/components/chat/HistoryChat';
 import { useHeader } from '@/components/frame/HeaderProvider';
+import Mask from '@/components/frame/Mask';
 import MyToastContainer from '@/components/frame/MyToastContainer';
 import { useEffect, useState } from 'react';
 
@@ -19,9 +20,6 @@ export default function Page() {
       <button
         className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg2 sm:hidden"
         onClick={() => {
-          console.log('====================================');
-          console.log('历史对话');
-          console.log('====================================');
           setHistoryOpen(true);
         }}
       >
@@ -46,21 +44,21 @@ export default function Page() {
   return (
     <>
       <title>Chat-开放对话</title>
+
       {/* 对话窗口 */}
-      <div className="flex h-full flex-grow flex-row overflow-hidden sm:relative">
-        <div className="flex w-full flex-col border-my-border dark:border-my-darkborder sm:border-r-2">
-          <MyToastContainer></MyToastContainer>
-          <div className="hidden border-b border-my-border py-2 pl-8 dark:border-my-darkborder sm:flex">
-            <ChatHeader></ChatHeader>
-          </div>
-          <ChatBody></ChatBody>
-          <ChatFooter></ChatFooter>
+      <div className="flex h-full flex-grow flex-col overflow-hidden border-my-border dark:border-my-darkborder sm:relative sm:border-r-2">
+        <MyToastContainer></MyToastContainer>
+        <div className="hidden border-b border-my-border py-2 pl-8 dark:border-my-darkborder sm:flex">
+          <ChatHeader></ChatHeader>
         </div>
+        <ChatBody></ChatBody>
+        <ChatFooter></ChatFooter>
       </div>
+
       {/* 历史对话 */}
       <div
         className={
-          'fixed right-0 z-50 flex h-screen w-60 flex-shrink-0 flex-grow-0 transform border-my-border bg-my-bg transition-transform duration-300 dark:border-r-my-darkborder dark:bg-my-darkbg1 sm:relative sm:z-0 sm:translate-x-0 ' +
+          'fixed inset-y-0 right-0 z-50 flex w-60 flex-shrink-0 flex-grow-0 transform bg-my-bg transition-transform duration-300 dark:bg-my-darkbg1 sm:relative sm:z-0 sm:translate-x-0 ' +
           `${historyOpen ? 'translate-x-0' : 'translate-x-full'}`
         }
       >
@@ -72,15 +70,7 @@ export default function Page() {
       </div>
 
       {/* mask */}
-      <div
-        className={
-          `fixed inset-0 z-40 bg-black/50 transition-opacity duration-500 sm:hidden ` +
-          `${historyOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`
-        }
-        onClick={() => {
-          setHistoryOpen(false);
-        }}
-      ></div>
+      <Mask status={historyOpen} onClose={() => setHistoryOpen(false)}></Mask>
     </>
   );
 }
