@@ -1,27 +1,34 @@
-# **你好，欢迎使用 NextQA**
+# NextQA
 
----
+This is an example of **Markdown** rendering in Next.js with Tailwind CSS.
 
-```Python
-a = 1
-print(a)
+## Supported Markdown Style
+
+### Inline Code
+
+Use `inline code` for inline code.
+
+### Code Block
+
+Here’s a **Go** example:
+
+```Go
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}
 ```
 
-## 使用指南
+### Table
 
-注册 -> 登录 -> 使用服务
+| Feature     | Supported |
+|-------------|-----------|
+| Inline Code | ✅        |
+| Code Block  | ✅        |
 
-## 知识库问答
+### Blockquote
 
-提供基于知识库（知识图谱）的问答服务，精准查询知识库中的数据，智能回答
-
-## 开放对话
-
-提供开放领域对话服务，可使用个人的 `OpenAPI Key` 进行智能开放领域对话，支持 `gpt-3.5-turbo`、`gpt-4`、`gpt-4-32k` 等多种模型
-
----
-
-## Github
-
-- 前端: _[Next-QA](https://www.github.com/shijiahao314/next-qa)_
-- 后端: _[Go-QA](https://www.github.com/shijiahao314/go-qa)_
+> "Markdown is amazing!"

@@ -17,7 +17,7 @@ export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
     <div className={'flex ' + `${role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
       <div
         className={
-          'mt-4 flex max-w-full flex-col sm:max-w-[80%] ' +
+          'mt-4 flex max-w-full flex-col sm:max-w-[90%] ' +
           `${role === 'user' ? 'items-end' : 'items-start'}`
         }
       >

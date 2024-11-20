@@ -42,9 +42,9 @@ greet('World');
 > "Markdown is amazing!"
 */
 
-export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
+export default function MarkdownCard({ content }: MarkdownRendererProps) {
   return (
-    <div className="prose-custom prose max-w-none leading-6 dark:prose-invert">
+    <div className="prose-custom prose h-min max-w-none dark:prose-invert">
       <ReactMarkdown
         rehypePlugins={[rehypePrism]}
         remarkPlugins={[remarkGfm]} // 增加对表格等的支持

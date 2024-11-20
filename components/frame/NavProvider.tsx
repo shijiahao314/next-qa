@@ -70,6 +70,9 @@ export default function NavProvider({ children }: { children: React.ReactNode })
           'absolute z-50 flex h-full transform flex-col justify-between border-my-border bg-my-bg px-4 transition-transform duration-300 dark:border-my-darkborder dark:bg-my-darkbg1 sm:relative sm:translate-x-0 sm:border-r-2 ' +
           `${navOpen ? 'translate-x-0' : '-translate-x-full'}`
         }
+        onClick={() => {
+          router.push('/welcome');
+        }}
       >
         <div
           onClick={() => {
@@ -146,27 +149,16 @@ export default function NavProvider({ children }: { children: React.ReactNode })
             />
           </svg>
         </button>
-        {header === null ? (
-          <div
-            onClick={() => {
-              router.push('/welcome');
-            }}
-            className="space-1 relative flex h-12 flex-shrink-0 flex-grow-0 cursor-pointer flex-row items-center justify-center"
-          >
-            <svg className="w-12 p-1" viewBox="0 0 1024 1024">
+        {!header ? (
+          <div className="space-1 relative flex h-12 flex-shrink-0 flex-grow-0 cursor-pointer flex-row items-center justify-center">
+            <svg className="w-12 animate-spin p-1" viewBox="0 0 24 24">
               <path
-                d="M850.34568 1023.999787a54.186509 54.186509 0 0 1-36.266561-15.573288L669.226208 874.666889a46.079866 46.079866 0 0 0-27.306587-10.879968h-149.332898a36.906559 36.906559 0 0 1-36.906559-29.653247 35.626563 35.626563 0 0 1 34.773232-42.666542h194.132767l138.879595 129.279622V789.333804h127.999627V380.161665h-115.839662a37.119892 37.119892 0 0 1-37.119892-29.653247 35.626563 35.626563 0 0 1 34.986565-42.666543h123.519639a65.27981 65.27981 0 0 1 63.999814 65.493143v422.185435a65.066477 65.066477 0 0 1-63.999814 65.493142H895.99888v111.573008a49.706522 49.706522 0 0 1-27.51992 47.786528 42.666542 42.666542 0 0 1-17.279949 3.626656z"
                 fill="#0077F0"
-                opacity=".5"
-                p-id="21296"
+                d="M12 2A10 10 0 1 0 22 12A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8A8 8 0 0 1 12 20Z"
+                opacity="0.5"
               />
-              <path
-                d="M789.332524 64.002587v486.611914H399.786994a63.999813 63.999813 0 0 0-42.666542 16.853284l-153.38622 140.159591v-93.013062a63.999813 63.999813 0 0 0-63.999813-63.999813H64.001307V64.002587h725.331217m32.21324-63.999814h-789.331031A31.786574 31.786574 0 0 0 0.001493 31.789347v551.038393a31.786574 31.786574 0 0 0 31.786574 31.786574h107.946352v166.399515a31.786574 31.786574 0 0 0 31.999907 31.786574 31.359909 31.359909 0 0 0 21.333271-8.319976l206.719397-189.866113h421.75877A31.786574 31.786574 0 0 0 853.332338 582.82774V31.789347A31.786574 31.786574 0 0 0 821.545764 0.002773z"
-                fill="#0077F0"
-                p-id="21297"
-              />
+              <path fill="#0077F0" d="M20 12h2A10 10 0 0 0 12 2V4A8 8 0 0 1 20 12Z"></path>
             </svg>
-            <div className="text-xl font-semibold italic">NextQA</div>
           </div>
         ) : (
           <>{header}</>
