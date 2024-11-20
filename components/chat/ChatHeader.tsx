@@ -5,8 +5,6 @@ import { useChatStore } from '@/lib/store';
 import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment, useEffect, useState } from 'react';
 
-const defaultTitle = '新的聊天';
-
 export default function ChatHeader() {
   const chatMap = useChatStore((state) => state.chatMap);
   const selectedChatInfoID = useChatStore((state) => state.selectedChatInfoID);
@@ -22,21 +20,12 @@ export default function ChatHeader() {
   const [tmpTitle, setTmpTitle] = useState<string>('');
 
   useEffect(() => {
+    if (selectedChatInfoID === '') {
+      return;
+    }
     console.log('====================================');
     console.log('selectedChatInfoID=', selectedChatInfoID);
     console.log('====================================');
-    if (selectedChatInfoID === '') {
-      const date = new Date();
-      const chatInfo: ChatInfo = {
-        id: '',
-        title: defaultTitle,
-        num: 0,
-        ctime: date,
-        utime: date
-      };
-      setCurChatInfo(chatInfo);
-      return;
-    }
     let chatInfo = chatInfos.find((chatInfo) => chatInfo.id === selectedChatInfoID);
     if (chatInfo) {
       setCurChatInfo(chatInfo);
@@ -77,14 +66,14 @@ export default function ChatHeader() {
             {curChatInfo.title}
           </label>
         ) : (
-          <div className="animate-pulse rounded-sm bg-slate-200 text-xl text-transparent visited:hidden dark:bg-slate-700">
+          <div className="animate-pulse rounded bg-slate-200 text-xl text-transparent visited:hidden dark:bg-slate-700">
             新的聊天
           </div>
         )}
         {curChatInfo.num !== -1 ? (
           <label className="text-xs">共 {curChatInfo.num} 条对话</label>
         ) : (
-          <div className="animate-pulse rounded-sm bg-slate-100 text-xs text-transparent visited:hidden dark:bg-slate-800">
+          <div className="animate-pulse rounded bg-slate-100 text-xs text-transparent visited:hidden dark:bg-slate-800">
             共 0 条对话
           </div>
         )}

@@ -172,10 +172,11 @@ export default function NavProvider({ children }: { children: React.ReactNode })
         )}
         {rbtn === null ? <div className="h-12 w-12"></div> : <>{rbtn}</>}
       </div>
+      {/* mask */}
       <div
         className={
-          'absolute z-40 h-screen w-screen bg-black/50 sm:hidden ' +
-          `${navOpen ? 'block' : 'hidden'}`
+          'fixed inset-0 z-40 bg-black/50 transition-opacity duration-500 sm:hidden ' +
+          `${navOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`
         }
         onClick={() => {
           setNavOpen(false);

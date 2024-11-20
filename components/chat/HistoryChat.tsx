@@ -5,7 +5,7 @@ import { useChatStore } from '@/lib/store';
 import { useEffect, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function HistoryChat() {
+export default function HistoryChat({ onClose }: { onClose: () => void }) {
   const selectedChatInfoID = useChatStore((state) => state.selectedChatInfoID);
   const setSelectedChatInfoID = useChatStore((state) => state.setSelectedChatInfoID);
   const chatInfos = useChatStore((state) => state.chatInfos);
@@ -87,6 +87,7 @@ export default function HistoryChat() {
                     console.log(chatInfo);
                     console.log('====================================');
                     setSelectedChatInfoID(chatInfo.id);
+                    onClose();
                   }
                 }}
               >

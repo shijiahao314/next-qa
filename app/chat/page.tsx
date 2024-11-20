@@ -64,14 +64,18 @@ export default function Page() {
           `${historyOpen ? 'translate-x-0' : 'translate-x-full'}`
         }
       >
-        <HistoryChat></HistoryChat>
+        <HistoryChat
+          onClose={() => {
+            setHistoryOpen(false);
+          }}
+        ></HistoryChat>
       </div>
 
       {/* mask */}
       <div
         className={
-          'absolute z-40 h-screen w-screen bg-black/50 sm:hidden ' +
-          `${historyOpen ? 'block' : 'hidden'}`
+          `fixed inset-0 z-40 bg-black/50 transition-opacity duration-500 sm:hidden ` +
+          `${historyOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`
         }
         onClick={() => {
           setHistoryOpen(false);
