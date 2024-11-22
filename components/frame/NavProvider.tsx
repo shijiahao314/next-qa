@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
-import SwitchModeButton from '../theme/switchMode';
+import SwitchModeButton from '../theme/SwitchMode';
 import { useHeader } from './HeaderProvider';
 import SettingButton from './settingsButton';
 import Mask from './Mask';
@@ -70,13 +70,10 @@ export default function NavProvider({ children }: { children: React.ReactNode })
           'absolute z-50 flex h-full transform flex-col justify-between border-my-border bg-my-bg px-4 transition-transform duration-300 dark:border-my-darkborder dark:bg-my-darkbg1 sm:relative sm:translate-x-0 sm:border-r-2 ' +
           `${navOpen ? 'translate-x-0' : '-translate-x-full'}`
         }
-        onClick={() => {
-          router.push('/welcome');
-        }}
       >
         <div
           onClick={() => {
-            router.push('/chat');
+            router.push('/welcome');
           }}
           className="relative flex flex-shrink-0 flex-grow-0 cursor-pointer flex-col items-center justify-center border-b border-my-border pb-2 pt-6 dark:border-my-darkborder"
         >
