@@ -44,7 +44,7 @@ greet('World');
 
 export default function MarkdownCard({ content }: MarkdownRendererProps) {
   return (
-    <div className="prose-custom prose h-min max-w-none dark:prose-invert">
+    <div className="prose-custom prose h-min max-w-full dark:prose-invert">
       <ReactMarkdown
         rehypePlugins={[rehypePrism]}
         remarkPlugins={[remarkGfm]} // 增加对表格等的支持

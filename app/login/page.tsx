@@ -9,11 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Id, toast } from 'react-toastify';
 
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-export default function LoginPage({ children }: { children: React.ReactNode }) {
+export default function LoginPage() {
   const setIsLogin = useBearStore((state) => state.setIgLogin);
   const router = useRouter();
 
@@ -45,8 +41,8 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
         console.log('push');
         console.log('====================================');
         toast.update(toastId, {
+          type: 'success',
           render: '登录成功，跳转中...',
-          type: toast.TYPE.SUCCESS,
           autoClose: 1000,
           onClose: () => {
             setIsLogin(true);
@@ -56,8 +52,8 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
         return;
       }
       toast.update(toastId, {
+        type: 'success',
         render: '登录失败: ' + resp.msg,
-        type: toast.TYPE.ERROR,
         autoClose: 2000
       });
     });
@@ -75,8 +71,8 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
     SignUp(signUpRequest).then(([success, resp]: [boolean, SignUpResponse]) => {
       if (success) {
         toast.update(toastId, {
+          type: 'success',
           render: '注册成功，已登录，跳转中...',
-          type: toast.TYPE.SUCCESS,
           autoClose: 1000,
           onClose: () => {
             setIsLogin(true);
@@ -85,8 +81,8 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
         });
       } else {
         toast.update(toastId, {
+          type: 'error',
           render: '注册失败: ' + resp.msg,
-          type: toast.TYPE.ERROR,
           autoClose: 2000
         });
       }
@@ -138,7 +134,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
                 ></input>
                 <div className="flex flex-row space-x-2">
                   <button
-                    className="h-10 flex-shrink flex-grow  rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                    className="h-10 flex-shrink flex-grow rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
                     onClick={debounce(handleLogin, 300, {
                       leading: true,
                       trailing: false
