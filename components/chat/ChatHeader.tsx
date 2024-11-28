@@ -4,6 +4,8 @@ import { ChatInfo } from '@/action/model/chat';
 import { useChatStore } from '@/lib/store';
 import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment, useEffect, useState } from 'react';
+import Mask from '../frame/Mask';
+import Modal from '../frame/Modal';
 
 export default function ChatHeader() {
   const chatMap = useChatStore((state) => state.chatMap);
@@ -79,72 +81,36 @@ export default function ChatHeader() {
         )}
       </div>
 
-      <Transition appear show={modalOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-50" onClose={() => {}}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black/50" />
-          </Transition.Child>
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-xl bg-my-bg text-left align-middle text-my-text0 transition-all dark:bg-my-darkbg1 dark:text-my-darktext0">
-                  <Dialog.Title
-                    as="h3"
-                    className="border-b border-my-border p-5 text-lg font-semibold dark:border-my-darkborder"
-                  >
-                    编辑对话记录
-                  </Dialog.Title>
-                  <div className="mt-2 p-5">
-                    <div className="flex w-full flex-row space-x-4 rounded-lg border border-my-border px-5 py-3 text-base dark:border-my-darkborder">
-                      <div className="flex flex-col">
-                        <div className="text-base font-semibold">聊天主题</div>
-                        <div className="text-sm font-light">更改当前的聊天主题</div>
-                      </div>
-                      <input
-                        className="bg-my-bg1 flex-grow rounded-lg px-2 text-center outline outline-1 outline-my-border focus:border-2 focus:border-my-primary dark:bg-my-darkbg1 dark:outline-my-darkborder dark:focus:border-my-darkPrimary"
-                        name="title"
-                        value={tmpTitle}
-                        onChange={handleChange}
-                      ></input>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-end space-x-3 p-5">
-                    <button
-                      className="inline-flex justify-center rounded-md border border-transparent bg-my-primary px-6 py-2 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
-                      onClick={handleSubmit}
-                    >
-                      确认
-                    </button>
-                    <button
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-6 py-2 text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={() => setModalOpen(false)}
-                    >
-                      取消
-                    </button>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
+      <Modal title="编辑聊天主题" isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-row space-x-4 rounded-lg border border-my-border px-5 py-3 text-base dark:border-my-darkborder">
+            <div className="flex flex-col">
+              <div className="text-base font-semibold">聊天主题</div>
+              <div className="text-sm font-light">更改当前的聊天主题</div>
             </div>
+            <input
+              className="rounded-lg bg-my-bg px-3 text-center outline outline-my-border focus:outline-my-primary dark:bg-my-darkbg1 dark:outline-my-darkborder dark:focus:outline-my-darkPrimary"
+              name="title"
+              value={tmpTitle}
+              onChange={handleChange}
+            ></input>
           </div>
-        </Dialog>
-      </Transition>
+          <div className="flex justify-end gap-3">
+            <button
+              className="inline-flex justify-center rounded-md border border-transparent bg-my-primary px-6 py-2 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+              onClick={handleSubmit}
+            >
+              确认
+            </button>
+            <button
+              className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-6 py-2 text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+              onClick={() => setModalOpen(false)}
+            >
+              取消
+            </button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 }

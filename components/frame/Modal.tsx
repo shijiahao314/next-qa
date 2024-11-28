@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import Mask from './Mask';
 
-export default function SettingModal({
+export default function Modal({
   title,
   isOpen,
   onClose,
@@ -26,19 +26,21 @@ export default function SettingModal({
 
   return (
     <>
-      {/* Mask */}
-      <Mask isOpen={isOpen} onClose={onClose}></Mask>
-
       {/* Modal */}
       <div
         className={
-          `fixed inset-0 z-50 flex items-center justify-center p-4 duration-300 ` +
-          `${isOpen ? 'pointer-events-auto scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`
+          `fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 duration-300 ` +
+          `${isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`
         }
       >
-        <div className="flex h-4/5 w-full flex-col rounded-lg bg-my-bg p-4 duration-300 dark:bg-my-darkbg1 sm:w-2/3">
+        <div
+          className={
+            `flex flex-col rounded-lg bg-my-bg p-4 duration-300 dark:bg-my-darkbg1 ` +
+            `${isOpen ? 'scale-100' : 'scale-95'}`
+          }
+        >
           {/* header */}
-          <div className="flex items-center justify-between border-b-2 border-my-border px-1 pb-2 dark:border-my-darkborder">
+          <div className="flex items-center justify-between border-b-2 border-my-border pb-2 dark:border-my-darkborder">
             <label className="text-lg font-semibold text-my-text0 dark:text-my-darktext0">
               {title}
             </label>
@@ -53,7 +55,7 @@ export default function SettingModal({
             </button>
           </div>
           {/* body */}
-          <div className="flex flex-shrink flex-grow flex-col overflow-y-auto px-2 py-4">
+          <div className="flex flex-shrink flex-grow flex-col overflow-y-auto px-2 pt-4">
             {children}
           </div>
         </div>

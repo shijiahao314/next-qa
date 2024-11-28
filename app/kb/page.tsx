@@ -2,7 +2,7 @@
 
 import { API_URL } from '@/app/config';
 import { useHeader } from '@/components/frame/HeaderProvider';
-import SettingModal from '@/components/frame/SettingModal';
+import Modal from '@/components/frame/Modal';
 import { useEffect, useState } from 'react';
 
 class GetKBRsp {
@@ -279,6 +279,13 @@ export default function KBPage() {
     }
   }
 
+  // 点击知识库
+  function handleKBClick(kb: string) {
+    console.log('====================================');
+    console.log(`知识库 ${kb}`);
+    console.log('====================================');
+  }
+
   return (
     <>
       <title>KB-知识库管理</title>
@@ -287,6 +294,68 @@ export default function KBPage() {
           知识库管理
         </label>
         <div className="flex flex-grow flex-col space-y-4 overflow-y-auto px-8 py-4">
+          {/* 知识库管理 */}
+          <div className="flex flex-col space-y-2 rounded-lg border border-my-border px-4 py-2 dark:border-my-darkborder">
+            <label className="text-lg font-semibold">知识库</label>
+            <div className="flex flex-row flex-wrap justify-end gap-2">
+              <div className="flex h-10 flex-row space-x-2 overflow-x-auto">
+                <button
+                  onClick={() => {
+                    // 配置
+                    console.log('====================================');
+                    console.log('配置');
+                    console.log('====================================');
+                    setModalOpen(true);
+                  }}
+                  className="whitespace-nowrap rounded-lg bg-my-primary px-5 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                >
+                  新建知识库
+                </button>
+                <button
+                  onClick={() => {
+                    // 上传文件
+                    console.log('删除文件');
+                  }}
+                  className="whitespace-nowrap rounded-lg bg-my-danger px-5 text-white hover:bg-my-dangerHover dark:bg-my-darkDanger dark:hover:bg-my-darkDangerHover"
+                >
+                  删除
+                </button>
+              </div>
+            </div>
+            <div className="flex w-full overflow-x-auto">
+              <table className="w-full text-left">
+                <thead className="border-y-2 border-my-border dark:border-my-darkborder">
+                  <tr className="">
+                    <th className="flex h-10 items-center justify-center">选择</th>
+                    <th className="px-4">知识库名</th>
+                    <th className="px-4">知识库类型</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {kbs.map((filename: string) => (
+                    <tr
+                      className="border-b border-my-border dark:border-my-darkborder"
+                      key={filename}
+                    >
+                      <td className="flex h-10 items-center justify-center">
+                        <input
+                          type="checkbox"
+                          className="h-3 w-3 cursor-pointer appearance-none rounded-sm border-gray-300 bg-gray-100 bg-transparent text-blue-600 ring-2 ring-offset-2 checked:bg-my-primary focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:checked:bg-my-darkPrimary dark:focus:ring-blue-600"
+                        ></input>
+                      </td>
+                      <td
+                        className="cursor-pointer px-4 underline underline-offset-4"
+                        onClick={() => handleKBClick(filename)}
+                      >
+                        {filename}
+                      </td>
+                      <td className="px-4">{filename}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
           {/* 输入文件管理 */}
           <div className="flex flex-col space-y-2 rounded-lg border border-my-border px-4 py-2 dark:border-my-darkborder">
             <label className="text-lg font-semibold">输入文件</label>
@@ -313,7 +382,9 @@ export default function KBPage() {
                 <button
                   onClick={() => {
                     // 配置
+                    console.log('====================================');
                     console.log('配置');
+                    console.log('====================================');
                     setModalOpen(true);
                   }}
                   className="whitespace-nowrap rounded-lg bg-my-primary px-5 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
@@ -458,7 +529,7 @@ export default function KBPage() {
       </div>
 
       {/* 知识库设置 */}
-      <SettingModal title="知识库设置" isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+      <Modal title="知识库设置" isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <div className="flex h-full w-full flex-col space-y-5">
           {settings.map((group, index) => (
             <div
@@ -482,7 +553,7 @@ export default function KBPage() {
             </div>
           ))}
         </div>
-      </SettingModal>
+      </Modal>
     </>
   );
 }
