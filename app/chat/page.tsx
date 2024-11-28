@@ -70,7 +70,7 @@ export default function Page() {
       </div>
 
       {/* mask */}
-      <Mask status={historyOpen} onClose={() => setHistoryOpen(false)}></Mask>
+      <Mask isOpen={historyOpen} onClose={() => setHistoryOpen(false)}></Mask>
     </>
   );
 }

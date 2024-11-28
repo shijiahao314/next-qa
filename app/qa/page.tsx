@@ -177,9 +177,9 @@ export default function Page() {
         <div className="flex flex-grow flex-col space-y-4 overflow-y-auto px-8 py-4">
           <div className="flex flex-grow flex-col space-y-4 rounded-lg border border-my-border p-4 px-4 dark:border-my-darkborder">
             <div className="flex flex-col space-y-2">
-              <div className="flex flex-row flex-wrap justify-between gap-2">
+              <div className="flex flex-row flex-wrap gap-x-4 gap-y-2">
                 <div className="flex flex-row">
-                  <label className="flex items-center whitespace-nowrap text-lg">KB 知识库：</label>
+                  <label className="flex items-center whitespace-nowrap text-lg">知识库：</label>
                   <div className="flex items-center">
                     {kbs.length === 0 ? (
                       <select className={`${selectStyle} text-red-500`} disabled>
@@ -197,7 +197,7 @@ export default function Page() {
                   </div>
                 </div>
                 <div className="flex flex-row">
-                  <label className="flex items-center whitespace-nowrap text-lg">DB 数据库：</label>
+                  <label className="flex items-center whitespace-nowrap text-lg">构建库：</label>
                   <div className="flex">
                     {dbs.length === 0 ? (
                       <select className={`${selectStyle} text-red-500`} disabled>

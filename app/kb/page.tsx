@@ -2,7 +2,7 @@
 
 import { API_URL } from '@/app/config';
 import { useHeader } from '@/components/frame/HeaderProvider';
-import KBSettingModal from '@/components/frame/SettingModal';
+import SettingModal from '@/components/frame/SettingModal';
 import { useEffect, useState } from 'react';
 
 class GetKBRsp {
@@ -292,7 +292,7 @@ export default function KBPage() {
             <label className="text-lg font-semibold">输入文件</label>
             <div className="flex flex-row flex-wrap justify-between gap-2">
               <div className="flex flex-row">
-                <label className="flex items-center whitespace-nowrap text-lg">KB 知识库：</label>
+                <label className="flex items-center whitespace-nowrap text-lg">知识库：</label>
                 <div className="flex items-center">
                   {kbs.length === 0 ? (
                     <select className={`${selectStyle} text-red-500`} disabled>
@@ -394,7 +394,7 @@ export default function KBPage() {
             <label className="text-lg font-semibold">输出文件</label>
             <div className="flex flex-row flex-wrap justify-between gap-2">
               <div className="flex flex-row">
-                <label className="flex items-center whitespace-nowrap text-lg">DB 数据库：</label>
+                <label className="flex items-center whitespace-nowrap text-lg">构建库：</label>
                 <div className="flex items-center">
                   {dbs.length === 0 ? (
                     <select className={`${selectStyle} text-red-500`} disabled>
@@ -458,7 +458,7 @@ export default function KBPage() {
       </div>
 
       {/* 知识库设置 */}
-      <KBSettingModal title="知识库设置" isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+      <SettingModal title="知识库设置" isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <div className="flex h-full w-full flex-col space-y-5">
           {settings.map((group, index) => (
             <div
@@ -482,7 +482,7 @@ export default function KBPage() {
             </div>
           ))}
         </div>
-      </KBSettingModal>
+      </SettingModal>
     </>
   );
 }

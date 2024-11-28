@@ -67,7 +67,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
       {/* 左边导航栏 */}
       <div
         className={
-          'absolute z-50 flex h-full transform flex-col justify-between border-my-border bg-my-bg px-4 transition-transform duration-300 dark:border-my-darkborder dark:bg-my-darkbg1 sm:relative sm:translate-x-0 sm:border-r-2 ' +
+          'absolute z-50 flex h-full transform flex-col justify-between border-my-border bg-my-bg px-4 transition-transform duration-300 dark:border-my-darkborder dark:bg-my-darkbg1 sm:relative sm:z-0 sm:translate-x-0 sm:border-r-2 ' +
           `${navOpen ? 'translate-x-0' : '-translate-x-full'}`
         }
       >
@@ -132,7 +132,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
       </div>
 
       {/* 上方导航栏 */}
-      <div className="z-30 flex w-full flex-row justify-between border-b border-my-border bg-my-bg px-5 py-4 dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden">
+      <div className="z-10 flex w-full flex-row justify-between border-b border-my-border bg-my-bg px-5 py-4 dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden">
         <button
           className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg2 sm:hidden"
           onClick={() => {
@@ -164,7 +164,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
       </div>
 
       {/* mask */}
-      <Mask status={navOpen} onClose={() => setNavOpen(false)}></Mask>
+      <Mask isOpen={navOpen} onClose={() => setNavOpen(false)}></Mask>
 
       {children}
     </>
