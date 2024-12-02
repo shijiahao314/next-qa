@@ -59,10 +59,10 @@ git clone git@github.com:shijiahao314/next-qa.git
 ### npm 构建并运行
 
 ```bash
-# 禁止使用 npm install 或 npm i 安装，该操作会修改 package-lock.json 导致安装依赖的版本不同
-npm ci # clean install
+# 禁止使用 pnpm install 或 pnpm i 安装，该操作会修改 package-lock.json 导致安装依赖的版本不同
+pnpm ci # clean install
 
-npm run build && npm run start
+pnpm run build && npm run start
 # 或
-npm run dev
+pnpm run dev
 ```
