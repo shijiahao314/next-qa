@@ -55,7 +55,7 @@ export default function Modal({
             </button>
           </div>
           {/* body */}
-          <div className="flex flex-shrink flex-grow flex-col overflow-y-auto px-2 pt-4">
+          <div className="flex flex-shrink flex-grow flex-col overflow-y-auto px-2 pt-3">
             {children}
           </div>
         </div>
