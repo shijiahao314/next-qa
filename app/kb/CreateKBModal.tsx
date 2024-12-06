@@ -19,7 +19,7 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '所创建的知识库名称',
         value: (
           <input
-            className="h-10 w-40 rounded-lg bg-my-bg px-3 text-center outline outline-my-border focus:outline-my-primary dark:bg-my-darkbg1 dark:outline-my-darkborder dark:focus:outline-my-darkPrimary"
+            className="h-full w-full rounded-lg bg-my-bg px-3 text-center outline outline-1 outline-my-border focus:outline-my-primary dark:bg-my-darkbg1 dark:outline-my-darkborder dark:focus:outline-my-darkPrimary"
             name="kbname"
             type="text"
             value={tmpKBName}
@@ -34,7 +34,7 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
         value: (
           <select
             id="countries"
-            className="h-10 rounded-lg border border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
           >
             <option value="RAG 知识库">RAG 知识库</option>
             <option value="GraphRAG 知识图库">GraphRAG 知识图库</option>
@@ -58,25 +58,28 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
         <div className="flex h-full w-full flex-col space-y-3">
           {/* 设置 */}
           {CreateKB.map((group, index) => (
-            <div
+            <table
               key={index}
-              className="divide-y-2 divide-solid rounded-lg border border-my-border dark:border-my-darkborder"
+              className="flex table-auto rounded-lg border border-my-border dark:border-my-darkborder"
             >
-              {group.map((item) => (
-                <div
-                  key={item.title}
-                  className="flex flex-row items-center justify-between gap-x-5 border-my-border px-5 py-3 dark:border-my-darkborder"
-                >
-                  <div>
-                    <div className="text-base text-my-text0 dark:text-my-darktext0">
-                      {item.title}
-                    </div>
-                    <div className="text-xs text-my-text2 dark:text-my-darktext2">{item.descp}</div>
-                  </div>
-                  <div className="flex items-center">{item.value}</div>
-                </div>
-              ))}
-            </div>
+              <tbody className="divide-y divide-my-border dark:divide-my-darkborder">
+                {group.map((item) => (
+                  <tr key={item.title} className="flex gap-4 px-4 py-3">
+                    {/* Left */}
+                    <td className="flex flex-col justify-center">
+                      <label className="text-nowrap text-base text-my-text0 dark:text-my-darktext0">
+                        {item.title}
+                      </label>
+                      <label className="text-nowrap text-xs text-my-text2 dark:text-my-darktext2">
+                        {item.descp}
+                      </label>
+                    </td>
+                    {/* Right */}
+                    <td className="h-10 w-full flex-shrink flex-grow items-end">{item.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           ))}
           {/* 按钮 */}
           <div className="flex justify-end gap-3">

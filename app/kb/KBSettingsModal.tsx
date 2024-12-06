@@ -2,6 +2,7 @@
 
 import Modal from '@/components/frame/Modal';
 import { Dispatch, SetStateAction } from 'react';
+import classNames from 'classnames';
 
 interface ModalProps {
   modalOpen: boolean;
@@ -18,7 +19,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         value: (
           <select
             id="countries"
-            className="h-10 rounded-lg border border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
           >
             <option value="qwen2.5:latest">qwen2.5:latest</option>
             <option value="llama3:latest">llama3:latest</option>
@@ -30,7 +31,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '使用 API Key 访问',
         value: (
           <input
-            className="h-10 w-48 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
             placeholder="OpenAI API Key"
             type="password"
           ></input>
@@ -41,7 +42,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '自定义访问 URL 地址',
         value: (
           <input
-            className="h-10 w-48 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
             placeholder="http://127.0.0.1:11434/v1"
             defaultValue={'http://127.0.0.1:11434/v1'}
           ></input>
@@ -52,7 +53,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: 'LLM 对话最大 Token 数',
         value: (
           <input
-            className="h-10 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
             placeholder="8192"
             defaultValue={8192}
           ></input>
@@ -67,7 +68,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         value: (
           <select
             id="countries"
-            className="h-10 rounded-lg border border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
           >
             <option value="qwen2.5:latest">mxbai-embed-large:latest</option>
           </select>
@@ -78,7 +79,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '使用 API Key 访问',
         value: (
           <input
-            className="h-10 w-48 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
             placeholder="OpenAI API Key"
             type="password"
           ></input>
@@ -89,7 +90,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '自定义访问 URL 地址',
         value: (
           <input
-            className="h-10 w-48 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
             placeholder="http://127.0.0.1:11434/v1"
             defaultValue={'http://127.0.0.1:11434/v1'}
           ></input>
@@ -100,7 +101,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '最大并发请求数',
         value: (
           <input
-            className="h-10 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
             placeholder="25"
             defaultValue={25}
           ></input>
@@ -113,23 +114,26 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
     <>
       <Modal title="知识库设置" isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <div className="flex h-full w-full flex-col space-y-5">
+          {/* 设置 */}
           {KBSettings.map((group, index) => (
             <div
               key={index}
-              className="divide-y-2 divide-solid rounded-lg border border-my-border dark:border-my-darkborder"
+              className="flex flex-col divide-y rounded-lg border border-my-border dark:border-my-darkborder"
             >
               {group.map((item) => (
-                <div
-                  key={item.title}
-                  className="flex flex-row items-center justify-between space-x-2 border-my-border px-5 py-3 dark:border-my-darkborder"
-                >
-                  <div>
-                    <div className="text-base text-my-text0 dark:text-my-darktext0">
+                // Row
+                <div className="flex w-full flex-row gap-10 px-4 py-2">
+                  {/* Left */}
+                  <div className="flex w-2/5 flex-col">
+                    <label className="text-nowrap text-base text-my-text0 dark:text-my-darktext0">
                       {item.title}
-                    </div>
-                    <div className="text-xs text-my-text2 dark:text-my-darktext2">{item.descp}</div>
+                    </label>
+                    <label className="inline-block text-xs text-my-text2 dark:text-my-darktext2">
+                      {item.descp}
+                    </label>
                   </div>
-                  <div className="flex items-center">{item.value}</div>
+                  {/* Right */}
+                  <div className="flex w-3/5">{item.value}</div>
                 </div>
               ))}
             </div>
