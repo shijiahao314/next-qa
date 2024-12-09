@@ -122,7 +122,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
             >
               {group.map((item) => (
                 // Row
-                <div className="flex w-full flex-row gap-10 px-4 py-2">
+                <div className="flex w-full flex-row gap-5 px-4 py-2">
                   {/* Left */}
                   <div className="flex w-2/5 flex-col">
                     <label className="text-nowrap text-base text-my-text0 dark:text-my-darktext0">
