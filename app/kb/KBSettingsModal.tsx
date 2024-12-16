@@ -2,7 +2,6 @@
 
 import Modal from '@/components/frame/Modal';
 import { Dispatch, SetStateAction } from 'react';
-import classNames from 'classnames';
 
 interface ModalProps {
   modalOpen: boolean;

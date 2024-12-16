@@ -2,11 +2,8 @@
 
 import { GetSettingsResponse } from '@/action/model/settings';
 import { GetSettings } from '@/action/settings';
-import { useState } from 'react';
 
 export default function Page() {
-  const [navOpen, setNavOpen] = useState(false);
-
   const settings = [
     [
       // group1

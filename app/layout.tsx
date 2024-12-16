@@ -15,8 +15,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="flex h-[100svh] w-screen flex-col overflow-hidden border-my-border bg-my-bg text-my-text0 dark:border-my-darkborder dark:bg-my-darkbg0 dark:text-my-darktext0 sm:flex-row">
         <ThemeProvider attribute="class">
           <HeaderProvider>
-            {' '}
-            {/* 将 HeaderProvider 包裹在这里 */}
             <NavProvider>{children}</NavProvider>
           </HeaderProvider>
         </ThemeProvider>
