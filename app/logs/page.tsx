@@ -140,7 +140,7 @@ export default function LogsPage() {
   const selectStyle =
     'h-10 px-4 rounded-lg border border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-darkbg1';
 
-  // 上传文件
+  // 下载日志
   function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     if (file) {
@@ -158,9 +158,9 @@ export default function LogsPage() {
           日志监控
         </label>
         <div className="flex flex-grow flex-col space-y-4 overflow-y-auto px-8 py-4">
-          {/* 输入文件管理 */}
-          <div className="flex flex-grow flex-col space-y-2 rounded-lg border border-my-border p-4 dark:border-my-darkborder">
-            {/* <label className="text-lg font-semibold">日志查看</label> */}
+          {/* 日志查看 */}
+          <div className="flex flex-grow flex-col space-y-4 rounded-lg border border-my-border p-4 dark:border-my-darkborder">
+            <label className="text-lg font-semibold">日志查看</label>
             <div className="flex flex-row flex-wrap justify-between gap-2">
               {/* 知识库 */}
               <div className="flex flex-row">
@@ -207,9 +207,8 @@ export default function LogsPage() {
               >
                 <button
                   onClick={() => {
-                    // 上传文件
-                    console.log('上传文件');
-                    document.getElementById('upload')?.click();
+                    // 下载日志
+                    console.log('下载日志');
                   }}
                   className="h-10 w-24 rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
                 >
@@ -225,8 +224,8 @@ export default function LogsPage() {
 
                 <button
                   onClick={() => {
-                    // 上传文件
-                    console.log('删除文件');
+                    // 删除日志
+                    console.log('删除日志');
                   }}
                   className="h-10 w-16 rounded-lg bg-my-danger text-white hover:bg-my-dangerHover dark:bg-my-darkDanger dark:hover:bg-my-darkDangerHover"
                 >
@@ -235,9 +234,10 @@ export default function LogsPage() {
               </div>
             </div>
             <textarea
-              className="flex flex-grow resize-none overflow-y-auto whitespace-nowrap rounded-lg border border-my-border p-2 text-xs dark:border-my-darkborder"
+              className="flex flex-grow resize-none overflow-y-auto whitespace-nowrap rounded-lg p-2 text-xs shadow outline outline-1 outline-my-border dark:border-my-darkborder dark:bg-my-darkbg1 dark:outline-my-darkborder"
               onChange={(e) => setLogsText(e.target.value)}
               value={logsText}
+              readOnly
             ></textarea>
           </div>
         </div>

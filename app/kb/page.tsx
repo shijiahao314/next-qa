@@ -52,19 +52,22 @@ export default function KBPage() {
 
   useEffect(() => {
     async function fetchKBs() {
+      console.log('====================================');
+      console.log('获取知识库列表');
+      console.log('====================================');
       try {
         let res = await fetch(API_URL + '/kb', {
           method: 'GET'
         });
 
+        let rsp: GetKBRsp = await res.json();
         if (res.ok) {
-          let data: GetKBRsp = await res.json();
-          setKBs(data.kbs);
-          if (data.kbs.length > 0) {
-            setSelectedKB(data.kbs[0]);
+          setKBs(rsp.kbs);
+          if (rsp.kbs.length > 0) {
+            setSelectedKB(rsp.kbs[0]);
           }
         } else {
-          console.log('Failed to fetch kbs.');
+          console.log(`Failed to fetch kbs: ${rsp.msg}`);
         }
       } catch (error) {
         console.log('Error fetching kbs:', error);
@@ -191,6 +194,41 @@ export default function KBPage() {
     console.log('====================================');
   }
 
+  // 删除知识库
+  async function handleDeleteKB() {
+    let kb: string = selectedKB;
+    console.log('====================================');
+    console.log(`删除知识库：${kb}`);
+    console.log('====================================');
+    try {
+      class DeleteKBReq {
+        name!: string;
+      }
+      let res = await fetch(API_URL + '/kb/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: kb
+        } as DeleteKBReq)
+      });
+      class DeleteKBRsp {
+        code!: number;
+        msg!: string;
+      }
+      let rsp: DeleteKBRsp = await res.json();
+      console.log(rsp.msg);
+      if (res.ok) {
+        window.location.reload(); // 刷新页面
+      } else {
+        console.log(`Failed to delete kb: ${rsp.msg}`);
+      }
+    } catch (error) {
+      console.log('Error deleting kb:', error);
+    }
+  }
+
   return (
     <>
       <title>KB-知识库管理</title>
@@ -214,8 +252,8 @@ export default function KBPage() {
                 </button>
                 <button
                   onClick={() => {
-                    // 上传文件
-                    console.log('删除文件');
+                    // 删除知识库
+                    handleDeleteKB();
                   }}
                   className="whitespace-nowrap rounded-lg bg-my-danger px-5 text-white hover:bg-my-dangerHover dark:bg-my-darkDanger dark:hover:bg-my-darkDangerHover"
                 >

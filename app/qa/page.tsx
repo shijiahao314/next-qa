@@ -242,7 +242,7 @@ export default function Page() {
               <textarea
                 ref={ansArea}
                 className="w-full resize-none rounded-lg px-4 py-2 shadow outline outline-1 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
-                disabled
+                readOnly
               ></textarea>
             </div>
           </div>

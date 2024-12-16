@@ -2,6 +2,7 @@
 
 import Modal from '@/components/frame/Modal';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { API_URL } from '../config';
 
 interface ModalProps {
   modalOpen: boolean;
@@ -44,11 +45,38 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
     ]
   ];
 
-  function handleCreateKB() {
+  // 创建知识库
+  async function handleCreateKB() {
     console.log('====================================');
     console.log('创建知识库');
     console.log('====================================');
-    setModalOpen(false);
+    try {
+      class AddKBReq {
+        name!: string;
+      }
+      let res = await fetch(API_URL + '/kb/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: tmpKBName
+        } as AddKBReq)
+      });
+      class AddKBRsp {
+        code!: number;
+        msg!: string;
+      }
+      let rsp: AddKBRsp = await res.json();
+      if (res.ok) {
+        setModalOpen(false);
+        window.location.reload(); // 刷新页面
+      } else {
+        console.log(`Failed to create kb: ${rsp.msg}`);
+      }
+    } catch (error) {
+      console.log('Error fetching kbs:', error);
+    }
   }
 
   return (
