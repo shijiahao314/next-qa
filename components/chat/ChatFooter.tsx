@@ -20,7 +20,7 @@ export default function ChatFooter() {
     console.log(text);
     console.log('====================================');
     // 发送
-    let date = new Date();
+    const date = new Date();
     const chatCard: ChatCard = {
       id: date.getTime().toString(),
       chat_info_id: selectedChatInfoID,
@@ -31,7 +31,7 @@ export default function ChatFooter() {
     };
     addChatCard(selectedChatInfoID, chatCard);
     // mock reply
-    let mockDate = new Date(date.getTime() + 10000);
+    const mockDate = new Date(date.getTime() + 10000);
     const mockReply: ChatCard = {
       id: mockDate.getTime().toString(),
       chat_info_id: selectedChatInfoID,

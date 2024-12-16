@@ -54,7 +54,7 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
       class AddKBReq {
         name!: string;
       }
-      let res = await fetch(API_URL + '/kb/add', {
+      const res = await fetch(API_URL + '/kb/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
         code!: number;
         msg!: string;
       }
-      let rsp: AddKBRsp = await res.json();
+      const rsp: AddKBRsp = await res.json();
       if (res.ok) {
         setModalOpen(false);
         window.location.reload(); // 刷新页面

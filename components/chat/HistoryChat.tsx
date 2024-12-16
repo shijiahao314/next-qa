@@ -28,7 +28,7 @@ export default function HistoryChat({ onClose }: { onClose: () => void }) {
           <div className="space-y-3 px-4 py-5">
             {/* 新的聊天 */}
             <div
-              className="group flex w-full cursor-pointer resize-none flex-row items-center justify-center rounded-lg border border-my-border px-3 py-3 shadow-sm  hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3"
+              className="group flex w-full cursor-pointer resize-none flex-row items-center justify-center rounded-lg border border-my-border px-3 py-3 shadow-sm hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3"
               onClick={() => {
                 const nowTime: Date = new Date();
                 const newChatInfo: ChatInfo = {
@@ -80,7 +80,7 @@ export default function HistoryChat({ onClose }: { onClose: () => void }) {
                   }`
                 }
                 key={chatInfo.id}
-                onClick={(e) => {
+                onClick={() => {
                   if (chatInfo.id !== selectedChatInfoID) {
                     console.log('====================================');
                     console.log('选择对话');
@@ -105,7 +105,7 @@ export default function HistoryChat({ onClose }: { onClose: () => void }) {
                       console.log('====================================');
                       // When using React, you should never mutate the state directly.
                       // If an object(or Array, which is an object too) is changed, you should create a new copy.
-                      var index = chatInfos.indexOf(chatInfo);
+                      const index = chatInfos.indexOf(chatInfo);
                       if (index !== -1) {
                         chatInfos.splice(index, 1);
                         setChatInfos(chatInfos);

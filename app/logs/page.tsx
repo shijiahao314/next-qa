@@ -45,12 +45,12 @@ export default function LogsPage() {
   useEffect(() => {
     async function fetchKBs() {
       try {
-        let res = await fetch(API_URL + '/kb', {
+        const res = await fetch(API_URL + '/kb', {
           method: 'GET'
         });
 
         if (res.ok) {
-          let data: GetKBRsp = await res.json();
+          const data: GetKBRsp = await res.json();
           setKBs(data.kbs);
           if (data.kbs.length > 0) {
             setSelectedKB(data.kbs[0]);
@@ -68,7 +68,7 @@ export default function LogsPage() {
   useEffect(() => {
     async function fetchDBs() {
       try {
-        let res = await fetch(API_URL + '/db', {
+        const res = await fetch(API_URL + '/db', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ export default function LogsPage() {
         });
 
         if (res.ok) {
-          let data: GetDBRsp = await res.json();
+          const data: GetDBRsp = await res.json();
           setDBs(data.dbs);
           if (data.dbs.length > 0) {
             setSelectedDB(data.dbs[0]);
@@ -101,7 +101,7 @@ export default function LogsPage() {
   useEffect(() => {
     async function fetchLogs() {
       try {
-        let res = await fetch(API_URL + '/db/logs', {
+        const res = await fetch(API_URL + '/db/logs', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -113,7 +113,7 @@ export default function LogsPage() {
         });
 
         if (res.ok) {
-          let data: GetLogsRsp = await res.json();
+          const data: GetLogsRsp = await res.json();
           console.log(data);
           setLogsText(data.files);
         } else {

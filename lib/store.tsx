@@ -171,7 +171,7 @@ interface TmpChatStat {
   tmpCompletionContent: string;
 }
 
-export const useTmpChatStat = create<TmpChatStat>()((set, get) => ({
+export const useTmpChatStat = create<TmpChatStat>()((set) => ({
   // tmpChatContent
   tmpChatContent: '',
   setTmpChatContent: (content: string) => set({ tmpChatContent: content }),

@@ -2,9 +2,7 @@
 
 import { ChatInfo } from '@/action/model/chat';
 import { useChatStore } from '@/lib/store';
-import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment, useEffect, useState } from 'react';
-import Mask from '../frame/Mask';
 import Modal from '../frame/Modal';
 
 export default function ChatHeader() {
@@ -28,24 +26,24 @@ export default function ChatHeader() {
     console.log('====================================');
     console.log('selectedChatInfoID=', selectedChatInfoID);
     console.log('====================================');
-    let chatInfo = chatInfos.find((chatInfo) => chatInfo.id === selectedChatInfoID);
+    const chatInfo = chatInfos.find((chatInfo) => chatInfo.id === selectedChatInfoID);
     if (chatInfo) {
       setCurChatInfo(chatInfo);
     }
   }, [chatMap, selectedChatInfoID, chatInfos]);
 
   // Dialog (Modal)
-  let [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTmpTitle(e.target.value);
   };
-  const handleSubmit = (e: React.FormEvent) => {
-    let newChatInfo: ChatInfo = curChatInfo;
-    let date = new Date();
+  const handleSubmit = () => {
+    const newChatInfo: ChatInfo = curChatInfo;
+    const date = new Date();
     newChatInfo.title = tmpTitle;
     newChatInfo.utime = date;
-    let newChatInfos = [...chatInfos];
+    const newChatInfos = [...chatInfos];
     const index = newChatInfos.findIndex((chatInfo) => chatInfo.id === selectedChatInfoID);
     newChatInfos[index] = newChatInfo;
     setChatInfos(newChatInfos);

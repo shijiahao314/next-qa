@@ -57,11 +57,11 @@ export default function KBPage() {
       console.log('获取知识库列表');
       console.log('====================================');
       try {
-        let res = await fetch(API_URL + '/kb', {
+        const res = await fetch(API_URL + '/kb', {
           method: 'GET'
         });
 
-        let rsp: GetKBRsp = await res.json();
+        const rsp: GetKBRsp = await res.json();
         if (res.ok) {
           setKBs(rsp.kbs);
           if (rsp.kbs.length > 0) {
@@ -80,7 +80,7 @@ export default function KBPage() {
   useEffect(() => {
     async function fetchInputs() {
       try {
-        let res = await fetch(API_URL + '/kb/input', {
+        const res = await fetch(API_URL + '/kb/input', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ export default function KBPage() {
         });
 
         if (res.ok) {
-          let data: GetInputRsp = await res.json();
+          const data: GetInputRsp = await res.json();
           setInputs(data.files);
         } else {
           console.warn('Failed to fetch inputs.');
@@ -102,7 +102,7 @@ export default function KBPage() {
     }
     async function fetchDBs() {
       try {
-        let res = await fetch(API_URL + '/db', {
+        const res = await fetch(API_URL + '/db', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -113,10 +113,10 @@ export default function KBPage() {
         });
 
         if (res.ok) {
-          let data: GetDBRsp = await res.json();
-          setDBs(data.dbs);
-          if (data.dbs.length > 0) {
-            setSelectedDB(data.dbs[0]);
+          const rsp: GetDBRsp = await res.json();
+          setDBs(rsp.dbs);
+          if (rsp.dbs.length > 0) {
+            setSelectedDB(rsp.dbs[0]);
             // 如果立即使用 selectedDB 无法获取最新值（useState 特性）
           }
         } else {
@@ -136,7 +136,7 @@ export default function KBPage() {
   useEffect(() => {
     async function fetchOutputs() {
       try {
-        let res = await fetch(API_URL + '/db/output', {
+        const res = await fetch(API_URL + '/db/output', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -148,8 +148,8 @@ export default function KBPage() {
         });
 
         if (res.ok) {
-          let data: GetOuptutRsp = await res.json();
-          setOutputs(data.files);
+          const rsp: GetOuptutRsp = await res.json();
+          setOutputs(rsp.files);
         } else {
           console.warn('Failed to fetch outputs.');
         }
@@ -165,7 +165,7 @@ export default function KBPage() {
         setOutputs([]);
       }
     }
-  }, [dbs, selectedDB]);
+  }, [dbs, selectedKB, selectedDB]);
 
   function handleSelectKB(event: React.ChangeEvent<HTMLSelectElement>) {
     setSelectedKB(event.target.value);
@@ -201,13 +201,13 @@ export default function KBPage() {
       class DeleteKBReq {
         name!: string;
       }
-      let kbs: string[] = checkedKBs;
+      const kbs: string[] = checkedKBs;
       for (let i = 0; i < kbs.length; i++) {
-        let kb: string = kbs[i];
+        const kb: string = kbs[i];
         console.log('====================================');
         console.log(`删除知识库：${kb}`);
         console.log('====================================');
-        let res = await fetch(API_URL + '/kb/delete', {
+        const res = await fetch(API_URL + '/kb/delete', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -220,7 +220,7 @@ export default function KBPage() {
           code!: number;
           msg!: string;
         }
-        let rsp: DeleteKBRsp = await res.json();
+        const rsp: DeleteKBRsp = await res.json();
         console.log(rsp.msg);
         if (!res.ok) {
           console.log(`Failed to delete kb: ${rsp.msg}`);

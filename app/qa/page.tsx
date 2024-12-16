@@ -40,15 +40,15 @@ export default function Page() {
   useEffect(() => {
     async function fetchKBs() {
       try {
-        let res = await fetch(API_URL + '/kb', {
+        const res = await fetch(API_URL + '/kb', {
           method: 'GET'
         });
 
         if (res.ok) {
-          let data: GetKBRsp = await res.json();
-          setKBs(data.kbs);
-          if (data.kbs.length > 0) {
-            setSelectedKB(data.kbs[0]);
+          const rsp: GetKBRsp = await res.json();
+          setKBs(rsp.kbs);
+          if (rsp.kbs.length > 0) {
+            setSelectedKB(rsp.kbs[0]);
           }
         } else {
           console.error('Failed to fetch kbs.');
@@ -63,7 +63,7 @@ export default function Page() {
   useEffect(() => {
     async function fetchDBs() {
       try {
-        let res = await fetch(API_URL + '/db', {
+        const res = await fetch(API_URL + '/db', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ export default function Page() {
         });
 
         if (res.ok) {
-          let data: GetDBRsp = await res.json();
+          const data: GetDBRsp = await res.json();
           setDBs(data.dbs);
           if (data.dbs.length > 0) {
             setSelectedDB(data.dbs[0]);
@@ -111,7 +111,7 @@ export default function Page() {
         ansArea.current.value =
           '等待回复中，本地模型第一次对话预计需要 30 秒，后续对话需要 10 秒左右';
       }
-      let res = await fetch(API_URL + '/query', {
+      const res = await fetch(API_URL + '/query', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -125,7 +125,7 @@ export default function Page() {
       });
 
       if (res.ok) {
-        let data: QueryRsp = await res.json();
+        const data: QueryRsp = await res.json();
         if (ansArea.current !== null) {
           ansArea.current.value = data.text;
         }

@@ -2,10 +2,10 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
-import SwitchModeButton from '../theme/SwitchMode';
+import SwitchModeButton from '../theme/switchMode';
 import { useHeader } from './HeaderProvider';
-import SettingButton from './settingsButton';
 import Mask from './Mask';
+import SettingButton from './settingsButton';
 
 export default function NavProvider({ children }: { children: React.ReactNode }) {
   const [navOpen, setNavOpen] = useState(false);

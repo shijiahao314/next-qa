@@ -21,7 +21,7 @@ This is an example of **Markdown** rendering in Next.js with Tailwind CSS.
 You can use `console.log('Hello, World!')` for inline code.
 
 ## Code Block
-Here’s a JavaScript example:
+Here's a JavaScript example:
 
 ```javascript
 function greet(name) {
@@ -49,9 +49,9 @@ export default function MarkdownCard({ content }: MarkdownRendererProps) {
         rehypePlugins={[rehypePrism]}
         remarkPlugins={[remarkGfm]} // 增加对表格等的支持
         components={{
-          code({ inline, className, children, ...props }: any) {
+          code({ className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '');
-            return !inline && match ? (
+            return match ? (
               // code block
               <code {...props}>{children}</code>
             ) : (
