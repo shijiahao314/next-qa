@@ -38,6 +38,7 @@ export default function KBPage() {
   }, [setHeader]);
 
   const [kbs, setKBs] = useState<string[]>([]); // KB 列表
+  const [checkedKBs, setCheckedKBs] = useState<string[]>([]);
   const [selectedKB, setSelectedKB] = useState(''); // 所选 KB
 
   const [createKBModalOpen, setCreateKBModalOpen] = useState(false); // 创建 KB 页面
@@ -196,34 +197,37 @@ export default function KBPage() {
 
   // 删除知识库
   async function handleDeleteKB() {
-    let kb: string = selectedKB;
-    console.log('====================================');
-    console.log(`删除知识库：${kb}`);
-    console.log('====================================');
     try {
       class DeleteKBReq {
         name!: string;
       }
-      let res = await fetch(API_URL + '/kb/delete', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: kb
-        } as DeleteKBReq)
-      });
-      class DeleteKBRsp {
-        code!: number;
-        msg!: string;
+      let kbs: string[] = checkedKBs;
+      for (let i = 0; i < kbs.length; i++) {
+        let kb: string = kbs[i];
+        console.log('====================================');
+        console.log(`删除知识库：${kb}`);
+        console.log('====================================');
+        let res = await fetch(API_URL + '/kb/delete', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: kb
+          } as DeleteKBReq)
+        });
+        class DeleteKBRsp {
+          code!: number;
+          msg!: string;
+        }
+        let rsp: DeleteKBRsp = await res.json();
+        console.log(rsp.msg);
+        if (!res.ok) {
+          console.log(`Failed to delete kb: ${rsp.msg}`);
+          break;
+        }
       }
-      let rsp: DeleteKBRsp = await res.json();
-      console.log(rsp.msg);
-      if (res.ok) {
-        window.location.reload(); // 刷新页面
-      } else {
-        console.log(`Failed to delete kb: ${rsp.msg}`);
-      }
+      window.location.reload(); // 刷新页面
     } catch (error) {
       console.log('Error deleting kb:', error);
     }
@@ -280,6 +284,17 @@ export default function KBPage() {
                         <input
                           type="checkbox"
                           className="h-3 w-3 cursor-pointer appearance-none rounded-sm border-gray-300 bg-gray-100 bg-transparent text-blue-600 ring-2 ring-offset-2 checked:bg-my-primary focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:checked:bg-my-darkPrimary dark:focus:ring-blue-600"
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              // checked
+                              setCheckedKBs((checkedKBs) => [...checkedKBs, filename]);
+                            } else {
+                              // unchecked
+                              setCheckedKBs((checkedKBs) =>
+                                checkedKBs.filter((name) => name !== filename)
+                              );
+                            }
+                          }}
                         ></input>
                       </td>
                       <td
