@@ -3,6 +3,7 @@
 import { API_URL } from '@/app/config';
 import MarkdownCard from '@/components/chat/MarkdownCard';
 import { useHeader } from '@/components/frame/HeaderProvider';
+import PageLayout from '@/components/frame/PageLayout';
 import { useEffect, useRef, useState } from 'react';
 
 class GetKBRsp {
@@ -34,7 +35,7 @@ export default function Page() {
 
   useEffect(() => {
     // 设置 header 内容
-    setHeader(<label className="flex items-center text-xl font-bold">知识库问答</label>);
+    setHeader(<label className="flex items-center text-xl font-bold">知识图问答</label>);
   }, [setHeader]);
 
   useEffect(() => {
@@ -197,81 +198,69 @@ export default function Page() {
   return (
     <>
       <title>RAG-知识库问答</title>
-      <div className="flex h-full w-full flex-col overflow-y-auto sm:relative">
-        <label className="hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
-          知识图问答
-        </label>
-        <div className="flex flex-grow flex-col space-y-4 overflow-y-auto px-8 py-4">
-          <div className="flex flex-grow flex-col space-y-4 rounded-lg border border-my-border p-4 px-4 dark:border-my-darkborder">
-            <div className="flex flex-col space-y-2">
-              <div className="flex flex-row flex-wrap justify-between gap-2">
-                <div className="flex flex-row">
-                  <label className="flex items-center whitespace-nowrap text-lg">KB 知识库：</label>
-                  <div className="flex items-center">
-                    {kbs.length === 0 ? (
-                      <select className={`${selectStyle} text-red-500`} disabled>
-                        <option>无可用 KB</option>
-                      </select>
-                    ) : (
-                      <select className={`${selectStyle}`} onChange={handleSelectKB}>
-                        <option className="" key={'sgyy'} value={'sgyy'}>
-                          《三体》
-                        </option>
-                        {kbs.map((kb: string) => (
-                          <option className="" key={kb} value={kb}>
-                            {kb}
-                          </option>
-                        ))}
-                      </select>
-                    )}
-                  </div>
-                </div>
-                <div className="flex flex-row">
-                  <label className="flex items-center whitespace-nowrap text-lg">DB 数据库：</label>
-                  <div className="flex">
-                    {dbs.length === 0 ? (
-                      <select className={`${selectStyle} text-red-500`} disabled>
-                        <option>无可用 DB</option>
-                      </select>
-                    ) : (
-                      <select className={`${selectStyle}`} onChange={handleSelectDB}>
-                        {dbs.map((db: string) => (
-                          <option key={db} value={db}>
-                            {db}
-                          </option>
-                        ))}
-                      </select>
-                    )}
-                  </div>
-                </div>
+      <PageLayout>
+        <div className="flex h-full w-full flex-col space-y-4 rounded-lg border border-my-border p-4 dark:border-my-darkborder">
+          <div className="flex w-full flex-row flex-wrap justify-between space-y-2">
+            <div className="flex flex-row">
+              <label className="flex items-center whitespace-nowrap text-lg">KB 知识库：</label>
+              <div className="flex items-center">
+                {kbs.length === 0 ? (
+                  <select className={`${selectStyle} text-red-500`} disabled>
+                    <option>无可用 KB</option>
+                  </select>
+                ) : (
+                  <select className={`${selectStyle}`} onChange={handleSelectKB}>
+                    <option className="" key={'sgyy'} value={'sgyy'}>
+                      《三体》
+                    </option>
+                    {kbs.map((kb: string) => (
+                      <option className="" key={kb} value={kb}>
+                        {kb}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
             </div>
-            <div className="flex w-full flex-row space-x-4">
-              <textarea
-                ref={queryArea}
-                className="w-full resize-none overflow-y-visible rounded-lg border-my-border bg-my-bg px-4 py-2 leading-normal shadow outline outline-1 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
-                rows={3}
-                onChange={handleChangeText}
-                placeholder={'《三体》中有几位面壁人，他们分别是谁'}
-              ></textarea>
-              <button
-                className="inline-block w-24 whitespace-nowrap rounded-md bg-my-primary px-4 py-2 text-lg text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
-                onClick={fetchQuery}
-              >
-                发 送
-              </button>
-            </div>
-            <div className="flex rounded-lg border border-my-border p-4 dark:border-my-darkborder">
-              <MarkdownCard content={ans} />
-              {/* <textarea
-                ref={ansArea}
-                className="w-full resize-none rounded-lg px-4 py-2 shadow outline outline-1 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
-                disabled
-              ></textarea> */}
+            <div className="flex flex-row">
+              <label className="flex items-center whitespace-nowrap text-lg">DB 数据库：</label>
+              <div className="flex">
+                {dbs.length === 0 ? (
+                  <select className={`${selectStyle} text-red-500`} disabled>
+                    <option>无可用 DB</option>
+                  </select>
+                ) : (
+                  <select className={`${selectStyle}`} onChange={handleSelectDB}>
+                    {dbs.map((db: string) => (
+                      <option key={db} value={db}>
+                        {db}
+                      </option>
+                    ))}
+                  </select>
+                )}
+              </div>
             </div>
           </div>
+          <div className="flex w-full flex-row space-x-4">
+            <textarea
+              ref={queryArea}
+              className="w-full resize-none overflow-y-visible rounded-lg border-my-border bg-my-bg px-4 py-2 leading-normal shadow outline outline-1 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
+              rows={3}
+              onChange={handleChangeText}
+              placeholder={'《三体》中有几位面壁人，他们分别是谁'}
+            ></textarea>
+            <button
+              className="inline-block w-24 whitespace-nowrap rounded-md bg-my-primary px-4 py-2 text-lg text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+              onClick={fetchQuery}
+            >
+              发 送
+            </button>
+          </div>
+          <div className="flex h-full flex-shrink flex-grow overflow-y-auto rounded-lg border border-my-border p-4 dark:border-my-darkborder">
+            <MarkdownCard content={ans} />
+          </div>
         </div>
-      </div>
+      </PageLayout>
     </>
   );
 }
