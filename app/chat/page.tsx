@@ -18,7 +18,7 @@ export default function Page() {
     setHeader(<ChatHeader></ChatHeader>);
     setRbtn(
       <button
-        className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg2 sm:hidden"
+        className="border-my-border dark:border-my-darkborder dark:bg-my-dark-bg2 h-12 w-12 place-content-center items-center rounded-lg border p-2 text-base font-semibold sm:hidden"
         onClick={() => {
           setHistoryOpen(true);
         }}
@@ -46,9 +46,9 @@ export default function Page() {
       <title>Chat-开放对话</title>
 
       {/* 对话窗口 */}
-      <div className="flex h-full flex-grow flex-col overflow-hidden border-my-border dark:border-my-darkborder sm:relative sm:border-r-2">
+      <div className="flex h-full grow flex-col overflow-hidden sm:relative">
         <MyToastContainer></MyToastContainer>
-        <div className="hidden border-b border-my-border py-2 pl-8 dark:border-my-darkborder sm:flex">
+        <div className="bg1 border-my-border dark:border-my-darkborder hidden border-b py-2 pl-8 sm:flex">
           <ChatHeader></ChatHeader>
         </div>
         <ChatBody></ChatBody>
@@ -58,7 +58,7 @@ export default function Page() {
       {/* 历史对话 */}
       <div
         className={
-          'fixed inset-y-0 right-0 z-50 flex w-60 flex-shrink-0 flex-grow-0 transform bg-my-bg transition-transform duration-300 dark:bg-my-darkbg1 sm:relative sm:z-0 sm:translate-x-0 ' +
+          'border-my-border dark:border-my-darkborder bg1 fixed inset-y-0 right-0 z-50 flex w-60 shrink-0 grow-0 transform border-l-2 transition-transform duration-300 sm:relative sm:z-0 sm:translate-x-0 ' +
           `${historyOpen ? 'translate-x-0' : 'translate-x-full'}`
         }
       >

@@ -24,11 +24,11 @@ export default function HistoryChat({ onClose }: { onClose: () => void }) {
   return (
     <>
       <div className="flex h-full w-full flex-col overflow-y-auto">
-        <div className="flex flex-col overflow-y-auto overflow-x-hidden">
+        <div className="flex flex-col overflow-x-hidden overflow-y-auto">
           <div className="space-y-3 px-4 py-5">
             {/* 新的聊天 */}
             <div
-              className="group flex w-full cursor-pointer resize-none flex-row items-center justify-center rounded-lg border border-my-border px-3 py-3 shadow-sm hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3"
+              className="group border-my-border hover:bg-my-bgHover dark:border-my-darkborder bg2 dark:hover:bg-my-dark-bg3 flex w-full cursor-pointer resize-none flex-row items-center justify-center rounded-lg border px-3 py-3 shadow-xs"
               onClick={() => {
                 const nowTime: Date = new Date();
                 const newChatInfo: ChatInfo = {
@@ -72,11 +72,11 @@ export default function HistoryChat({ onClose }: { onClose: () => void }) {
               // chatInfo.id === selectedChatInfoID ?<></> :<></>
               <div
                 className={
-                  'group w-full cursor-default resize-none space-y-3 rounded-lg border-2 bg-my-bg px-3 py-3 font-sans shadow-md hover:bg-my-bgHover dark:bg-my-darkbg2 dark:hover:bg-my-darkbg3 ' +
+                  'group bg-my-bg hover:bg-my-bgHover dark:bg-my-dark-bg2 dark:hover:bg-my-dark-bg3 w-full cursor-default resize-none space-y-3 rounded-lg border-2 px-3 py-3 font-sans shadow-md ' +
                   `${
                     chatInfo.id === selectedChatInfoID
                       ? 'border-my-primary dark:border-my-darkPrimary'
-                      : 'border-my-bg hover:border-my-bgHover dark:border-my-darkbg2'
+                      : 'border-my-bg hover:border-my-bgHover dark:border-my-dark-bg2'
                   }`
                 }
                 key={chatInfo.id}
@@ -128,7 +128,7 @@ export default function HistoryChat({ onClose }: { onClose: () => void }) {
                     </svg>
                   </div>
                 </div>
-                <div className="flex flex-row justify-between text-xs text-my-text1 dark:text-my-darktext1">
+                <div className="text-my-text1 dark:text-my-darktext1 flex flex-row justify-between text-xs">
                   <div>{chatInfo.num} 条对话</div>
                   <div>{FormattedTime(chatInfo.utime)}</div>
                 </div>

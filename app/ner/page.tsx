@@ -68,27 +68,25 @@ export default function Page() {
     <>
       <title>NER-命名实体识别</title>
       <div className="flex h-full w-full flex-col overflow-y-auto sm:relative">
-        <label className="hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
+        <label className="bg1 border-my-border dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
           命名实体识别
         </label>
-        <div className="flex flex-grow flex-col space-y-4 overflow-y-auto px-8 py-4">
-          <div className="flex flex-grow flex-col space-y-4 rounded-lg border border-my-border p-4 px-4 dark:border-my-darkborder">
+        <div className="flex grow flex-col space-y-4 overflow-y-auto px-8 py-4">
+          <div className="border-my-border dark:border-my-darkborder flex grow flex-col space-y-4 rounded-lg border p-4 px-4">
             <div className="flex w-full flex-row space-x-4">
               <textarea
                 ref={queryArea}
-                className="w-full resize-none rounded-lg px-4 py-2 shadow outline outline-1 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
+                className="outline-my-border dark:bg-my-dark-bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline"
+                rows={3}
               ></textarea>
-              <button
-                className="inline-block w-24 whitespace-nowrap rounded-md bg-my-primary px-4 py-2 text-lg text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
-                onClick={fetchNER}
-              >
+              <button className="btn-confirm" onClick={fetchNER}>
                 发 送
               </button>
             </div>
-            <div className="flex w-full flex-shrink flex-grow font-mono">
+            <div className="flex w-full shrink grow font-mono">
               <textarea
                 ref={ansArea}
-                className="w-full resize-none rounded-lg px-4 py-2 shadow outline outline-1 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
+                className="outline-my-border dark:bg-my-dark-bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline"
                 readOnly
               ></textarea>
             </div>

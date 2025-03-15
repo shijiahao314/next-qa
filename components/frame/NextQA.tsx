@@ -9,7 +9,7 @@ export default function NextQAHeader() {
         onClick={() => {
           router.push('/welcome');
         }}
-        className="space-1 relative flex h-12 flex-shrink-0 flex-grow-0 cursor-pointer flex-row items-center justify-center"
+        className="space-1 relative flex h-12 shrink-0 grow-0 cursor-pointer flex-row items-center justify-center"
       >
         <svg className="w-12 p-1" viewBox="0 0 1024 1024">
           <path

@@ -22,9 +22,9 @@ export default function NavProvider({ children }: { children: React.ReactNode })
           <path
             fill="none"
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.5"
             d="M20 12H4m12-8h2a2 2 0 0 1 2 2v2M8 20H6a2 2 0 0 1-2-2v-2m16 0v2a2 2 0 0 1-2 2h-2M4 8V6a2 2 0 0 1 2-2h2"
           />
         </svg>
@@ -83,7 +83,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
       {/* 左边导航栏 */}
       <div
         className={
-          'absolute z-50 flex h-full transform flex-col justify-between border-my-border bg-my-bg px-4 transition-transform duration-300 dark:border-my-darkborder dark:bg-my-darkbg1 sm:relative sm:z-0 sm:translate-x-0 sm:border-r-2 ' +
+          'bg1 border-my-border dark:border-my-darkborder absolute z-50 flex h-full transform flex-col justify-between border-r-2 px-4 transition-transform duration-300 sm:relative sm:z-0 sm:translate-x-0 ' +
           `${navOpen ? 'translate-x-0' : '-translate-x-full'}`
         }
       >
@@ -91,7 +91,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
           onClick={() => {
             router.push('/welcome');
           }}
-          className="relative flex flex-shrink-0 flex-grow-0 cursor-pointer flex-col items-center justify-center border-b border-my-border pb-2 pt-6 dark:border-my-darkborder"
+          className="border-my-border dark:border-my-darkborder relative flex shrink-0 grow-0 cursor-pointer flex-col items-center justify-center border-b pt-6 pb-2"
         >
           <svg className="h-10" viewBox="0 0 1024 1024">
             <path
@@ -106,7 +106,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
           </svg>
           <div className="text-xl font-semibold italic">NextQA</div>
         </div>
-        <div className="flex flex-shrink flex-grow flex-col items-center justify-center overflow-y-auto overflow-x-hidden border-b border-my-border px-2 dark:border-my-darkborder">
+        <div className="border-my-border dark:border-my-darkborder flex shrink grow flex-col items-center justify-center overflow-x-hidden overflow-y-auto border-b px-2">
           <ul className="space-y-2 font-medium" role="menu">
             {items.map((item) => (
               <li className="h-10" key={item.pathname}>
@@ -115,8 +115,8 @@ export default function NavProvider({ children }: { children: React.ReactNode })
                     'flex items-center space-x-3 rounded-lg px-3 py-2 ' +
                     `${
                       curPath === item.pathname
-                        ? 'pointer-events-none cursor-default bg-my-primary text-white dark:bg-my-darkPrimary'
-                        : 'text-black/80 hover:bg-my-bgHover hover:text-black dark:text-white/80 dark:hover:bg-my-darkbgHover dark:hover:text-white'
+                        ? 'bg-my-primary dark:bg-my-dark-primary pointer-events-none cursor-default text-white'
+                        : 'hover:bg-my-bg-hover dark:hover:bg-my-dark-bg-hover text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white'
                     }`
                   }
                   href={item.pathname}
@@ -128,10 +128,10 @@ export default function NavProvider({ children }: { children: React.ReactNode })
             ))}
           </ul>
         </div>
-        <div className="flex flex-shrink-0 flex-grow-0 flex-row justify-between pb-5 pt-3">
+        <div className="flex shrink-0 grow-0 flex-row justify-between pt-3 pb-5">
           <a
             href="https://github.com/shijiahao314/next-qa"
-            className="rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+            className="rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 focus:outline-hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
           >
             <svg className="h-6 w-6" viewBox="0 0 98 96">
               <path
@@ -148,9 +148,9 @@ export default function NavProvider({ children }: { children: React.ReactNode })
       </div>
 
       {/* 上方导航栏 */}
-      <div className="z-10 flex w-full flex-row justify-between border-b border-my-border bg-my-bg px-5 py-4 dark:border-my-darkborder dark:bg-my-darkbg1 sm:hidden">
+      <div className="bg1 border-my-border dark:border-my-darkborder z-10 flex w-full flex-row justify-between border-b px-5 py-4 sm:hidden">
         <button
-          className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold dark:border-my-darkborder dark:bg-my-darkbg2 sm:hidden"
+          className="border-my-border dark:border-my-darkborder bg2 h-12 w-12 place-content-center items-center rounded-lg border p-2 text-base font-semibold sm:hidden"
           onClick={() => {
             setNavOpen(true);
           }}
@@ -163,7 +163,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
           </svg>
         </button>
         {!header ? (
-          <div className="space-1 relative flex h-12 flex-shrink-0 flex-grow-0 cursor-pointer flex-row items-center justify-center">
+          <div className="space-1 relative flex h-12 shrink-0 grow-0 cursor-pointer flex-row items-center justify-center">
             <svg className="w-12 animate-spin p-1" viewBox="0 0 24 24">
               <path
                 fill="#0077F0"

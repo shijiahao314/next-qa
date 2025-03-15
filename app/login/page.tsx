@@ -94,10 +94,10 @@ export default function LoginPage() {
       <title>NextQA-登录</title>
       <MyToastContainer></MyToastContainer>
       <div className="hidden h-full w-full opacity-0"></div>
-      <div className="flex h-full w-full flex-row text-my-text0 duration-200 dark:text-my-darktext0">
+      <div className="text-my-text0 dark:text-my-darktext0 flex h-full w-full flex-row duration-200">
         <div className="m-4 flex w-full flex-col">
-          <div className="flex flex-shrink flex-grow flex-col items-center justify-center">
-            <div className="rounded-lg border border-my-border bg-my-bg px-6 py-5 shadow-md dark:border-my-darkborder dark:bg-my-darkbg1 sm:max-w-md">
+          <div className="flex shrink grow flex-col items-center justify-center">
+            <div className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 rounded-lg border px-6 py-5 shadow-md sm:max-w-md">
               <div className="mb-3 flex h-20 flex-row items-center justify-center space-x-3">
                 <svg className="h-9" viewBox="0 0 1024 1024">
                   <path
@@ -116,7 +116,7 @@ export default function LoginPage() {
               </div>
               <div className="w-full space-y-3">
                 <input
-                  className="h-12 w-full rounded-lg border border-my-border bg-my-bg px-2 dark:border-my-darkborder dark:bg-my-darkbg2"
+                  className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg2 h-12 w-full rounded-lg border px-2"
                   placeholder="用户名..."
                   name="username"
                   value={formData.username}
@@ -124,7 +124,7 @@ export default function LoginPage() {
                   // required
                 ></input>
                 <input
-                  className="h-12 w-full rounded-lg border border-my-border bg-my-bg px-2 dark:border-my-darkborder dark:bg-my-darkbg2"
+                  className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg2 h-12 w-full rounded-lg border px-2"
                   placeholder="密码..."
                   name="password"
                   type="password"
@@ -134,7 +134,7 @@ export default function LoginPage() {
                 ></input>
                 <div className="flex flex-row space-x-2">
                   <button
-                    className="h-10 flex-shrink flex-grow rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                    className="bg-my-primary hover:bg-my-primary-hover dark:bg-my-dark-primary dark:hover:bg-my-dark-primaryHover h-10 shrink grow rounded-lg text-white"
                     onClick={debounce(handleLogin, 300, {
                       leading: true,
                       trailing: false
@@ -143,7 +143,7 @@ export default function LoginPage() {
                     登录
                   </button>
                   <button
-                    className="h-10 rounded-lg border border-my-border px-2 text-center text-sm hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
+                    className="border-my-border hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-dark-bg1 dark:hover:bg-my-dark-bg2 h-10 rounded-lg border px-2 text-center text-sm"
                     onClick={handleSignUp}
                   >
                     注册
@@ -151,15 +151,15 @@ export default function LoginPage() {
                 </div>
               </div>
               <div className="my-2 flex w-full items-center">
-                <div className="h-[1px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
-                <div className="px-2 text-sm text-my-text3 dark:text-my-darktext3">或</div>
-                <div className="h-[1px] flex-grow bg-my-border dark:bg-my-darkborder"></div>
+                <div className="bg-my-border dark:bg-my-darkborder h-[1px] grow"></div>
+                <div className="text-my-text3 dark:text-my-darktext3 px-2 text-sm">或</div>
+                <div className="bg-my-border dark:bg-my-darkborder h-[1px] grow"></div>
               </div>
               <div className="flex flex-row items-center justify-center space-x-4">
                 {/* with github */}
                 <a
                   href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&client_secret=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET}`}
-                  className="rounded-lg border border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
+                  className="border-my-border hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-dark-bg1 dark:hover:bg-my-dark-bg2 rounded-lg border p-2"
                   role="button"
                 >
                   <svg width="24" height="24" viewBox="0 0 98 96">
@@ -175,7 +175,7 @@ export default function LoginPage() {
                 {/* with google */}
                 <a
                   href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET}`}
-                  className="rounded-lg border border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
+                  className="border-my-border hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-dark-bg1 dark:hover:bg-my-dark-bg2 rounded-lg border p-2"
                   role="button"
                 >
                   <svg width="24" height="24" viewBox="0 0 1024 1024">
@@ -200,7 +200,7 @@ export default function LoginPage() {
                 {/* with wechat */}
                 <a
                   href={`https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET}`}
-                  className="rounded-lg border border-my-border p-2 hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbg2"
+                  className="border-my-border hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-dark-bg1 dark:hover:bg-my-dark-bg2 rounded-lg border p-2"
                   role="button"
                 >
                   <svg width="24" height="24" viewBox="0 0 1024 1024">

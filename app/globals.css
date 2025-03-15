@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/* @config '../tailwind.config.ts'; */
 
 /* 为 WebKit 浏览器（Chrome 和 Safari）设置滚动条样式 */
 /* 这些样式可能无法在所有浏览器上生效 */
@@ -36,4 +36,153 @@
 [data-theme='dark'] {
   --background: black;
   --foreground: white;
+}
+
+/* styles/globals.css */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* 基础色 */
+  --color-base-0: rgb(0, 0, 0);
+  --color-base-1: rgb(32, 32, 32);
+  --color-base-2: rgb(64, 64, 64);
+  --color-base-3: rgb(96, 96, 96);
+  --color-base-4: rgb(128, 128, 128);
+  --color-base-5: rgb(160, 160, 160);
+  --color-base-6: rgb(192, 192, 192);
+  --color-base-7: rgb(224, 224, 224);
+  --color-base-8: rgb(255, 255, 255);
+
+  /* 自定义色 */
+  --color-my-light: rgb(255, 255, 255);
+  --color-my-dark: rgb(0, 0, 0);
+
+  /* 背景色 */
+  --color-my-bg: rgba(255, 255, 255, 1);
+  --color-my-bg-hover: rgba(230, 232, 234, 1);
+  --color-my-dark-bg0: rgba(22, 22, 26, 1);
+  --color-my-dark-bg1: rgba(35, 36, 41, 1);
+  --color-my-dark-bg2: rgba(53, 54, 60, 1);
+  --color-my-dark-bg3: rgba(67, 68, 74, 1);
+  --color-my-dark-bg4: rgba(79, 81, 89, 1);
+  --color-my-dark-bg-hover: rgba(167, 171, 176, 1);
+
+  /* 文字色 */
+  --color-my-text0: rgba(28, 31, 35, 1);
+  --color-my-text1: rgba(28, 31, 35, 0.8);
+  --color-my-text2: rgba(28, 31, 35, 0.62);
+  --color-my-text3: rgba(28, 31, 35, 0.35);
+  --color-my-darktext0: rgba(249, 249, 249, 1);
+  --color-my-darktext1: rgba(249, 249, 249, 0.8);
+  --color-my-darktext2: rgba(249, 249, 249, 0.62);
+  --color-my-darktext3: rgba(249, 249, 249, 0.35);
+
+  /* 边框色 */
+  --color-my-border: rgba(28, 31, 35, 0.08);
+  --color-my-darkborder: rgba(255, 255, 255, 0.08);
+
+  /* 按钮色 */
+  --color-my-button0: rgba(0, 149, 238, 1);
+  --color-my-dark-button0: rgba(64, 180, 243, 1);
+
+  /* 主色调 */
+  --color-my-primary: rgba(0, 119, 250, 1);
+  --color-my-primary-hover: rgba(0, 98, 214, 1);
+  --color-my-primary-active: rgba(0, 79, 179, 1);
+  --color-my-primary-disabled: rgba(152, 205, 253, 1);
+  --color-my-dark-primary: rgba(84, 169, 255, 1);
+  --color-my-dark-primary-hover: rgba(127, 193, 255, 1);
+  --color-my-dark-primary-active: rgba(169, 215, 255, 1);
+  --color-my-dark-primary-disabled: rgba(19, 92, 184, 1);
+
+  /* 次色调 */
+  --color-my-secondary: rgba(0, 149, 238, 1);
+  --color-my-secondary-hover: rgba(0, 123, 202, 1);
+  --color-my-secondary-active: rgba(0, 99, 167, 1);
+  --color-my-dark-secondary: rgba(0, 64, 180, 1);
+  --color-my-dark-secondary-hover: rgba(0, 110, 200, 1);
+  --color-my-dark-secondary-active: rgba(0, 157, 220, 1);
+
+  /* 第三色调 */
+  --color-my-tertiary: rgba(107, 112, 115, 1);
+  --color-my-tertiary-hover: rgba(85, 91, 97, 1);
+  --color-my-tertiary-active: rgba(65, 70, 76, 1);
+  --color-my-dark-tertiary: rgba(136, 141, 146, 1);
+  --color-my-dark-tertiary-hover: rgba(167, 171, 176, 1);
+  --color-my-dark-tertiary-active: rgba(198, 202, 205, 1);
+
+  /* 聊天背景色 */
+  --color-my-chat-bg-user: #e7f8ff;
+  --color-my-dark-chat-bg-user: #1b262a;
+  --color-my-chat-bg: #0000000d;
+  --color-my-dark-chat-bg: #0000000d;
+  --color-my-assistant-bg: #e7f8ff;
+  --color-my-dark-assistant-bg: #ffffff;
+
+  /* 危险色 */
+  --color-my-danger: rgba(249, 57, 32, 1);
+  --color-my-danger-hover: rgba(213, 37, 21, 1);
+  --color-my-dark-danger: rgba(215, 51, 36, 1);
+  --color-my-dark-danger-hover: rgba(251, 73, 50, 1);
+}
+
+.bg0 {
+  @apply bg-my-bg;
+  @variant dark {
+    @apply bg-my-dark-bg0;
+  }
+}
+
+.bg1 {
+  @apply bg-my-bg;
+  @variant dark {
+    @apply bg-my-dark-bg1;
+  }
+}
+
+.bg2 {
+  @apply bg-my-bg;
+  @variant dark {
+    @apply bg-my-dark-bg2;
+  }
+}
+
+.bg3 {
+  @apply bg-my-bg;
+  @variant dark {
+    @apply bg-my-dark-bg3;
+  }
+}
+
+.bg4 {
+  @apply bg-my-bg;
+  @variant dark {
+    @apply bg-my-dark-bg3;
+  }
+}
+
+.btn-confirm {
+  @apply bg-my-primary border-my-border cursor-pointer rounded-lg border px-4 py-2 whitespace-nowrap text-white;
+  @variant hover {
+    @apply bg-my-primary-hover;
+  }
+  @variant dark {
+    @apply bg-my-dark-primary border-my-darkborder;
+    @variant hover {
+      @apply bg-my-dark-primary-hover;
+    }
+  }
+}
+
+.btn-cancel {
+  @apply bg-my-danger border-my-border cursor-pointer rounded-lg border px-4 py-2 whitespace-nowrap text-white;
+  @variant hover {
+    @apply bg-my-danger-hover;
+  }
+  @variant dark {
+    @apply bg-my-dark-danger;
+    @variant hover {
+      @apply bg-my-dark-danger-hover;
+    }
+  }
 }

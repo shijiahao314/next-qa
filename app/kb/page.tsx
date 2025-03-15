@@ -176,7 +176,7 @@ export default function KBPage() {
   }
 
   const selectStyle =
-    'h-10 px-4 rounded-lg border border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-darkbg1';
+    'h-10 px-4 rounded-lg border border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1';
 
   // 上传文件
   function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
@@ -236,13 +236,13 @@ export default function KBPage() {
   return (
     <>
       <title>KB-知识库管理</title>
-      <div className="flex w-full flex-col overflow-y-auto sm:relative">
-        <label className="hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
+      <div className="flex h-full w-full flex-col overflow-y-auto sm:relative">
+        <label className="border-my-border bg1 dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
           知识库管理
         </label>
-        <div className="flex flex-grow flex-col space-y-4 overflow-y-auto px-8 py-4">
+        <div className="flex grow flex-col space-y-4 overflow-y-auto px-8 py-4">
           {/* 知识库管理 */}
-          <div className="flex flex-col space-y-2 rounded-lg border border-my-border px-4 py-2 dark:border-my-darkborder">
+          <div className="border-my-border dark:border-my-darkborder flex flex-col space-y-2 rounded-lg border px-4 py-2">
             <label className="text-lg font-semibold">知识库</label>
             <div className="flex flex-row flex-wrap justify-end gap-2">
               <div className="flex h-10 flex-row space-x-2 overflow-x-auto">
@@ -250,7 +250,7 @@ export default function KBPage() {
                   onClick={() => {
                     setCreateKBModalOpen(true);
                   }}
-                  className="whitespace-nowrap rounded-lg bg-my-primary px-5 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                  className="btn-confirm"
                 >
                   新建知识库
                 </button>
@@ -259,7 +259,7 @@ export default function KBPage() {
                     // 删除知识库
                     handleDeleteKB();
                   }}
-                  className="whitespace-nowrap rounded-lg bg-my-danger px-5 text-white hover:bg-my-dangerHover dark:bg-my-darkDanger dark:hover:bg-my-darkDangerHover"
+                  className="btn-cancel"
                 >
                   删除
                 </button>
@@ -267,7 +267,7 @@ export default function KBPage() {
             </div>
             <div className="flex w-full overflow-x-auto">
               <table className="w-full text-left">
-                <thead className="border-y-2 border-my-border dark:border-my-darkborder">
+                <thead className="border-my-border dark:border-my-darkborder border-y-2">
                   <tr className="">
                     <th className="flex h-10 items-center justify-center">选择</th>
                     <th className="px-4">知识库名</th>
@@ -277,13 +277,13 @@ export default function KBPage() {
                 <tbody>
                   {kbs.map((filename: string) => (
                     <tr
-                      className="border-b border-my-border dark:border-my-darkborder"
+                      className="border-my-border dark:border-my-darkborder border-b"
                       key={filename}
                     >
                       <td className="flex h-10 items-center justify-center">
                         <input
                           type="checkbox"
-                          className="h-3 w-3 cursor-pointer appearance-none rounded-sm border-gray-300 bg-gray-100 bg-transparent text-blue-600 ring-2 ring-offset-2 checked:bg-my-primary focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:checked:bg-my-darkPrimary dark:focus:ring-blue-600"
+                          className="checked:bg-my-primary dark:checked:bg-my-dark-primary h-3 w-3 cursor-pointer appearance-none rounded-xs border-gray-300 bg-gray-100 bg-transparent text-blue-600 ring-2 ring-offset-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                           onChange={(e) => {
                             if (e.target.checked) {
                               // checked
@@ -311,11 +311,11 @@ export default function KBPage() {
             </div>
           </div>
           {/* 输入文件管理 */}
-          <div className="flex flex-col space-y-2 rounded-lg border border-my-border px-4 py-2 dark:border-my-darkborder">
+          <div className="border-my-border dark:border-my-darkborder flex grow flex-col space-y-2 rounded-lg border px-4 py-2">
             <label className="text-lg font-semibold">输入文件</label>
             <div className="flex flex-row flex-wrap justify-between gap-2">
               <div className="flex flex-row">
-                <label className="flex items-center whitespace-nowrap text-lg">知识库：</label>
+                <label className="flex items-center text-lg whitespace-nowrap">知识库：</label>
                 <div className="flex items-center">
                   {kbs.length === 0 ? (
                     <select className={`${selectStyle} text-red-500`} disabled>
@@ -341,7 +341,7 @@ export default function KBPage() {
                     console.log('====================================');
                     setKbSettingModalOpen(true);
                   }}
-                  className="whitespace-nowrap rounded-lg bg-my-primary px-5 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                  className="btn-confirm"
                 >
                   配置
                 </button>
@@ -351,7 +351,7 @@ export default function KBPage() {
                     console.log('上传文件');
                     document.getElementById('upload')?.click();
                   }}
-                  className="whitespace-nowrap rounded-lg bg-my-primary px-5 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                  className="btn-confirm"
                 >
                   上传文件
                 </button>
@@ -367,7 +367,7 @@ export default function KBPage() {
                     // Indexing
                     console.log('Indexing');
                   }}
-                  className="whitespace-nowrap rounded-lg bg-my-primary px-5 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                  className="btn-confirm"
                 >
                   Indexing
                 </button>
@@ -376,7 +376,7 @@ export default function KBPage() {
                     // 上传文件
                     console.log('删除文件');
                   }}
-                  className="whitespace-nowrap rounded-lg bg-my-danger px-5 text-white hover:bg-my-dangerHover dark:bg-my-darkDanger dark:hover:bg-my-darkDangerHover"
+                  className="btn-cancel"
                 >
                   删除
                 </button>
@@ -384,7 +384,7 @@ export default function KBPage() {
             </div>
             <div className="flex w-full overflow-x-auto">
               <table className="w-full text-left">
-                <thead className="border-y-2 border-my-border dark:border-my-darkborder">
+                <thead className="border-my-border dark:border-my-darkborder border-y-2">
                   <tr className="">
                     <th className="flex h-10 items-center justify-center">选择</th>
                     <th className="px-4">文件名</th>
@@ -394,13 +394,13 @@ export default function KBPage() {
                 <tbody>
                   {inputs.map((filename: string) => (
                     <tr
-                      className="border-b border-my-border dark:border-my-darkborder"
+                      className="border-my-border dark:border-my-darkborder border-b"
                       key={filename}
                     >
                       <td className="flex h-10 items-center justify-center">
                         <input
                           type="checkbox"
-                          className="h-3 w-3 cursor-pointer appearance-none rounded-sm border-gray-300 bg-gray-100 bg-transparent text-blue-600 ring-2 ring-offset-2 checked:bg-my-primary focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:checked:bg-my-darkPrimary dark:focus:ring-blue-600"
+                          className="checked:bg-my-primary dark:checked:bg-my-dark-primary h-3 w-3 cursor-pointer appearance-none rounded-xs border-gray-300 bg-gray-100 bg-transparent text-blue-600 ring-2 ring-offset-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                         ></input>
                       </td>
                       <td className="px-4">{filename}</td>
@@ -413,11 +413,11 @@ export default function KBPage() {
               </table>
             </div>
             {/* 输出文件管理 */}
-            <div className="flex flex-col space-y-2 rounded-lg border border-my-border px-4 py-2 dark:border-my-darkborder">
+            <div className="border-my-border dark:border-my-darkborder flex grow flex-col space-y-2 rounded-lg border px-4 py-2">
               <label className="text-lg font-semibold">输出文件</label>
               <div className="flex flex-row flex-wrap justify-between gap-2">
                 <div className="flex flex-row">
-                  <label className="flex items-center whitespace-nowrap text-lg">构建库：</label>
+                  <label className="flex items-center text-lg whitespace-nowrap">构建库：</label>
                   <div className="flex items-center">
                     {dbs.length === 0 ? (
                       <select className={`${selectStyle} text-red-500`} disabled>
@@ -439,7 +439,7 @@ export default function KBPage() {
                     onClick={() => {
                       console.log('删除文件');
                     }}
-                    className="h-10 w-16 rounded-lg bg-my-danger text-white hover:bg-my-dangerHover dark:bg-my-darkDanger dark:hover:bg-my-darkDangerHover"
+                    className="btn-cancel"
                   >
                     删除
                   </button>
@@ -447,24 +447,24 @@ export default function KBPage() {
               </div>
               <div className="flex w-full overflow-x-auto">
                 <table className="w-full text-left">
-                  <thead className="border-y-2 border-my-border dark:border-my-darkborder">
+                  <thead className="border-my-border dark:border-my-darkborder border-y-2">
                     <tr className="h-10">
-                      <th className="whitespace-nowrap text-center">选择</th>
-                      <th className="whitespace-nowrap px-4">文件名</th>
-                      <th className="whitespace-nowrap px-4">文件类型</th>
+                      <th className="text-center whitespace-nowrap">选择</th>
+                      <th className="px-4 whitespace-nowrap">文件名</th>
+                      <th className="px-4 whitespace-nowrap">文件类型</th>
                     </tr>
                   </thead>
                   <tbody>
                     {outputs.map((filename: string) => (
                       <tr
-                        className="border-b border-my-border dark:border-my-darkborder"
+                        className="border-my-border dark:border-my-darkborder border-b"
                         key={filename}
                       >
                         <td className="flex h-10 items-center justify-center">
                           <input
                             type="checkbox"
                             value=""
-                            className="h-4 w-4 cursor-pointer appearance-none rounded-md border-gray-300 bg-gray-100 bg-transparent text-blue-600 ring-2 ring-offset-2 checked:bg-my-primary focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:checked:bg-my-darkPrimary dark:focus:ring-blue-600"
+                            className="checked:bg-my-primary dark:checked:bg-my-dark-primary h-4 w-4 cursor-pointer appearance-none rounded-md border-gray-300 bg-gray-100 bg-transparent text-blue-600 ring-2 ring-offset-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                           ></input>
                         </td>
                         <td className="px-4">{filename}</td>

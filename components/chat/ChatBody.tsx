@@ -35,7 +35,7 @@ export default function ChatBody() {
   return (
     <div
       ref={chatBodyRef}
-      className="flex flex-shrink flex-grow flex-col overflow-y-auto overflow-x-hidden px-5 py-4"
+      className="flex shrink grow flex-col overflow-x-hidden overflow-y-auto px-5 py-4"
     >
       {curChatCards != null ? (
         curChatCards.map((chatCard: ChatCard) =>
@@ -47,7 +47,7 @@ export default function ChatBody() {
         )
       ) : (
         <div className="flex h-full w-full items-center justify-center">
-          <div className="flex h-10 w-40 items-center justify-center rounded-lg border-2 border-my-border dark:border-my-darkborder dark:bg-my-darkbg2">
+          <div className="border-my-border dark:border-my-darkborder dark:bg-my-dark-bg2 flex h-10 w-40 items-center justify-center rounded-lg border-2">
             <div>暂无对话</div>
           </div>
         </div>

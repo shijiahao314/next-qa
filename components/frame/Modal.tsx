@@ -35,13 +35,13 @@ export default function Modal({
         {/* Modal Content */}
         <div
           className={
-            `flex flex-col rounded-lg bg-my-bg p-5 duration-300 dark:bg-my-darkbg1 ` +
+            `bg-my-bg dark:bg-my-dark-bg1 flex flex-col rounded-lg p-5 duration-300 ` +
             `${isOpen ? 'scale-100' : 'scale-95'}`
           }
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b-2 border-my-border pb-2 dark:border-my-darkborder">
-            <label className="text-lg font-semibold text-my-text0 dark:text-my-darktext0">
+          <div className="border-my-border dark:border-my-darkborder flex items-center justify-between border-b-2 pb-2">
+            <label className="text-my-text0 dark:text-my-darktext0 text-lg font-semibold">
               {title}
             </label>
             {/* Cancel */}
@@ -56,9 +56,7 @@ export default function Modal({
             </button>
           </div>
           {/* Body */}
-          <div className="flex flex-shrink flex-grow flex-col overflow-y-auto px-1 pt-3">
-            {children}
-          </div>
+          <div className="flex shrink grow flex-col overflow-y-auto px-1 pt-3">{children}</div>
         </div>
       </div>
     </>

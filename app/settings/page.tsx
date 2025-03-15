@@ -12,7 +12,7 @@ export default function Page() {
         descp: '使用自定义 OpenAI API Key 访问 ChatGPT',
         value: (
           <input
-            className="h-10 rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-10 rounded-lg border border-solid px-3 text-center text-sm"
             placeholder="OpenAI API Key"
             type="password"
           ></input>
@@ -24,7 +24,7 @@ export default function Page() {
         value: (
           <select
             id="countries"
-            className="h-10 rounded-lg border border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-10 rounded-lg border border-solid text-center text-sm"
           >
             <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
             <option value="gpt-3.5-turbo-0301">gpt-3.5-turbo-0301</option>
@@ -53,7 +53,7 @@ export default function Page() {
           <input
             type="checkbox"
             value=""
-            className="m-2 h-4 w-4 cursor-pointer appearance-none rounded-md bg-transparent ring-2 ring-offset-2 ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-darkbg0 dark:checked:bg-my-darkPrimary"
+            className="ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-dark-bg0 dark:checked:bg-my-dark-primary m-2 h-4 w-4 cursor-pointer appearance-none rounded-md bg-transparent ring-2 ring-offset-2"
           ></input>
         )
       }
@@ -79,15 +79,15 @@ export default function Page() {
     <>
       <title>Settings-设置</title>
       <div className="flex h-full w-full flex-col">
-        <div className="relative flex flex-row justify-between border-b border-my-border bg-my-bg px-5 py-4 dark:border-my-darkborder dark:bg-my-darkbg1/50">
+        <div className="border-my-border bg-my-bg dark:border-my-darkborder relative flex flex-row justify-between border-b px-5 py-4">
           <div>
             <div className="text-start text-xl font-bold">设置</div>
-            <div className="text-center text-sm text-my-text1 dark:text-my-darktext1 sm:text-start">
+            <div className="text-my-text1 dark:text-my-darktext1 text-center text-sm sm:text-start">
               所有设置选项
             </div>
           </div>
           <button
-            className="h-12 w-12 place-content-center items-center rounded-lg border border-my-border p-2 text-base font-semibold hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-darkbg1 dark:hover:bg-my-darkbgHover/25"
+            className="border-my-border hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-dark-bg1 dark:hover:bg-my-dark-bgHover/25 h-12 w-12 place-content-center items-center rounded-lg border p-2 text-base font-semibold"
             onClick={syncSettings}
           >
             <svg viewBox="0 0 1024 1024">
@@ -98,22 +98,22 @@ export default function Page() {
             </svg>
           </button>
         </div>
-        <div className="relative flex flex-shrink flex-grow flex-col overflow-auto overflow-x-hidden p-5">
+        <div className="relative flex shrink grow flex-col overflow-auto overflow-x-hidden p-5">
           {settings.map((group, index) => (
             <div
               key={index}
-              className="mb-5 divide-y-2 divide-solid rounded-lg border-2 border-my-border dark:border-my-darkborder"
+              className="border-my-border dark:border-my-darkborder mb-5 divide-y-2 divide-solid rounded-lg border-2"
             >
               {group.map((item) => (
                 <div
                   key={item.title}
-                  className="flex flex-row items-center justify-between border-my-border px-5 py-3 dark:border-my-darkborder"
+                  className="border-my-border dark:border-my-darkborder flex flex-row items-center justify-between px-5 py-3"
                 >
                   <div>
-                    <div className="text-base text-my-text0 dark:text-my-darktext0">
+                    <div className="text-my-text0 dark:text-my-darktext0 text-base">
                       {item.title}
                     </div>
-                    <div className="text-xs text-my-text2 dark:text-my-darktext2">{item.descp}</div>
+                    <div className="text-my-text2 dark:text-my-darktext2 text-xs">{item.descp}</div>
                   </div>
                   <div className="flex items-center">{item.value}</div>
                 </div>

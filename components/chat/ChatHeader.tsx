@@ -66,14 +66,14 @@ export default function ChatHeader() {
             {curChatInfo.title}
           </label>
         ) : (
-          <div className="animate-pulse rounded bg-slate-200 text-xl text-transparent visited:hidden dark:bg-slate-700">
+          <div className="bg2 animate-pulse rounded-sm text-xl text-transparent visited:hidden">
             新的聊天
           </div>
         )}
         {curChatInfo.num !== -1 ? (
           <label className="text-xs">共 {curChatInfo.num} 条对话</label>
         ) : (
-          <div className="animate-pulse rounded bg-slate-100 text-xs text-transparent visited:hidden dark:bg-slate-800">
+          <div className="bg2 animate-pulse rounded-sm text-xs text-transparent visited:hidden">
             共 0 条对话
           </div>
         )}
@@ -81,13 +81,13 @@ export default function ChatHeader() {
 
       <Modal title="编辑聊天主题" isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <div className="flex flex-col gap-2">
-          <div className="flex flex-row space-x-4 rounded-lg border border-my-border px-5 py-3 text-base dark:border-my-darkborder">
+          <div className="border-my-border dark:border-my-darkborder flex flex-row space-x-4 rounded-lg border px-5 py-3 text-base">
             <div className="flex flex-col">
               <div className="text-base font-semibold">聊天主题</div>
               <div className="text-sm font-light">更改当前的聊天主题</div>
             </div>
             <input
-              className="rounded-lg bg-my-bg px-3 text-center outline outline-my-border focus:outline-my-primary dark:bg-my-darkbg1 dark:outline-my-darkborder dark:focus:outline-my-darkPrimary"
+              className="bg-my-bg outline-my-border focus:outline-my-primary dark:bg-my-dark-bg1 dark:outline-my-darkborder dark:focus:outline-my-darkPrimary rounded-lg px-3 text-center outline"
               name="title"
               value={tmpTitle}
               onChange={handleChange}
@@ -95,13 +95,13 @@ export default function ChatHeader() {
           </div>
           <div className="flex justify-end gap-3">
             <button
-              className="inline-flex justify-center rounded-md border border-transparent bg-my-primary px-6 py-2 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+              className="bg-my-primary hover:bg-my-primary-hover dark:bg-my-dark-primary dark:hover:bg-my-dark-primaryHover inline-flex justify-center rounded-md border border-transparent px-6 py-2 text-white"
               onClick={handleSubmit}
             >
               确认
             </button>
             <button
-              className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-6 py-2 text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+              className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-6 py-2 text-blue-900 hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
               onClick={() => setModalOpen(false)}
             >
               取消

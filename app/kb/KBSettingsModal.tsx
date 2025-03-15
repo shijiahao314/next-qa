@@ -18,7 +18,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         value: (
           <select
             id="countries"
-            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-full w-full rounded-lg border border-solid text-center text-sm"
           >
             <option value="qwen2.5:latest">qwen2.5:latest</option>
             <option value="llama3:latest">llama3:latest</option>
@@ -30,7 +30,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '使用 API Key 访问',
         value: (
           <input
-            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-full w-full rounded-lg border border-solid px-3 text-center text-sm"
             placeholder="OpenAI API Key"
             type="password"
           ></input>
@@ -41,7 +41,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '自定义访问 URL 地址',
         value: (
           <input
-            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-full w-full rounded-lg border border-solid px-3 text-center text-sm"
             placeholder="http://127.0.0.1:11434/v1"
             defaultValue={'http://127.0.0.1:11434/v1'}
           ></input>
@@ -52,7 +52,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: 'LLM 对话最大 Token 数',
         value: (
           <input
-            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-full w-full rounded-lg border border-solid px-3 text-center text-sm"
             placeholder="8192"
             defaultValue={8192}
           ></input>
@@ -67,7 +67,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         value: (
           <select
             id="countries"
-            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-full w-full rounded-lg border border-solid text-center text-sm"
           >
             <option value="qwen2.5:latest">mxbai-embed-large:latest</option>
           </select>
@@ -78,7 +78,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '使用 API Key 访问',
         value: (
           <input
-            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-full w-full rounded-lg border border-solid px-3 text-center text-sm"
             placeholder="OpenAI API Key"
             type="password"
           ></input>
@@ -89,7 +89,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '自定义访问 URL 地址',
         value: (
           <input
-            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-full w-full rounded-lg border border-solid px-3 text-center text-sm"
             placeholder="http://127.0.0.1:11434/v1"
             defaultValue={'http://127.0.0.1:11434/v1'}
           ></input>
@@ -100,7 +100,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '最大并发请求数',
         value: (
           <input
-            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg px-3 text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-full w-full rounded-lg border border-solid px-3 text-center text-sm"
             placeholder="25"
             defaultValue={25}
           ></input>
@@ -117,17 +117,17 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
           {KBSettings.map((group, index) => (
             <div
               key={index}
-              className="flex flex-col divide-y rounded-lg border border-my-border dark:border-my-darkborder"
+              className="border-my-border dark:border-my-darkborder flex flex-col divide-y rounded-lg border"
             >
               {group.map((item) => (
                 // Row
                 <div key={item.title} className="flex w-full flex-row gap-5 px-4 py-2">
                   {/* Left */}
                   <div className="flex w-2/5 flex-col">
-                    <label className="text-nowrap text-base text-my-text0 dark:text-my-darktext0">
+                    <label className="text-my-text0 dark:text-my-darktext0 text-base text-nowrap">
                       {item.title}
                     </label>
-                    <label className="inline-block text-xs text-my-text2 dark:text-my-darktext2">
+                    <label className="text-my-text2 dark:text-my-darktext2 inline-block text-xs">
                       {item.descp}
                     </label>
                   </div>

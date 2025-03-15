@@ -165,21 +165,21 @@ export default function Page() {
   }
 
   const selectStyle =
-    'h-10 px-4 rounded-lg border border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-darkbg1';
+    'h-10 px-4 rounded-lg border border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1';
 
   return (
     <>
       <title>QA-知识图问答</title>
       <div className="flex h-full w-full flex-col overflow-y-auto sm:relative">
-        <label className="hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
+        <label className="border-my-border bg1 dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
           知识图问答
         </label>
-        <div className="flex flex-grow flex-col space-y-4 overflow-y-auto px-8 py-4">
-          <div className="flex flex-grow flex-col space-y-4 rounded-lg border border-my-border p-4 px-4 dark:border-my-darkborder">
+        <div className="flex grow px-8 py-4">
+          <div className="border-my-border dark:border-my-darkborder flex grow flex-col space-y-4 rounded-lg border p-4 px-4">
             <div className="flex flex-col space-y-2">
               <div className="flex flex-row flex-wrap gap-x-4 gap-y-2">
                 <div className="flex flex-row">
-                  <label className="flex items-center whitespace-nowrap text-lg">知识库：</label>
+                  <label className="flex items-center text-lg whitespace-nowrap">知识库：</label>
                   <div className="flex items-center">
                     {kbs.length === 0 ? (
                       <select className={`${selectStyle} text-red-500`} disabled>
@@ -197,7 +197,7 @@ export default function Page() {
                   </div>
                 </div>
                 <div className="flex flex-row">
-                  <label className="flex items-center whitespace-nowrap text-lg">构建库：</label>
+                  <label className="flex items-center text-lg whitespace-nowrap">构建库：</label>
                   <div className="flex">
                     {dbs.length === 0 ? (
                       <select className={`${selectStyle} text-red-500`} disabled>
@@ -226,22 +226,19 @@ export default function Page() {
             <div className="flex w-full flex-row space-x-4">
               <textarea
                 ref={queryArea}
-                className="w-full resize-none overflow-y-visible rounded-lg border-my-border bg-my-bg px-4 py-2 leading-normal shadow outline outline-1 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
+                className="border-my-border bg-my-bg outline-my-border dark:bg-my-dark-bg1 dark:outline-my-darkborder w-full resize-none overflow-y-visible rounded-lg px-4 py-2 leading-normal shadow-sm outline outline-1"
                 rows={3}
                 onChange={handleChangeText}
                 placeholder={`${method === 'local' ? 'Who is Scrooge, and what are his main relationships?' : 'What are the top themes in this story?'}`}
               ></textarea>
-              <button
-                className="inline-block w-24 whitespace-nowrap rounded-md bg-my-primary px-4 py-2 text-lg text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
-                onClick={fetchQuery}
-              >
+              <button className="btn-confirm" onClick={fetchQuery}>
                 发 送
               </button>
             </div>
-            <div className="flex w-full flex-shrink flex-grow">
+            <div className="flex w-full shrink grow">
               <textarea
                 ref={ansArea}
-                className="w-full resize-none rounded-lg px-4 py-2 shadow outline outline-1 outline-my-border dark:bg-my-darkbg1 dark:outline-my-darkborder"
+                className="outline-my-border dark:bg-my-dark-bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline outline-1"
                 readOnly
               ></textarea>
             </div>

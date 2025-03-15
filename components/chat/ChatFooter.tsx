@@ -61,9 +61,9 @@ export default function ChatFooter() {
 
   return (
     <>
-      <div className="relative block border-t border-my-border px-5 py-4 dark:border-my-darkborder">
+      <div className="border-my-border dark:border-my-darkborder relative block border-t px-5 py-4">
         <textarea
-          className="h-20 max-h-48 w-full flex-grow resize-none overflow-y-visible break-words rounded-lg border-my-border bg-my-bg py-2 pl-4 pr-32 text-sm leading-normal shadow outline outline-1 outline-my-border dark:bg-my-darkbg0 dark:outline-my-darkborder"
+          className="border-my-border bg-my-bg outline-my-border dark:bg-my-dark-bg0 dark:outline-my-darkborder h-20 max-h-48 w-full grow resize-none overflow-y-visible rounded-lg py-2 pr-32 pl-4 text-sm leading-normal break-words shadow-sm outline outline-1"
           placeholder="Enter发送，Shift+Enter换行，不支持使用Tab空格"
           value={tmpContent}
           onChange={handleChange}
@@ -71,7 +71,7 @@ export default function ChatFooter() {
           rows={3}
         ></textarea>
         <button
-          className="absolute bottom-8 right-10 flex h-12 w-20 place-content-center items-center rounded-lg bg-my-primary text-my-darktext0 duration-200 hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+          className="btn-confirm absolute right-10 bottom-8 flex h-12 w-20 place-content-center items-center rounded-lg duration-200"
           type="submit"
           onClick={handleSend}
         >

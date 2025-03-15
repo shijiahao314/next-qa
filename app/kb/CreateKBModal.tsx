@@ -20,7 +20,7 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '所创建的知识库名称',
         value: (
           <input
-            className="h-full w-full rounded-lg bg-my-bg px-3 text-center outline outline-1 outline-my-border focus:outline-my-primary dark:bg-my-darkbg1 dark:outline-my-darkborder dark:focus:outline-my-darkPrimary"
+            className="bg-my-bg outline-my-border focus:outline-my-primary dark:bg-my-dark-bg1 dark:outline-my-darkborder dark:focus:outline-my-darkPrimary h-full w-full rounded-lg px-3 text-center outline outline-1"
             name="kbname"
             type="text"
             value={tmpKBName}
@@ -35,7 +35,7 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
         value: (
           <select
             id="countries"
-            className="h-full w-full rounded-lg border border-solid border-my-border bg-my-bg text-center text-sm dark:border-my-darkborder dark:bg-my-darkbg1"
+            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-full w-full rounded-lg border border-solid text-center text-sm"
           >
             <option value="RAG 知识库">RAG 知识库</option>
             <option value="GraphRAG 知识图库">GraphRAG 知识图库</option>
@@ -88,22 +88,22 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
           {CreateKB.map((group, index) => (
             <table
               key={index}
-              className="flex table-auto rounded-lg border border-my-border dark:border-my-darkborder"
+              className="border-my-border dark:border-my-darkborder flex table-auto rounded-lg border"
             >
-              <tbody className="divide-y divide-my-border dark:divide-my-darkborder">
+              <tbody className="divide-my-border dark:divide-my-darkborder divide-y">
                 {group.map((item) => (
                   <tr key={item.title} className="flex gap-4 px-4 py-3">
                     {/* Left */}
                     <td className="flex flex-col justify-center">
-                      <label className="text-nowrap text-base text-my-text0 dark:text-my-darktext0">
+                      <label className="text-my-text0 dark:text-my-darktext0 text-base text-nowrap">
                         {item.title}
                       </label>
-                      <label className="text-nowrap text-xs text-my-text2 dark:text-my-darktext2">
+                      <label className="text-my-text2 dark:text-my-darktext2 text-xs text-nowrap">
                         {item.descp}
                       </label>
                     </td>
                     {/* Right */}
-                    <td className="h-10 w-full flex-shrink flex-grow items-end">{item.value}</td>
+                    <td className="h-10 w-full shrink grow items-end">{item.value}</td>
                   </tr>
                 ))}
               </tbody>
@@ -112,13 +112,13 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
           {/* 按钮 */}
           <div className="flex justify-end gap-3">
             <button
-              className="inline-flex justify-center rounded-md border border-transparent bg-my-primary px-6 py-2 text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+              className="bg-my-primary hover:bg-my-primary-hover dark:bg-my-dark-primary dark:hover:bg-my-dark-primaryHover inline-flex justify-center rounded-md border border-transparent px-6 py-2 text-white"
               onClick={handleCreateKB}
             >
               确认
             </button>
             <button
-              className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-6 py-2 text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+              className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-6 py-2 text-blue-900 hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
               onClick={() => setModalOpen(false)}
             >
               取消

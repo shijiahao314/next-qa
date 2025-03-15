@@ -154,17 +154,17 @@ export default function LogsPage() {
     <>
       <title>Logs-日志监控</title>
       <div className="flex h-full w-full flex-col overflow-y-auto">
-        <label className="hidden w-full border-b border-my-border bg-my-bg py-4 pl-8 text-xl font-bold dark:border-my-darkborder dark:bg-my-darkbg1/50 sm:block">
+        <label className="border-my-border bg1 dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
           日志监控
         </label>
-        <div className="flex flex-grow flex-col space-y-4 overflow-y-auto px-8 py-4">
+        <div className="flex grow flex-col space-y-4 overflow-y-auto px-8 py-4">
           {/* 日志查看 */}
-          <div className="flex flex-grow flex-col space-y-4 rounded-lg border border-my-border p-4 dark:border-my-darkborder">
+          <div className="border-my-border dark:border-my-darkborder flex grow flex-col space-y-4 rounded-lg border p-4">
             <label className="text-lg font-semibold">日志查看</label>
             <div className="flex flex-row flex-wrap justify-between gap-2">
               {/* 知识库 */}
               <div className="flex flex-row">
-                <label className="flex items-center whitespace-nowrap text-lg">KB 知识库：</label>
+                <label className="flex items-center text-lg whitespace-nowrap">KB 知识库：</label>
                 <div className="flex items-center">
                   {kbs.length === 0 ? (
                     <select className={`${selectStyle} text-red-500`} disabled>
@@ -183,7 +183,7 @@ export default function LogsPage() {
               </div>
               {/* 数据库 */}
               <div className="flex flex-row">
-                <label className="flex items-center whitespace-nowrap text-lg">DB 数据库：</label>
+                <label className="flex items-center text-lg whitespace-nowrap">DB 数据库：</label>
                 <div className="flex items-center">
                   {dbs.length === 0 ? (
                     <select className={`${selectStyle} text-red-500`} disabled>
@@ -210,7 +210,7 @@ export default function LogsPage() {
                     // 下载日志
                     console.log('下载日志');
                   }}
-                  className="h-10 w-24 rounded-lg bg-my-primary text-white hover:bg-my-primaryHover dark:bg-my-darkPrimary dark:hover:bg-my-darkPrimaryHover"
+                  className="bg-my-primary hover:bg-my-primary-hover dark:bg-my-dark-primary dark:hover:bg-my-dark-primaryHover h-10 w-24 rounded-lg text-white"
                 >
                   下载
                 </button>
@@ -227,14 +227,14 @@ export default function LogsPage() {
                     // 删除日志
                     console.log('删除日志');
                   }}
-                  className="h-10 w-16 rounded-lg bg-my-danger text-white hover:bg-my-dangerHover dark:bg-my-darkDanger dark:hover:bg-my-darkDangerHover"
+                  className="bg-my-danger hover:bg-my-dangerHover dark:bg-my-darkDanger dark:hover:bg-my-darkDangerHover h-10 w-16 rounded-lg text-white"
                 >
                   删除
                 </button>
               </div>
             </div>
             <textarea
-              className="flex flex-grow resize-none overflow-y-auto whitespace-nowrap rounded-lg p-2 text-xs shadow outline outline-1 outline-my-border dark:border-my-darkborder dark:bg-my-darkbg1 dark:outline-my-darkborder"
+              className="outline-my-border dark:border-my-darkborder dark:bg-my-darkbg1 dark:outline-my-darkborder flex grow resize-none overflow-y-auto rounded-lg p-2 text-xs whitespace-nowrap shadow-sm outline outline-1"
               onChange={(e) => setLogsText(e.target.value)}
               value={logsText}
               readOnly

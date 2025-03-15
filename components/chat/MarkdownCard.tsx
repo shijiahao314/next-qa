@@ -58,7 +58,7 @@ export default function MarkdownCard({ content }: MarkdownRendererProps) {
               // inline code
               <code
                 className={classNames(
-                  'inline-code rounded bg-gray-300 dark:bg-gray-700',
+                  'inline-code rounded-sm bg-gray-300 dark:bg-gray-700',
                   className
                 )}
                 {...props}
