@@ -15,6 +15,22 @@ export default function NavProvider({ children }: { children: React.ReactNode })
 
   const items = [
     {
+      pathname: '/ner',
+      title: '命名实体识别',
+      svg: (
+        <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M20 12H4m12-8h2a2 2 0 0 1 2 2v2M8 20H6a2 2 0 0 1-2-2v-2m16 0v2a2 2 0 0 1-2 2h-2M4 8V6a2 2 0 0 1 2-2h2"
+          />
+        </svg>
+      )
+    },
+    {
       pathname: '/kb',
       title: '知识库管理',
       svg: (
