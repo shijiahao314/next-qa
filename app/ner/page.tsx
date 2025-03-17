@@ -22,14 +22,17 @@ export default function Page() {
   }, [setHeader]);
 
   async function fetchNER() {
-    if (queryArea.current === null) {
+    if (queryArea.current === null || ansArea.current === null) {
       return;
     }
 
     const sentence = queryArea.current.value;
     if (sentence === '') {
-      return;
+      queryArea.current.value =
+        '检查变压器的外观是否有渗漏油现象，包括油箱、散热器、阀门等部位。渗漏油不仅会造成油的损失，还可能引发火灾等安全隐患。';
     }
+
+    ansArea.current.value = '等待回复...';
 
     try {
       const res = await fetch(API_URL + '/ner', {
@@ -59,7 +62,7 @@ export default function Page() {
     } catch (error) {
       console.error('Error fetching ner result:', error);
       if (ansArea.current !== null) {
-        ansArea.current.value = 'Error fetching ner result:' + error;
+        ansArea.current.value = '服务异常！错误信息：\n' + error;
       }
     }
   }
@@ -77,6 +80,7 @@ export default function Page() {
               <textarea
                 ref={queryArea}
                 className="outline-my-border dark:bg-my-dark-bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline"
+                placeholder="检查变压器的外观是否有渗漏油现象，包括油箱、散热器、阀门等部位。渗漏油不仅会造成油的损失，还可能引发火灾等安全隐患。"
                 rows={3}
               ></textarea>
               <button className="btn-confirm" onClick={fetchNER}>
