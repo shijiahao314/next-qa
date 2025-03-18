@@ -10,7 +10,7 @@ export default function MyToastContainer() {
   });
 
   return (
-    <div className="relative transition-transform">
+    <div className="transition-transform">
       <ToastContainer
         className="toast-container"
         bodyClassName="toast-wrapper"
