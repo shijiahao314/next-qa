@@ -10,6 +10,14 @@ export default function GraphVisualization({ data }: GraphVisualizationProps) {
   useEffect(() => {
     if (!containerRef.current || !data) return;
 
+    if (!data.nodes || data.nodes.length === 0) {
+      return;
+    }
+
+    if (!data.edges || data.edges.length === 0) {
+      return;
+    }
+
     const nodes: Node[] = data.nodes.map((node) => ({
       id: node.id,
       label: node.properties.name || node.properties.title || '',
