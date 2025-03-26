@@ -5,7 +5,7 @@ const NEO4J_URI = process.env.NEXT_PUBLIC_NEO4J_URI || '';
 const NEO4J_USER = process.env.NEXT_PUBLIC_NEO4J_USER || '';
 const NEO4J_PASSWORD = process.env.NEXT_PUBLIC_NEO4J_PASSWORD || '';
 
-/******  0e4f98ff-e0e9-41db-8111-d1cf07769f8d  *******/ export async function GET() {
+export async function GET() {
   const driver = neo4j.driver(NEO4J_URI, neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD));
   const session = driver.session();
 
