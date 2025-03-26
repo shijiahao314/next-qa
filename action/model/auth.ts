@@ -1,7 +1,7 @@
 import { BaseResponse } from './base';
 
 // SignUp
-export interface SignUpRequest {}
+export type SignUpRequest = object;
 export interface SignUpResponse extends BaseResponse {
   username: string;
   password: string;
@@ -12,11 +12,11 @@ export interface LoginRequest {
   username: string;
   password: string;
 }
-export interface LoginResponse extends BaseResponse {}
+export type LoginResponse = BaseResponse;
 
 // Logout
-export interface LogoutRequest {}
-export interface LogoutResponse extends BaseResponse {}
+export type LogoutRequest = object;
+export type LogoutResponse = BaseResponse;
 
 // IsLogin GET
 export interface IsLoginResponse extends BaseResponse {

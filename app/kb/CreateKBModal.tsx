@@ -86,10 +86,7 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
         <div className="flex h-full w-full flex-col space-y-3">
           {/* 设置 */}
           {CreateKB.map((group, index) => (
-            <table
-              key={index}
-              className="border-my-border dark:border-my-darkborder flex table-auto rounded-lg border"
-            >
+            <table key={index} className="border0 flex table-auto rounded-lg border">
               <tbody className="divide-my-border dark:divide-my-darkborder divide-y">
                 {group.map((item) => (
                   <tr key={item.title} className="flex gap-4 px-4 py-3">

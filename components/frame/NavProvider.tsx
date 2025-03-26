@@ -104,7 +104,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
       {/* 左边导航栏 */}
       <div
         className={
-          'bg1 border-my-border dark:border-my-darkborder absolute z-50 flex h-full transform flex-col justify-between border-r-2 px-4 transition-transform duration-300 sm:relative sm:z-0 sm:translate-x-0 ' +
+          'bg0 border0 absolute z-50 flex h-full transform flex-col justify-between border-r-2 px-4 transition-transform duration-300 sm:relative sm:z-0 sm:translate-x-0 ' +
           `${navOpen ? 'translate-x-0' : '-translate-x-full'}`
         }
       >
@@ -112,7 +112,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
           onClick={() => {
             router.push('/welcome');
           }}
-          className="border-my-border dark:border-my-darkborder relative flex shrink-0 grow-0 cursor-pointer flex-col items-center justify-center border-b pt-6 pb-2"
+          className="border0 relative flex shrink-0 grow-0 cursor-pointer flex-col items-center justify-center border-b pt-6 pb-2"
         >
           <svg className="h-10" viewBox="0 0 1024 1024">
             <path
@@ -127,7 +127,7 @@ export default function NavProvider({ children }: { children: React.ReactNode })
           </svg>
           <div className="text-xl font-semibold italic">NextQA</div>
         </div>
-        <div className="border-my-border dark:border-my-darkborder flex shrink grow flex-col items-center justify-center overflow-x-hidden overflow-y-auto border-b px-2">
+        <div className="border0 flex shrink grow flex-col items-center justify-center overflow-x-hidden overflow-y-auto border-b px-2">
           <ul className="space-y-2 font-medium" role="menu">
             {items.map((item) => (
               <li className="h-10" key={item.pathname}>
@@ -169,9 +169,9 @@ export default function NavProvider({ children }: { children: React.ReactNode })
       </div>
 
       {/* 上方导航栏 */}
-      <div className="bg1 border-my-border dark:border-my-darkborder z-10 flex w-full flex-row justify-between border-b px-5 py-4 sm:hidden">
+      <div className="bg1 border0 z-10 flex w-full flex-row justify-between border-b px-5 py-4 sm:hidden">
         <button
-          className="border-my-border dark:border-my-darkborder bg2 h-12 w-12 place-content-center items-center rounded-lg border p-2 text-base font-semibold sm:hidden"
+          className="border0 bg2 h-12 w-12 place-content-center items-center rounded-lg border p-2 text-base font-semibold sm:hidden"
           onClick={() => {
             setNavOpen(true);
           }}

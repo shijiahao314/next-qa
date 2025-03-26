@@ -100,14 +100,11 @@ export default function Page() {
         </div>
         <div className="relative flex shrink grow flex-col overflow-auto overflow-x-hidden p-5">
           {settings.map((group, index) => (
-            <div
-              key={index}
-              className="border-my-border dark:border-my-darkborder mb-5 divide-y-2 divide-solid rounded-lg border-2"
-            >
+            <div key={index} className="border0 mb-5 divide-y-2 divide-solid rounded-lg border-2">
               {group.map((item) => (
                 <div
                   key={item.title}
-                  className="border-my-border dark:border-my-darkborder flex flex-row items-center justify-between px-5 py-3"
+                  className="border0 flex flex-row items-center justify-between px-5 py-3"
                 >
                   <div>
                     <div className="text-my-text0 dark:text-my-darktext0 text-base">

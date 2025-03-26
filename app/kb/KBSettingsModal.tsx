@@ -115,10 +115,7 @@ export function KBSettingsModal({ modalOpen, setModalOpen }: ModalProps) {
         <div className="flex h-full w-full flex-col space-y-5">
           {/* 设置 */}
           {KBSettings.map((group, index) => (
-            <div
-              key={index}
-              className="border-my-border dark:border-my-darkborder flex flex-col divide-y rounded-lg border"
-            >
+            <div key={index} className="border0 flex flex-col divide-y rounded-lg border">
               {group.map((item) => (
                 // Row
                 <div key={item.title} className="flex w-full flex-row gap-5 px-4 py-2">

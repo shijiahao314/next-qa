@@ -18,7 +18,7 @@ export default function Page() {
     setHeader(<ChatHeader></ChatHeader>);
     setRbtn(
       <button
-        className="border-my-border dark:border-my-darkborder dark:bg-my-dark-bg2 h-12 w-12 place-content-center items-center rounded-lg border p-2 text-base font-semibold sm:hidden"
+        className="border0 dark:bg-my-dark-bg2 h-12 w-12 place-content-center items-center rounded-lg border p-2 text-base font-semibold sm:hidden"
         onClick={() => {
           setHistoryOpen(true);
         }}
@@ -48,7 +48,7 @@ export default function Page() {
       {/* 对话窗口 */}
       <div className="flex h-full grow flex-col overflow-hidden sm:relative">
         <MyToastContainer></MyToastContainer>
-        <div className="bg1 border-my-border dark:border-my-darkborder hidden border-b py-2 pl-8 sm:flex">
+        <div className="bg0 border0 hidden border-b py-2 pl-8 sm:flex">
           <ChatHeader></ChatHeader>
         </div>
         <ChatBody></ChatBody>
@@ -58,7 +58,7 @@ export default function Page() {
       {/* 历史对话 */}
       <div
         className={
-          'border-my-border dark:border-my-darkborder bg1 fixed inset-y-0 right-0 z-50 flex w-60 shrink-0 grow-0 transform border-l-2 transition-transform duration-300 sm:relative sm:z-0 sm:translate-x-0 ' +
+          'border0 bg0 fixed inset-y-0 right-0 z-50 flex w-60 shrink-0 grow-0 transform border-l-2 transition-transform duration-300 sm:relative sm:z-0 sm:translate-x-0 ' +
           `${historyOpen ? 'translate-x-0' : 'translate-x-full'}`
         }
       >

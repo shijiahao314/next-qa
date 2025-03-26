@@ -171,11 +171,11 @@ export default function Page() {
     <>
       <title>QA-知识图问答</title>
       <div className="flex h-full w-full flex-col overflow-y-auto sm:relative">
-        <label className="border-my-border bg1 dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
+        <label className="border-my-border bg0 dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
           知识图问答
         </label>
         <div className="flex grow px-8 py-4">
-          <div className="border-my-border dark:border-my-darkborder flex grow flex-col space-y-4 rounded-lg border p-4 px-4">
+          <div className="border0 flex grow flex-col space-y-4 rounded-lg border p-4 px-4">
             <div className="flex flex-col space-y-2">
               <div className="flex flex-row flex-wrap gap-x-4 gap-y-2">
                 <div className="flex flex-row">
@@ -226,7 +226,7 @@ export default function Page() {
             <div className="flex w-full flex-row space-x-4">
               <textarea
                 ref={queryArea}
-                className="border-my-border bg-my-bg outline-my-border dark:bg-my-dark-bg1 dark:outline-my-darkborder w-full resize-none overflow-y-visible rounded-lg px-4 py-2 leading-normal shadow-sm outline outline-1"
+                className="border-my-border bg1 outline-my-border dark:outline-my-darkborder w-full resize-none overflow-y-visible rounded-lg px-4 py-2 leading-normal shadow-sm outline"
                 rows={3}
                 onChange={handleChangeText}
                 placeholder={`${method === 'local' ? 'Who is Scrooge, and what are his main relationships?' : 'What are the top themes in this story?'}`}
@@ -238,7 +238,7 @@ export default function Page() {
             <div className="flex w-full shrink grow">
               <textarea
                 ref={ansArea}
-                className="outline-my-border dark:bg-my-dark-bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline outline-1"
+                className="outline-my-border bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline"
                 readOnly
               ></textarea>
             </div>

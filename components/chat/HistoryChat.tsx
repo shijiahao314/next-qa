@@ -28,7 +28,7 @@ export default function HistoryChat({ onClose }: { onClose: () => void }) {
           <div className="space-y-3 px-4 py-5">
             {/* 新的聊天 */}
             <div
-              className="group border-my-border hover:bg-my-bgHover dark:border-my-darkborder bg2 dark:hover:bg-my-dark-bg3 flex w-full cursor-pointer resize-none flex-row items-center justify-center rounded-lg border px-3 py-3 shadow-xs"
+              className="group border-my-border hover:bg-my-bgHover dark:border-my-darkborder bg1 dark:hover:bg-my-dark-bg3 flex w-full cursor-pointer resize-none flex-row items-center justify-center rounded-lg border px-3 py-3 shadow-xs"
               onClick={() => {
                 const nowTime: Date = new Date();
                 const newChatInfo: ChatInfo = {

@@ -97,38 +97,40 @@ export default function Page() {
       <title>KGC-知识图谱补全</title>
       <MyToastContainer></MyToastContainer>
       <div className="flex h-full w-full flex-col overflow-y-auto sm:relative">
-        <label className="bg1 border-my-border dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
+        <label className="bg0 border0 hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
           知识图谱补全
         </label>
         <div className="flex grow flex-col justify-center space-y-4 overflow-y-auto px-8 py-4">
-          <div className="border-my-border dark:border-my-darkborder flex flex-wrap space-x-4 rounded-lg border p-4 px-4">
+          <div className="border0 flex flex-wrap space-x-4 rounded-lg border p-4 px-4">
             <div className="flex h-full grow flex-col justify-center space-y-2">
               <div className="flew-row flex items-center">
                 <label>三元组形式：</label>
                 <label className="font-mono text-sm italic">(h,r,t)</label>
               </div>
               <p className="">填入三元组中的两个，点击补全</p>
-              <div className="border-my-border dark:border-my-darkborder flex w-full flex-row space-x-2 rounded-md border p-4">
+              <div className="border0 flex w-full flex-row space-x-2 rounded-md border p-4">
                 <div className="flex w-full flex-col space-y-2">
                   <div className="flex flex-col space-y-1">
                     <label>head - 头实体</label>
                     <input
                       ref={headInput}
-                      className="bg1 borer border-my-border dark:border-my-darkborder rounded-md px-2 py-2 outline-none"
+                      className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
+                      placeholder="Q999726"
                     ></input>
                   </div>
                   <div className="flex flex-col space-y-1">
                     <label>relation - 关系</label>
                     <input
                       ref={relationInput}
-                      className="bg1 borer border-my-border dark:border-my-darkborder rounded-md px-2 py-2 outline-none"
+                      className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
+                      placeholder="P101"
                     ></input>
                   </div>
                   <div className="flex flex-col space-y-1">
                     <label>tail - 尾实体</label>
                     <input
                       ref={tailInput}
-                      className="bg1 borer border-my-border dark:border-my-darkborder rounded-md px-2 py-2 outline-none"
+                      className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
                     ></input>
                   </div>
                 </div>

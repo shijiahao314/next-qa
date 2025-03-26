@@ -47,7 +47,7 @@ export default function ChatBody() {
         )
       ) : (
         <div className="flex h-full w-full items-center justify-center">
-          <div className="border-my-border dark:border-my-darkborder dark:bg-my-dark-bg2 flex h-10 w-40 items-center justify-center rounded-lg border-2">
+          <div className="border0 dark:bg-my-dark-bg2 flex h-10 w-40 items-center justify-center rounded-lg border-2">
             <div>暂无对话</div>
           </div>
         </div>

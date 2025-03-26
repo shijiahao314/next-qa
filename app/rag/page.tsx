@@ -198,11 +198,11 @@ export default function Page() {
     <>
       <title>RAG-知识库问答</title>
       <div className="flex h-full w-full flex-col sm:relative">
-        <label className="border-my-border bg1 dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
+        <label className="border-my-border bg0 dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
           知识库问答
         </label>
         <div className="flex grow px-8 py-4">
-          <div className="border-my-border dark:border-my-darkborder flex w-full flex-col space-y-4 rounded-lg border p-4 px-4">
+          <div className="border0 flex w-full flex-col space-y-4 rounded-lg border p-4 px-4">
             <div className="flex flex-row flex-wrap justify-between space-y-2">
               <div className="flex flex-row">
                 <label className="flex items-center text-lg whitespace-nowrap">KB 知识库：</label>
@@ -256,7 +256,7 @@ export default function Page() {
                 发 送
               </button>
             </div>
-            <div className="bg1 border-my-border dark:border-my-darkborder flex h-60 shrink grow flex-col overflow-y-auto rounded-lg border p-4">
+            <div className="bg1 border0 flex h-60 shrink grow flex-col overflow-y-auto rounded-lg border p-4">
               <MarkdownCard content={ans} />
             </div>
           </div>

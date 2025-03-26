@@ -40,7 +40,7 @@ export default function Modal({
           }
         >
           {/* Header */}
-          <div className="border-my-border dark:border-my-darkborder flex items-center justify-between border-b-2 pb-2">
+          <div className="border0 flex items-center justify-between border-b-2 pb-2">
             <label className="text-my-text0 dark:text-my-darktext0 text-lg font-semibold">
               {title}
             </label>

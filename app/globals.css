@@ -53,6 +53,18 @@
   --color-base-7: rgb(224, 224, 224);
   --color-base-8: rgb(255, 255, 255);
 
+  /* 灰色 */
+  --color-grey-0: rgb(249, 249, 249);
+  --color-grey-1: rgb(230, 232, 234);
+  --color-grey-2: rgb(198, 202, 205);
+  --color-grey-3: rgb(167, 171, 176);
+  --color-grey-4: rgb(136, 141, 146);
+  --color-grey-5: rgb(107, 112, 117);
+  --color-grey-6: rgb(85, 91, 97);
+  --color-grey-7: rgb(65, 70, 76);
+  --color-grey-8: rgb(46, 50, 56);
+  --color-grey-9: rgb(28, 31, 35);
+
   /* 自定义色 */
   --color-my-light: rgb(255, 255, 255);
   --color-my-dark: rgb(0, 0, 0);
@@ -127,28 +139,28 @@
 }
 
 .bg0 {
-  @apply bg-my-bg;
+  @apply bg-grey-0;
   @variant dark {
     @apply bg-my-dark-bg0;
   }
 }
 
 .bg1 {
-  @apply bg-my-bg;
+  @apply bg-grey-1;
   @variant dark {
     @apply bg-my-dark-bg1;
   }
 }
 
 .bg2 {
-  @apply bg-my-bg;
+  @apply bg-grey-2;
   @variant dark {
     @apply bg-my-dark-bg2;
   }
 }
 
 .bg3 {
-  @apply bg-my-bg;
+  @apply bg-grey-3;
   @variant dark {
     @apply bg-my-dark-bg3;
   }
@@ -158,6 +170,13 @@
   @apply bg-my-bg;
   @variant dark {
     @apply bg-my-dark-bg3;
+  }
+}
+
+.border0 {
+  @apply border-my-border;
+  @variant dark {
+    @apply border-my-darkborder;
   }
 }
 

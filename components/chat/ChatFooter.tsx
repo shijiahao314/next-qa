@@ -61,9 +61,9 @@ export default function ChatFooter() {
 
   return (
     <>
-      <div className="border-my-border dark:border-my-darkborder relative block border-t px-5 py-4">
+      <div className="border0 relative block border-t px-5 py-4">
         <textarea
-          className="border-my-border bg-my-bg outline-my-border dark:bg-my-dark-bg0 dark:outline-my-darkborder h-20 max-h-48 w-full grow resize-none overflow-y-visible rounded-lg py-2 pr-32 pl-4 text-sm leading-normal break-words shadow-sm outline outline-1"
+          className="border-my-border bg1 outline-my-border dark:outline-my-darkborder h-20 max-h-48 w-full grow resize-none overflow-y-visible rounded-lg py-2 pr-32 pl-4 text-sm leading-normal break-words shadow-sm outline"
           placeholder="Enter发送，Shift+Enter换行，不支持使用Tab空格"
           value={tmpContent}
           onChange={handleChange}

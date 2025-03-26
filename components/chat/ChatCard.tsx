@@ -51,7 +51,7 @@ export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
           {/* 头像 */}
           {role === 'user' ? (
             // user
-            <div className="border-my-border dark:border-my-darkborder h-9 w-9 rounded-xl border shadow-sm">
+            <div className="border0 h-9 w-9 rounded-xl border shadow-sm">
               <svg className="text-my-text1 dark:text-my-darktext2 p-2" viewBox="0 0 1024 1024">
                 <path
                   d="M970.752 929.28c-15.872-185.856-142.848-339.968-314.88-395.776 72.192-46.592 119.808-126.976 119.808-219.648 0-144.896-117.76-262.144-262.656-262.144-145.408 0-262.656 117.248-262.656 262.144 0 92.16 47.616 173.056 119.808 219.648-172.544 55.808-299.52 209.408-314.88 395.776 0 3.072-0.512 6.144 0 10.24 1.536 16.384 15.872 29.696 32.256 29.696 18.432 0 32.768-14.848 32.768-32.768C137.216 734.208 307.2 576 513.536 576s375.296 157.696 393.216 360.448c0 17.92 14.336 32.768 32.768 32.768 16.384 0 30.72-13.312 32.256-29.696-0.512-4.608-1.024-7.168-1.024-10.24z m-655.36-615.424c0-108.544 88.576-196.608 197.12-196.608s197.12 87.552 197.12 196.608-88.576 196.608-197.12 196.608-197.12-88.064-197.12-196.608z"
@@ -75,7 +75,7 @@ export default function ChatContent({ chatCard }: { chatCard: ChatCard }) {
         {/* 内容 */}
         <div
           className={
-            'border-my-border dark:border-my-darkborder mt-2 max-w-full rounded-lg border px-3 py-2 leading-6 ' +
+            'border0 mt-2 max-w-full rounded-lg border px-3 py-2 leading-6 ' +
             `${
               role === 'user'
                 ? 'bg-my-chatBgUser dark:bg-my-darkChatBgUser'

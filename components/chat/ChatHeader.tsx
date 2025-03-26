@@ -81,7 +81,7 @@ export default function ChatHeader() {
 
       <Modal title="编辑聊天主题" isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <div className="flex flex-col gap-2">
-          <div className="border-my-border dark:border-my-darkborder flex flex-row space-x-4 rounded-lg border px-5 py-3 text-base">
+          <div className="border0 flex flex-row space-x-4 rounded-lg border px-5 py-3 text-base">
             <div className="flex flex-col">
               <div className="text-base font-semibold">聊天主题</div>
               <div className="text-sm font-light">更改当前的聊天主题</div>

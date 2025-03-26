@@ -237,12 +237,12 @@ export default function KBPage() {
     <>
       <title>KB-知识库管理</title>
       <div className="flex h-full w-full flex-col overflow-y-auto sm:relative">
-        <label className="border-my-border bg1 dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
+        <label className="border-my-border bg0 dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
           知识库管理
         </label>
         <div className="flex grow flex-col space-y-4 overflow-y-auto px-8 py-4">
           {/* 知识库管理 */}
-          <div className="border-my-border dark:border-my-darkborder flex flex-col space-y-2 rounded-lg border px-4 py-2">
+          <div className="border0 flex flex-col space-y-2 rounded-lg border px-4 py-2">
             <label className="text-lg font-semibold">知识库</label>
             <div className="flex flex-row flex-wrap justify-end gap-2">
               <div className="flex h-10 flex-row space-x-2 overflow-x-auto">
@@ -267,7 +267,7 @@ export default function KBPage() {
             </div>
             <div className="flex w-full overflow-x-auto">
               <table className="w-full text-left">
-                <thead className="border-my-border dark:border-my-darkborder border-y-2">
+                <thead className="border0 border-y-2">
                   <tr className="">
                     <th className="flex h-10 items-center justify-center">选择</th>
                     <th className="px-4">知识库名</th>
@@ -276,10 +276,7 @@ export default function KBPage() {
                 </thead>
                 <tbody>
                   {kbs.map((filename: string) => (
-                    <tr
-                      className="border-my-border dark:border-my-darkborder border-b"
-                      key={filename}
-                    >
+                    <tr className="border0 border-b" key={filename}>
                       <td className="flex h-10 items-center justify-center">
                         <input
                           type="checkbox"
@@ -311,7 +308,7 @@ export default function KBPage() {
             </div>
           </div>
           {/* 输入文件管理 */}
-          <div className="border-my-border dark:border-my-darkborder flex grow flex-col space-y-2 rounded-lg border px-4 py-2">
+          <div className="border0 flex grow flex-col space-y-2 rounded-lg border px-4 py-2">
             <label className="text-lg font-semibold">输入文件</label>
             <div className="flex flex-row flex-wrap justify-between gap-2">
               <div className="flex flex-row">
@@ -384,7 +381,7 @@ export default function KBPage() {
             </div>
             <div className="flex w-full overflow-x-auto">
               <table className="w-full text-left">
-                <thead className="border-my-border dark:border-my-darkborder border-y-2">
+                <thead className="border0 border-y-2">
                   <tr className="">
                     <th className="flex h-10 items-center justify-center">选择</th>
                     <th className="px-4">文件名</th>
@@ -393,10 +390,7 @@ export default function KBPage() {
                 </thead>
                 <tbody>
                   {inputs.map((filename: string) => (
-                    <tr
-                      className="border-my-border dark:border-my-darkborder border-b"
-                      key={filename}
-                    >
+                    <tr className="border0 border-b" key={filename}>
                       <td className="flex h-10 items-center justify-center">
                         <input
                           type="checkbox"
@@ -413,7 +407,7 @@ export default function KBPage() {
               </table>
             </div>
             {/* 输出文件管理 */}
-            <div className="border-my-border dark:border-my-darkborder flex grow flex-col space-y-2 rounded-lg border px-4 py-2">
+            <div className="border0 flex grow flex-col space-y-2 rounded-lg border px-4 py-2">
               <label className="text-lg font-semibold">输出文件</label>
               <div className="flex flex-row flex-wrap justify-between gap-2">
                 <div className="flex flex-row">
@@ -447,7 +441,7 @@ export default function KBPage() {
               </div>
               <div className="flex w-full overflow-x-auto">
                 <table className="w-full text-left">
-                  <thead className="border-my-border dark:border-my-darkborder border-y-2">
+                  <thead className="border0 border-y-2">
                     <tr className="h-10">
                       <th className="text-center whitespace-nowrap">选择</th>
                       <th className="px-4 whitespace-nowrap">文件名</th>
@@ -456,10 +450,7 @@ export default function KBPage() {
                   </thead>
                   <tbody>
                     {outputs.map((filename: string) => (
-                      <tr
-                        className="border-my-border dark:border-my-darkborder border-b"
-                        key={filename}
-                      >
+                      <tr className="border0 border-b" key={filename}>
                         <td className="flex h-10 items-center justify-center">
                           <input
                             type="checkbox"

@@ -26,7 +26,7 @@ export default function ChatContent({
               `${role === 'user' ? 'order-first mr-2' : 'order-last ml-2'}`
             }
           ></div>
-          <div className="border-my-border dark:border-my-darkborder h-9 w-9 rounded-lg border-2">
+          <div className="border0 h-9 w-9 rounded-lg border-2">
             {role === 'user' ? (
               <svg className="text-my-text1 dark:text-my-darktext2 p-1" viewBox="0 0 1024 1024">
                 <path
@@ -47,7 +47,7 @@ export default function ChatContent({
         <div className="text-my-text2 dark:text-my-darktext2 flex py-1 text-xs">正在输入...</div>
         <div
           className={
-            'border-my-border dark:border-my-darkborder max-w-full rounded-lg border-[0.1rem] px-3 py-2 ' +
+            'border0 max-w-full rounded-lg border-[0.1rem] px-3 py-2 ' +
             `${
               role === 'user'
                 ? 'bg-my-chatBg dark:bg-my-darkChatBg'

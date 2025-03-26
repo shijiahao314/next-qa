@@ -71,15 +71,15 @@ export default function Page() {
     <>
       <title>NER-命名实体识别</title>
       <div className="flex h-full w-full flex-col overflow-y-auto sm:relative">
-        <label className="bg1 border-my-border dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
+        <label className="bg0 border0 hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
           命名实体识别
         </label>
         <div className="flex grow flex-col space-y-4 overflow-y-auto px-8 py-4">
-          <div className="border-my-border dark:border-my-darkborder flex grow flex-col space-y-4 rounded-lg border p-4 px-4">
+          <div className="border0 flex grow flex-col space-y-4 rounded-lg border p-4 px-4">
             <div className="flex w-full flex-row space-x-4">
               <textarea
                 ref={queryArea}
-                className="outline-my-border dark:bg-my-dark-bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline"
+                className="outline-my-border bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline"
                 placeholder="检查变压器的外观是否有渗漏油现象，包括油箱、散热器、阀门等部位。渗漏油不仅会造成油的损失，还可能引发火灾等安全隐患。"
                 rows={3}
               ></textarea>
@@ -90,7 +90,7 @@ export default function Page() {
             <div className="flex w-full shrink grow font-mono">
               <textarea
                 ref={ansArea}
-                className="outline-my-border dark:bg-my-dark-bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline"
+                className="outline-my-border bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline"
                 readOnly
               ></textarea>
             </div>

@@ -154,12 +154,12 @@ export default function LogsPage() {
     <>
       <title>Logs-日志监控</title>
       <div className="flex h-full w-full flex-col overflow-y-auto">
-        <label className="border-my-border bg1 dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
+        <label className="border-my-border bg0 dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
           日志监控
         </label>
         <div className="flex grow flex-col space-y-4 overflow-y-auto px-8 py-4">
           {/* 日志查看 */}
-          <div className="border-my-border dark:border-my-darkborder flex grow flex-col space-y-4 rounded-lg border p-4">
+          <div className="border0 flex grow flex-col space-y-4 rounded-lg border p-4">
             <label className="text-lg font-semibold">日志查看</label>
             <div className="flex flex-row flex-wrap justify-between gap-2">
               {/* 知识库 */}
