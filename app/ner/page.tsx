@@ -26,10 +26,10 @@ export default function Page() {
       return;
     }
 
-    const sentence = queryArea.current.value;
+    let sentence = queryArea.current.value;
     if (sentence === '') {
-      queryArea.current.value =
-        '检查变压器的外观是否有渗漏油现象，包括油箱、散热器、阀门等部位。渗漏油不仅会造成油的损失，还可能引发火灾等安全隐患。';
+      sentence = '检查变压器接地线是否连接1000千伏变电站的断路器。';
+      queryArea.current.value = sentence;
     }
 
     ansArea.current.value = '等待回复...';
@@ -75,22 +75,22 @@ export default function Page() {
           命名实体识别
         </label>
         <div className="flex grow flex-col space-y-4 overflow-y-auto px-8 py-4">
-          <div className="border0 flex grow flex-col space-y-4 rounded-lg border p-4 px-4">
+          <div className="border0 flex grow flex-col space-y-4 rounded-lg border p-4">
             <div className="flex w-full flex-row space-x-4">
               <textarea
                 ref={queryArea}
                 className="outline-my-border bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline"
-                placeholder="检查变压器的外观是否有渗漏油现象，包括油箱、散热器、阀门等部位。渗漏油不仅会造成油的损失，还可能引发火灾等安全隐患。"
+                placeholder="检查变压器接地线是否连接1000千伏变电站的断路器。"
                 rows={3}
               ></textarea>
               <button className="btn-confirm" onClick={fetchNER}>
                 发 送
               </button>
             </div>
-            <div className="flex w-full shrink grow font-mono">
+            <div className="flex w-full shrink grow">
               <textarea
                 ref={ansArea}
-                className="outline-my-border bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline"
+                className="outline-my-border bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 font-mono shadow-sm outline"
                 readOnly
               ></textarea>
             </div>

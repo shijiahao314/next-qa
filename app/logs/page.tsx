@@ -137,8 +137,7 @@ export default function LogsPage() {
     setSelectedDB(event.target.value);
   }
 
-  const selectStyle =
-    'h-10 px-4 rounded-lg border border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-darkbg1';
+  const selectStyle = 'h-10 px-4 rounded-lg border border0 bg1';
 
   // 下载日志
   function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
@@ -154,7 +153,7 @@ export default function LogsPage() {
     <>
       <title>Logs-日志监控</title>
       <div className="flex h-full w-full flex-col overflow-y-auto">
-        <label className="border-my-border bg0 dark:border-my-darkborder hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
+        <label className="border0 bg0 hidden w-full border-b py-4 pl-8 text-xl font-bold sm:block">
           日志监控
         </label>
         <div className="flex grow flex-col space-y-4 overflow-y-auto px-8 py-4">
@@ -210,7 +209,7 @@ export default function LogsPage() {
                     // 下载日志
                     console.log('下载日志');
                   }}
-                  className="bg-my-primary hover:bg-my-primary-hover dark:bg-my-dark-primary dark:hover:bg-my-dark-primaryHover h-10 w-24 rounded-lg text-white"
+                  className="btn-confirm h-10 w-24 rounded-lg text-white"
                 >
                   下载
                 </button>
@@ -227,14 +226,14 @@ export default function LogsPage() {
                     // 删除日志
                     console.log('删除日志');
                   }}
-                  className="bg-my-danger hover:bg-my-dangerHover dark:bg-my-darkDanger dark:hover:bg-my-darkDangerHover h-10 w-16 rounded-lg text-white"
+                  className="btn-cancel h-10 w-16 rounded-lg text-white"
                 >
                   删除
                 </button>
               </div>
             </div>
             <textarea
-              className="outline-my-border dark:border-my-darkborder dark:bg-my-darkbg1 dark:outline-my-darkborder flex grow resize-none overflow-y-auto rounded-lg p-2 text-xs whitespace-nowrap shadow-sm outline outline-1"
+              className="bg1 outline-my-border border0 dark:outline-my-darkborder flex grow resize-none overflow-y-auto rounded-lg p-2 text-xs whitespace-nowrap shadow-sm outline"
               onChange={(e) => setLogsText(e.target.value)}
               value={logsText}
               readOnly

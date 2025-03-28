@@ -83,7 +83,7 @@ export default function Page() {
         console.log(data);
         console.log('====================================');
       } else {
-        console.error('Failed to fetch kgc result:');
+        console.error('Failed to fetch kgc result.');
         toast.error('无法获取补全结果');
       }
     } catch (error) {
@@ -101,7 +101,7 @@ export default function Page() {
           知识图谱补全
         </label>
         <div className="flex grow flex-col justify-center space-y-4 overflow-y-auto px-8 py-4">
-          <div className="border0 flex flex-wrap space-x-4 rounded-lg border p-4 px-4">
+          <div className="border0 flex flex-wrap space-x-4 rounded-lg border p-4">
             <div className="flex h-full grow flex-col justify-center space-y-2">
               <div className="flew-row flex items-center">
                 <label>三元组形式：</label>

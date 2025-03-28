@@ -12,7 +12,7 @@ export async function GET() {
   try {
     const result = await session.run(`
       MATCH (a)-[r]->(b) 
-      RETURN a, r, b LIMIT 20
+      RETURN a, r, b LIMIT 50
     `);
 
     const nodes = new Map();

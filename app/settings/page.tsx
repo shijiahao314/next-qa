@@ -12,7 +12,7 @@ export default function Page() {
         descp: '使用自定义 OpenAI API Key 访问 ChatGPT',
         value: (
           <input
-            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-10 rounded-lg border border-solid px-3 text-center text-sm"
+            className="border0 bg1 h-10 rounded-lg border px-3 text-center text-sm"
             placeholder="OpenAI API Key"
             type="password"
           ></input>
@@ -22,10 +22,7 @@ export default function Page() {
         title: '模型',
         descp: '选择使用的对话模型',
         value: (
-          <select
-            id="countries"
-            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-10 rounded-lg border border-solid text-center text-sm"
-          >
+          <select id="countries" className="border0 bg1 h-10 rounded-lg border text-center text-sm">
             <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
             <option value="gpt-3.5-turbo-0301">gpt-3.5-turbo-0301</option>
             <option value="gpt-3.5-turbo-0613">gpt-3.5-turbo-0613</option>
@@ -53,7 +50,7 @@ export default function Page() {
           <input
             type="checkbox"
             value=""
-            className="ring-offset-my-bg checked:bg-my-primary dark:ring-offset-my-dark-bg0 dark:checked:bg-my-dark-primary m-2 h-4 w-4 cursor-pointer appearance-none rounded-md bg-transparent ring-2 ring-offset-2"
+            className="ring-offset-my-bg dark:ring-offset-my-dark-bg0 checked:bg-my-primary dark:checked:bg-my-dark-primary ring-grey-3 dark:ring-grey-6 m-2 h-4 w-4 cursor-pointer appearance-none rounded-md ring-2 ring-offset-2"
           ></input>
         )
       }
@@ -79,7 +76,7 @@ export default function Page() {
     <>
       <title>Settings-设置</title>
       <div className="flex h-full w-full flex-col">
-        <div className="border-my-border bg-my-bg dark:border-my-darkborder relative flex flex-row justify-between border-b px-5 py-4">
+        <div className="border0 bg0 relative flex flex-row justify-between border-b px-5 py-4">
           <div>
             <div className="text-start text-xl font-bold">设置</div>
             <div className="text-my-text1 dark:text-my-darktext1 text-center text-sm sm:text-start">
@@ -87,7 +84,7 @@ export default function Page() {
             </div>
           </div>
           <button
-            className="border-my-border hover:bg-my-bgHover dark:border-my-darkborder dark:bg-my-dark-bg1 dark:hover:bg-my-dark-bgHover/25 h-12 w-12 place-content-center items-center rounded-lg border p-2 text-base font-semibold"
+            className="border0 hover:bg-my-bgHover dark:bg-my-dark-bg1 dark:hover:bg-my-dark-bgHover/25 h-12 w-12 place-content-center items-center rounded-lg border p-2 text-base font-semibold"
             onClick={syncSettings}
           >
             <svg viewBox="0 0 1024 1024">

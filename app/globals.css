@@ -181,12 +181,12 @@
 }
 
 .btn-confirm {
-  @apply bg-my-primary border-my-border cursor-pointer rounded-lg border px-4 py-2 whitespace-nowrap text-white;
+  @apply bg-my-primary cursor-pointer rounded-lg px-4 py-2 whitespace-nowrap text-white;
   @variant hover {
     @apply bg-my-primary-hover;
   }
   @variant dark {
-    @apply bg-my-dark-primary border-my-darkborder;
+    @apply bg-my-dark-primary;
     @variant hover {
       @apply bg-my-dark-primary-hover;
     }
@@ -194,7 +194,7 @@
 }
 
 .btn-cancel {
-  @apply bg-my-danger border-my-border cursor-pointer rounded-lg border px-4 py-2 whitespace-nowrap text-white;
+  @apply bg-my-danger cursor-pointer rounded-lg px-4 py-2 whitespace-nowrap text-white;
   @variant hover {
     @apply bg-my-danger-hover;
   }
