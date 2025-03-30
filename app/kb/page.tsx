@@ -175,8 +175,7 @@ export default function KBPage() {
     setSelectedDB(event.target.value);
   }
 
-  const selectStyle =
-    'h-10 px-4 rounded-lg border border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1';
+  const selectStyle = 'h-10 px-4 rounded-lg border bg1 border0';
 
   // 上传文件
   function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
@@ -280,7 +279,7 @@ export default function KBPage() {
                       <td className="flex h-10 items-center justify-center">
                         <input
                           type="checkbox"
-                          className="checked:bg-my-primary dark:checked:bg-my-dark-primary h-3 w-3 cursor-pointer appearance-none rounded-xs border-gray-300 bg-gray-100 bg-transparent text-blue-600 ring-2 ring-offset-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                          className="checkbox h-3 w-3"
                           onChange={(e) => {
                             if (e.target.checked) {
                               // checked
@@ -392,10 +391,7 @@ export default function KBPage() {
                   {inputs.map((filename: string) => (
                     <tr className="border0 border-b" key={filename}>
                       <td className="flex h-10 items-center justify-center">
-                        <input
-                          type="checkbox"
-                          className="checked:bg-my-primary dark:checked:bg-my-dark-primary h-3 w-3 cursor-pointer appearance-none rounded-xs border-gray-300 bg-gray-100 bg-transparent text-blue-600 ring-2 ring-offset-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                        ></input>
+                        <input type="checkbox" className="checkbox h-3 w-3"></input>
                       </td>
                       <td className="px-4">{filename}</td>
                       <td className="px-4">
@@ -452,11 +448,7 @@ export default function KBPage() {
                     {outputs.map((filename: string) => (
                       <tr className="border0 border-b" key={filename}>
                         <td className="flex h-10 items-center justify-center">
-                          <input
-                            type="checkbox"
-                            value=""
-                            className="checked:bg-my-primary dark:checked:bg-my-dark-primary h-4 w-4 cursor-pointer appearance-none rounded-md border-gray-300 bg-gray-100 bg-transparent text-blue-600 ring-2 ring-offset-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                          ></input>
+                          <input type="checkbox" className="checkbox h-3 w-3"></input>
                         </td>
                         <td className="px-4">{filename}</td>
                         <td className="px-4">

@@ -164,8 +164,7 @@ export default function Page() {
     }
   }
 
-  const selectStyle =
-    'h-10 px-4 rounded-lg border border-solid border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1';
+  const selectStyle = 'h-10 px-4 rounded-lg border border0 bg1 dark:border-my-darkborder';
 
   return (
     <>

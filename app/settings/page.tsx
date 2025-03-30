@@ -46,13 +46,7 @@ export default function Page() {
       {
         title: 'Test Mode',
         descp: '开发者测试模式',
-        value: (
-          <input
-            type="checkbox"
-            value=""
-            className="ring-offset-my-bg dark:ring-offset-my-dark-bg0 checked:bg-my-primary dark:checked:bg-my-dark-primary ring-grey-3 dark:ring-grey-6 m-2 h-4 w-4 cursor-pointer appearance-none rounded-md ring-2 ring-offset-2"
-          ></input>
-        )
+        value: <input type="checkbox" className="checkbox h-4 w-4"></input>
       }
     ]
   ];

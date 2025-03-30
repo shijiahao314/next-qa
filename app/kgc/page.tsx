@@ -37,8 +37,8 @@ export default function Page() {
     // 计数器
     let count = 0;
 
-    const head = headInput.current.value;
-    const relation = relationInput.current.value;
+    let head = headInput.current.value;
+    let relation = relationInput.current.value;
     const tail = tailInput.current.value;
 
     if (head !== '') {
@@ -49,6 +49,13 @@ export default function Page() {
     }
     if (tail !== '') {
       count++;
+    }
+    if (count === 0) {
+      head = '高温环境';
+      relation = '运行';
+      headInput.current.value = head;
+      relationInput.current.value = relation;
+      count = 2;
     }
     if (count !== 2) {
       toast.error('请填入三元组中的两个');
@@ -82,6 +89,7 @@ export default function Page() {
         console.log('====================================');
         console.log(data);
         console.log('====================================');
+        toast.success('补全完成');
       } else {
         console.error('Failed to fetch kgc result.');
         toast.error('无法获取补全结果');
@@ -115,7 +123,7 @@ export default function Page() {
                     <input
                       ref={headInput}
                       className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
-                      placeholder="Q999726"
+                      placeholder="高温环境"
                     ></input>
                   </div>
                   <div className="flex flex-col space-y-1">
@@ -123,7 +131,7 @@ export default function Page() {
                     <input
                       ref={relationInput}
                       className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
-                      placeholder="P101"
+                      placeholder="运行"
                     ></input>
                   </div>
                   <div className="flex flex-col space-y-1">

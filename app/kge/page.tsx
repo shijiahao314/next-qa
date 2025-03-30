@@ -15,7 +15,6 @@ export default function Page() {
     kg_subgraph: null
   });
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setHeader(<label className="flex items-center text-xl font-bold">命名实体识别</label>);
@@ -48,7 +47,6 @@ export default function Page() {
     const loadAllImages = async () => {
       try {
         setLoading(true);
-        setError(null);
 
         const results = await Promise.all(
           (['entity_embeddings', 'relation_embeddings', 'kg_subgraph'] as ImageType[]).map(
@@ -68,8 +66,8 @@ export default function Page() {
         );
 
         setImages(newImages);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load images');
+      } catch (error) {
+        console.error('Error loading images:', error);
       } finally {
         setLoading(false);
       }
@@ -86,7 +84,7 @@ export default function Page() {
   }, []);
 
   const renderImageSection = (type: ImageType, title: string) => (
-    <div key={type} className="border0 flex flex-col space-y-2 border border-dashed p-2">
+    <div key={type} className="border0 flex flex-col space-y-2 rounded-lg border border-dashed p-2">
       <label className="">{title}</label>
       <div className="flex w-full items-center justify-center">
         {images[type] ? (

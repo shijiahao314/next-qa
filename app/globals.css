@@ -205,3 +205,17 @@
     }
   }
 }
+
+.checkbox {
+  @apply bg-grey-1 ring-offset-grey-1 text-my-primary cursor-pointer appearance-none rounded-sm ring-2 ring-offset-2;
+  @variant checked {
+    @apply bg-my-primary;
+  }
+
+  @variant dark {
+    @apply bg-my-dark-bg1 ring-offset-my-dark-bg1 text-my-dark-primary;
+    @variant checked {
+      @apply bg-my-dark-primary;
+    }
+  }
+}
