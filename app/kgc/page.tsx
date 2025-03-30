@@ -6,7 +6,7 @@ import MyToastContainer from '@/components/frame/MyToastContainer';
 import { useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 
-class NERRsp {
+class KGCRsp {
   code!: number;
   msg!: string;
   head!: string;
@@ -14,10 +14,20 @@ class NERRsp {
   tail!: string;
 }
 
+class KGCBenchmarkRsp {
+  code!: number;
+  msg!: string;
+  hits_at_1!: string;
+  mrr!: string;
+}
+
 export default function Page() {
   const headInput = useRef<HTMLInputElement>(null); // head
   const relationInput = useRef<HTMLInputElement>(null); // relation
   const tailInput = useRef<HTMLInputElement>(null); // tail
+
+  const hitsInput = useRef<HTMLInputElement>(null); // hits
+  const mrrInput = useRef<HTMLInputElement>(null); // mrr
 
   const { setHeader } = useHeader();
 
@@ -51,8 +61,8 @@ export default function Page() {
       count++;
     }
     if (count === 0) {
-      head = '高温环境';
-      relation = '运行';
+      head = '输电线路';
+      relation = '连接';
       headInput.current.value = head;
       relationInput.current.value = relation;
       count = 2;
@@ -76,7 +86,7 @@ export default function Page() {
       });
 
       if (res.ok) {
-        const data: NERRsp = await res.json();
+        const data: KGCRsp = await res.json();
         if (headInput.current !== null) {
           headInput.current.value = data.head;
         }
@@ -100,6 +110,37 @@ export default function Page() {
     }
   }
 
+  async function fetchKGCBenchmark() {
+    try {
+      const res = await fetch(API_URL + '/kgc/benchmark', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (res.ok) {
+        const data: KGCBenchmarkRsp = await res.json();
+        if (hitsInput.current !== null) {
+          hitsInput.current.value = parseFloat(data.hits_at_1).toFixed(3);
+        }
+        if (mrrInput.current !== null) {
+          mrrInput.current.value = parseFloat(data.mrr).toFixed(3);
+        }
+
+        console.log('====================================');
+        console.log(data);
+        console.log('====================================');
+      } else {
+        console.error('Failed to fetch kgc result.');
+        toast.error('无法获取 Benchmark 结果');
+      }
+    } catch (error) {
+      console.error('Error fetching kgc benchmark result:', error);
+      toast.error('无法获取 Benchmark 结果，错误信息：\n' + error);
+    }
+  }
+
   return (
     <>
       <title>KGC-知识图谱补全</title>
@@ -115,7 +156,7 @@ export default function Page() {
                 <label>三元组形式：</label>
                 <label className="font-mono text-sm italic">(h,r,t)</label>
               </div>
-              <p className="">填入三元组中的两个，点击补全</p>
+              <div className="">填入三元组中的两个，点击补全</div>
               <div className="border0 flex w-full flex-row space-x-2 rounded-md border p-4">
                 <div className="flex w-full flex-col space-y-2">
                   <div className="flex flex-col space-y-1">
@@ -123,7 +164,7 @@ export default function Page() {
                     <input
                       ref={headInput}
                       className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
-                      placeholder="高温环境"
+                      placeholder="输电线路"
                     ></input>
                   </div>
                   <div className="flex flex-col space-y-1">
@@ -131,7 +172,7 @@ export default function Page() {
                     <input
                       ref={relationInput}
                       className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
-                      placeholder="运行"
+                      placeholder="连接"
                     ></input>
                   </div>
                   <div className="flex flex-col space-y-1">
@@ -144,6 +185,29 @@ export default function Page() {
                 </div>
                 <button className="btn-confirm" onClick={fetchKGC}>
                   补 全
+                </button>
+              </div>
+              <div className="border0 flex w-full flex-row space-x-2 rounded-md border p-4">
+                <div className="flex w-full flex-col space-y-2">
+                  <div className="flex flex-col space-y-1">
+                    <label>指标 - Hits@1</label>
+                    <input
+                      ref={hitsInput}
+                      className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
+                      placeholder="Hits@1"
+                    ></input>
+                  </div>
+                  <div className="flex flex-col space-y-1">
+                    <label>指标 - MRR</label>
+                    <input
+                      ref={mrrInput}
+                      className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
+                      placeholder="MRR"
+                    ></input>
+                  </div>
+                </div>
+                <button className="btn-confirm" onClick={fetchKGCBenchmark}>
+                  Benckmark
                 </button>
               </div>
             </div>
