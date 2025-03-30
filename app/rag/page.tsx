@@ -255,7 +255,7 @@ export default function Page() {
                 发 送
               </button>
             </div>
-            <div className="bg1 border0 flex h-60 shrink grow flex-col overflow-y-auto rounded-lg border p-4">
+            <div className="bg1 border0 flex h-60 shrink grow overflow-y-auto rounded-lg border p-4">
               <MarkdownCard content={ans} />
             </div>
           </div>

@@ -258,7 +258,7 @@ export default function KBPage() {
                     // 删除知识库
                     handleDeleteKB();
                   }}
-                  className="btn-cancel"
+                  className="btn-delete"
                 >
                   删除
                 </button>
@@ -372,7 +372,7 @@ export default function KBPage() {
                     // 上传文件
                     console.log('删除文件');
                   }}
-                  className="btn-cancel"
+                  className="btn-delete"
                 >
                   删除
                 </button>
@@ -429,7 +429,7 @@ export default function KBPage() {
                     onClick={() => {
                       console.log('删除文件');
                     }}
-                    className="btn-cancel"
+                    className="btn-delete"
                   >
                     删除
                   </button>

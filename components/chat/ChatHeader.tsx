@@ -94,16 +94,10 @@ export default function ChatHeader() {
             ></input>
           </div>
           <div className="flex justify-end gap-3">
-            <button
-              className="bg-my-primary hover:bg-my-primary-hover dark:bg-my-dark-primary dark:hover:bg-my-dark-primaryHover inline-flex justify-center rounded-md border border-transparent px-6 py-2 text-white"
-              onClick={handleSubmit}
-            >
+            <button className="btn-confirm" onClick={handleSubmit}>
               确认
             </button>
-            <button
-              className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-6 py-2 text-blue-900 hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              onClick={() => setModalOpen(false)}
-            >
+            <button className="btn-cancel" onClick={() => setModalOpen(false)}>
               取消
             </button>
           </div>

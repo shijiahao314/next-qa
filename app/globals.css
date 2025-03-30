@@ -193,7 +193,7 @@
   }
 }
 
-.btn-cancel {
+.btn-delete {
   @apply bg-my-danger cursor-pointer rounded-lg px-4 py-2 whitespace-nowrap text-white;
   @variant hover {
     @apply bg-my-danger-hover;
@@ -202,6 +202,19 @@
     @apply bg-my-dark-danger;
     @variant hover {
       @apply bg-my-dark-danger-hover;
+    }
+  }
+}
+
+.btn-cancel {
+  @apply bg-my-tertiary cursor-pointer rounded-lg px-4 py-2 whitespace-nowrap text-white;
+  @variant hover {
+    @apply bg-my-tertiary-hover;
+  }
+  @variant dark {
+    @apply bg-my-dark-tertiary;
+    @variant hover {
+      @apply bg-my-dark-tertiary-hover;
     }
   }
 }

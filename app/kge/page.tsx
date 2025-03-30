@@ -117,9 +117,9 @@ export default function Page() {
         <div className="flex grow flex-col items-center space-y-4 overflow-y-auto px-8 py-4">
           <div className="border0 flex w-full max-w-[800px] flex-col space-y-2 rounded-lg border p-4">
             <label className="text-lg font-bold">表征可视化</label>
-            {renderImageSection('entity_embeddings', '实体嵌入')}
-            {renderImageSection('relation_embeddings', '关系嵌入')}
-            {renderImageSection('kg_subgraph', '知识子图')}
+            {renderImageSection('entity_embeddings', '实体嵌入 - Entity Embeddings')}
+            {renderImageSection('relation_embeddings', '关系嵌入 - Relation Embeddings')}
+            {renderImageSection('kg_subgraph', '知识子图 - Knowledge Graph Subset')}
           </div>
         </div>
       </div>

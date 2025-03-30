@@ -226,7 +226,7 @@ export default function LogsPage() {
                     // 删除日志
                     console.log('删除日志');
                   }}
-                  className="btn-cancel h-10 w-16 rounded-lg text-white"
+                  className="btn-delete h-10 w-16 rounded-lg text-white"
                 >
                   删除
                 </button>

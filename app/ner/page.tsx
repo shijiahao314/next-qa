@@ -79,7 +79,7 @@ export default function Page() {
             <div className="flex w-full flex-row space-x-4">
               <textarea
                 ref={queryArea}
-                className="outline-my-border bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 shadow-sm outline"
+                className="outline-my-border bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 outline"
                 placeholder="检查变压器接地线是否连接1000千伏变电站的断路器。"
                 rows={3}
               ></textarea>
@@ -87,12 +87,15 @@ export default function Page() {
                 发 送
               </button>
             </div>
-            <div className="flex w-full shrink grow">
-              <textarea
-                ref={ansArea}
-                className="outline-my-border bg1 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 font-mono shadow-sm outline"
-                readOnly
-              ></textarea>
+            <div className="border0 flex w-full shrink grow flex-col space-y-2 rounded-md border p-4">
+              <label>识别结果</label>
+              <div className="flex w-full shrink grow">
+                <textarea
+                  ref={ansArea}
+                  className="outline-my-border bg1 border0 dark:outline-my-darkborder w-full resize-none rounded-lg px-4 py-2 font-mono outline"
+                  readOnly
+                ></textarea>
+              </div>
             </div>
           </div>
         </div>

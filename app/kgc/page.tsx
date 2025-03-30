@@ -160,7 +160,7 @@ export default function Page() {
               <div className="border0 flex w-full flex-row space-x-2 rounded-md border p-4">
                 <div className="flex w-full flex-col space-y-2">
                   <div className="flex flex-col space-y-1">
-                    <label>head - 头实体</label>
+                    <label>头实体 - head</label>
                     <input
                       ref={headInput}
                       className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
@@ -168,7 +168,7 @@ export default function Page() {
                     ></input>
                   </div>
                   <div className="flex flex-col space-y-1">
-                    <label>relation - 关系</label>
+                    <label>关系 - relation</label>
                     <input
                       ref={relationInput}
                       className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
@@ -176,7 +176,7 @@ export default function Page() {
                     ></input>
                   </div>
                   <div className="flex flex-col space-y-1">
-                    <label>tail - 尾实体</label>
+                    <label>尾实体 - tail</label>
                     <input
                       ref={tailInput}
                       className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
@@ -187,30 +187,30 @@ export default function Page() {
                   补 全
                 </button>
               </div>
-              <div className="border0 flex w-full flex-row space-x-2 rounded-md border p-4">
-                <div className="flex w-full flex-col space-y-2">
-                  <div className="flex flex-col space-y-1">
-                    <label>指标 - Hits@1</label>
-                    <input
-                      ref={hitsInput}
-                      className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
-                      placeholder="Hits@1"
-                    ></input>
-                  </div>
-                  <div className="flex flex-col space-y-1">
-                    <label>指标 - MRR</label>
-                    <input
-                      ref={mrrInput}
-                      className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
-                      placeholder="MRR"
-                    ></input>
-                  </div>
-                </div>
-                <button className="btn-confirm" onClick={fetchKGCBenchmark}>
-                  Benckmark
-                </button>
+            </div>
+          </div>
+          <div className="border0 flex w-full flex-row space-x-2 rounded-md border p-4">
+            <div className="flex w-full flex-col space-y-2">
+              <div className="flex flex-col space-y-1">
+                <label>指标 - Hits@1</label>
+                <input
+                  ref={hitsInput}
+                  className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
+                  placeholder="Hits@1"
+                ></input>
+              </div>
+              <div className="flex flex-col space-y-1">
+                <label>指标 - MRR</label>
+                <input
+                  ref={mrrInput}
+                  className="bg1 borer border0 rounded-md px-2 py-2 outline-none"
+                  placeholder="MRR"
+                ></input>
               </div>
             </div>
+            <button className="btn-confirm" onClick={fetchKGCBenchmark}>
+              Benckmark
+            </button>
           </div>
         </div>
       </div>
