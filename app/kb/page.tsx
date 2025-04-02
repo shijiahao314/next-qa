@@ -267,8 +267,8 @@ export default function KBPage() {
             <div className="flex w-full overflow-x-auto">
               <table className="w-full text-left">
                 <thead className="border0 border-y-2">
-                  <tr className="">
-                    <th className="flex h-10 items-center justify-center">选择</th>
+                  <tr className="h-10">
+                    <th className="px-4 whitespace-nowrap">选择</th>
                     <th className="px-4">知识库名</th>
                     <th className="px-4">知识库类型</th>
                   </tr>
@@ -381,10 +381,10 @@ export default function KBPage() {
             <div className="flex w-full overflow-x-auto">
               <table className="w-full text-left">
                 <thead className="border0 border-y-2">
-                  <tr className="">
-                    <th className="flex h-10 items-center justify-center">选择</th>
-                    <th className="px-4">文件名</th>
-                    <th className="px-4">文件类型</th>
+                  <tr className="h-10">
+                    <th className="px-4 whitespace-nowrap">选择</th>
+                    <th className="px-4 whitespace-nowrap">文件名</th>
+                    <th className="px-4 whitespace-nowrap">文件类型</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -439,7 +439,7 @@ export default function KBPage() {
                 <table className="w-full text-left">
                   <thead className="border0 border-y-2">
                     <tr className="h-10">
-                      <th className="text-center whitespace-nowrap">选择</th>
+                      <th className="px-4 whitespace-nowrap">选择</th>
                       <th className="px-4 whitespace-nowrap">文件名</th>
                       <th className="px-4 whitespace-nowrap">文件类型</th>
                     </tr>

@@ -204,7 +204,7 @@ export default function LogsPage() {
                   'sm:space-4 flex flex-row space-x-2 ' + ` ${selectedKB === '' ? 'hidden' : ''}`
                 }
               >
-                <button
+                {/* <button
                   onClick={() => {
                     // 下载日志
                     console.log('下载日志');
@@ -212,7 +212,7 @@ export default function LogsPage() {
                   className="btn-confirm h-10 w-24 rounded-lg text-white"
                 >
                   下载
-                </button>
+                </button> */}
                 <input
                   className="hidden"
                   type="file"

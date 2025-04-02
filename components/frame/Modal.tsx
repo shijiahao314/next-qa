@@ -28,14 +28,14 @@ export default function Modal({
       {/* Modal */}
       <div
         className={
-          `fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 duration-300 ` +
+          `fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 duration-300 dark:bg-black/80 ` +
           `${isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`
         }
       >
         {/* Modal Content */}
         <div
           className={
-            `bg-my-bg dark:bg-my-dark-bg1 flex flex-col rounded-lg p-5 duration-300 ` +
+            `bg0 flex flex-col rounded-lg p-5 duration-300 ` +
             `${isOpen ? 'scale-100' : 'scale-95'}`
           }
         >

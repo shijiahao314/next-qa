@@ -20,7 +20,7 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
         descp: '所创建的知识库名称',
         value: (
           <input
-            className="bg-my-bg outline-my-border focus:outline-my-primary dark:bg-my-dark-bg1 dark:outline-my-darkborder dark:focus:outline-my-darkPrimary h-full w-full rounded-lg px-3 text-center outline outline-1"
+            className="bg1 border0 h-full w-full rounded-lg border px-3 text-center text-sm"
             name="kbname"
             type="text"
             value={tmpKBName}
@@ -35,7 +35,7 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
         value: (
           <select
             id="countries"
-            className="border-my-border bg-my-bg dark:border-my-darkborder dark:bg-my-dark-bg1 h-full w-full rounded-lg border border-solid text-center text-sm"
+            className="bg1 border0 h-full w-full rounded-lg border px-3 text-center text-sm"
           >
             <option value="RAG 知识库">RAG 知识库</option>
             <option value="GraphRAG 知识图库">GraphRAG 知识图库</option>
@@ -108,16 +108,10 @@ export function CreateKBModal({ modalOpen, setModalOpen }: ModalProps) {
           ))}
           {/* 按钮 */}
           <div className="flex justify-end gap-3">
-            <button
-              className="bg-my-primary hover:bg-my-primary-hover dark:bg-my-dark-primary dark:hover:bg-my-dark-primaryHover inline-flex justify-center rounded-md border border-transparent px-6 py-2 text-white"
-              onClick={handleCreateKB}
-            >
+            <button className="btn-confirm" onClick={handleCreateKB}>
               确认
             </button>
-            <button
-              className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-6 py-2 text-blue-900 hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              onClick={() => setModalOpen(false)}
-            >
+            <button className="btn-cancel" onClick={() => setModalOpen(false)}>
               取消
             </button>
           </div>
