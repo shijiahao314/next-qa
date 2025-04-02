@@ -233,7 +233,7 @@ export default function LogsPage() {
               </div>
             </div>
             <textarea
-              className="bg1 outline-my-border border0 dark:outline-my-darkborder flex grow resize-none overflow-y-auto rounded-lg p-2 text-xs shadow-sm outline"
+              className="bg1 outline-my-border border0 dark:outline-my-darkborder flex grow resize-none overflow-y-auto rounded-lg p-2 font-mono text-sm shadow-sm outline"
               onChange={(e) => setLogsText(e.target.value)}
               value={logsText}
               readOnly
