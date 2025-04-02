@@ -14,8 +14,9 @@ export default function NotFoundPage() {
   return (
     <>
       <title>404 Not Found</title>
-      <div className="flex h-full w-full items-center justify-center text-xl font-semibold">
-        Page Not Found
+      <div className="flex h-full w-full flex-col items-center justify-center space-y-2 text-xl font-semibold">
+        <label>页面未找到</label>
+        <label>Page Not Found</label>
       </div>
     </>
   );

@@ -1,38 +1,39 @@
+@import 'tailwindcss';
+@import './theme.css';
+
 .prose-custom h1 {
-  margin: 1.5rem 0;
+  @apply my-6 text-3xl font-extrabold;
 }
 
 .prose-custom h2 {
-  margin: 1rem 0;
+  @apply my-4 text-2xl font-bold;
 }
 
 .prose-custom h3 {
-  margin: 0.75rem 0;
+  @apply my-3 text-xl font-semibold;
 }
 
 .prose-custom p {
-  margin: 0;
+  @apply m-0;
 }
 
 .prose-custom pre {
-  margin: 0.5rem;
-  padding: 0.75rem;
+  @apply m-2 rounded-md p-3;
 }
 
 .prose-custom table {
-  margin: 0.25rem 0;
-  padding: 0.25rem 0;
+  @apply my-1 py-1;
 }
 
 .prose-custom blockquote {
-  margin: 0.5rem;
+  @apply m-2;
 }
 
 .inline-code {
-  padding: 0.25rem;
+  @apply p-1;
 }
 
 .inline-code::before,
 .inline-code::after {
-  content: '';
+  @apply content-none;
 }
