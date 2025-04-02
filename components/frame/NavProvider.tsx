@@ -178,8 +178,9 @@ export default function NavProvider({ children }: { children: React.ReactNode })
         >
           <svg viewBox="0 0 1024 1024">
             <path
+              className="text-black/60 dark:text-white/60"
               d="M170.666667 213.333333h682.666666v85.333334H170.666667V213.333333z m0 512h682.666666v85.333334H170.666667v-85.333334z m0-256h682.666666v85.333334H170.666667v-85.333334z"
-              fill="#999"
+              fill="currentColor"
             />
           </svg>
         </button>
