@@ -203,6 +203,11 @@ export default function KBPage() {
       const kbs: string[] = checkedKBs;
       for (let i = 0; i < kbs.length; i++) {
         const kb: string = kbs[i];
+
+        if (['hbdl', 'raggo', 'ragtest'].includes(kb)) {
+          // 特殊规则：被保护的 KB 不能删除
+          continue;
+        }
         console.log('====================================');
         console.log(`删除知识库：${kb}`);
         console.log('====================================');
@@ -268,7 +273,7 @@ export default function KBPage() {
               <table className="w-full text-left">
                 <thead className="border0 border-y-2">
                   <tr className="h-10">
-                    <th className="px-4 whitespace-nowrap">选择</th>
+                    <th className="px-4 text-center whitespace-nowrap">选择</th>
                     <th className="px-4">知识库名</th>
                     <th className="px-4">知识库类型</th>
                   </tr>
@@ -299,7 +304,9 @@ export default function KBPage() {
                       >
                         {filename}
                       </td>
-                      <td className="px-4">{filename}</td>
+                      <td className="px-4">
+                        {['hbdl', 'raggo', 'ragtest'].includes(filename) ? '被保护' : ''}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -382,7 +389,7 @@ export default function KBPage() {
               <table className="w-full text-left">
                 <thead className="border0 border-y-2">
                   <tr className="h-10">
-                    <th className="px-4 whitespace-nowrap">选择</th>
+                    <th className="px-4 text-center whitespace-nowrap">选择</th>
                     <th className="px-4 whitespace-nowrap">文件名</th>
                     <th className="px-4 whitespace-nowrap">文件类型</th>
                   </tr>
@@ -439,7 +446,7 @@ export default function KBPage() {
                 <table className="w-full text-left">
                   <thead className="border0 border-y-2">
                     <tr className="h-10">
-                      <th className="px-4 whitespace-nowrap">选择</th>
+                      <th className="px-4 text-center whitespace-nowrap">选择</th>
                       <th className="px-4 whitespace-nowrap">文件名</th>
                       <th className="px-4 whitespace-nowrap">文件类型</th>
                     </tr>
