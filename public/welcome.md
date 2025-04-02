@@ -1,5 +1,7 @@
 # NextQA
 
+Project URL: [NextQA](https://github.com/shijiahao314/next-qa)
+
 This is an example of **Markdown** rendering in Next.js with Tailwind CSS.
 
 ## Supported Markdown Style
@@ -32,3 +34,4 @@ func main() {
 ### Blockquote
 
 > "Markdown is amazing!"
+

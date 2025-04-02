@@ -14,9 +14,15 @@
 }
 
 .prose-custom p {
-  @apply m-0;
+  @apply my-1;
 }
 
+.prose-custom a {
+  @apply text-my-primary italic underline underline-offset-2;
+  @variant dark {
+    @apply text-my-dark-primary;
+  }
+}
 .prose-custom pre {
   @apply m-2 rounded-md p-3;
 }
@@ -26,7 +32,10 @@
 }
 
 .prose-custom blockquote {
-  @apply m-2;
+  @apply bg-grey-1 border-my-primary mx-2 rounded-r-md border-l-4 p-1 italic;
+  @variant dark {
+    @apply bg-my-dark-bg1 border-my-dark-primary;
+  }
 }
 
 .inline-code {
