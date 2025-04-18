@@ -5,6 +5,7 @@ import { useHeader } from '@/components/frame/HeaderProvider';
 import { useEffect, useState } from 'react';
 import { CreateKBModal } from './CreateKBModal';
 import { KBSettingsModal } from './KBSettingsModal';
+import FileUpload from './FileUpload';
 
 class GetKBRsp {
   code!: number;
@@ -30,6 +31,15 @@ class GetOuptutRsp {
   files!: string[];
 }
 
+class DeleteFileReq {
+  kb!: string;
+  files!: string[];
+}
+class DeleteFileRsp {
+  code!: number;
+  msg!: string;
+}
+
 export default function KBPage() {
   const { setHeader } = useHeader(); // header
   useEffect(() => {
@@ -50,6 +60,8 @@ export default function KBPage() {
 
   const [inputs, setInputs] = useState<string[]>([]); // Input 列表
   const [outputs, setOutputs] = useState<string[]>([]); // Output 列表
+
+  const [checkedFiles, setCheckedFiles] = useState<string[]>([]);
 
   useEffect(() => {
     async function fetchKBs() {
@@ -237,6 +249,36 @@ export default function KBPage() {
     }
   }
 
+  async function handleDeleteFile() {
+    try {
+      const files: string[] = checkedFiles;
+      if (files.length === 0) {
+        return;
+      }
+
+      const res = await fetch(API_URL + '/kb/file/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          kb: selectedKB,
+          files: files
+        } as DeleteFileReq)
+      });
+
+      if (res.ok) {
+        const rsp: DeleteFileRsp = await res.json();
+        console.log(rsp.msg);
+        window.location.reload(); // 刷新页面
+      } else {
+        console.log('Failed to delete file');
+      }
+    } catch (error) {
+      console.log('Error deleting file:', error);
+    }
+  }
+
   return (
     <>
       <title>KB-知识库管理</title>
@@ -348,16 +390,7 @@ export default function KBPage() {
                 >
                   配置
                 </button>
-                <button
-                  onClick={() => {
-                    // 上传文件
-                    console.log('上传文件');
-                    document.getElementById('upload')?.click();
-                  }}
-                  className="btn-confirm"
-                >
-                  上传文件
-                </button>
+                <FileUpload kb={selectedKB}></FileUpload>
                 <input
                   className="hidden"
                   type="file"
@@ -376,8 +409,9 @@ export default function KBPage() {
                 </button> */}
                 <button
                   onClick={() => {
-                    // 上传文件
+                    // 删除文件
                     console.log('删除文件');
+                    handleDeleteFile();
                   }}
                   className="btn-delete"
                 >
@@ -398,7 +432,13 @@ export default function KBPage() {
                   {inputs.map((filename: string) => (
                     <tr className="border0 border-b" key={filename}>
                       <td className="flex h-10 items-center justify-center">
-                        <input type="checkbox" className="checkbox h-3 w-3"></input>
+                        <input
+                          type="checkbox"
+                          className="checkbox h-3 w-3"
+                          onClick={() => {
+                            setCheckedFiles((checkedFiles) => [...checkedFiles, filename]);
+                          }}
+                        ></input>
                       </td>
                       <td className="px-4">{filename}</td>
                       <td className="px-4">

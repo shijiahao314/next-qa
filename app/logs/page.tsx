@@ -27,7 +27,7 @@ export default function LogsPage() {
   const [dbs, setDBs] = useState<string[]>([]); // DB 列表
   const [selectedKB, setSelectedKB] = useState(''); // 所选 KB
   const [selectedDB, setSelectedDB] = useState(''); // 所选 KB
-  const [logsText, setLogsText] = useState(''); // 日志内容
+  const [logText, setLogText] = useState(''); // 日志内容
   const { setHeader } = useHeader();
 
   useEffect(() => {
@@ -115,9 +115,10 @@ export default function LogsPage() {
         if (res.ok) {
           const data: GetLogsRsp = await res.json();
           console.log(data);
-          setLogsText(data.files);
+          setLogText(data.files);
         } else {
           console.error('Failed to fetch logs.');
+          setLogText('日志文件内容为空');
         }
       } catch (error) {
         console.error('Error fetching logs:', error);
@@ -140,14 +141,18 @@ export default function LogsPage() {
   const selectStyle = 'h-10 px-4 rounded-lg border border0 bg1';
 
   // 下载日志
-  function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    if (file) {
-      console.log('====================================');
-      console.log(file);
-      console.log('====================================');
-    }
-  }
+  const handleDownload = () => {
+    // 创建一个包含文本内容的Blob对象
+    const blob = new Blob([logText], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    // 下载文件名
+    const kb = selectedKB;
+    const db = selectedDB;
+    link.download = `${kb}_${db}_log.txt`;
+    // 模拟点击下载
+    link.click();
+  };
 
   return (
     <>
@@ -204,38 +209,22 @@ export default function LogsPage() {
                   'sm:space-4 flex flex-row space-x-2 ' + ` ${selectedKB === '' ? 'hidden' : ''}`
                 }
               >
-                {/* <button
+                <button
                   onClick={() => {
                     // 下载日志
                     console.log('下载日志');
+                    handleDownload();
                   }}
                   className="btn-confirm h-10 w-24 rounded-lg text-white"
                 >
                   下载
-                </button> */}
-                <input
-                  className="hidden"
-                  type="file"
-                  name="upload"
-                  id="upload"
-                  onChange={handleFileUpload}
-                />
-
-                <button
-                  onClick={() => {
-                    // 删除日志
-                    console.log('删除日志');
-                  }}
-                  className="btn-delete h-10 w-16 rounded-lg text-white"
-                >
-                  删除
                 </button>
               </div>
             </div>
             <textarea
               className="bg1 outline-my-border border0 dark:outline-my-darkborder flex grow resize-none overflow-y-auto rounded-lg p-2 font-mono text-sm shadow-sm outline"
-              onChange={(e) => setLogsText(e.target.value)}
-              value={logsText}
+              onChange={(e) => setLogText(e.target.value)}
+              value={logText}
               readOnly
             ></textarea>
           </div>
