@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { API_URL } from '@/app/config';
+import { protectedKbs } from './page';
 
 class UploadFileRsp {
   code!: number;
@@ -18,6 +19,12 @@ const FileUpload = (props: { kb: string }) => {
 
   // 选择文件后直接上传
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (protectedKbs.includes(props.kb)) {
+      // 特殊规则：被保护的 KB 不能删除
+      alert('不允许在被保护的 KB 中上传文件');
+      return;
+    }
+
     const file = event.target.files ? event.target.files[0] : null;
     if (!file) return;
 

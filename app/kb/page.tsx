@@ -40,6 +40,8 @@ class DeleteFileRsp {
   msg!: string;
 }
 
+export const protectedKbs = ['hbdl', 'raggo', 'ragtest'];
+
 export default function KBPage() {
   const { setHeader } = useHeader(); // header
   useEffect(() => {
@@ -216,7 +218,7 @@ export default function KBPage() {
       for (let i = 0; i < kbs.length; i++) {
         const kb: string = kbs[i];
 
-        if (['hbdl', 'raggo', 'ragtest'].includes(kb)) {
+        if (protectedKbs.includes(kb)) {
           // 特殊规则：被保护的 KB 不能删除
           continue;
         }
@@ -251,6 +253,12 @@ export default function KBPage() {
 
   async function handleDeleteFile() {
     try {
+      if (protectedKbs.includes(selectedKB)) {
+        // 特殊规则：被保护的 KB 不能删除
+        alert('不允许删除被保护的 KB 中的文件');
+        return;
+      }
+
       const files: string[] = checkedFiles;
       if (files.length === 0) {
         return;
@@ -346,9 +354,7 @@ export default function KBPage() {
                       >
                         {filename}
                       </td>
-                      <td className="px-4">
-                        {['hbdl', 'raggo', 'ragtest'].includes(filename) ? '被保护' : ''}
-                      </td>
+                      <td className="px-4">{protectedKbs.includes(filename) ? '被保护' : ''}</td>
                     </tr>
                   ))}
                 </tbody>
