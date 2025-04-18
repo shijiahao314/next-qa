@@ -213,7 +213,7 @@ export default function Page() {
                     )}
                   </div>
                 </div>
-                <div className="flex flex-row">
+                <div hidden className="flex flex-row">
                   <label className="flex items-center">Method：</label>
                   <select className={`${selectStyle}`} onChange={handleSelectMethod}>
                     <option key="local">local</option>
@@ -228,7 +228,7 @@ export default function Page() {
                 className="border-my-border bg1 outline-my-border dark:outline-my-darkborder w-full resize-none overflow-y-visible rounded-lg px-4 py-2 leading-normal shadow-sm outline"
                 rows={3}
                 onChange={handleChangeText}
-                placeholder={`${method === 'local' ? 'Who is Scrooge, and what are his main relationships?' : 'What are the top themes in this story?'}`}
+                placeholder={`${method === 'local' ? '你知道哪些电力知识' : 'What are the top themes in this story?'}`}
               ></textarea>
               <button className="btn-confirm" onClick={fetchQuery}>
                 发 送
