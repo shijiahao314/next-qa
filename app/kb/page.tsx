@@ -4,8 +4,9 @@ import { API_URL } from '@/app/config';
 import { useHeader } from '@/components/frame/HeaderProvider';
 import { useEffect, useState } from 'react';
 import { CreateKBModal } from './CreateKBModal';
-import { KBSettingsModal } from './KBSettingsModal';
 import FileUpload from './FileUpload';
+import { KBSettingsModal } from './KBSettingsModal';
+import { protectedKbs } from './vars';
 
 class GetKBRsp {
   code!: number;
@@ -39,8 +40,6 @@ class DeleteFileRsp {
   code!: number;
   msg!: string;
 }
-
-export const protectedKbs = ['hbdl', 'raggo', 'ragtest'];
 
 export default function KBPage() {
   const { setHeader } = useHeader(); // header

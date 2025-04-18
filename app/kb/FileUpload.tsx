@@ -1,6 +1,6 @@
-import { useRef } from 'react';
 import { API_URL } from '@/app/config';
-import { protectedKbs } from './page';
+import { useRef } from 'react';
+import { protectedKbs } from './vars';
 
 class UploadFileRsp {
   code!: number;
