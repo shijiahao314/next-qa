@@ -365,7 +365,7 @@ export default function KBPage() {
                   id="upload"
                   onChange={handleFileUpload}
                 />
-                <button
+                {/* <button
                   onClick={() => {
                     // Indexing
                     console.log('Indexing');
@@ -373,7 +373,7 @@ export default function KBPage() {
                   className="btn-confirm"
                 >
                   Indexing
-                </button>
+                </button> */}
                 <button
                   onClick={() => {
                     // 上传文件
@@ -430,16 +430,6 @@ export default function KBPage() {
                       </select>
                     )}
                   </div>
-                </div>
-                <div className="flex flex-row space-x-2">
-                  <button
-                    onClick={() => {
-                      console.log('删除文件');
-                    }}
-                    className="btn-delete"
-                  >
-                    删除
-                  </button>
                 </div>
               </div>
               <div className="flex w-full overflow-x-auto">
