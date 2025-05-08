@@ -32,6 +32,8 @@ export default function Page() {
   const ansArea = useRef<HTMLTextAreaElement>(null); // Answer
   const { setHeader } = useHeader();
 
+  const defaultQueryText = '你知道哪些电力知识';
+
   useEffect(() => {
     // 设置 header 内容
     setHeader(<label className="flex items-center text-xl font-bold">知识图问答</label>);
@@ -98,9 +100,10 @@ export default function Page() {
       return;
     }
 
-    const query = queryArea.current.value;
+    let query = queryArea.current.value;
     if (query === '') {
-      return;
+      query = defaultQueryText;
+      queryArea.current.value = query;
     }
 
     console.log('====================================');
@@ -228,7 +231,7 @@ export default function Page() {
                 className="border-my-border bg1 outline-my-border dark:outline-my-darkborder w-full resize-none overflow-y-visible rounded-lg px-4 py-2 leading-normal shadow-sm outline"
                 rows={3}
                 onChange={handleChangeText}
-                placeholder={`${method === 'local' ? '你知道哪些电力知识' : 'What are the top themes in this story?'}`}
+                placeholder={defaultQueryText}
               ></textarea>
               <button className="btn-confirm" onClick={fetchQuery}>
                 发 送
