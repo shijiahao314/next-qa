@@ -164,6 +164,7 @@ export default function KBPage() {
           const rsp: GetOuptutRsp = await res.json();
           setOutputs(rsp.files);
         } else {
+          setOutputs([]);
           console.warn('Failed to fetch outputs.');
         }
       } catch (error) {
