@@ -28,6 +28,13 @@
   /* 悬停态颜色 */
 }
 
+/* number 类型的 input 隐藏箭头 */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .bg0 {
   @apply bg-grey-0;
   @variant dark {

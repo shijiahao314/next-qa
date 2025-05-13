@@ -1,18 +1,14 @@
 # NextQA
 
-Project URL: [NextQA](https://github.com/shijiahao314/next-qa)
+Project Github URL: [NextQA](https://github.com/shijiahao314/next-qa)
 
 This is an example of **Markdown** rendering in Next.js with Tailwind CSS.
 
 ## Supported Markdown Style
 
-### Inline Code
+### Inline Code & Code Block
 
-Use `inline code` for inline code.
-
-### Code Block
-
-Here’s a **Go** example:
+Here’s a `Go` program example:
 
 ```Go
 package main
@@ -24,14 +20,15 @@ func main() {
 }
 ```
 
-### Table
-
-| Feature     | Supported |
-|-------------|-----------|
-| Inline Code | ✅        |
-| Code Block  | ✅        |
-
 ### Blockquote
 
 > "Markdown is amazing!"
 
+### Table
+
+| Feature     | Supported |
+| ----------- | :-------: |
+| Inline Code |    ✅     |
+| Code Block  |    ✅     |
+| Blockquote  |    ✅     |
+| Table       |    ✅     |
