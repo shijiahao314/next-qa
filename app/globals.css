@@ -49,6 +49,13 @@ input[type='number']::-webkit-outer-spin-button {
   }
 }
 
+.bg1-loading {
+  @apply bg-grey-3;
+  @variant dark {
+    @apply bg-my-dark-bg1/50;
+  }
+}
+
 .bg2 {
   @apply bg-grey-2;
   @variant dark {

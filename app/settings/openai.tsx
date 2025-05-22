@@ -1,4 +1,33 @@
+import { PlatformSetting, useSettingStore } from '@/lib/store/settingStore';
+import { useEffect, useState } from 'react';
+
 export default function OpenAISetting() {
+  const getPlatformSetting = useSettingStore((state) => state.getPlatformSetting);
+  const setPlatformSettingMap = useSettingStore((state) => state.setPlatformSettingMap);
+  const [apiUrl, setAPIURL] = useState<string>(() => {
+    const openAISetting: PlatformSetting = getPlatformSetting('openai');
+    return openAISetting.apiUrl;
+  });
+  const [apiKey, setAPIKey] = useState<string>(() => {
+    const openAISetting: PlatformSetting = getPlatformSetting('openai');
+    return openAISetting.apiKey;
+  });
+  const [chatModel, setChatModel] = useState<string>(() => {
+    const openAISetting: PlatformSetting = getPlatformSetting('openai');
+    return openAISetting.chatModel;
+  });
+
+  useEffect(() => {
+    const openAISetting: PlatformSetting = {
+      apiUrl: apiUrl,
+      apiKey: apiKey,
+      chatModel: chatModel
+    };
+    const configMap = new Map<string, PlatformSetting>();
+    configMap.set('openai', openAISetting);
+    setPlatformSettingMap(configMap);
+  }, [apiKey, apiUrl, chatModel, setPlatformSettingMap]);
+
   // 对话模型
   const ChatModelMap: Map<string, string[]> = new Map();
   ChatModelMap.set('ChatGPT-4o', ['chatgpt-4o-latest']);
@@ -38,6 +67,9 @@ export default function OpenAISetting() {
   EmbeddingModelMap.set('text-embedding-3-large', ['text-embedding-3-large']);
   EmbeddingModelMap.set('text-embedding-ada-002', ['text-embedding-ada-002']);
 
+  // localStorage
+  const chatModels = useSettingStore((state) => state.chatModels);
+
   const settings = [
     {
       title: '接口地址',
@@ -47,6 +79,8 @@ export default function OpenAISetting() {
           className="border0 bg1 rounded-lg border p-2 text-center text-sm"
           placeholder="https://api.openai.com"
           defaultValue={'/api/openai'}
+          value={apiUrl}
+          onChange={(e) => setAPIURL(e.target.value)}
         ></input>
       )
     },
@@ -59,16 +93,35 @@ export default function OpenAISetting() {
           className="border0 bg1 rounded-lg border p-2 text-center text-sm"
           placeholder="OpenAI API Key"
           type="password"
+          value={apiKey}
+          onChange={(e) => setAPIKey(e.target.value)}
         ></input>
       )
     },
-
     {
       link: 'https://platform.openai.com/docs/models',
       title: '对话模型（model）',
       descp: '选择使用的对话模型',
       value: (
-        <select id="countries" className="border0 bg1 rounded-lg border p-2 text-center text-sm">
+        <select
+          className="border0 bg1 rounded-lg border p-2 text-center text-sm"
+          value={chatModel}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            console.log('====================================');
+            console.log(e.target.value);
+            console.log('====================================');
+            setChatModel(e.target.value);
+          }}
+        >
+          {chatModels.length > 0 && (
+            <optgroup label="自定义模型">
+              {chatModels.map((model) => (
+                <option key={model} value={model}>
+                  {model}
+                </option>
+              ))}
+            </optgroup>
+          )}
           {Array.from(ChatModelMap).map(([label, models]) => (
             <optgroup key={label} label={label}>
               {models.map((model) => (

@@ -1,14 +1,15 @@
 'use client';
 
 import { ChatCard, ChatRole } from '@/action/model/chat';
-import { useChatStore, useTmpChatStat } from '@/lib/store';
+import { useChatStore } from '@/lib/store/chatStore';
+import { useTmpChatStore } from '@/lib/store/tmpChatStore';
 import { useState } from 'react';
 
 export default function ChatFooter() {
   const selectedChatInfoID = useChatStore((state) => state.selectedChatInfoID);
   const addChatCard = useChatStore((state) => state.addChatCard);
   const [tmpContent, setTmpContent] = useState(''); // 对话框内容
-  const setTmpChatContent = useTmpChatStat((state) => state.setTmpChatContent);
+  const setTmpChatContent = useTmpChatStore((state) => state.setTmpChatContent);
 
   function handleSend() {
     const text = tmpContent;

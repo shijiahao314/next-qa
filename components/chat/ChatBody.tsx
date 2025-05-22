@@ -1,28 +1,28 @@
 'use client';
 
 import { ChatCard, ChatRole } from '@/action/model/chat';
-import { useChatStore, useTmpChatStat } from '@/lib/store';
+import { useChatStore } from '@/lib/store/chatStore';
+import { useTmpChatStore } from '@/lib/store/tmpChatStore';
 import { useEffect, useRef, useState } from 'react';
 import ChatContent from './ChatCard';
 import TmpChatCard from './TmpChatCard';
 
 // 如果需要loading，则改为async
 export default function ChatBody() {
-  const chatMap = useChatStore((state) => state.chatMap);
   const selectedChatInfoID = useChatStore((state) => state.selectedChatInfoID);
-  const getChatsCard = useChatStore((state) => state.getChatsCard);
+  const getChatCards = useChatStore((state) => state.getChatCards);
   const [curChatCards, setCurChatCards] = useState<ChatCard[]>([]);
 
-  const tmpChatContent: string = useTmpChatStat((state) => state.tmpChatContent);
-  const tmpCompletionContent: string = useTmpChatStat((state) => state.tmpCompletionContent);
+  const tmpChatContent: string = useTmpChatStore((state) => state.tmpChatContent);
+  const tmpCompletionContent: string = useTmpChatStore((state) => state.tmpCompletionContent);
   const chatBodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (chatMap && selectedChatInfoID) {
-      const chatCards = getChatsCard(selectedChatInfoID);
+    if (selectedChatInfoID) {
+      const chatCards = getChatCards(selectedChatInfoID);
       setCurChatCards(chatCards);
     }
-  }, [chatMap, selectedChatInfoID, getChatsCard]);
+  }, [selectedChatInfoID, getChatCards]);
 
   useEffect(() => {
     if (!chatBodyRef.current) {

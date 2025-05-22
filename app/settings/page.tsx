@@ -1,9 +1,10 @@
 'use client';
 
 import { useHeader } from '@/components/frame/HeaderProvider';
+import { useSettingStore } from '@/lib/store/settingStore';
 import { ReactNode, useEffect, useState } from 'react';
-import OpenAISetting from './opanei';
 import DeepSeekSetting from './deepseek';
+import OpenAISetting from './openai';
 
 export default function Page() {
   const { setHeader, setRbtn } = useHeader();
@@ -20,6 +21,25 @@ export default function Page() {
   const platformSettingMap: Map<string, ReactNode> = new Map();
   platformSettingMap.set('OpenAI', <OpenAISetting />);
   platformSettingMap.set('DeepSeek', <DeepSeekSetting />);
+
+  // localStorage
+  const temperature = useSettingStore((state) => state.temperature);
+  const setTemperature = useSettingStore((state) => state.setTemperature);
+  const [temperatureInput, setTemperatureInput] = useState<string>(() => {
+    if (temperature) {
+      return temperature;
+    }
+    return '0';
+  });
+
+  const chatModels = useSettingStore((state) => state.chatModels);
+  const setChatModels = useSettingStore((state) => state.setChatModels);
+  const [chatModelsInput, setChatModelsInput] = useState<string>(chatModels.join(','));
+
+  useEffect(() => {
+    setTemperatureInput(temperature);
+    setChatModelsInput(chatModels.join(','));
+  }, [temperature, chatModels]);
 
   return (
     <>
@@ -46,25 +66,29 @@ export default function Page() {
                   </div>
                   <div className="flex items-center">
                     <input
-                      className="border0 bg1 w-24 rounded-lg border p-2 text-center text-sm"
+                      className="bg1 border0 flex w-24 grow rounded-lg border p-2 text-center text-sm"
                       type="number"
                       min="0"
                       max="1"
                       placeholder="0.0 ~ 1.0"
-                      defaultValue={'0.5'}
-                      onBlur={(e) => {
-                        const target = e.target as HTMLInputElement;
-                        if (target.value === '') {
-                          target.value = '0.5';
-                          return;
+                      value={temperatureInput}
+                      defaultValue={'0.1'}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        setTemperatureInput(e.target.value);
+                      }}
+                      onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
+                        let value = e.target.value;
+                        if (value === '') {
+                          value = '0.1';
                         }
-                        const value = parseFloat(target.value);
-                        if (value < 0) {
-                          target.value = '0';
+                        const valueFloat = parseFloat(value);
+                        if (valueFloat < 0) {
+                          value = '0';
                         }
-                        if (value > 1) {
-                          target.value = '1';
+                        if (valueFloat > 1) {
+                          value = '1';
                         }
+                        setTemperature(value);
                       }}
                     ></input>
                   </div>
@@ -77,15 +101,21 @@ export default function Page() {
                   <div className="flex w-full items-center space-x-2">
                     <div className="text-my-text2 dark:text-my-darktext2 text-sm">对话模型</div>
                     <input
-                      className="border0 bg1 flex grow rounded-lg border p-2 text-left text-sm"
+                      className="bg1 border0 flex grow rounded-lg border p-2 text-left text-sm"
                       placeholder="model1,model2,model3,..."
-                    ></input>
-                  </div>
-                  <div className="flex w-full items-center space-x-2">
-                    <div className="text-my-text2 dark:text-my-darktext2 text-sm">嵌入模型</div>
-                    <input
-                      className="border0 bg1 flex grow rounded-lg border p-2 text-left text-sm"
-                      placeholder="model1,model2,model3,..."
+                      value={chatModelsInput}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        setChatModelsInput(e.target.value);
+                      }}
+                      onBlur={() => {
+                        let models = chatModelsInput
+                          .split(',')
+                          .map((m) => m.trim())
+                          .filter((m) => m.length > 0);
+                        // 去重
+                        models = Array.from(new Set(models));
+                        setChatModels(models);
+                      }}
                     ></input>
                   </div>
                 </div>

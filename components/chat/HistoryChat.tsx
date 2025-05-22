@@ -1,7 +1,7 @@
 'use client';
 
 import { ChatInfo, FormattedTime } from '@/action/model/chat';
-import { useChatStore } from '@/lib/store';
+import { useChatStore } from '@/lib/store/chatStore';
 import { useEffect, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 

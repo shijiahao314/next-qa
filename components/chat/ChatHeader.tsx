@@ -1,12 +1,11 @@
 'use client';
 
 import { ChatInfo } from '@/action/model/chat';
-import { useChatStore } from '@/lib/store';
+import { useChatStore } from '@/lib/store/chatStore';
 import React, { Fragment, useEffect, useState } from 'react';
 import Modal from '../frame/Modal';
 
 export default function ChatHeader() {
-  const chatMap = useChatStore((state) => state.chatMap);
   const selectedChatInfoID = useChatStore((state) => state.selectedChatInfoID);
   const chatInfos = useChatStore((state) => state.chatInfos);
   const setChatInfos = useChatStore((state) => state.setChatInfos);
@@ -30,7 +29,7 @@ export default function ChatHeader() {
     if (chatInfo) {
       setCurChatInfo(chatInfo);
     }
-  }, [chatMap, selectedChatInfoID, chatInfos]);
+  }, [selectedChatInfoID, chatInfos]);
 
   // Dialog (Modal)
   const [modalOpen, setModalOpen] = useState(false);
